@@ -1,0 +1,14 @@
+[run]
+omit =
+    */tests.py
+    */test_*.py
+    */real_device_tests/*
+    */test_data.py
+    */__pycache__/*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if __name__ == .__main__.:
+    raise NotImplementedError
