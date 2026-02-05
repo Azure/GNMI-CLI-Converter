@@ -1,6 +1,6 @@
 # ALL COMMANDS ANALYSIS
 
-**Generated:** 2026-02-04 15:10:34
+**Generated:** 2026-02-05 11:37:29
 **Total Commands:** 70
 **Devices Tested:** 4
 
@@ -22,20 +22,20 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Test Cases (with data) | 426 |
-| ✅ PASS | 398 |
+| Total Test Cases (with data) | 423 |
+| ✅ PASS | 414 |
 | ❌ FAIL | 0 |
 | ⚠️ ERROR | 0 |
-| ⏭️ SKIP (data error) | 28 |
+| ⏭️ SKIP (data error) | 9 |
 | **Pass Rate** | **100.0%** |
 
 ## Per-Device Summary
 
 | Device | Total | ✅ Pass | ❌ Fail | ⚠️ Error | ⏭️ Skip | Pass Rate |
 |--------|-------|---------|---------|----------|---------|-----------|
-| `str2-8102-01` | 143 | 133 | 0 | 0 | 10 | 100.0% |
-| `str4-7060x6-512-1` | 143 | 128 | 0 | 0 | 15 | 100.0% |
-| `str4-7060x6-512-13` | 70 | 68 | 0 | 0 | 2 | 100.0% |
+| `str2-8102-01` | 143 | 141 | 0 | 0 | 2 | 100.0% |
+| `str4-7060x6-512-1` | 141 | 136 | 0 | 0 | 5 | 100.0% |
+| `str4-7060x6-512-13` | 69 | 68 | 0 | 0 | 1 | 100.0% |
 | `str4-7060x6-512-9` | 70 | 69 | 0 | 0 | 1 | 100.0% |
 
 ## Quick Reference by Command
@@ -47,7 +47,7 @@
 | 03 | [`show clock`](#03-show-clock) | 1 | 4 | 0 | 0 | 0 |
 | 04 | [`show clock timezones`](#04-show-clock-timezones) | 1 | 4 | 0 | 0 | 0 |
 | 05 | [`show dropcounters capabilities`](#05-show-dropcounters-capabilities) | 1 | 4 | 0 | 0 | 0 |
-| 06 | [`show dropcounters counts`](#06-show-dropcounters-counts) | 4 | 10 | 0 | 0 | 0 |
+| 06 | [`show dropcounters counts`](#06-show-dropcounters-counts) | 7 | 16 | 0 | 0 | 0 |
 | 07 | [`show headroom-pool watermark`](#07-show-headroom-pool-watermark) | 1 | 4 | 0 | 0 | 0 |
 | 08 | [`show headroom-pool persistent-watermark`](#08-show-headroom-pool-persistent-watermark) | 1 | 4 | 0 | 0 | 0 |
 | 09 | [`show interfaces alias`](#09-show-interfaces-alias) | 3 | 6 | 0 | 0 | 0 |
@@ -81,10 +81,10 @@
 | 37 | [`show ipv6 route`](#37-show-ipv6-route) | 3 | 2 | 0 | 0 | 6 |
 | 38 | [`show ipv6 protocol`](#38-show-ipv6-protocol) | 1 | 4 | 0 | 0 | 0 |
 | 39 | [`show ipv6 bgp neighbors`](#39-show-ipv6-bgp-neighbors) | 9 | 12 | 0 | 0 | 0 |
-| 40 | [`show ipv6 bgp network`](#40-show-ipv6-bgp-network) | 11 | 8 | 0 | 0 | 16 |
+| 40 | [`show ipv6 bgp network`](#40-show-ipv6-bgp-network) | 8 | 16 | 0 | 0 | 0 |
 | 41 | [`show ipv6 bgp summary`](#41-show-ipv6-bgp-summary) | 1 | 4 | 0 | 0 | 0 |
 | 42 | [`show ipv6 link-local-mode`](#42-show-ipv6-link-local-mode) | 1 | 4 | 0 | 0 | 0 |
-| 43 | [`show ipv6 fib`](#43-show-ipv6-fib) | 3 | 3 | 0 | 0 | 3 |
+| 43 | [`show ipv6 fib`](#43-show-ipv6-fib) | 3 | 5 | 0 | 0 | 0 |
 | 44 | [`show lldp neighbors`](#44-show-lldp-neighbors) | 3 | 6 | 0 | 0 | 0 |
 | 45 | [`show lldp table`](#45-show-lldp-table) | 1 | 4 | 0 | 0 | 0 |
 | 46 | [`show mac`](#46-show-mac) | 1 | 4 | 0 | 0 | 0 |
@@ -1243,14 +1243,14 @@ PORT_INGRESS_DROPS
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 10/16 test cases passed (across 4 devices)
+**Status:** ✅ All 16/28 test cases passed (across 4 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
-| `str2-8102-01` | 4 | 0 | 0 | 0 |
-| `str4-7060x6-512-1` | 4 | 0 | 0 | 0 |
+| `str2-8102-01` | 7 | 0 | 0 | 0 |
+| `str4-7060x6-512-1` | 7 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
 
@@ -1258,8 +1258,11 @@ PORT_INGRESS_DROPS
 
 - [06.1 (base command)](#06.1-show-dropcounters-counts)
 - [06.2 --counter_type PORT_INGRESS_DROPS](#06.2-show-dropcounters-counts---counter-type-port-ingress-drops)
-- [06.3 --group PORT](#06.3-show-dropcounters-counts---group-port)
-- [06.4 --group PORT --counter_type PORT_INGRESS_DROPS](#06.4-show-dropcounters-counts---group-port---counter-type-port-ingress-drops)
+- [06.3 -t PORT_INGRESS_DROPS](#06.3-show-dropcounters-counts--t-port-ingress-drops)
+- [06.4 --group PORT](#06.4-show-dropcounters-counts---group-port)
+- [06.5 -g PORT](#06.5-show-dropcounters-counts--g-port)
+- [06.6 --group PORT --counter_type PORT_INGRESS_DROPS](#06.6-show-dropcounters-counts---group-port---counter-type-port-ingress-drops)
+- [06.7 -g PORT -t PORT_INGRESS_DROPS](#06.7-show-dropcounters-counts--g-port--t-port-ingress-drops)
 
 <a id="06.1-show-dropcounters-counts"></a>
 #### 06.1 `show dropcounters counts` (base command)
@@ -1783,12 +1786,192 @@ print(result)
 
 </details>
 
-<a id="06.3-show-dropcounters-counts---group-port"></a>
-#### 06.3 `show dropcounters counts --group PORT`
+<a id="06.3-show-dropcounters-counts--t-port-ingress-drops"></a>
+#### 06.3 `show dropcounters counts -t PORT_INGRESS_DROPS`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | Exact match |
+| `str2-8102-01` | ✅ PASS | All 25 values from gNMI JSON covered (100%) |
+| `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show dropcounters counts -t PORT_INGRESS_DROPS"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RX_DROPS": "44",
+    "RX_ERR": "0",
+    "State": "U"
+  },
+  "Ethernet100": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+  },
+  "Ethernet104": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+  },
+  "Ethernet108": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+... (302 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS
+-----------  -------  --------  ----------
+  Ethernet0        U         0          44
+  Ethernet4        U         0         150
+  Ethernet8        X         0           0
+ Ethernet12        X         0           0
+ Ethernet16        U         0          51
+ Ethernet20        U         0         156
+ Ethernet24        X         0           0
+ Ethernet28        X         0           0
+ Ethernet32        X         0           0
+ Ethernet36        X         0           0
+ Ethernet40        X         0           0
+ Ethernet44        X         0           0
+ Ethernet48        X         0           0
+ Ethernet52        X         0           0
+ Ethernet56        X         0           0
+ Ethernet60        X         0           0
+ Ethernet64        U         0         150
+ Ethernet68        U         0          46
+... (46 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS
+-----------  -------  --------  ----------
+  Ethernet0        U         0          44
+  Ethernet4        U         0         151
+  Ethernet8        X         0           0
+ Ethernet12        X         0           0
+ Ethernet16        U         0          51
+ Ethernet20        U         0         156
+ Ethernet24        X         0           0
+ Ethernet28        X         0           0
+ Ethernet32        X         0           0
+ Ethernet36        X         0           0
+ Ethernet40        X         0           0
+ Ethernet44        X         0           0
+ Ethernet48        X         0           0
+ Ethernet52        X         0           0
+ Ethernet56        X         0           0
+ Ethernet60        X         0           0
+ Ethernet64        U         0         151
+ Ethernet68        U         0          46
+... (47 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "U"
+  },
+  "Ethernet1": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+  },
+  "Ethernet10": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+  },
+  "Ethernet100": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+... (2552 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS
+-----------  -------  --------  ----------
+  Ethernet0        U         0           0
+  Ethernet1        X         0           0
+  Ethernet2        X         0           0
+  Ethernet3        X         0           0
+  Ethernet4        X         0           0
+  Ethernet5        X         0           0
+  Ethernet6        X         0           0
+  Ethernet7        X         0           0
+  Ethernet8        U         0           0
+  Ethernet9        X         0           0
+ Ethernet10        X         0           0
+ Ethernet11        X         0           0
+ Ethernet12        X         0           0
+ Ethernet13        X         0           0
+ Ethernet14        X         0           0
+ Ethernet15        X         0           0
+ Ethernet16        U         0           0
+ Ethernet17        X         0           0
+... (496 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS
+-----------  -------  --------  ----------
+  Ethernet0        U         0           0
+  Ethernet1        X         0           0
+  Ethernet2        X         0           0
+  Ethernet3        X         0           0
+  Ethernet4        X         0           0
+  Ethernet5        X         0           0
+  Ethernet6        X         0           0
+  Ethernet7        X         0           0
+  Ethernet8        U         0           0
+  Ethernet9        X         0           0
+ Ethernet10        X         0           0
+ Ethernet11        X         0           0
+ Ethernet12        X         0           0
+ Ethernet13        X         0           0
+ Ethernet14        X         0           0
+ Ethernet15        X         0           0
+ Ethernet16        U         0           0
+ Ethernet17        X         0           0
+... (497 more lines)
+```
+
+</details>
+
+<a id="06.4-show-dropcounters-counts---group-port"></a>
+#### 06.4 `show dropcounters counts --group PORT`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
@@ -1808,17 +1991,40 @@ print(result)
 
 **Input JSON:**
 ```json
-{}
+{
+  "Ethernet0": {
+    "PORT_DROPS": "0",
+    "State": "D"
+  },
+  "Ethernet128": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  },
+  "Ethernet132": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  }
+}
 ```
 
 **Expected CLI Output:**
 ```
-(no data)
+      IFACE    STATE    PORT_DROPS
+-----------  -------  -----------
+  Ethernet0        D            0
+...
+Ethernet128        U          907
+Ethernet132        U          907
 ```
 
 **Actual Converter Output:**
 ```
-(no output)
+      IFACE    STATE    PORT_DROPS
+-----------  -------  ------------
+  Ethernet0        D             0
+Ethernet128        U           907
+Ethernet132        U           907
+
 ```
 
 </details>
@@ -1843,12 +2049,95 @@ print(result)
 
 </details>
 
-<a id="06.4-show-dropcounters-counts---group-port---counter-type-port-ingress-drops"></a>
-#### 06.4 `show dropcounters counts --group PORT --counter_type PORT_INGRESS_DROPS`
+<a id="06.5-show-dropcounters-counts--g-port"></a>
+#### 06.5 `show dropcounters counts -g PORT`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | Exact match |
+| `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show dropcounters counts -g PORT"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "PORT_DROPS": "0",
+    "State": "D"
+  },
+  "Ethernet128": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  },
+  "Ethernet132": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    PORT_DROPS
+-----------  -------  -----------
+  Ethernet0        D            0
+...
+Ethernet128        U          907
+Ethernet132        U          907
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    PORT_DROPS
+-----------  -------  ------------
+  Ethernet0        D             0
+Ethernet128        U           907
+Ethernet132        U           907
+
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="06.6-show-dropcounters-counts---group-port---counter-type-port-ingress-drops"></a>
+#### 06.6 `show dropcounters counts --group PORT --counter_type PORT_INGRESS_DROPS`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
@@ -1868,6 +2157,49 @@ print(result)
 
 **Input JSON:**
 ```json
+{
+  "Ethernet0": {
+    "PORT_DROPS": "0",
+    "State": "D"
+  },
+  "Ethernet128": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  },
+  "Ethernet132": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    PORT_DROPS
+-----------  -------  -----------
+  Ethernet0        D            0
+...
+Ethernet128        U          907
+Ethernet132        U          907
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    PORT_DROPS
+-----------  -------  ------------
+  Ethernet0        D             0
+Ethernet128        U           907
+Ethernet132        U           907
+
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
 {}
 ```
 
@@ -1879,6 +2211,69 @@ print(result)
 **Actual Converter Output:**
 ```
 (no output)
+```
+
+</details>
+
+<a id="06.7-show-dropcounters-counts--g-port--t-port-ingress-drops"></a>
+#### 06.7 `show dropcounters counts -g PORT -t PORT_INGRESS_DROPS`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show dropcounters counts -g PORT -t PORT_INGRESS_DROPS"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "PORT_DROPS": "0",
+    "State": "D"
+  },
+  "Ethernet128": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  },
+  "Ethernet132": {
+    "PORT_DROPS": "907",
+    "State": "U"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    PORT_DROPS
+-----------  -------  -----------
+  Ethernet0        D            0
+...
+Ethernet128        U          907
+Ethernet132        U          907
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    PORT_DROPS
+-----------  -------  ------------
+  Ethernet0        D             0
+Ethernet128        U           907
+Ethernet132        U           907
+
 ```
 
 </details>
@@ -17784,30 +18179,27 @@ Displayed 2 routes
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 8/44 test cases passed (across 4 devices)
+**Status:** ✅ All 16/32 test cases passed (across 4 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
-| `str2-8102-01` | 4 | 0 | 0 | 7 |
-| `str4-7060x6-512-1` | 3 | 0 | 0 | 8 |
-| `str4-7060x6-512-13` | 0 | 0 | 0 | 1 |
+| `str2-8102-01` | 8 | 0 | 0 | 0 |
+| `str4-7060x6-512-1` | 7 | 0 | 0 | 0 |
+| `str4-7060x6-512-13` | 0 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [40.1 (base command)](#40.1-show-ipv6-bgp-network)
-- [40.2 2064:100:0:a1::/128](#40.2-show-ipv6-bgp-network-2064-100-0-a1---128)
-- [40.3 2064:100:0:a1::/128 bestpath](#40.3-show-ipv6-bgp-network-2064-100-0-a1---128-bestpath)
-- [40.4 2064:100:0:a1::/128 json](#40.4-show-ipv6-bgp-network-2064-100-0-a1---128-json)
-- [40.5 2064:100:0:a1::/128 longer-prefixes](#40.5-show-ipv6-bgp-network-2064-100-0-a1---128-longer-prefixes)
-- [40.6 2064:100:0:a1::/128 multipath](#40.6-show-ipv6-bgp-network-2064-100-0-a1---128-multipath)
-- [40.7 fc00::182](#40.7-show-ipv6-bgp-network-fc00--182)
-- [40.8 fc00::182 bestpath](#40.8-show-ipv6-bgp-network-fc00--182-bestpath)
-- [40.9 fc00::182 json](#40.9-show-ipv6-bgp-network-fc00--182-json)
-- [40.10 fc00::182 longer-prefixes](#40.10-show-ipv6-bgp-network-fc00--182-longer-prefixes)
-- [40.11 fc00::182 multipath](#40.11-show-ipv6-bgp-network-fc00--182-multipath)
+- [40.2 20c0:c728:0:80::/64](#40.2-show-ipv6-bgp-network-20c0-c728-0-80---64)
+- [40.3 20c0:c728:0:80::/64 bestpath](#40.3-show-ipv6-bgp-network-20c0-c728-0-80---64-bestpath)
+- [40.4 20c0:c728:0:80::/64 longer-prefixes](#40.4-show-ipv6-bgp-network-20c0-c728-0-80---64-longer-prefixes)
+- [40.5 20c0:c728:0:80::/64 multipath](#40.5-show-ipv6-bgp-network-20c0-c728-0-80---64-multipath)
+- [40.6 fc00::182](#40.6-show-ipv6-bgp-network-fc00--182)
+- [40.7 fc00::182 bestpath](#40.7-show-ipv6-bgp-network-fc00--182-bestpath)
+- [40.8 fc00::182 multipath](#40.8-show-ipv6-bgp-network-fc00--182-multipath)
 
 <a id="40.1-show-ipv6-bgp-network"></a>
 #### 40.1 `show ipv6 bgp network` (base command)
@@ -17815,8 +18207,6 @@ Displayed 2 routes
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-13` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
@@ -17953,19 +18343,19 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 </details>
 
-<a id="40.2-show-ipv6-bgp-network-2064-100-0-a1---128"></a>
-#### 40.2 `show ipv6 bgp network 2064:100:0:a1::/128`
+<a id="40.2-show-ipv6-bgp-network-20c0-c728-0-80---64"></a>
+#### 40.2 `show ipv6 bgp network 20c0:c728:0:80::/64`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str2-8102-01` | ✅ PASS | Exact match |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp network 2064:100:0:a1::/128"
+cli_command = "show ipv6 bgp network 20c0:c728:0:80::/64"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -17973,21 +18363,103 @@ result = parser.convert(cli_command, json_data)
 print(result)
 ```
 
-*No device data available for this test case.*
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
 
-<a id="40.3-show-ipv6-bgp-network-2064-100-0-a1---128-bestpath"></a>
-#### 40.3 `show ipv6 bgp network 2064:100:0:a1::/128 bestpath`
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 20c0:c728:0:80::/64, version 2888\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 64662 65505\n    fc00::2 from fc00::2 (100.1.0.1)\n      Origin IGP, valid, external, multipath, best (Router ID)\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026\n  65200 64662 65505\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026\n  65200 64662 65505\n    fc00::a from fc00::a (100.1.0.5)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026\n  65200 64662 65505\n    fc00::e from fc00::e (100.1.0.7)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 20c0:c728:0:80::/64, version 2888
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64662 65505
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath, best (Router ID)
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+... (4 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 20c0:c728:0:80::/64, version 2888
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64662 65505
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath, best (Router ID)
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+... (4 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "% Network not in table"
+}
+```
+
+**Expected CLI Output:**
+```
+% Network not in table
+```
+
+**Actual Converter Output:**
+```
+% Network not in table
+```
+
+</details>
+
+<a id="40.3-show-ipv6-bgp-network-20c0-c728-0-80---64-bestpath"></a>
+#### 40.3 `show ipv6 bgp network 20c0:c728:0:80::/64 bestpath`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str2-8102-01` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp network 2064:100:0:a1::/128 bestpath"
+cli_command = "show ipv6 bgp network 20c0:c728:0:80::/64 bestpath"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -17995,21 +18467,79 @@ result = parser.convert(cli_command, json_data)
 print(result)
 ```
 
-*No device data available for this test case.*
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
 
-<a id="40.4-show-ipv6-bgp-network-2064-100-0-a1---128-json"></a>
-#### 40.4 `show ipv6 bgp network 2064:100:0:a1::/128 json`
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 20c0:c728:0:80::/64, version 2888\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 64662 65505\n    fc00::2 from fc00::2 (100.1.0.1)\n      Origin IGP, valid, external, multipath, best (Router ID)\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:30 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 20c0:c728:0:80::/64, version 2888
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64662 65505
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath, best (Router ID)
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 20c0:c728:0:80::/64, version 2888
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64662 65505
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath, best (Router ID)
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:30 2026
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "% Network not in table"
+}
+```
+
+**Expected CLI Output:**
+```
+% Network not in table
+```
+
+**Actual Converter Output:**
+```
+% Network not in table
+```
+
+</details>
+
+<a id="40.4-show-ipv6-bgp-network-20c0-c728-0-80---64-longer-prefixes"></a>
+#### 40.4 `show ipv6 bgp network 20c0:c728:0:80::/64 longer-prefixes`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str2-8102-01` | ✅ PASS | Exact match |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp network 2064:100:0:a1::/128 json"
+cli_command = "show ipv6 bgp network 20c0:c728:0:80::/64 longer-prefixes"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -18017,21 +18547,93 @@ result = parser.convert(cli_command, json_data)
 print(result)
 ```
 
-*No device data available for this test case.*
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
 
-<a id="40.5-show-ipv6-bgp-network-2064-100-0-a1---128-longer-prefixes"></a>
-#### 40.5 `show ipv6 bgp network 2064:100:0:a1::/128 longer-prefixes`
+**Input JSON:**
+```json
+{
+  "output": "BGP table version is 8965, local router ID is 10.1.0.32, vrf id 0\nDefault local pref 100, local AS 65100\nStatus codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,\n               i internal, r RIB-failure, S Stale, R Removed\nNexthop codes: @NNN nexthop's vrf id, < announce-nh-self\nOrigin codes:  i - IGP, e - EGP, ? - incomplete\nRPKI validation codes: V valid, I invalid, N Not found\n\n     Network          Next Hop            Metric LocPrf Weight Path\n *>  20c0:c728:0:80::/64\n                    fc00::2                                0 65200 64662 65505 i\n *=                   fc00::6                                0 65200 64662 65505 i\n *=                   fc00::a                                0 65200 64662 65505 i\n *=                   fc00::e                                0 65200 64662 65505 i\n\nDisplayed 1 routes and 25513 total paths"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 8965, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  20c0:c728:0:80::/64
+                    fc00::2                                0 65200 64662 65505 i
+ *=                   fc00::6                                0 65200 64662 65505 i
+ *=                   fc00::a                                0 65200 64662 65505 i
+ *=                   fc00::e                                0 65200 64662 65505 i
+
+Displayed 1 routes and 25513 total paths
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 8965, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  20c0:c728:0:80::/64
+                    fc00::2                                0 65200 64662 65505 i
+ *=                   fc00::6                                0 65200 64662 65505 i
+ *=                   fc00::a                                0 65200 64662 65505 i
+ *=                   fc00::e                                0 65200 64662 65505 i
+
+Displayed 1 routes and 25513 total paths
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "% Network not in table"
+}
+```
+
+**Expected CLI Output:**
+```
+% Network not in table
+```
+
+**Actual Converter Output:**
+```
+% Network not in table
+```
+
+</details>
+
+<a id="40.5-show-ipv6-bgp-network-20c0-c728-0-80---64-multipath"></a>
+#### 40.5 `show ipv6 bgp network 20c0:c728:0:80::/64 multipath`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str2-8102-01` | ✅ PASS | Exact match |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp network 2064:100:0:a1::/128 longer-prefixes"
+cli_command = "show ipv6 bgp network 20c0:c728:0:80::/64 multipath"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -18039,32 +18641,92 @@ result = parser.convert(cli_command, json_data)
 print(result)
 ```
 
-*No device data available for this test case.*
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
 
-<a id="40.6-show-ipv6-bgp-network-2064-100-0-a1---128-multipath"></a>
-#### 40.6 `show ipv6 bgp network 2064:100:0:a1::/128 multipath`
-
-| Device | Status | Details |
-|--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-
-**Sample Python Invocation:**
-```python
-from gnmi_cli_lib.parser import CommandParser
-
-cli_command = "show ipv6 bgp network 2064:100:0:a1::/128 multipath"
-json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
-
-parser = CommandParser()
-result = parser.convert(cli_command, json_data)
-print(result)
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 20c0:c728:0:80::/64, version 2888\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 64662 65505\n    fc00::2 from fc00::2 (100.1.0.1)\n      Origin IGP, valid, external, multipath, best (Router ID)\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026\n  65200 64662 65505\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026\n  65200 64662 65505\n    fc00::a from fc00::a (100.1.0.5)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026\n  65200 64662 65505\n    fc00::e from fc00::e (100.1.0.7)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Wed Jan 28 23:13:29 2026"
+}
 ```
 
-*No device data available for this test case.*
+**Expected CLI Output:**
+```
+BGP routing table entry for 20c0:c728:0:80::/64, version 2888
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64662 65505
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath, best (Router ID)
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+... (4 more lines)
+```
 
-<a id="40.7-show-ipv6-bgp-network-fc00--182"></a>
-#### 40.7 `show ipv6 bgp network fc00::182`
+**Actual Converter Output:**
+```
+BGP routing table entry for 20c0:c728:0:80::/64, version 2888
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64662 65505
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath, best (Router ID)
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Wed Jan 28 23:13:29 2026
+  65200 64662 65505
+... (4 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "% Network not in table"
+}
+```
+
+**Expected CLI Output:**
+```
+% Network not in table
+```
+
+**Actual Converter Output:**
+```
+% Network not in table
+```
+
+</details>
+
+<a id="40.6-show-ipv6-bgp-network-fc00--182"></a>
+#### 40.6 `show ipv6 bgp network fc00::182`
 
 | Device | Status | Details |
 |--------|--------|---------|
@@ -18206,8 +18868,8 @@ Paths: (32 available, best #1, table default)
 
 </details>
 
-<a id="40.8-show-ipv6-bgp-network-fc00--182-bestpath"></a>
-#### 40.8 `show ipv6 bgp network fc00::182 bestpath`
+<a id="40.7-show-ipv6-bgp-network-fc00--182-bestpath"></a>
+#### 40.7 `show ipv6 bgp network fc00::182 bestpath`
 
 | Device | Status | Details |
 |--------|--------|---------|
@@ -18300,52 +18962,8 @@ Paths: (32 available, best #1, table default)
 
 </details>
 
-<a id="40.9-show-ipv6-bgp-network-fc00--182-json"></a>
-#### 40.9 `show ipv6 bgp network fc00::182 json`
-
-| Device | Status | Details |
-|--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-
-**Sample Python Invocation:**
-```python
-from gnmi_cli_lib.parser import CommandParser
-
-cli_command = "show ipv6 bgp network fc00::182 json"
-json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
-
-parser = CommandParser()
-result = parser.convert(cli_command, json_data)
-print(result)
-```
-
-*No device data available for this test case.*
-
-<a id="40.10-show-ipv6-bgp-network-fc00--182-longer-prefixes"></a>
-#### 40.10 `show ipv6 bgp network fc00::182 longer-prefixes`
-
-| Device | Status | Details |
-|--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
-
-**Sample Python Invocation:**
-```python
-from gnmi_cli_lib.parser import CommandParser
-
-cli_command = "show ipv6 bgp network fc00::182 longer-prefixes"
-json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
-
-parser = CommandParser()
-result = parser.convert(cli_command, json_data)
-print(result)
-```
-
-*No device data available for this test case.*
-
-<a id="40.11-show-ipv6-bgp-network-fc00--182-multipath"></a>
-#### 40.11 `show ipv6 bgp network fc00::182 multipath`
+<a id="40.8-show-ipv6-bgp-network-fc00--182-multipath"></a>
+#### 40.8 `show ipv6 bgp network fc00::182 multipath`
 
 | Device | Status | Details |
 |--------|--------|---------|
@@ -19214,21 +19832,21 @@ print(result)
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 3/12 test cases passed (across 4 devices)
+**Status:** ✅ All 5/12 test cases passed (across 4 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
-| `str2-8102-01` | 1 | 0 | 0 | 1 |
-| `str4-7060x6-512-1` | 0 | 0 | 0 | 2 |
+| `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [43.1 (base command)](#43.1-show-ipv6-fib)
-- [43.2 fc00::4c/126](#43.2-show-ipv6-fib-fc00--4c-126)
+- [43.2 fc00::88/126](#43.2-show-ipv6-fib-fc00--88-126)
 - [43.3 fc00::5c0/126](#43.3-show-ipv6-fib-fc00--5c0-126)
 
 <a id="43.1-show-ipv6-fib"></a>
@@ -19237,7 +19855,6 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
@@ -19493,18 +20110,18 @@ print(result)
 
 </details>
 
-<a id="43.2-show-ipv6-fib-fc00--4c-126"></a>
-#### 43.2 `show ipv6 fib fc00::4c/126`
+<a id="43.2-show-ipv6-fib-fc00--88-126"></a>
+#### 43.2 `show ipv6 fib fc00::88/126`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str2-8102-01` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 fib fc00::4c/126"
+cli_command = "show ipv6 fib fc00::88/126"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -19512,14 +20129,48 @@ result = parser.convert(cli_command, json_data)
 print(result)
 ```
 
-*No device data available for this test case.*
+<details>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total": 1,
+  "entries": [
+    {
+      "index": 1,
+      "route": "fc00::88/126",
+      "nexthop": "::",
+      "ifname": "PortChannel123"
+    }
+  ]
+}
+```
+
+**Expected CLI Output:**
+```
+  No.  Vrf    Route         Nexthop    Ifname
+-----  -----  ------------  ---------  --------------
+    1         fc00::88/126  ::         PortChannel123
+Total number of entries 1
+```
+
+**Actual Converter Output:**
+```
+  No.  Vrf    Route         Nexthop    Ifname
+-----  -----  ------------  ---------  --------------
+    1         fc00::88/126  ::         PortChannel123
+Total number of entries 1
+```
+
+</details>
 
 <a id="43.3-show-ipv6-fib-fc00--5c0-126"></a>
 #### 43.3 `show ipv6 fib fc00::5c0/126`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 
 **Sample Python Invocation:**
 ```python
@@ -19533,7 +20184,32 @@ result = parser.convert(cli_command, json_data)
 print(result)
 ```
 
-*No device data available for this test case.*
+<details>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total": 0,
+  "entries": []
+}
+```
+
+**Expected CLI Output:**
+```
+  No.    Vrf    Route    Nexthop    Ifname
+-----  -----  -------  ---------  --------
+Total number of entries 0
+```
+
+**Actual Converter Output:**
+```
+No.    Vrf    Route    Nexthop    Ifname
+-----  -----  -------  ---------  --------
+Total number of entries 0
+```
+
+</details>
 
 ---
 

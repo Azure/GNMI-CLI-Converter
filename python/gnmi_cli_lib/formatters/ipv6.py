@@ -873,8 +873,6 @@ class IPv6FibFormatter(OutputFormatter):
             return ""
         
         entries = data.get("entries", [])
-        if not entries:
-            return ""
         
         table_data = []
         for entry in entries:
@@ -887,9 +885,6 @@ class IPv6FibFormatter(OutputFormatter):
                     entry.get("ifname", ""),
                 ]
                 table_data.append(row)
-        
-        if not table_data:
-            return ""
         
         headers = ["No.", "Vrf", "Route", "Nexthop", "Ifname"]
         table = tabulate(table_data, headers=headers, tablefmt=table_format)
