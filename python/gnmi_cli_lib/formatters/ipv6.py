@@ -873,8 +873,6 @@ class IPv6FibFormatter(OutputFormatter):
             return ""
         
         entries = data.get("entries", [])
-        if not entries:
-            return ""
         
         table_data = []
         for entry in entries:
@@ -887,9 +885,6 @@ class IPv6FibFormatter(OutputFormatter):
                     entry.get("ifname", ""),
                 ]
                 table_data.append(row)
-        
-        if not table_data:
-            return ""
         
         headers = ["No.", "Vrf", "Route", "Nexthop", "Ifname"]
         table = tabulate(table_data, headers=headers, tablefmt=table_format)
@@ -1144,19 +1139,52 @@ class IPv6ProtocolFormatter(OutputFormatter):
 
 class IPv6RouteFormatter(OutputFormatter):
     """
-    Formats IPv6 route output in FRR-style detailed format.
+    Formats IPv6 route output.
     
-    Example output:
+    Two output formats are supported:
+    1. Single-line format (for protocol filters like connected, static, bgp):
+        :
+        Codes: K - kernel route, C - connected, L - local, S - static, ...
+        IPv6 unicast VRF default:
+        C>* fc00::/126 is directly connected, PortChannel102 linkdown, weight 1, 01w1d03h
+        
+    2. Detailed multi-line format (for specific prefix queries like fe80::):
         Routing entry for fe80::/64
           Known via "connected", distance 0, metric 0
-          Last update 1d08h57m ago
-          * directly connected, PortChannel124
+          Last update 04:43:27 ago
+          * directly connected, Ethernet496
     """
+    
+    # Protocol code mapping
+    PROTOCOL_CODES = {
+        "connected": "C",
+        "local": "L",
+        "static": "S",
+        "kernel": "K",
+        "bgp": "B",
+        "ospf": "O",
+        "ospf6": "O",
+        "rip": "R",
+        "ripng": "R",
+        "isis": "I",
+        "nhrp": "N",
+        "table": "T",
+        "vnc": "v",
+        "vnc-direct": "V",
+        "babel": "A",
+        "pbr": "F",
+        "openfabric": "f",
+        "table-direct": "t",
+    }
+    
+    # Protocol filter arguments that use single-line format
+    PROTOCOL_FILTERS = {"connected", "local", "static", "kernel", "bgp", "ospf", 
+                        "ospf6", "rip", "ripng", "isis", "nhrp", "table"}
     
     def format(self, data: Union[Dict, List], config: CommandConfig,
                table_format: str = "simple",
                options: Optional[Dict] = None) -> str:
-        """Format IPv6 route entries in FRR-style detailed format."""
+        """Format IPv6 route entries."""
         if not data:
             return ""
         
@@ -1168,6 +1196,86 @@ class IPv6RouteFormatter(OutputFormatter):
         if not isinstance(data, dict):
             return str(data)
         
+        # Determine output format based on argument
+        argument = options.get('argument', '') if options else ''
+        
+        # Use detailed format if argument looks like an IPv6 address/prefix
+        # (contains :: or is a pure hex:colon pattern with optional /prefix)
+        use_detailed = self._is_ipv6_prefix_arg(argument)
+        
+        if use_detailed:
+            return self._format_detailed(data)
+        else:
+            return self._format_single_line(data)
+    
+    def _is_ipv6_prefix_arg(self, argument: str) -> bool:
+        """Check if argument is an IPv6 address/prefix pattern."""
+        if not argument:
+            return False
+        # vrf <name> is not a prefix
+        if argument.lower().startswith('vrf'):
+            return False
+        # Protocol filters are not prefixes
+        if argument.lower() in self.PROTOCOL_FILTERS:
+            return False
+        # IPv6 addresses contain :: or have colons with hex digits
+        if '::' in argument:
+            return True
+        # Check for pattern like fe80: or fc00:
+        import re
+        if re.match(r'^[0-9a-fA-F:]+(/\d+)?$', argument):
+            return True
+        return False
+    
+    def _format_single_line(self, data: Dict) -> str:
+        """Format routes in single-line FRR-style format."""
+        lines = []
+        
+        # Add header
+        lines.append(":")
+        lines.append("Codes: K - kernel route, C - connected, L - local, S - static,")
+        lines.append("       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,")
+        lines.append("       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,")
+        lines.append("       f - OpenFabric, t - Table-Direct,")
+        lines.append("       > - selected route, * - FIB route, q - queued, r - rejected, b - backup")
+        lines.append("       t - trapped, o - offload failure")
+        lines.append("")
+        
+        # Get VRF name from first route entry
+        vrf_name = "default"
+        for prefix, routes in data.items():
+            if isinstance(routes, list) and routes:
+                vrf_name = routes[0].get("vrfName", "default")
+                break
+            elif isinstance(routes, dict):
+                vrf_name = routes.get("vrfName", "default")
+                break
+        
+        lines.append(f"IPv6 unicast VRF {vrf_name}:")
+        
+        # Sort prefixes for consistent output
+        for prefix in sorted(data.keys(), key=self._prefix_sort_key):
+            routes = data[prefix]
+            
+            # routes can be a list (multiple paths to same prefix) or a single dict
+            if isinstance(routes, dict):
+                routes = [routes]
+            elif not isinstance(routes, list):
+                continue
+            
+            # Each route entry in the list represents a different path
+            for route in routes:
+                if not isinstance(route, dict):
+                    continue
+                
+                route_line = self._format_route_line(prefix, route)
+                if route_line:
+                    lines.append(route_line)
+        
+        return "\n".join(lines)
+    
+    def _format_detailed(self, data: Dict) -> str:
+        """Format routes in detailed multi-line format."""
         lines = []
         
         # Sort prefixes for consistent output
@@ -1200,8 +1308,64 @@ class IPv6RouteFormatter(OutputFormatter):
         except ValueError:
             return (1, prefix.encode(), 0)
     
+    def _format_route_line(self, prefix: str, route: Dict) -> str:
+        """Format a single route entry as a single line."""
+        protocol = route.get("protocol", "unknown")
+        protocol_code = self.PROTOCOL_CODES.get(protocol.lower(), "?")
+        
+        # Check if route is selected/best route
+        is_selected = route.get("selected", False) or route.get("destSelected", False)
+        is_fib = route.get("installed", False)
+        
+        # Build status flags: e.g., "C>*" or "C *"
+        selected_flag = ">" if is_selected else " "
+        fib_flag = "*" if is_fib else " "
+        status = f"{protocol_code}{selected_flag}{fib_flag}"
+        
+        # Get nexthop info
+        nexthops = route.get("nexthops", [])
+        if nexthops and isinstance(nexthops, list) and nexthops[0]:
+            nh = nexthops[0]
+            is_directly_connected = nh.get("directlyConnected", False)
+            interface = nh.get("interfaceName", "")
+            nexthop_ip = nh.get("ip", nh.get("nexthop", ""))
+            link_down = nh.get("linkDown", False)
+            weight = nh.get("weight", 1)
+        else:
+            is_directly_connected = False
+            interface = ""
+            nexthop_ip = ""
+            link_down = False
+            weight = 1
+        
+        uptime = route.get("uptime", "")
+        distance = route.get("distance", 0)
+        metric = route.get("metric", 0)
+        
+        # Build the route description
+        if is_directly_connected:
+            # Format depends on protocol:
+            # - "connected": C>* fc00::/126 is directly connected, PortChannel102, weight 1, 01w1d03h
+            # - "static":    S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w1d03h
+            link_status = " linkdown" if link_down else ""
+            if protocol.lower() == "connected":
+                route_desc = f"is directly connected, {interface}{link_status}, weight {weight}, {uptime}"
+            else:
+                route_desc = f"[{distance}/{metric}] is directly connected, {interface}{link_status}, weight {weight}, {uptime}"
+        elif nexthop_ip:
+            # Format: B>* 2064:100::/48 [200/0] via fc00::2, PortChannel102, weight 1, 01w1d03h
+            if interface:
+                route_desc = f"[{distance}/{metric}] via {nexthop_ip}, {interface}, weight {weight}, {uptime}"
+            else:
+                route_desc = f"[{distance}/{metric}] via {nexthop_ip}, weight {weight}, {uptime}"
+        else:
+            # Fallback
+            route_desc = f"[{distance}/{metric}], weight {weight}, {uptime}"
+        
+        return f"{status} {prefix} {route_desc}"
+    
     def _format_route_entry(self, prefix: str, route: Dict) -> List[str]:
-        """Format a single route entry."""
+        """Format a single route entry in detailed multi-line format."""
         lines = []
         
         # Routing entry for prefix
@@ -1211,8 +1375,6 @@ class IPv6RouteFormatter(OutputFormatter):
         protocol = route.get("protocol", "unknown")
         distance = route.get("distance", 0)
         metric = route.get("metric", 0)
-        
-        # Check if route is selected/best route
         is_best = route.get("selected", False) or route.get("destSelected", False)
         best_suffix = ", best" if is_best else ""
         lines.append(f'  Known via "{protocol}", distance {distance}, metric {metric}{best_suffix}')
@@ -1236,19 +1398,17 @@ class IPv6RouteFormatter(OutputFormatter):
         return lines
     
     def _format_nexthop(self, nh: Dict) -> str:
-        """Format a single nexthop entry."""
-        parts = []
-        
+        """Format a single nexthop entry for detailed format."""
         # Active indicator
         if nh.get("active", False) or nh.get("fib", False):
-            parts.append("*")
+            active = "*"
         else:
-            parts.append(" ")
+            active = " "
         
         # Check if directly connected
         if nh.get("directlyConnected", False):
             interface = nh.get("interfaceName", "")
-            return f"  {parts[0]} directly connected, {interface}"
+            return f"  {active} directly connected, {interface}"
         
         # Regular nexthop with IP address
         nexthop_ip = nh.get("ip", nh.get("nexthop", ""))
@@ -1256,11 +1416,11 @@ class IPv6RouteFormatter(OutputFormatter):
         
         if nexthop_ip:
             if interface:
-                return f"  {parts[0]} via {nexthop_ip}, {interface}"
+                return f"  {active} via {nexthop_ip}, {interface}"
             else:
-                return f"  {parts[0]} via {nexthop_ip}"
+                return f"  {active} via {nexthop_ip}"
         elif interface:
-            return f"  {parts[0]} directly connected, {interface}"
+            return f"  {active} directly connected, {interface}"
         
         return ""
 
