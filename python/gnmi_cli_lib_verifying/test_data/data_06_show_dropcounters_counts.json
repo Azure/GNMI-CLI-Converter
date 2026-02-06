@@ -88,7 +88,7 @@
           "gnmi_file": "gnmi-get-dropcounters-counts-group-PORT.txt",
           "json_string": "{\"Ethernet0\":{\"PORT_DROPS\":\"0\",\"State\":\"D\"},\"Ethernet128\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"},\"Ethernet132\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"}}",
           "json_error": null,
-          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\n...\nEthernet128        U          907\nEthernet132        U          907",
+          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\nEthernet128        U          907\nEthernet132        U          907",
           "cli_error": null
         },
         "str4-7060x6-512-1": {
@@ -109,7 +109,7 @@
           "gnmi_file": "gnmi-get-dropcounters-counts-group-PORT.txt",
           "json_string": "{\"Ethernet0\":{\"PORT_DROPS\":\"0\",\"State\":\"D\"},\"Ethernet128\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"},\"Ethernet132\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"}}",
           "json_error": null,
-          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\n...\nEthernet128        U          907\nEthernet132        U          907",
+          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\nEthernet128        U          907\nEthernet132        U          907",
           "cli_error": null
         },
         "str4-7060x6-512-1": {
@@ -130,7 +130,7 @@
           "gnmi_file": "gnmi-get-dropcounters-counts-group-PORT-counter_type-PORT_INGRESS_DROPS.txt",
           "json_string": "{\"Ethernet0\":{\"PORT_DROPS\":\"0\",\"State\":\"D\"},\"Ethernet128\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"},\"Ethernet132\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"}}",
           "json_error": null,
-          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\n...\nEthernet128        U          907\nEthernet132        U          907",
+          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\nEthernet128        U          907\nEthernet132        U          907",
           "cli_error": null
         },
         "str4-7060x6-512-1": {
@@ -151,7 +151,7 @@
           "gnmi_file": "gnmi-get-dropcounters-counts-group-PORT-counter_type-PORT_INGRESS_DROPS.txt",
           "json_string": "{\"Ethernet0\":{\"PORT_DROPS\":\"0\",\"State\":\"D\"},\"Ethernet128\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"},\"Ethernet132\":{\"PORT_DROPS\":\"907\",\"State\":\"U\"}}",
           "json_error": null,
-          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\n...\nEthernet128        U          907\nEthernet132        U          907",
+          "cli_string": "      IFACE    STATE    PORT_DROPS\n-----------  -------  -----------\n  Ethernet0        D            0\nEthernet128        U          907\nEthernet132        U          907",
           "cli_error": null
         },
         "str4-7060x6-512-1": {
