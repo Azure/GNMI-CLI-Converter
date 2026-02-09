@@ -445,10 +445,11 @@ class CommandParser:
         # Determine key pattern based on argument
         filtered = {}
         for key, value in data.items():
-            # Check various patterns
-            if argument in key or key.startswith(argument) or key.endswith(argument):
+            # Exact match first
+            if key == argument:
                 filtered[key] = value
-            elif ':' in key and argument in key.split(':')[0]:
+            # Check if key matches with a separator (e.g., 'Ethernet8|' but not 'Ethernet80')
+            elif ':' in key and argument == key.split(':')[0]:
                 filtered[key] = value
         
         return filtered if filtered else data

@@ -35,6 +35,22 @@
           "json_error": null,
           "cli_string": "Headroom pool maximum occupancy:\n  Pool    Bytes\n------  -------",
           "cli_error": null
+        },
+        "str3-8101-02": {
+          "cli_file": "show_headroom-pool_persistent-watermark.txt",
+          "gnmi_file": "gnmi-get-headroom-pool-persistent-watermark.txt",
+          "json_string": "{\"ingress_lossless_pool\":{\"Bytes\":\"0\"}}",
+          "json_error": null,
+          "cli_string": "Headroom pool maximum occupancy:\n                 Pool    Bytes\n---------------------  -------\ningress_lossless_pool        0\n",
+          "cli_error": null
+        },
+        "str4-sn5640-7": {
+          "cli_file": "show_headroom-pool_persistent-watermark.txt",
+          "gnmi_file": "gnmi-get-headroom-pool-persistent-watermark.txt",
+          "json_string": "{\"ingress_lossless_pool\":{\"Bytes\":\"N/A\"}}",
+          "json_error": null,
+          "cli_string": "Headroom pool maximum occupancy:\n                 Pool    Bytes\n---------------------  -------\ningress_lossless_pool      N/A\n",
+          "cli_error": null
         }
       }
     }

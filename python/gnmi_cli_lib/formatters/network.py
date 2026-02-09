@@ -339,10 +339,10 @@ class VlanBriefFormatter(OutputFormatter):
                 continue
             
             vlan_id = vlan_info.get("vlan_id", "")
-            ip_addresses = vlan_info.get("ip_address", [])
-            ports = vlan_info.get("ports", [])
+            ip_addresses = vlan_info.get("ip_address") or []
+            ports = vlan_info.get("ports") or []
             proxy_arp = vlan_info.get("proxy_arp", "disabled")
-            dhcp_helpers = vlan_info.get("dhcp_helper_addresses", [])
+            dhcp_helpers = vlan_info.get("dhcp_helper_addresses") or []
             
             # Sort IP addresses: IPv4 first, then IPv6
             def ip_sort_key(ip):

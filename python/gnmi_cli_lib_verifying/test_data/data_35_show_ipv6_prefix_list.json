@@ -35,6 +35,22 @@
           "json_error": null,
           "cli_string": "ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any\nBGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any\nBGP: ipv6 prefix-list LOCAL_VLAN_IPV6_PREFIX: 2 entries\n   seq 10 permit fc02:1000::/64\n   seq 15 permit fe80::/64\nBGP: ipv6 prefix-list PL_LoopbackV6: 1 entries\n   seq 5 permit fc00:1::/64",
           "cli_error": null
+        },
+        "str3-8101-02": {
+          "cli_file": "show_ipv6_prefix-list.txt",
+          "gnmi_file": "gnmi-get-ipv6-prefix-list.txt",
+          "json_string": "{\"bgpd\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\"}]},\"IPV6_64_ONLY\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":64}]},\"PL_LoopbackV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"fc00:1::/64\"}]}},\"zebra\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\"}]},\"IPV6_64_ONLY\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":64}]}}}",
+          "json_error": null,
+          "cli_string": "ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit ::/0\nZEBRA: ipv6 prefix-list IPV6_64_ONLY: 1 entries\n   seq 5 permit ::/0 ge 64 le 64\nBGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit ::/0\nBGP: ipv6 prefix-list IPV6_64_ONLY: 1 entries\n   seq 5 permit ::/0 ge 64 le 64\nBGP: ipv6 prefix-list PL_LoopbackV6: 1 entries\n   seq 5 permit fc00:1::/64\n",
+          "cli_error": null
+        },
+        "str4-sn5640-7": {
+          "cli_file": "show_ipv6_prefix-list.txt",
+          "gnmi_file": "gnmi-get-ipv6-prefix-list.txt",
+          "json_string": "{\"BGP\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":128}]},\"LOCAL_VLAN_IPV6_PREFIX\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"fc02:1000::/104\"}]},\"PL_LoopbackV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"fc00:1::/64\"}]}},\"ZEBRA\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":128}]}}}",
+          "json_error": null,
+          "cli_string": "ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any\nBGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any\nBGP: ipv6 prefix-list LOCAL_VLAN_IPV6_PREFIX: 1 entries\n   seq 5 permit fc02:1000::/104\nBGP: ipv6 prefix-list PL_LoopbackV6: 1 entries\n   seq 5 permit fc00:1::/64\n",
+          "cli_error": null
         }
       }
     },
@@ -55,6 +71,22 @@
           "json_string": "{\"BGP\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":128}]}},\"ZEBRA\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":128}]}}}",
           "json_error": null,
           "cli_string": "ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any\nBGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any",
+          "cli_error": null
+        },
+        "str3-8101-02": {
+          "cli_file": "show_ipv6_prefix-list_DEFAULT_IPV6.txt",
+          "gnmi_file": "gnmi-get-ipv6-prefix-list-DEFAULT_IPV6.txt",
+          "json_string": "{\"bgpd\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\"}]}},\"zebra\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\"}]}}}",
+          "json_error": null,
+          "cli_string": "ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit ::/0\nBGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit ::/0\n",
+          "cli_error": null
+        },
+        "str4-sn5640-7": {
+          "cli_file": "show_ipv6_prefix-list_DEFAULT_IPV6.txt",
+          "gnmi_file": "gnmi-get-ipv6-prefix-list-DEFAULT_IPV6.txt",
+          "json_string": "{\"BGP\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":128}]}},\"ZEBRA\":{\"DEFAULT_IPV6\":{\"addressFamily\":\"IPv6\",\"entries\":[{\"sequenceNumber\":5,\"type\":\"permit\",\"prefix\":\"::/0\",\"maximumPrefixLength\":128}]}}}",
+          "json_error": null,
+          "cli_string": "ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any\nBGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries\n   seq 5 permit any\n",
           "cli_error": null
         }
       }
