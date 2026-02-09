@@ -574,7 +574,7 @@ def run_single_test(test_data, parser):
         for device in DEVICES:
             if device not in devices_data:
                 tc_result["results"][device] = {
-                    "status": "SKIP",
+                    "status": "NO_ACCEPTABLE_DATA",
                     "message": "No data for device"
                 }
                 continue
@@ -585,14 +585,14 @@ def run_single_test(test_data, parser):
             
             if json_error:
                 tc_result["results"][device] = {
-                    "status": "SKIP",
+                    "status": "NO_ACCEPTABLE_DATA",
                     "message": f"JSON extraction error: {json_error}"
                 }
                 continue
             
             if not json_string or json_string.strip() == "":
                 tc_result["results"][device] = {
-                    "status": "SKIP",
+                    "status": "NO_ACCEPTABLE_DATA",
                     "message": "Empty JSON string"
                 }
                 continue
@@ -665,7 +665,7 @@ def generate_report(all_results):
                     })
     
     # Count stats per device
-    stats = {device: {"PASS": 0, "FAIL": 0, "ERROR": 0, "SKIP": 0} for device in DEVICES}
+    stats = {device: {"PASS": 0, "FAIL": 0, "ERROR": 0, "NO_ACCEPTABLE_DATA": 0} for device in DEVICES}
     for tcr in all_test_case_results:
         stats[tcr["device"]][tcr["status"]] += 1
     
@@ -673,8 +673,8 @@ def generate_report(all_results):
     total_pass = sum(s["PASS"] for s in stats.values())
     total_fail = sum(s["FAIL"] for s in stats.values())
     total_error = sum(s["ERROR"] for s in stats.values())
-    total_skip = sum(s["SKIP"] for s in stats.values())
-    total_tests = total_pass + total_fail + total_error + total_skip
+    total_no_acceptable_data = sum(s["NO_ACCEPTABLE_DATA"] for s in stats.values())
+    total_tests = total_pass + total_fail + total_error + total_no_acceptable_data
     pass_rate = (total_pass / (total_pass + total_fail)) * 100 if (total_pass + total_fail) > 0 else 0
     
     lines = [
@@ -687,18 +687,18 @@ def generate_report(all_results):
         f"**Total Test Cases:** {total_tests}",
         f"**Pass Rate:** {pass_rate:.1f}% ({total_pass} Pass / {total_pass + total_fail} Run)",
         "",
-        "| Device | PASS | FAIL | ERROR | SKIP | Total |",
-        "|--------|------|------|-------|------|-------|",
+        "| Device | PASS | FAIL | ERROR | No Acceptable Data | Total |",
+        "|--------|------|------|-------|---------|-------|",
     ]
     
     for device in DEVICES:
         s = stats[device]
         total = sum(s.values())
-        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {s['ERROR']} | {s['SKIP']} | {total} |")
+        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {s['ERROR']} | {s['NO_ACCEPTABLE_DATA']} | {total} |")
     
     lines.extend([
         "",
-        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_error}** | **{total_skip}** | **{total_tests}** |",
+        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_error}** | **{total_no_acceptable_data}** | **{total_tests}** |",
         "",
         "## Detailed Results",
         "",
@@ -736,20 +736,20 @@ def generate_report(all_results):
     lines.extend([
         "### ✅ Pass Summary by Command",
         "",
-        "| Command | Pass | Fail | Skip |",
-        "|---------|------|------|------|",
+        "| Command | Pass | Fail | No Acceptable Data |",
+        "|---------|------|------|---------|"  ,
     ])
     
     cmd_stats = {}
     for tcr in all_test_case_results:
         cmd = tcr["command"]
         if cmd not in cmd_stats:
-            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0, "ERROR": 0, "SKIP": 0}
+            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0, "ERROR": 0, "NO_ACCEPTABLE_DATA": 0}
         cmd_stats[cmd][tcr["status"]] += 1
     
     for cmd in sorted(cmd_stats.keys()):
         s = cmd_stats[cmd]
-        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL'] + s['ERROR']} | {s['SKIP']} |")
+        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL'] + s['ERROR']} | {s['NO_ACCEPTABLE_DATA']} |")
     
     return '\n'.join(lines)
 
@@ -776,7 +776,7 @@ def main():
     total_pass = 0
     total_fail = 0
     total_error = 0
-    total_skip = 0
+    total_no_acceptable_data = 0
     
     for i, test_data in enumerate(all_test_data, 1):
         command = test_data.get("command", "unknown")
@@ -799,17 +799,17 @@ def main():
                     elif status == "ERROR":
                         total_error += 1
                     else:
-                        total_skip += 1
+                        total_no_acceptable_data += 1
     
     print()
     print("=" * 60)
     print("SUMMARY")
     print("=" * 60)
     print(f"Total Test Cases: {total_tests}")
-    print(f"  PASS:  {total_pass}")
-    print(f"  FAIL:  {total_fail}")
-    print(f"  ERROR: {total_error}")
-    print(f"  SKIP:  {total_skip}")
+    print(f"  PASS:    {total_pass}")
+    print(f"  FAIL:    {total_fail}")
+    print(f"  ERROR:   {total_error}")
+    print(f"  NO_ACCEPTABLE_DATA: {total_no_acceptable_data}")
     
     if total_pass + total_fail > 0:
         pass_rate = total_pass / (total_pass + total_fail) * 100

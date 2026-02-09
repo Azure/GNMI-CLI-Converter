@@ -368,6 +368,7 @@ def normalize_string_value(val: str) -> List[str]:
         'advertised': 'advertised',
         'received': 'received',
         'extendedAndStandard': 'extended and standard',
+        'sharedNetwork': 'shared network',
     }
     if val in transformations:
         representations.append(transformations[val])
