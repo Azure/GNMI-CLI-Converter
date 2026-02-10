@@ -1,6 +1,6 @@
 # ALL COMMANDS ANALYSIS
 
-**Generated:** 2026-02-09 09:28:03
+**Generated:** 2026-02-10 07:26:36
 **Total Commands:** 70
 **Devices Tested:** 6
 
@@ -25,22 +25,22 @@
 | Metric | Count |
 |--------|-------|
 | Total Test Cases (with data) | 704 |
-| ✅ PASS | 670 |
-| ❌ FAIL | 11 |
+| ✅ PASS | 681 |
+| ❌ FAIL | 0 |
 | ⚠️ ERROR | 0 |
 | ⏭️ SKIP (data error) | 23 |
-| **Pass Rate** | **98.4%** |
+| **Pass Rate** | **100.0%** |
 
 ## Per-Device Summary
 
 | Device | Total | ✅ Pass | ❌ Fail | ⚠️ Error | ⏭️ Skip | Pass Rate |
 |--------|-------|---------|---------|----------|---------|-----------|
-| `str2-8102-01` | 138 | 133 | 2 | 0 | 3 | 98.5% |
-| `str3-8101-02` | 144 | 139 | 2 | 0 | 3 | 98.6% |
-| `str4-7060x6-512-1` | 139 | 132 | 2 | 0 | 5 | 98.5% |
-| `str4-7060x6-512-13` | 69 | 67 | 1 | 0 | 1 | 98.5% |
-| `str4-7060x6-512-9` | 70 | 68 | 1 | 0 | 1 | 98.6% |
-| `str4-sn5640-7` | 144 | 131 | 3 | 0 | 10 | 97.8% |
+| `str2-8102-01` | 138 | 135 | 0 | 0 | 3 | 100.0% |
+| `str3-8101-02` | 144 | 141 | 0 | 0 | 3 | 100.0% |
+| `str4-7060x6-512-1` | 139 | 134 | 0 | 0 | 5 | 100.0% |
+| `str4-7060x6-512-13` | 69 | 68 | 0 | 0 | 1 | 100.0% |
+| `str4-7060x6-512-9` | 70 | 69 | 0 | 0 | 1 | 100.0% |
+| `str4-sn5640-7` | 144 | 134 | 0 | 0 | 10 | 100.0% |
 
 ## Quick Reference by Command
 
@@ -82,9 +82,9 @@
 | 34 | [`show interfaces transceiver status`](#34-show-interfaces-transceiver-status) | 5 | 8 | 0 | 0 | 2 |
 | 35 | [`show ipv6 prefix-list`](#35-show-ipv6-prefix-list) | 2 | 10 | 0 | 0 | 0 |
 | 36 | [`show ipv6 interfaces`](#36-show-ipv6-interfaces) | 1 | 6 | 0 | 0 | 0 |
-| 37 | [`show ipv6 route`](#37-show-ipv6-route) | 7 | 12 | 1 | 0 | 13 |
+| 37 | [`show ipv6 route`](#37-show-ipv6-route) | 7 | 13 | 0 | 0 | 13 |
 | 38 | [`show ipv6 protocol`](#38-show-ipv6-protocol) | 1 | 6 | 0 | 0 | 0 |
-| 39 | [`show ipv6 bgp neighbors`](#39-show-ipv6-bgp-neighbors) | 17 | 12 | 10 | 0 | 0 |
+| 39 | [`show ipv6 bgp neighbors`](#39-show-ipv6-bgp-neighbors) | 17 | 22 | 0 | 0 | 0 |
 | 40 | [`show ipv6 bgp network`](#40-show-ipv6-bgp-network) | 19 | 35 | 0 | 0 | 1 |
 | 41 | [`show ipv6 bgp summary`](#41-show-ipv6-bgp-summary) | 1 | 6 | 0 | 0 | 0 |
 | 42 | [`show ipv6 link-local-mode`](#42-show-ipv6-link-local-mode) | 1 | 6 | 0 | 0 | 0 |
@@ -21907,7 +21907,7 @@ Ethernet0: SFP EEPROM detected
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
-| `str3-8101-02` | ✅ PASS | All 58 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
@@ -22035,27 +22035,27 @@ Ethernet68   Off
 
 **Expected CLI Output:**
 ```
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-Failed to get firmware management features
-Error creating API: Failed to initialize firmware handler
-... (111 more lines)
+Port         Low-power Mode
+-----------  ----------------
+Ethernet0    Off
+Ethernet4    Off
+Ethernet8    Off
+Ethernet12   Off
+Ethernet16   Off
+Ethernet20   Off
+Ethernet24   On
+Ethernet28   On
+Ethernet32   On
+Ethernet36   On
+Ethernet40   Off
+Ethernet44   Off
+Ethernet48   Off
+Ethernet52   Off
+Ethernet56   Off
+Ethernet60   Off
+Ethernet64   Off
+Ethernet68   Off
+... (38 more lines)
 ```
 
 **Actual Converter Output:**
@@ -25767,7 +25767,7 @@ Ethernet40             fc02:1000::21/126                         up/up         N
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ❌ 1 failures, 0 errors
+**Status:** ✅ All 13/42 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
@@ -25778,7 +25778,7 @@ Ethernet40             fc02:1000::21/126                         up/up         N
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 2 |
 | `str4-7060x6-512-13` | 0 | 0 | 0 | 1 |
 | `str4-7060x6-512-9` | 0 | 0 | 0 | 1 |
-| `str4-sn5640-7` | 3 | 1 | 0 | 3 |
+| `str4-sn5640-7` | 4 | 0 | 0 | 3 |
 
 **Test Case Variants:**
 
@@ -25821,9 +25821,9 @@ print(result)
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str2-8102-01` | ✅ PASS | Exact match |
 | `str3-8101-02` | ✅ PASS | Exact match |
-| `str4-7060x6-512-1` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
@@ -25870,19 +25870,19 @@ print(result)
 ```
 Routing entry for fe80::/64
   Known via "connected", distance 0, metric 0
-  Last update 1d08h57m ago
+  Last update 1d09h00m ago
   * directly connected, PortChannel124
 
 
 Routing entry for fe80::/64
   Known via "connected", distance 0, metric 0
-  Last update 1d08h57m ago
+  Last update 1d09h00m ago
   * directly connected, PortChannel120
 
 
 Routing entry for fe80::/64
   Known via "connected", distance 0, metric 0
-  Last update 1d08h57m ago
+  Last update 1d09h00m ago
   * directly connected, PortChannel121
 
 
@@ -26030,19 +26030,19 @@ Routing entry for fe80::/64
 ```
 Routing entry for fe80::/64
   Known via "connected", distance 0, metric 0
-  Last update 04:43:27 ago
+  Last update 04:46:30 ago
   * directly connected, Ethernet496
 
 
 Routing entry for fe80::/64
   Known via "connected", distance 0, metric 0
-  Last update 04:43:27 ago
+  Last update 04:46:30 ago
   * directly connected, Ethernet504
 
 
 Routing entry for fe80::/64
   Known via "connected", distance 0, metric 0
-  Last update 04:43:27 ago
+  Last update 04:46:30 ago
   * directly connected, Ethernet416
 
 
@@ -26554,7 +26554,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 | `str3-8101-02` | ✅ PASS | Exact match |
-| `str4-sn5640-7` | ❌ FAIL | See diff below |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -26687,7 +26687,7 @@ S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w2d18h
 </details>
 
 <details>
-<summary><b>❌ Device: str4-sn5640-7</b> (click to expand)</summary>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -26724,9 +26724,8 @@ Codes: K - kernel route, C - connected, L - local, S - static,
        > - selected route, * - FIB route, q - queued, r - rejected, b - backup
        t - trapped, o - offload failure
 
+IPv6 unicast VRF default:
 S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w3d02h
-
-
 ```
 
 **Actual Converter Output:**
@@ -26741,16 +26740,6 @@ Codes: K - kernel route, C - connected, L - local, S - static,
 
 IPv6 unicast VRF default:
 S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w3d02h
-```
-
-**Diff Details:**
-```
-Line count: expected=9, actual=10
-First diff at line 9:
-  Expected: S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w3d02h
-  Actual:   IPv6 unicast VRF default:
-Line count mismatch
-gNMI Coverage: Coverage: 66.7% (10/15). Missing: ['49', '329', '254', '16', '525']
 ```
 
 </details>
@@ -27286,18 +27275,18 @@ table                     : none
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ❌ 10 failures, 0 errors
+**Status:** ✅ All 22/102 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
-| `str2-8102-01` | 3 | 2 | 0 | 0 |
-| `str3-8101-02` | 3 | 2 | 0 | 0 |
-| `str4-7060x6-512-1` | 3 | 2 | 0 | 0 |
-| `str4-7060x6-512-13` | 0 | 1 | 0 | 0 |
-| `str4-7060x6-512-9` | 0 | 1 | 0 | 0 |
-| `str4-sn5640-7` | 3 | 2 | 0 | 0 |
+| `str2-8102-01` | 5 | 0 | 0 | 0 |
+| `str3-8101-02` | 5 | 0 | 0 | 0 |
+| `str4-7060x6-512-1` | 5 | 0 | 0 | 0 |
+| `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
+| `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 5 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -27311,25 +27300,25 @@ table                     : none
 - [39.8 fc00::42 received-routes](#39.8-show-ipv6-bgp-neighbors-fc00--42-received-routes)
 - [39.9 fc00::42 routes](#39.9-show-ipv6-bgp-neighbors-fc00--42-routes)
 - [39.10 fc00 8a advertised-routes](#39.10-show-ipv6-bgp-neighbors-fc00-8a-advertised-routes)
-- [39.11 fc00 8a received-routes](#39.11-show-ipv6-bgp-neighbors-fc00-8a-received-routes)
-- [39.12 fc00 8a routes](#39.12-show-ipv6-bgp-neighbors-fc00-8a-routes)
-- [39.13 fc00 8a](#39.13-show-ipv6-bgp-neighbors-fc00-8a)
-- [39.14 fc00 6e2 advertised-routes](#39.14-show-ipv6-bgp-neighbors-fc00-6e2-advertised-routes)
-- [39.15 fc00 6e2 received-routes](#39.15-show-ipv6-bgp-neighbors-fc00-6e2-received-routes)
-- [39.16 fc00 6e2 routes](#39.16-show-ipv6-bgp-neighbors-fc00-6e2-routes)
-- [39.17 fc00 6e2](#39.17-show-ipv6-bgp-neighbors-fc00-6e2)
+- [39.11 fc00::8a received-routes](#39.11-show-ipv6-bgp-neighbors-fc00--8a-received-routes)
+- [39.12 fc00::8a routes](#39.12-show-ipv6-bgp-neighbors-fc00--8a-routes)
+- [39.13 fc00::8a](#39.13-show-ipv6-bgp-neighbors-fc00--8a)
+- [39.14 fc00::6e2 advertised-routes](#39.14-show-ipv6-bgp-neighbors-fc00--6e2-advertised-routes)
+- [39.15 fc00::6e2 received-routes](#39.15-show-ipv6-bgp-neighbors-fc00--6e2-received-routes)
+- [39.16 fc00::6e2 routes](#39.16-show-ipv6-bgp-neighbors-fc00--6e2-routes)
+- [39.17 fc00::6e2](#39.17-show-ipv6-bgp-neighbors-fc00--6e2)
 
 <a id="39.1-show-ipv6-bgp-neighbors"></a>
 #### 39.1 `show ipv6 bgp neighbors` (base command)
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ❌ FAIL | See diff below |
-| `str3-8101-02` | ❌ FAIL | See diff below |
-| `str4-7060x6-512-1` | ❌ FAIL | See diff below |
-| `str4-7060x6-512-13` | ❌ FAIL | See diff below |
-| `str4-7060x6-512-9` | ❌ FAIL | See diff below |
-| `str4-sn5640-7` | ❌ FAIL | See diff below |
+| `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-7060x6-512-13` | ✅ PASS | Exact match |
+| `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -27344,7 +27333,7 @@ print(result)
 ```
 
 <details>
-<summary><b>❌ Device: str2-8102-01</b> (click to expand)</summary>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -27373,27 +27362,27 @@ print(result)
 
 **Expected CLI Output:**
 ```
-BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
+BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
   Local Role: undefined
   Remote Role: undefined
- Description: ARISTA01T0
- Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
-  BGP version 4, remote router ID 100.1.0.17, local router ID 10.1.0.32
-  BGP state = Established, up for 1d08h57m
-  Last read 00:00:38, Last write 00:00:02
+ Description: ARISTA01T2
+ Member of peer-group TIER2_V6 for session parameters
+  BGP version 4, remote router ID 100.1.0.1, local router ID 10.1.0.32
+  BGP state = Established, up for 1d08h59m
+  Last update from fc00::2 08:59:48 ago
+  Last read 00:00:16, Last write 00:00:49
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Paths-Limit:
-      IPv6 Unicast: advertised (0)
-    Long-lived Graceful Restart: advertised
-... (2375 more lines)
+  Connect retry timer: 30 seconds
+  Peer established epoch: 1769642008
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::1, Local port: 40740
+  Foreign host: fc00::2, Foreign port: 179
+  Nexthop: 10.0.0.0
+  Nexthop global: fc00::1
+... (2112 more lines)
 ```
 
 **Actual Converter Output:**
@@ -27421,20 +27410,10 @@ BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
 ... (2112 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=2395, actual=2131
-First diff at line 1:
-  Expected: BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
-  Actual:   BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
-Line count mismatch
-gNMI Coverage: Coverage: 99.6% (264/265). Missing: ['sharedNetwork']
-```
-
 </details>
 
 <details>
-<summary><b>❌ Device: str3-8101-02</b> (click to expand)</summary>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -27463,27 +27442,27 @@ gNMI Coverage: Coverage: 99.6% (264/265). Missing: ['sharedNetwork']
 
 **Expected CLI Output:**
 ```
-BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
+BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
   Local Role: undefined
   Remote Role: undefined
- Description: ARISTA01T0
- Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
-  BGP version 4, remote router ID 100.1.0.17, local router ID 10.1.0.32
+ Description: ARISTA01T2
+ Member of peer-group TIER2_V6 for session parameters
+  BGP version 4, remote router ID 100.1.0.1, local router ID 10.1.0.32
   BGP state = Established, up for 01w2d18h
-  Last read 00:00:40, Last write 00:00:21
+  Last update from fc00::2 18:41:47 ago
+  Last read 00:00:48, Last write 00:00:47
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Paths-Limit:
-      IPv6 Unicast: advertised (0)
-    Long-lived Graceful Restart: advertised
-... (2376 more lines)
+  Connect retry timer: 30 seconds
+  Peer established epoch: 1769772507
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::1, Local port: 179
+  Foreign host: fc00::2, Foreign port: 44507
+  Nexthop: 10.0.0.0
+  Nexthop global: fc00::1
+... (2136 more lines)
 ```
 
 **Actual Converter Output:**
@@ -27511,20 +27490,10 @@ BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
 ... (2136 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=2395, actual=2155
-First diff at line 1:
-  Expected: BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
-  Actual:   BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
-Line count mismatch
-gNMI Coverage: Coverage: 98.6% (283/287). Missing: ['844908000', 'sharedNetwork', '844904000', '844907000']
-```
-
 </details>
 
 <details>
-<summary><b>❌ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -27559,21 +27528,21 @@ BGP neighbor is fc00::102, remote AS 64600, local AS 65100, external link
  Description: ARISTA01T1
  Member of peer-group BE_TIER1_V6 for session parameters
   BGP version 4, remote router ID 100.1.0.65, local router ID 10.1.0.32
-  BGP state = Established, up for 04:43:30
-  Last read 00:00:17, Last write 00:00:30
+  BGP state = Established, up for 04:46:31
+  Last update from fc00::102 04:46:28 ago
+  Last read 00:00:09, Last write 00:00:31
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Long-lived Graceful Restart: advertised
-    Route refresh: advertised and received
-    Enhanced Route Refresh: advertised and received
-... (2971 more lines)
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1769662472
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::101, Local port: 179
+  Foreign host: fc00::102, Foreign port: 46323
+  Nexthop: 10.0.0.128
+  Nexthop global: fc00::101
+... (3006 more lines)
 ```
 
 **Actual Converter Output:**
@@ -27601,20 +27570,10 @@ BGP neighbor is fc00::102, remote AS 64600, local AS 65100, external link
 ... (3006 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=2991, actual=3025
-First diff at line 7:
-  Expected:   BGP state = Established, up for 04:43:30
-  Actual:     BGP state = Established, up for 04:46:31
-Line count mismatch
-gNMI Coverage: Coverage: 99.7% (306/307). Missing: ['sharedNetwork']
-```
-
 </details>
 
 <details>
-<summary><b>❌ Device: str4-7060x6-512-13</b> (click to expand)</summary>
+<summary><b>✅ Device: str4-7060x6-512-13</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -27649,21 +27608,21 @@ BGP neighbor is fc00::2, remote AS 64001, local AS 65100, external link
  Description: ARISTA01T0
  Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
   BGP version 4, remote router ID 100.1.0.1, local router ID 10.1.0.32
-  BGP state = Established, up for 1d17h40m
-  Last read 00:00:53, Last write 00:00:51
+  BGP state = Established, up for 1d17h41m
+  Last update from fc00::2 17:41:31 ago
+  Last read 00:00:35, Last write 00:00:30
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Long-lived Graceful Restart: advertised
-    Route refresh: advertised and received
-    Enhanced Route Refresh: advertised and received
-... (1578 more lines)
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1769268925
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::1, Local port: 41550
+  Foreign host: fc00::2, Foreign port: 179
+  Nexthop: 10.0.0.0
+  Nexthop global: fc00::1
+... (1584 more lines)
 ```
 
 **Actual Converter Output:**
@@ -27691,20 +27650,10 @@ BGP neighbor is fc00::2, remote AS 64001, local AS 65100, external link
 ... (1584 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=1598, actual=1603
-First diff at line 7:
-  Expected:   BGP state = Established, up for 1d17h40m
-  Actual:     BGP state = Established, up for 1d17h41m
-Line count mismatch
-gNMI Coverage: Coverage: 99.6% (228/229). Missing: ['sharedNetwork']
-```
-
 </details>
 
 <details>
-<summary><b>❌ Device: str4-7060x6-512-9</b> (click to expand)</summary>
+<summary><b>✅ Device: str4-7060x6-512-9</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -27740,20 +27689,20 @@ BGP neighbor is fc00::2, remote AS 4200300000, local AS 4200200000, confed-exter
  Member of peer-group FABRICSPINE_V6 for session parameters
   BGP version 4, remote router ID 100.1.0.1, local router ID 10.1.0.32
   Neighbor under common administration
-  BGP state = Established, up for 1d00h33m
-  Last read 00:00:02, Last write 00:00:18
+  BGP state = Established, up for 1d00h34m
+  Last update from fc00::2 00:34:00 ago
+  Last read 00:00:44, Last write 00:01:00
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Long-lived Graceful Restart: advertised
-    Route refresh: advertised and received
-... (7811 more lines)
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1769332976
+  Local host: fc00::1, Local port: 179
+  Foreign host: fc00::2, Foreign port: 56068
+  Nexthop: 10.0.0.0
+  Nexthop global: fc00::1
+... (7831 more lines)
 ```
 
 **Actual Converter Output:**
@@ -27781,20 +27730,10 @@ BGP neighbor is fc00::2, remote AS 4200300000, local AS 4200200000, confed-exter
 ... (7831 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=7831, actual=7850
-First diff at line 8:
-  Expected:   BGP state = Established, up for 1d00h33m
-  Actual:     BGP state = Established, up for 1d00h34m
-Line count mismatch
-gNMI Coverage: Coverage: 99.9% (795/796). Missing: ['sharedNetwork']
-```
-
 </details>
 
 <details>
-<summary><b>❌ Device: str4-sn5640-7</b> (click to expand)</summary>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -27829,21 +27768,21 @@ BGP neighbor is fc00::102, remote AS 4200100000, local AS 4200000000, external l
  Description: ARISTA01T1
  Member of peer-group BE_TIER1_V6 for session parameters
   BGP version 4, remote router ID 100.1.0.65, local router ID 10.1.0.32
-  BGP state = Established, up for 5d05h01m
-  Last read 00:00:12, Last write 00:00:43
+  BGP state = Established, up for 5d05h04m
+  Last update from fc00::102 05:03:41 ago
+  Last read 00:00:28, Last write 00:00:47
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Long-lived Graceful Restart: advertised
-    Route refresh: advertised and received
-    Enhanced Route Refresh: advertised and received
-... (2972 more lines)
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1770165619
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::101, Local port: 179
+  Foreign host: fc00::102, Foreign port: 43483
+  Nexthop: 10.1.0.32
+  Nexthop global: fc00::101
+... (3005 more lines)
 ```
 
 **Actual Converter Output:**
@@ -27871,16 +27810,6 @@ BGP neighbor is fc00::102, remote AS 4200100000, local AS 4200000000, external l
 ... (3005 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=2991, actual=3024
-First diff at line 7:
-  Expected:   BGP state = Established, up for 5d05h01m
-  Actual:     BGP state = Established, up for 5d05h04m
-Line count mismatch
-gNMI Coverage: Coverage: 99.8% (463/464). Missing: ['sharedNetwork']
-```
-
 </details>
 
 <a id="39.2-show-ipv6-bgp-neighbors-fc00--182"></a>
@@ -27888,7 +27817,7 @@ gNMI Coverage: Coverage: 99.8% (463/464). Missing: ['sharedNetwork']
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-1` | ❌ FAIL | See diff below |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -27903,7 +27832,7 @@ print(result)
 ```
 
 <details>
-<summary><b>❌ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -27938,21 +27867,21 @@ BGP neighbor is fc00::182, remote AS 64600, local AS 65100, external link
  Description: ARISTA33T1
  Member of peer-group BE_TIER1_V6 for session parameters
   BGP version 4, remote router ID 100.1.0.97, local router ID 10.1.0.32
-  BGP state = Established, up for 04:43:31
-  Last read 00:00:29, Last write 00:00:31
+  BGP state = Established, up for 04:46:32
+  Last update from fc00::182 04:46:29 ago
+  Last read 00:00:16, Last write 00:00:32
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Long-lived Graceful Restart: advertised
-    Route refresh: advertised and received
-    Enhanced Route Refresh: advertised and received
-... (67 more lines)
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1769662471
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::181, Local port: 48712
+  Foreign host: fc00::182, Foreign port: 179
+  Nexthop: 10.0.0.192
+  Nexthop global: fc00::181
+... (69 more lines)
 ```
 
 **Actual Converter Output:**
@@ -27980,16 +27909,6 @@ BGP neighbor is fc00::182, remote AS 64600, local AS 65100, external link
 ... (69 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=87, actual=88
-First diff at line 7:
-  Expected:   BGP state = Established, up for 04:43:31
-  Actual:     BGP state = Established, up for 04:46:32
-Line count mismatch
-gNMI Coverage: Coverage: 98.3% (59/60). Missing: ['sharedNetwork']
-```
-
 </details>
 
 <a id="39.3-show-ipv6-bgp-neighbors-fc00--182-advertised-routes"></a>
@@ -27997,7 +27916,7 @@ gNMI Coverage: Coverage: 98.3% (59/60). Missing: ['sharedNetwork']
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-1` | ✅ PASS | All 16084 values from gNMI JSON covered (100%) |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28096,7 +28015,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-1` | ✅ PASS | All 16012 values from gNMI JSON covered (100%) |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28195,7 +28114,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-1` | ✅ PASS | BGP routes acceptable nuances: Line 9609: total paths not in GNMI (acceptable) |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28294,7 +28213,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ❌ FAIL | See diff below |
+| `str2-8102-01` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28309,7 +28228,7 @@ print(result)
 ```
 
 <details>
-<summary><b>❌ Device: str2-8102-01</b> (click to expand)</summary>
+<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -28344,21 +28263,21 @@ BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
  Description: ARISTA01T0
  Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
   BGP version 4, remote router ID 100.1.0.17, local router ID 10.1.0.32
-  BGP state = Established, up for 1d08h57m
-  Last read 00:00:40, Last write 00:00:04
+  BGP state = Established, up for 1d08h59m
+  Last update from fc00::42 08:59:49 ago
+  Last read 00:00:05, Last write 00:00:49
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Paths-Limit:
-      IPv6 Unicast: advertised (0)
-    Long-lived Graceful Restart: advertised
-... (79 more lines)
+  Connect retry timer: 30 seconds
+  Peer established epoch: 1769642008
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::41, Local port: 38726
+  Foreign host: fc00::42, Foreign port: 179
+  Nexthop: 10.0.0.32
+  Nexthop global: fc00::41
+... (69 more lines)
 ```
 
 **Actual Converter Output:**
@@ -28386,16 +28305,6 @@ BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
 ... (69 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=99, actual=88
-First diff at line 7:
-  Expected:   BGP state = Established, up for 1d08h57m
-  Actual:     BGP state = Established, up for 1d08h59m
-Line count mismatch
-gNMI Coverage: Coverage: 98.2% (55/56). Missing: ['sharedNetwork']
-```
-
 </details>
 
 <a id="39.7-show-ipv6-bgp-neighbors-fc00--42-advertised-routes"></a>
@@ -28403,7 +28312,7 @@ gNMI Coverage: Coverage: 98.2% (55/56). Missing: ['sharedNetwork']
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | All 16025 values from gNMI JSON covered (100%) |
+| `str2-8102-01` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28455,19 +28364,19 @@ Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
 Origin codes:  i - IGP, e - EGP, ? - incomplete
 RPKI validation codes: V valid, I invalid, N Not found
 
-     Network          Next Hop            Metric LocPrf Weight Path
- *>  ::/0             ::                                     0 65200 6666 6667 i
- *=  ::/0             ::                                     0 65200 6666 6667 i
- *=  ::/0             ::                                     0 65200 6666 6667 i
- *=  ::/0             ::                                     0 65200 6666 6667 i
- *>  2064:100::1/128  ::                                     0 65200 i
- *>  2064:100::3/128  ::                                     0 65200 i
- *>  2064:100::5/128  ::                                     0 65200 i
- *>  2064:100::7/128  ::                                     0 65200 i
- *>  20c0:a800::/64   ::                                     0 64001 i
- *>  20c0:a800:0:80::/64
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> ::/0             ::                                     0 65200 6666 6667 i
+ *> 2064:100::1/128  ::                                     0 65200 i
+ *> 2064:100::3/128  ::                                     0 65200 i
+ *> 2064:100::5/128  ::                                     0 65200 i
+ *> 2064:100::7/128  ::                                     0 65200 i
+ *> 20c0:a800::/64   ::                                     0 64001 i
+ *> 20c0:a800:0:80::/64
                     ::                                     0 64001 i
-... (38248 more lines)
+ *> 20c0:a808::/64   ::                                     0 64002 i
+ *> 20c0:a808:0:80::/64
+                    ::                                     0 64002 i
+... (9595 more lines)
 ```
 
 **Actual Converter Output:**
@@ -28502,7 +28411,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | All 19 values from gNMI JSON covered (100%) |
+| `str2-8102-01` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28554,13 +28463,13 @@ Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
 Origin codes:  i - IGP, e - EGP, ? - incomplete
 RPKI validation codes: V valid, I invalid, N Not found
 
-     Network          Next Hop            Metric LocPrf Weight Path
+    Network          Next Hop            Metric LocPrf Weight Path
  *> 2064:100::11/128 fc00::42                               0 64001 i
  *> 20c0:a800::/64   fc00::42                               0 64001 i
  *> 20c0:a800:0:80::/64
                     fc00::42                               0 64001 i
 
-Total number of prefixes 3 (1 filtered)
+Displayed 3 routes
 ```
 
 **Actual Converter Output:**
@@ -28589,7 +28498,7 @@ Displayed 3 routes
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | BGP routes acceptable nuances: Line 9: spacing difference only (acceptable); Line 10: spacing difference only (acceptable); Line 11: spacing difference only (acceptable); Line 14: total paths not in GNMI (acceptable) |
+| `str2-8102-01` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28641,12 +28550,12 @@ Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
 Origin codes:  i - IGP, e - EGP, ? - incomplete
 RPKI validation codes: V valid, I invalid, N Not found
 
-     Network          Next Hop            Metric LocPrf Weight Path
- *>  20c0:a800::/64   fc00::42                               0 64001 i
- *>  20c0:a800:0:80::/64
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> 20c0:a800::/64   fc00::42                               0 64001 i
+ *> 20c0:a800:0:80::/64
                     fc00::42                               0 64001 i
 
-Displayed 2 routes and 25513 total paths
+Displayed 2 routes
 ```
 
 **Actual Converter Output:**
@@ -28674,7 +28583,7 @@ Displayed 2 routes
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str3-8101-02` | ✅ PASS | All 16025 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28726,19 +28635,19 @@ Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
 Origin codes:  i - IGP, e - EGP, ? - incomplete
 RPKI validation codes: V valid, I invalid, N Not found
 
-     Network          Next Hop            Metric LocPrf Weight Path
- *>  ::/0             ::                                     0 65200 6666 6667 i
- *=  ::/0             ::                                     0 65200 6666 6667 i
- *=  ::/0             ::                                     0 65200 6666 6667 i
- *=  ::/0             ::                                     0 65200 6666 6667 i
- *>  2064:100::1/128  ::                                     0 65200 i
- *>  2064:100::3/128  ::                                     0 65200 i
- *>  2064:100::5/128  ::                                     0 65200 i
- *>  2064:100::7/128  ::                                     0 65200 i
- *>  20c0:a800::/64   ::                                     0 64001 i
- *>  20c0:a800:0:80::/64
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> ::/0             ::                                     0 65200 6666 6667 i
+ *> 2064:100::1/128  ::                                     0 65200 i
+ *> 2064:100::3/128  ::                                     0 65200 i
+ *> 2064:100::5/128  ::                                     0 65200 i
+ *> 2064:100::7/128  ::                                     0 65200 i
+ *> 20c0:a800::/64   ::                                     0 64001 i
+ *> 20c0:a800:0:80::/64
                     ::                                     0 64001 i
-... (38249 more lines)
+ *> 20c0:a808::/64   ::                                     0 64002 i
+ *> 20c0:a808:0:80::/64
+                    ::                                     0 64002 i
+... (9595 more lines)
 ```
 
 **Actual Converter Output:**
@@ -28768,18 +28677,18 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 </details>
 
-<a id="39.11-show-ipv6-bgp-neighbors-fc00-8a-received-routes"></a>
-#### 39.11 `show ipv6 bgp neighbors fc00 8a received-routes`
+<a id="39.11-show-ipv6-bgp-neighbors-fc00--8a-received-routes"></a>
+#### 39.11 `show ipv6 bgp neighbors fc00::8a received-routes`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str3-8101-02` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp neighbors fc00 8a received-routes"
+cli_command = "show ipv6 bgp neighbors fc00::8a received-routes"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -28825,11 +28734,10 @@ Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
 Origin codes:  i - IGP, e - EGP, ? - incomplete
 RPKI validation codes: V valid, I invalid, N Not found
 
-     Network          Next Hop            Metric LocPrf Weight Path
+    Network          Next Hop            Metric LocPrf Weight Path
  *> 2064:100::23/128 fc00::8a                               0 64019 i
 
-Total number of prefixes 1 (1 filtered)
-
+Displayed 1 routes
 ```
 
 **Actual Converter Output:**
@@ -28850,8 +28758,8 @@ Displayed 1 routes
 
 </details>
 
-<a id="39.12-show-ipv6-bgp-neighbors-fc00-8a-routes"></a>
-#### 39.12 `show ipv6 bgp neighbors fc00 8a routes`
+<a id="39.12-show-ipv6-bgp-neighbors-fc00--8a-routes"></a>
+#### 39.12 `show ipv6 bgp neighbors fc00::8a routes`
 
 | Device | Status | Details |
 |--------|--------|---------|
@@ -28861,7 +28769,7 @@ Displayed 1 routes
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp neighbors fc00 8a routes"
+cli_command = "show ipv6 bgp neighbors fc00::8a routes"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -28898,18 +28806,18 @@ print(result)
 
 </details>
 
-<a id="39.13-show-ipv6-bgp-neighbors-fc00-8a"></a>
-#### 39.13 `show ipv6 bgp neighbors fc00 8a`
+<a id="39.13-show-ipv6-bgp-neighbors-fc00--8a"></a>
+#### 39.13 `show ipv6 bgp neighbors fc00::8a`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str3-8101-02` | ❌ FAIL | See diff below |
+| `str3-8101-02` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp neighbors fc00 8a"
+cli_command = "show ipv6 bgp neighbors fc00::8a"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -28918,7 +28826,7 @@ print(result)
 ```
 
 <details>
-<summary><b>❌ Device: str3-8101-02</b> (click to expand)</summary>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -28954,20 +28862,20 @@ BGP neighbor is fc00::8a, remote AS 64019, local AS 65100, external link
  Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
   BGP version 4, remote router ID 100.1.0.35, local router ID 10.1.0.32
   BGP state = Established, up for 01w2d18h
-  Last read 00:00:34, Last write 00:00:23
+  Last update from fc00::8a 18:41:47 ago
+  Last read 00:00:42, Last write 00:00:47
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Paths-Limit:
-      IPv6 Unicast: advertised (0)
-    Long-lived Graceful Restart: advertised
-... (80 more lines)
+  Connect retry timer: 30 seconds
+  Peer established epoch: 1769772508
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::89, Local port: 179
+  Foreign host: fc00::8a, Foreign port: 46231
+  Nexthop: 10.0.0.68
+  Nexthop global: fc00::89
+... (70 more lines)
 ```
 
 **Actual Converter Output:**
@@ -28995,30 +28903,20 @@ BGP neighbor is fc00::8a, remote AS 64019, local AS 65100, external link
 ... (70 more lines)
 ```
 
-**Diff Details:**
-```
-Line count: expected=99, actual=89
-First diff at line 8:
-  Expected:   Last read 00:00:34, Last write 00:00:23
-  Actual:     Last update from fc00::8a 18:41:47 ago
-Line count mismatch
-gNMI Coverage: Coverage: 96.6% (56/58). Missing: ['844907000', 'sharedNetwork']
-```
-
 </details>
 
-<a id="39.14-show-ipv6-bgp-neighbors-fc00-6e2-advertised-routes"></a>
-#### 39.14 `show ipv6 bgp neighbors fc00 6e2 advertised-routes`
+<a id="39.14-show-ipv6-bgp-neighbors-fc00--6e2-advertised-routes"></a>
+#### 39.14 `show ipv6 bgp neighbors fc00::6e2 advertised-routes`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-sn5640-7` | ✅ PASS | All 15091 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp neighbors fc00 6e2 advertised-routes"
+cli_command = "show ipv6 bgp neighbors fc00::6e2 advertised-routes"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -29076,7 +28974,7 @@ RPKI validation codes: V valid, I invalid, N Not found
                     ::                                     0 4200100000 4200000002 i
  *> 2064:100::c0a8:1800:0/120
                     ::                                     0 4200100000 4200000003 i
-... (12063 more lines)
+... (12062 more lines)
 ```
 
 **Actual Converter Output:**
@@ -29106,18 +29004,18 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 </details>
 
-<a id="39.15-show-ipv6-bgp-neighbors-fc00-6e2-received-routes"></a>
-#### 39.15 `show ipv6 bgp neighbors fc00 6e2 received-routes`
+<a id="39.15-show-ipv6-bgp-neighbors-fc00--6e2-received-routes"></a>
+#### 39.15 `show ipv6 bgp neighbors fc00::6e2 received-routes`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-sn5640-7` | ✅ PASS | All 16012 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp neighbors fc00 6e2 received-routes"
+cli_command = "show ipv6 bgp neighbors fc00::6e2 received-routes"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -29175,7 +29073,7 @@ RPKI validation codes: V valid, I invalid, N Not found
                     fc00::6e2                              0 4200100000 4200000002 i
  *> 2064:100::c0a8:1800:0/120
                     fc00::6e2                              0 4200100000 4200000003 i
-... (12791 more lines)
+... (12790 more lines)
 ```
 
 **Actual Converter Output:**
@@ -29205,18 +29103,18 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 </details>
 
-<a id="39.16-show-ipv6-bgp-neighbors-fc00-6e2-routes"></a>
-#### 39.16 `show ipv6 bgp neighbors fc00 6e2 routes`
+<a id="39.16-show-ipv6-bgp-neighbors-fc00--6e2-routes"></a>
+#### 39.16 `show ipv6 bgp neighbors fc00::6e2 routes`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-sn5640-7` | ✅ PASS | BGP routes acceptable nuances: Line 12014: total paths not in GNMI (acceptable) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp neighbors fc00 6e2 routes"
+cli_command = "show ipv6 bgp neighbors fc00::6e2 routes"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -29274,7 +29172,7 @@ RPKI validation codes: V valid, I invalid, N Not found
                     fc00::6e2                              0 4200100000 4200000002 i
  *= 2064:100::c0a8:1800:0/120
                     fc00::6e2                              0 4200100000 4200000003 i
-... (11995 more lines)
+... (11994 more lines)
 ```
 
 **Actual Converter Output:**
@@ -29304,18 +29202,18 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 </details>
 
-<a id="39.17-show-ipv6-bgp-neighbors-fc00-6e2"></a>
-#### 39.17 `show ipv6 bgp neighbors fc00 6e2`
+<a id="39.17-show-ipv6-bgp-neighbors-fc00--6e2"></a>
+#### 39.17 `show ipv6 bgp neighbors fc00::6e2`
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-sn5640-7` | ❌ FAIL | See diff below |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show ipv6 bgp neighbors fc00 6e2"
+cli_command = "show ipv6 bgp neighbors fc00::6e2"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
@@ -29324,7 +29222,7 @@ print(result)
 ```
 
 <details>
-<summary><b>❌ Device: str4-sn5640-7</b> (click to expand)</summary>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -29359,21 +29257,21 @@ BGP neighbor is fc00::6e2, remote AS 4200100000, local AS 4200000000, external l
  Description: ARISTA249T1
  Member of peer-group BE_TIER1_V6 for session parameters
   BGP version 4, remote router ID 100.1.1.185, local router ID 10.1.0.32
-  BGP state = Established, up for 5d05h01m
-  Last read 00:00:04, Last write 00:00:30
+  BGP state = Established, up for 5d05h04m
+  Last update from fc00::6e2 05:02:51 ago
+  Last read 00:00:37, Last write 00:00:33
   Hold time is 180 seconds, keepalive interval is 60 seconds
   Configured hold time is 180 seconds, keepalive interval is 60 seconds
   Configured tcp-mss is 0, synced tcp-mss is 9028
   Configured conditional advertisements interval is 60 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    Extended Message: advertised
-    AddPath:
-      IPv6 Unicast: RX advertised and received
-    Long-lived Graceful Restart: advertised
-    Route refresh: advertised and received
-    Enhanced Route Refresh: advertised and received
-... (68 more lines)
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1770165635
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::6e1, Local port: 179
+  Foreign host: fc00::6e2, Foreign port: 45203
+  Nexthop: 10.1.0.32
+  Nexthop global: fc00::6e1
+... (69 more lines)
 ```
 
 **Actual Converter Output:**
@@ -29399,16 +29297,6 @@ BGP neighbor is fc00::6e2, remote AS 4200100000, local AS 4200000000, external l
   Nexthop: 10.1.0.32
   Nexthop global: fc00::6e1
 ... (69 more lines)
-```
-
-**Diff Details:**
-```
-Line count: expected=87, actual=88
-First diff at line 7:
-  Expected:   BGP state = Established, up for 5d05h01m
-  Actual:     BGP state = Established, up for 5d05h04m
-Line count mismatch
-gNMI Coverage: Coverage: 98.4% (60/61). Missing: ['sharedNetwork']
 ```
 
 </details>
