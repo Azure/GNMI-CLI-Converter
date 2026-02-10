@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gnmi_cli_lib"
-version = "2.5.0"
+version = "2.7.0"
 description = "A modular Python library for converting gNMI JSON responses into SONiC CLI output format"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -47,21 +47,28 @@ Homepage = "https://github.com/sonic-net/sonic-gnmi"
 Documentation = "https://github.com/sonic-net/sonic-gnmi"
 Repository = "https://github.com/sonic-net/sonic-gnmi"
 
+[tool.coverage.run]
+source = ["gnmi_cli_lib"]
+omit = [
+    "tests/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.",
+    "if TYPE_CHECKING:",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
 [tool.setuptools]
 packages = [
     "gnmi_cli_lib",
     "gnmi_cli_lib.common",
     "gnmi_cli_lib.formatters",
     "gnmi_cli_lib.utils",
-    "gnmi_cli_lib.real_device_tests",
 ]
-
-[tool.setuptools.package-data]
-"gnmi_cli_lib.real_device_tests" = ["test_data/*.json"]
-
-[tool.pytest.ini_options]
-testpaths = [".", "real_device_tests"]
-python_files = ["tests.py", "test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-addopts = "-v --tb=short"

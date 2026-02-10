@@ -4,7 +4,7 @@ A modular, extensible Python library for converting gNMI JSON responses into hum
 
 ## Version
 
-- **Version**: 2.6.0
+- **Version**: 2.7.0
 - **Author**: SONiC Team
 - **License**: Apache-2.0 (See the SONiC project license)
 - **Last Updated**: February 2026
@@ -37,7 +37,7 @@ This library provides a clean, extensible framework for transforming gNMI JSON r
 - **Modular Design**: Easy to extend with new commands
 - **Production-Ready**: 100% pass rate verified against 681 real device test cases across 6 devices
 - **Self-Contained**: Only requires Python 3.8+ and `tabulate` library
-- **Comprehensive Testing**: 1258 unit tests + 681 real device integration tests
+- **Comprehensive Testing**: Unit + integration tests under `python/tests/`
 
 ---
 
@@ -145,10 +145,10 @@ print(output)
 | | [formatters/queue.py](formatters/queue.py) | Queue counter formatters |
 | | [formatters/dropcounters.py](formatters/dropcounters.py) | Drop counter formatters |
 | | [formatters/watermark.py](formatters/watermark.py) | Watermark formatters |
-| **Testing** | [tests.py](tests.py) | Unit test suite (1258 tests, 97% coverage) |
-| | [test_data.py](test_data.py) | Test data fixtures |
-| | [real_device_tests/](real_device_tests/) | Real device verification suite (681 tests) |
-| | [real_device_tests/verification_report.md](real_device_tests/verification_report.md) | Latest test results report |
+| **Testing** | [../tests/unit/](../tests/unit/) | Unit test suite |
+| | [../tests/fixtures/sample_data.py](../tests/fixtures/sample_data.py) | Test data fixtures |
+| | [../tests/integration/](../tests/integration/) | Integration verification suite |
+| | [../tests/reports/ALL_COMMANDS_ANALYSIS.md](../tests/reports/ALL_COMMANDS_ANALYSIS.md) | Auto-generated analysis report |
 | **Config** | [pyproject.toml](pyproject.toml) | Package configuration |
 | | [requirements.txt](requirements.txt) | Dependencies |
 
@@ -164,8 +164,6 @@ gnmi_cli_lib/
 ├── convenience.py        # 35+ convenience functions
 ├── mappings.py           # CLI_TO_GNMI_MAPPING dictionary
 ├── cli.py                # Command-line interface
-├── test_data.py          # Test data fixtures (for unit tests)
-├── tests.py              # Unit test suite (1258 tests, 97% coverage)
 ├── pyproject.toml        # Package configuration
 ├── requirements.txt      # Dependencies
 ├── .gitignore            # Git ignore patterns
@@ -185,13 +183,7 @@ gnmi_cli_lib/
 │   ├── queue.py          # Queue counter formatters
 │   ├── dropcounters.py   # Drop counter formatters
 │   └── watermark.py      # Watermark formatters
-└── real_device_tests/    # Real device verification suite (681 tests)
-    ├── __init__.py
-    ├── verification.py   # Multi-step comparison logic
-    ├── test_runner.py    # Standalone test runner (regenerates report)
-    ├── test_real_device.py  # Pytest integration
-    ├── verification_report.md  # Auto-generated test results
-    └── test_data/        # 70 JSON files with device captures
+└── ../tests/             # Tests live under python/tests (unit + integration + reports)
 ```
 
 ---
@@ -1568,193 +1560,82 @@ except json.JSONDecodeError as e:
 
 ## Testing
 
-The library includes a comprehensive test suite with **1258 unit tests** ensuring **97% code coverage**, 
-plus an integrated **real device verification system** with **681 tests from 6 production SONiC switches**.
+Unit and integration tests live under `python/tests/`.
 
 ### Quick Links
 
 | Resource | Description |
 |----------|-------------|
-| [tests.py](tests.py) | Unit test suite (1258 tests) |
-| [real_device_tests/](real_device_tests/) | Integration test suite |
-| [real_device_tests/verification_report.md](real_device_tests/verification_report.md) | **Latest test results** (auto-generated) |
-| [real_device_tests/test_data/](real_device_tests/test_data/) | 70 JSON files with real device captures |
-
-### Test Summary
-
-| Test Suite | Tests | Status | Coverage |
-|------------|-------|--------|----------|
-| **Unit Tests** ([tests.py](tests.py)) | 1258 pass | ✅ 100% pass | 97% code coverage |
-| **Real Device Tests** ([real_device_tests/](real_device_tests/)) | 681 pass, 0 fail | ✅ 100% pass | N/A |
-| **Total** | **1664 tests** | ✅ All passing | |
-
-### Code Coverage Breakdown
-
-| Module | Coverage | Description |
-|--------|----------|-------------|
-| `__init__.py` | 100% | Package exports |
-| `commands.py` | 100% | Command registration |
-| `convenience.py` | 100% | Convenience functions |
-| `mappings.py` | 100% | CLI mappings |
-| `common/constants.py` | 100% | Constants |
-| `common/types.py` | 100% | Type definitions |
-| `common/__init__.py` | 100% | Common exports |
-| `formatters/__init__.py` | 100% | Formatter exports |
-| `utils/__init__.py` | 100% | Utility exports |
-| `utils/sorting.py` | 100% | Sorting utilities |
-| `formatters/base.py` | 99% | Base formatters |
-| `cli.py` | 98% | CLI interface |
-| `converter.py` | 98% | Main converter |
-| `formatters/dropcounters.py` | 98% | Dropcounter formatters |
-| `formatters/interface.py` | 97% | Interface formatters |
-| `formatters/ipv6.py` | 97% | IPv6 formatters |
-| `formatters/queue.py` | 97% | Queue formatters |
-| `formatters/watermark.py` | 97% | Watermark formatters |
-| `formatters/network.py` | 96% | Network formatters |
-| `formatters/transceiver.py` | 95% | Transceiver formatters |
-| `formatters/system.py` | 95% | System formatters |
-| `utils/parsing.py` | 94% | Parsing utilities |
-| `registry.py` | 94% | Command registry |
-| `parser.py` | 92% | Command parser |
-
-**Total Coverage: 97%** (2822 statements, 98 missed)
-
-### Real Device Verification (Integrated)
-
-The library includes a comprehensive real device testing framework in [real_device_tests/](real_device_tests/):
-
-```
-real_device_tests/
-├── __init__.py              # Package exports
-├── verification.py          # Multi-step comparison logic
-├── test_runner.py           # Master test runner (regenerates verification_report.md)
-├── test_real_device.py      # Pytest integration (681 parametrized tests)
-├── verification_report.md   # Auto-generated report with latest results
-└── test_data/               # 70 JSON files with real device data
-    ├── data_01_show_buffer_pool_watermark.json
-    ├── data_02_show_buffer_pool_persistent_watermark.json
-    ├── ... (70 files total)
-    └── data_70_show_watermark_telemetry_interval.json
-```
-
-**Verification Stats:**
-- **681 Total Test Cases** across 70 commands
-- **681 Pass** | **0 Fail** = **100% Pass Rate**
-- **6 Devices:** str2-8102-01, str3-8101-02, str4-7060x6-512-1, str4-7060x6-512-9, str4-7060x6-512-13, str4-sn5640-7
-
-**Running Real Device Tests:**
-
-```bash
-# Using the standalone test runner (REGENERATES verification_report.md)
-cd gnmi_cli_lib
-python real_device_tests/test_runner.py
-
-# Using pytest (does NOT update verification_report.md)
-pytest real_device_tests/test_real_device.py -v
-
-# Run specific command tests
-pytest real_device_tests/test_real_device.py -v -k "buffer_pool"
-
-# Run tests for a specific device
-pytest real_device_tests/test_real_device.py -v -k "str2_8102_01"
-```
-
-> **Note**: To refresh [verification_report.md](real_device_tests/verification_report.md) with the latest results, 
-> use `python real_device_tests/test_runner.py`. Running `pytest` alone does NOT update the report.
-
-### Multi-Step Verification Logic
-
-The real device verification uses a sophisticated 6-step comparison approach:
-
-| Step | Check | Description |
-|------|-------|-------------|
-| 1 | Exact match | Output exactly matches expected CLI output |
-| 2 | Spacing match | Match after normalizing table column spacing |
-| 3 | Help match | Match after normalizing help option order (`-h, -?` vs `-?, -h`) |
-| 4 | Timestamp match | Match after normalizing timestamps/uptimes (CLI vs gNMI time drift) |
-| 5 | gNMI coverage | All values from gNMI JSON appear in output (100% data coverage) |
-| 6 | BGP nuances | Accept BGP-specific differences (e.g., "total paths" not in gNMI) |
-
-This approach allows the verification to pass when:
-- The output exactly matches what SONiC CLI produces
-- The output is equivalent but with different table spacing
-- Timestamp/uptime values differ due to CLI vs gNMI collection time drift
-- All gNMI data values are present (format may differ slightly)
-- Known gNMI limitations are handled gracefully (e.g., BGP global counters)
+| [../tests/unit/](../tests/unit/) | Unit test suite |
+| [../tests/integration/](../tests/integration/) | Integration verification suite |
+| [../tests/fixtures/sample_data.py](../tests/fixtures/sample_data.py) | Test data fixtures |
+| [../tests/reports/ALL_COMMANDS_ANALYSIS.md](../tests/reports/ALL_COMMANDS_ANALYSIS.md) | Auto-generated analysis report |
 
 ### Running Unit Tests
 
 ```bash
-# From the gnmi_cli_lib directory
-cd gnmi_cli_lib
-python -m pytest tests.py -v
+cd ../
+python -m pytest tests/unit -v
 
-# Run with coverage
-python -m pytest tests.py -v --cov=. --cov-report=html
+# With coverage (terminal report)
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-report=term-missing
 
-# Run specific test class
-python -m pytest tests.py::TestCommandParser -v
+# With coverage (HTML interactive report)
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-report=html
 
-# Run tests matching a pattern
-python -m pytest tests.py -k "buffer_pool" -v
+# With coverage (XML report for CI)
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-report=xml
 
-# Run command coverage tests
-python -m pytest tests.py::TestCommandCoverage -v
-
-# Run all tests (unit + real device)
-python -m pytest . -v
+# Fail if coverage drops below 80%
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-fail-under=80
 ```
 
-### Test Organization
+### Running Integration Tests
 
-| Test Suite | Tests | Description |
-|------------|-------|-------------|
-| **Unit Tests** (`tests.py`) | 1258 | Core library unit tests (97% coverage) |
-| **Real Device Tests** (`real_device_tests/`) | 681 | Production device verification |
+```bash
+cd ../
+python -m pytest tests/integration -v
+```
 
-#### Unit Test Classes (`tests.py`)
+### Generating the Command Analysis Report
 
-| Test Class | Tests | Description |
-|------------|-------|-------------|
-| `TestImports` | 13 | Import validation |
-| `TestCommandRegistry` | 18 | Registry operations |
-| `TestBaseFormatters` | 3 | Base formatter tests |
-| `TestDropcountersFormatters` | 6 | Drop counter formatters |
-| `TestSystemFormatters` | 4 | System formatters |
-| `TestInterfaceFormatters` | 3 | Interface formatters |
-| `TestNetworkFormatters` | 4 | Network formatters |
-| `TestQueueFormatters` | 2 | Queue formatters |
-| `TestGnmiToCliConverter` | 18 | Converter tests |
-| `TestConvertFromCliCommand` | 11 | CLI command conversion |
-| `TestConvenienceFunctions` | 22 | Convenience function tests |
-| `TestUtilityFunctions` | 7 | Utility function tests |
-| `TestCliToGnmiMapping` | 8 | CLI mapping tests |
-| `TestTestDataModule` | 4 | Test data tests |
-| `TestEdgeCases` | 14 | Edge case tests |
-| `TestIntegration` | 3 | Integration tests |
-| `TestTableFormats` | 3 | Table format tests |
-| `TestCliModule` | 7 | CLI module tests |
-| `TestParserModuleExtended` | 8 | Extended parser tests |
-| `TestConvenienceFunctionsExtended` | 6 | Extended convenience tests |
-| `TestFormatterExtended` | 14 | Extended formatter tests |
-| `TestUtilityFunctionsExtended` | 5 | Extended utility tests |
-| `TestCommonTypes` | 4 | Common type tests |
-| `TestConstants` | 4 | Constants tests |
-| `TestEnhancedCommands` | 29 | Enhanced command tests |
-| `TestAllCommandsAvailable` | 3 | Command availability tests |
-| `TestCommandParser` | 18 | Command parser tests |
-| `TestNewConvenienceFunctions` | 16 | New convenience functions |
-| `TestNewCliMappings` | 8 | New CLI mapping tests |
-| `TestSampleCliOutputs` | 11 | Sample CLI output tests |
-| `TestCommandCoverage` | 3 | **Full command coverage verification** |
-| `TestEveryCommandWithExpectedOutput` | 46 | **Individual command tests with JSON input/CLI output** |
+The report in `tests/reports/ALL_COMMANDS_ANALYSIS.md` is generated by the verification tools:
 
-#### Real Device Test Classes (`real_device_tests/test_real_device.py`)
+```bash
+cd ../gnmi_cli_lib_verifying
+python generate_all_commands_analysis.py
+```
 
-| Test Class | Tests | Description |
-|------------|-------|-------------|
-| `TestRealDeviceConversion` | 681 | **Parametrized tests for each command/device/variant** |
-| `TestRealDeviceSummary` | 3 | Summary validation (file count, device coverage, test count) |
+### Coverage Overview
+
+**Overall: 94.70% (2983 statements, 158 missed) — Threshold: 80%** ✅
+
+| Module | Stmts | Miss | Cover | Note |
+|--------|------:|-----:|------:|------|
+| `__init__.py` | 9 | 0 | 100% | |
+| `cli.py` | 93 | 2 | 98% | |
+| `commands.py` | 102 | 0 | 100% | |
+| `common/constants.py` | 15 | 0 | 100% | |
+| `common/types.py` | 33 | 0 | 100% | |
+| `convenience.py` | 124 | 0 | 100% | |
+| `converter.py` | 52 | 1 | 98% | |
+| `formatters/base.py` | 108 | 1 | 99% | |
+| `formatters/dropcounters.py` | 84 | 1 | 99% | |
+| `formatters/interface.py` | 333 | 12 | 96% | |
+| `formatters/ipv6.py` | 755 | 90 | 88% | ⚠️ Largest uncovered |
+| `formatters/network.py` | 275 | 11 | 96% | |
+| `formatters/queue.py` | 112 | 3 | 97% | |
+| `formatters/system.py` | 250 | 7 | 97% | |
+| `formatters/transceiver.py` | 258 | 13 | 95% | |
+| `formatters/watermark.py` | 56 | 1 | 98% | |
+| `mappings.py` | 3 | 0 | 100% | |
+| `parser.py` | 165 | 13 | 92% | |
+| `registry.py` | 68 | 0 | 100% | |
+| `utils/parsing.py` | 66 | 3 | 95% | |
+| `utils/sorting.py` | 8 | 0 | 100% | |
+| **TOTAL** | **2983** | **158** | **95%** | |
+
+Coverage configuration is defined in [`pyproject.toml`](pyproject.toml) under `[tool.coverage.*]` sections.
 
 ### Command Coverage Guarantees
 
@@ -1936,7 +1817,18 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 
 ## Version History
 
-### v2.6.0 (February 2026) - Current Release
+### v2.7.0 (February 2026) - Current Release
+- **Test Architecture Refactor**: Migrated from `gnmi_cli_lib_verifying/` to `tests/` with proper pytest structure
+  - Created `tests/core/` module (data_loader, runner, test_case, compare) for reusable test infrastructure
+  - Created `tests/unit/` with parametrized tests, `tests/integration/` for real device verification
+  - Created `tests/reports/` with `generate_all_commands_analysis.py` report generator
+  - Created `tests/tools/` with consolidated `import_device_data.py` (merged `import_new_devices.py`)
+- **Test Optimization**: Merged duplicate classes, lifted shared imports, parametrized edge cases
+- **Coverage**: Configured pytest-cov with 94.70% coverage (threshold 80%)
+- **Test Expansion**: 2058 pytest cases (1388 unit + 23 integration suites), 704 integration test cases across 6 devices
+- **Report Update**: SKIP status renamed to NO_ACCEPTABLE_DATA; removed from summary tables
+
+### v2.6.0 (February 2026)
 - **New Devices**: Added str3-8101-02 and str4-sn5640-7 to test suite (now 6 devices total)
 - **Bug Fix**: Fixed `VlanBriefFormatter` null-handling for ports (`.get("ports") or []` instead of `.get("ports", [])`)
 - **Bug Fix**: Fixed `IPv6BgpNeighborsFormatter` week-format timestamp conversion for `bgpTimerUpMsec`
@@ -1948,7 +1840,7 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 - **Bug Fix**: Fixed `IPv6RouteFormatter` VRF line and weight output conditional logic
 - **Verification Enhancement**: Added internal metadata key filtering (internalFlags, interfaceIndex, etc.) in coverage checks
 - **Test Expansion**: 681 total test cases across 6 devices
-- **Production Ready**: Self-contained library with 100% pass rate verification (1258 unit tests, 681/681 integration tests)
+- **Production Ready**: Self-contained library with 100% pass rate verification
 
 ### v2.5.0 (February 2026)
 - **Bug Fix**: Fixed `show interfaces transceiver error-status <interface>` single-interface output formatting
@@ -1956,12 +1848,12 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 - **Bug Fix**: Fixed `show queue counters` empty JSON no longer outputs spurious "For namespace :" header
 - **Bug Fix**: Fixed `show ipv6 fib` now outputs header and "Total number of entries 0" when no routes match (instead of empty string)
 - **Verification Enhancement**: Added IPv6 link-local zone ID transformation recognition in verification logic
-- **Production Ready**: Self-contained library with 100% pass rate verification (1258 unit tests, 681/681 integration tests)
+- **Production Ready**: Self-contained library with automated unit and integration verification
 
 ### v2.4.0 (February 2026)
 - **Enhanced Test Data**: Fixed test data formats for processes/cpu, processes/memory, and lldp/neighbors
 - **Improved Test Comparison**: Added timestamp/uptime normalization to handle CLI vs gNMI time drift
-- **Production Ready**: Self-contained library with 100% pass rate verification (1258 unit tests, 406/406 integration tests)
+- **Production Ready**: Self-contained library with automated unit and integration verification
 
 ### v2.3.0 (February 2026)
 - **Integrated Real Device Tests**: Moved verification suite into `real_device_tests/` within the library
