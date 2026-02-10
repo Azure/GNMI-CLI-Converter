@@ -1,7 +1,7 @@
 """
 Unified data loader for test fixtures.
 
-Loads JSON fixture files from ``tests/fixtures/commands/`` and converts
+Loads JSON fixture files from ``tests/fixtures/real_device_data/`` and converts
 them into ``TestCase`` / ``CommandTestSuite`` data model instances used by both
 the parameterized integration tests and the report generator.
 
@@ -26,7 +26,7 @@ from tests.core.test_case import (
 _DEFAULT_TEST_DATA_DIR = (
     Path(__file__).resolve().parent.parent
     / "fixtures"
-    / "commands"
+    / "real_device_data"
 )
 
 
@@ -84,7 +84,7 @@ def load_all_fixtures(
 
     Args:
         test_data_dir: Directory containing ``data_*.json`` files.
-                       Defaults to ``tests/fixtures/commands/``.
+                       Defaults to ``tests/fixtures/real_device_data/``.
 
     Returns:
         Sorted list of ``CommandSuite`` (by command_index).
