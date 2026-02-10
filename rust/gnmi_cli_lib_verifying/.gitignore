@@ -1,0 +1,11 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Test run artifacts
+test_data/stderr.txt
+test_data/stdout.txt
+
+# Generated reports (regenerate with run_all_tests.py)
+verification_report.md

@@ -1,0 +1,47 @@
+{
+  "command": "show interfaces errors",
+  "test_cases": [
+    {
+      "input_options": "Ethernet0",
+      "devices": {
+        "str4-7060x6-512-9": {
+          "cli_file": "show_interfaces_errors_Ethernet0.txt",
+          "gnmi_file": "gnmi-get-interfaces-errors-Ethernet0.txt",
+          "json_string": "[{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"oper error status\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac local fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac remote fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec sync loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec alignment loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ser error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ber error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit crc error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit misalignment error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"signal local error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"crc rate\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit size\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"code group error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"no rx reachability\"}]",
+          "json_error": null,
+          "cli_string": "Port Errors                     Count  Last timestamp(UTC)\n----------------------------  -------  ---------------------\ncode group error                    0  Never\ncrc rate                            0  Never\ndata unit crc error                 0  Never\ndata unit misalignment error        0  Never\ndata unit size                      0  Never\nfec alignment loss                  0  Never\nfec sync loss                       0  Never\nhigh ber error                      0  Never\nhigh ser error                      0  Never\nmac local fault                     0  Never\nmac remote fault                    0  Never\nno rx reachability                  0  Never\noper error status                   0  Never\nsignal local error                  0  Never",
+          "cli_error": null
+        },
+        "str4-7060x6-512-13": {
+          "cli_file": "show_interfaces_errors_Ethernet0.txt",
+          "gnmi_file": "gnmi-get-interfaces-errors-Ethernet0.txt",
+          "json_string": "[{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"oper error status\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac local fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac remote fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec sync loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec alignment loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ser error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ber error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit crc error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit misalignment error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"signal local error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"crc rate\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit size\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"code group error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"no rx reachability\"}]",
+          "json_error": null,
+          "cli_string": "Port Errors                     Count  Last timestamp(UTC)\n----------------------------  -------  ---------------------\ncode group error                    0  Never\ncrc rate                            0  Never\ndata unit crc error                 0  Never\ndata unit misalignment error        0  Never\ndata unit size                      0  Never\nfec alignment loss                  0  Never\nfec sync loss                       0  Never\nhigh ber error                      0  Never\nhigh ser error                      0  Never\nmac local fault                     0  Never\nmac remote fault                    0  Never\nno rx reachability                  0  Never\noper error status                   0  Never\nsignal local error                  0  Never",
+          "cli_error": null
+        },
+        "str4-7060x6-512-1": {
+          "cli_file": "show_interfaces_errors_Ethernet0.txt",
+          "gnmi_file": "gnmi-get-interfaces-errors-Ethernet0.txt",
+          "json_string": "[{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"oper error status\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac local fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac remote fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec sync loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec alignment loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ser error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ber error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit crc error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit misalignment error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"signal local error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"crc rate\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit size\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"code group error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"no rx reachability\"}]",
+          "json_error": null,
+          "cli_string": "Port Errors                     Count  Last timestamp(UTC)\n----------------------------  -------  ---------------------\ncode group error                    0  Never\ncrc rate                            0  Never\ndata unit crc error                 0  Never\ndata unit misalignment error        0  Never\ndata unit size                      0  Never\nfec alignment loss                  0  Never\nfec sync loss                       0  Never\nhigh ber error                      0  Never\nhigh ser error                      0  Never\nmac local fault                     0  Never\nmac remote fault                    0  Never\nno rx reachability                  0  Never\noper error status                   0  Never\nsignal local error                  0  Never",
+          "cli_error": null
+        }
+      }
+    },
+    {
+      "input_options": "Ethernet252",
+      "devices": {
+        "str2-8102-01": {
+          "cli_file": "show_interfaces_errors_Ethernet252.txt",
+          "gnmi_file": "gnmi-get-interfaces-errors-Ethernet252.txt",
+          "json_string": "[{\"Count\":\"1\",\"Last timestamp(UTC)\":\"2026-01-28 23:12:25\",\"Port Errors\":\"oper error status\"},{\"Count\":\"1\",\"Last timestamp(UTC)\":\"2026-01-28 23:12:25\",\"Port Errors\":\"mac local fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac remote fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec sync loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec alignment loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ser error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ber error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit crc error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit misalignment error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"signal local error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"crc rate\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit size\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"code group error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"no rx reachability\"}]",
+          "json_error": null,
+          "cli_string": "Port Errors                     Count  Last timestamp(UTC)\n----------------------------  -------  ---------------------\ncode group error                    0  Never\ncrc rate                            0  Never\ndata unit crc error                 0  Never\ndata unit misalignment error        0  Never\ndata unit size                      0  Never\nfec alignment loss                  0  Never\nfec sync loss                       0  Never\nhigh ber error                      0  Never\nhigh ser error                      0  Never\nmac local fault                     1  2026-01-28 23:12:25\nmac remote fault                    0  Never\nno rx reachability                  0  Never\noper error status                   1  2026-01-28 23:12:25\nsignal local error                  0  Never",
+          "cli_error": null
+        }
+      }
+    }
+  ]
+}
