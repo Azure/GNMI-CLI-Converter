@@ -35,6 +35,22 @@
           "json_error": null,
           "cli_string": "Aging time for switch is 600 seconds",
           "cli_error": null
+        },
+        "str3-8101-02": {
+          "cli_file": "show_mac_aging-time.txt",
+          "gnmi_file": "gnmi-get-mac-aging-time.txt",
+          "json_string": "{\"fdb_aging_time\":\"600s\"}",
+          "json_error": null,
+          "cli_string": "Aging time for switch is 600 seconds\n",
+          "cli_error": null
+        },
+        "str4-sn5640-7": {
+          "cli_file": "show_mac_aging-time.txt",
+          "gnmi_file": "gnmi-get-mac-aging-time.txt",
+          "json_string": "{\"fdb_aging_time\":\"600s\"}",
+          "json_error": null,
+          "cli_string": "Aging time for switch is 600 seconds\n",
+          "cli_error": null
         }
       }
     }

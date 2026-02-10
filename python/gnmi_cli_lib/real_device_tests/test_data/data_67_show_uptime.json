@@ -35,6 +35,22 @@
           "json_error": null,
           "cli_string": "up 5 days, 8 hours, 8 minutes",
           "cli_error": null
+        },
+        "str3-8101-02": {
+          "cli_file": "show_uptime.txt",
+          "gnmi_file": "gnmi-get-uptime.txt",
+          "json_string": "{\"uptime\":\"up 1 week, 2 days, 23 hours, 16 minutes\"}",
+          "json_error": null,
+          "cli_string": "up 1 week, 2 days, 23 hours, 14 minutes\n",
+          "cli_error": null
+        },
+        "str4-sn5640-7": {
+          "cli_file": "show_uptime.txt",
+          "gnmi_file": "gnmi-get-uptime.txt",
+          "json_string": "{\"uptime\":\"up 1 week, 3 days, 11 hours, 18 minutes\"}",
+          "json_error": null,
+          "cli_string": "up 1 week, 3 days, 11 hours, 15 minutes\n",
+          "cli_error": null
         }
       }
     }

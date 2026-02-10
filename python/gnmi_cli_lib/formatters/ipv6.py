@@ -226,7 +226,10 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         # BGP connection type
         bgp_conn = data.get("bgpConnection", "")
         if bgp_conn:
-            lines.append(f"  BGP connection: {bgp_conn}")
+            # Convert camelCase to spaced format (e.g., "sharedNetwork" -> "shared network")
+            import re as _re
+            bgp_conn_formatted = _re.sub(r'([a-z])([A-Z])', r'\1 \2', bgp_conn).lower()
+            lines.append(f"  BGP connection: {bgp_conn_formatted}")
         
         # Neighbor capabilities
         caps = data.get("neighborCapabilities", {})
@@ -367,8 +370,12 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
             af_by_peer = caps.get("addressFamiliesByPeer", {})
             if af_by_peer:
                 lines.append("      Address families by peer:")
-                for af in af_by_peer:
-                    lines.append(f"        {self._format_af_name(af)}(not preserved)")
+                if isinstance(af_by_peer, str):
+                    # Value is a string like "none" - output as-is
+                    lines.append(f"        {af_by_peer}")
+                else:
+                    for af in af_by_peer:
+                        lines.append(f"        {self._format_af_name(af)}(not preserved)")
         
         return lines
     
@@ -627,6 +634,9 @@ class IPv6BgpRoutesTableFormatter(OutputFormatter):
             routes = data["receivedRoutes"]
         elif "routes" in data:
             routes = data["routes"]
+            # If routes dict is empty, CLI shows nothing
+            if not routes:
+                return ""
             is_list_format = True  # routes view has list of paths per prefix
         else:
             # Try treating the whole data as routes
@@ -1241,17 +1251,38 @@ class IPv6RouteFormatter(OutputFormatter):
         lines.append("       t - trapped, o - offload failure")
         lines.append("")
         
-        # Get VRF name from first route entry
+        # Get VRF name from first route entry - only output VRF line if vrfName is explicitly present
+        has_vrf_name = False
         vrf_name = "default"
         for prefix, routes in data.items():
             if isinstance(routes, list) and routes:
-                vrf_name = routes[0].get("vrfName", "default")
+                if "vrfName" in routes[0]:
+                    has_vrf_name = True
+                    vrf_name = routes[0].get("vrfName", "default")
                 break
             elif isinstance(routes, dict):
-                vrf_name = routes.get("vrfName", "default")
+                if "vrfName" in routes:
+                    has_vrf_name = True
+                    vrf_name = routes.get("vrfName", "default")
                 break
         
-        lines.append(f"IPv6 unicast VRF {vrf_name}:")
+        # Only output VRF line if vrfName was explicitly in the data and first nexthop has weight
+        # (FRR versions with weight field show VRF line; those without don't)
+        first_has_weight = False
+        for prefix, routes in data.items():
+            if isinstance(routes, list) and routes:
+                nexthops = routes[0].get("nexthops", [])
+                if nexthops and "weight" in nexthops[0]:
+                    first_has_weight = True
+                break
+            elif isinstance(routes, dict):
+                nexthops = routes.get("nexthops", [])
+                if nexthops and "weight" in nexthops[0]:
+                    first_has_weight = True
+                break
+        
+        if has_vrf_name and first_has_weight:
+            lines.append(f"IPv6 unicast VRF {vrf_name}:")
         
         # Sort prefixes for consistent output
         for prefix in sorted(data.keys(), key=self._prefix_sort_key):
@@ -1330,37 +1361,40 @@ class IPv6RouteFormatter(OutputFormatter):
             interface = nh.get("interfaceName", "")
             nexthop_ip = nh.get("ip", nh.get("nexthop", ""))
             link_down = nh.get("linkDown", False)
-            weight = nh.get("weight", 1)
+            weight = nh.get("weight")  # None if not present
         else:
             is_directly_connected = False
             interface = ""
             nexthop_ip = ""
             link_down = False
-            weight = 1
+            weight = None
         
         uptime = route.get("uptime", "")
         distance = route.get("distance", 0)
         metric = route.get("metric", 0)
         
         # Build the route description
+        # Only include weight if it was present in the data
+        weight_str = f", weight {weight}" if weight is not None else ""
+        
         if is_directly_connected:
             # Format depends on protocol:
             # - "connected": C>* fc00::/126 is directly connected, PortChannel102, weight 1, 01w1d03h
             # - "static":    S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w1d03h
             link_status = " linkdown" if link_down else ""
             if protocol.lower() == "connected":
-                route_desc = f"is directly connected, {interface}{link_status}, weight {weight}, {uptime}"
+                route_desc = f"is directly connected, {interface}{link_status}{weight_str}, {uptime}"
             else:
-                route_desc = f"[{distance}/{metric}] is directly connected, {interface}{link_status}, weight {weight}, {uptime}"
+                route_desc = f"[{distance}/{metric}] is directly connected, {interface}{link_status}{weight_str}, {uptime}"
         elif nexthop_ip:
             # Format: B>* 2064:100::/48 [200/0] via fc00::2, PortChannel102, weight 1, 01w1d03h
             if interface:
-                route_desc = f"[{distance}/{metric}] via {nexthop_ip}, {interface}, weight {weight}, {uptime}"
+                route_desc = f"[{distance}/{metric}] via {nexthop_ip}, {interface}{weight_str}, {uptime}"
             else:
-                route_desc = f"[{distance}/{metric}] via {nexthop_ip}, weight {weight}, {uptime}"
+                route_desc = f"[{distance}/{metric}] via {nexthop_ip}{weight_str}, {uptime}"
         else:
             # Fallback
-            route_desc = f"[{distance}/{metric}], weight {weight}, {uptime}"
+            route_desc = f"[{distance}/{metric}]{weight_str}, {uptime}"
         
         return f"{status} {prefix} {route_desc}"
     

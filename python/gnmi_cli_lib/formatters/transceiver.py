@@ -185,14 +185,10 @@ class TransceiverErrorStatusFormatter(OutputFormatter):
         cmis_state = port_data.get("cmis_state", "")
         error = port_data.get("error", "N/A")
         
-        # When status is "1" and either no cmis_state or cmis_state is READY, it's OK
+        # When status is "1", the transceiver is operational - report OK
+        # The status field is the definitive indicator; cmis_state may lag behind
         if status == "1":
-            if not cmis_state or cmis_state == "N/A" or cmis_state == "READY":
-                return "OK"
-            elif error and error != "N/A":
-                return error
-            else:
-                return cmis_state
+            return "OK"
         else:
             # status is "0" - unplugged or error
             if error and error != "N/A":

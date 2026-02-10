@@ -35,6 +35,22 @@
           "json_error": null,
           "cli_string": "               total        used        free      shared  buff/cache   available\nMem:           31905        5630       21913         452        5279       26274\nSwap:              0           0           0",
           "cli_error": null
+        },
+        "str3-8101-02": {
+          "cli_file": "show_system-memory.txt",
+          "gnmi_file": "gnmi-get-system-memory.txt",
+          "json_string": "[{\"available\":\"26741\",\"buff/cache\":\"5432\",\"free\":\"21817\",\"shared\":\"52\",\"total\":\"31254\",\"type\":\"Mem\",\"used\":\"4512\"},{\"free\":\"0\",\"total\":\"0\",\"type\":\"Swap\",\"used\":\"0\"}]",
+          "json_error": null,
+          "cli_string": "               total        used        free      shared  buff/cache   available\nMem:           31254        4475       21856          52        5431       26779\nSwap:              0           0           0\n",
+          "cli_error": null
+        },
+        "str4-sn5640-7": {
+          "cli_file": "show_system-memory.txt",
+          "gnmi_file": "gnmi-get-system-memory.txt",
+          "json_string": "[{\"available\":\"25070\",\"buff/cache\":\"6178\",\"free\":\"19645\",\"shared\":\"291\",\"total\":\"31955\",\"type\":\"Mem\",\"used\":\"6885\"},{\"free\":\"0\",\"total\":\"0\",\"type\":\"Swap\",\"used\":\"0\"}]",
+          "json_error": null,
+          "cli_string": "               total        used        free      shared  buff/cache   available\nMem:           31955        6767       19765         291        6175       25187\nSwap:              0           0           0\n",
+          "cli_error": null
         }
       }
     }

@@ -42,6 +42,32 @@
           "cli_error": null
         }
       }
+    },
+    {
+      "input_options": "Ethernet8",
+      "devices": {
+        "str3-8101-02": {
+          "cli_file": "show_interfaces_errors_Ethernet8.txt",
+          "gnmi_file": "gnmi-get-interfaces-errors-Ethernet8.txt",
+          "json_string": "[{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"oper error status\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac local fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac remote fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec sync loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec alignment loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ser error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ber error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit crc error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit misalignment error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"signal local error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"crc rate\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit size\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"code group error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"no rx reachability\"}]",
+          "json_error": null,
+          "cli_string": "Port Errors                     Count  Last timestamp(UTC)\n----------------------------  -------  ---------------------\ncode group error                    0  Never\ncrc rate                            0  Never\ndata unit crc error                 0  Never\ndata unit misalignment error        0  Never\ndata unit size                      0  Never\nfec alignment loss                  0  Never\nfec sync loss                       0  Never\nhigh ber error                      0  Never\nhigh ser error                      0  Never\nmac local fault                     0  Never\nmac remote fault                    0  Never\nno rx reachability                  0  Never\noper error status                   0  Never\nsignal local error                  0  Never\n",
+          "cli_error": null
+        }
+      }
+    },
+    {
+      "input_options": "Ethernet505",
+      "devices": {
+        "str4-sn5640-7": {
+          "cli_file": "show_interfaces_errors_Ethernet505.txt",
+          "gnmi_file": "gnmi-get-interfaces-errors-Ethernet505.txt",
+          "json_string": "[{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"oper error status\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac local fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"mac remote fault\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec sync loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"fec alignment loss\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ser error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"high ber error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit crc error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit misalignment error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"signal local error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"crc rate\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"data unit size\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"code group error\"},{\"Count\":\"0\",\"Last timestamp(UTC)\":\"Never\",\"Port Errors\":\"no rx reachability\"}]",
+          "json_error": null,
+          "cli_string": "Port Errors                     Count  Last timestamp(UTC)\n----------------------------  -------  ---------------------\ncode group error                    0  Never\ncrc rate                            0  Never\ndata unit crc error                 0  Never\ndata unit misalignment error        0  Never\ndata unit size                      0  Never\nfec alignment loss                  0  Never\nfec sync loss                       0  Never\nhigh ber error                      0  Never\nhigh ser error                      0  Never\nmac local fault                     0  Never\nmac remote fault                    0  Never\nno rx reachability                  0  Never\noper error status                   0  Never\nsignal local error                  0  Never\n",
+          "cli_error": null
+        }
+      }
     }
   ]
 }

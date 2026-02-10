@@ -33,7 +33,7 @@ TEST_DATA_DIR = SCRIPT_DIR / "test_data"
 REPORT_FILE = SCRIPT_DIR / "verification_report.md"
 
 # Devices
-DEVICES = ["str4-7060x6-512-9", "str4-7060x6-512-13", "str4-7060x6-512-1", "str2-8102-01"]
+DEVICES = ["str4-7060x6-512-9", "str4-7060x6-512-13", "str4-7060x6-512-1", "str2-8102-01", "str3-8101-02", "str4-sn5640-7"]
 
 
 # ============================================================================
@@ -182,11 +182,21 @@ def check_bgp_routes_acceptable_diff(actual_lines: list, expected_lines: list, c
 # Value extraction and matching functions (for gNMI coverage check)
 # ============================================================================
 
-def extract_json_values(data, values=None, keys=None) -> tuple:
+# Keys whose values are internal metadata and should not be checked for display
+INTERNAL_METADATA_KEYS = {
+    'internalFlags', 'internalStatus', 'internalNextHopNum', 'internalNextHopActiveNum',
+    'interfaceIndex', 'installedNexthopGroupId', 'nexthopGroupId', 'receivedNexthopGroupId',
+    'table', 'vrfId', 'flags', 'prefixLen',
+}
+
+
+def extract_json_values(data, values=None, keys=None, parent_key=None) -> tuple:
     """Recursively extract all leaf values and keys from JSON data.
     
     Also handles nested JSON strings (e.g., {"Ethernet0": "{\"key\": \"value\"}"})
     by parsing them and extracting values from within.
+    
+    Skips values under INTERNAL_METADATA_KEYS since they are internal IDs not shown in CLI.
     """
     if values is None:
         values = set()
@@ -196,10 +206,13 @@ def extract_json_values(data, values=None, keys=None) -> tuple:
     if isinstance(data, dict):
         for k, v in data.items():
             keys.add(str(k))
-            extract_json_values(v, values, keys)
+            # Skip internal metadata keys
+            if k in INTERNAL_METADATA_KEYS:
+                continue
+            extract_json_values(v, values, keys, k)
     elif isinstance(data, list):
         for item in data:
-            extract_json_values(item, values, keys)
+            extract_json_values(item, values, keys, parent_key)
     elif isinstance(data, str):
         str_val = data.strip()
         if str_val.startswith('{') or str_val.startswith('['):
@@ -212,7 +225,7 @@ def extract_json_values(data, values=None, keys=None) -> tuple:
                     return values, keys
             try:
                 parsed = json.loads(str_val)
-                extract_json_values(parsed, values, keys)
+                extract_json_values(parsed, values, keys, parent_key)
                 return values, keys
             except json.JSONDecodeError:
                 pass
@@ -270,6 +283,11 @@ def normalize_numeric_value(val: str) -> list:
                 hrs = remaining_secs // 3600
                 remaining_secs = remaining_secs % 3600
                 mins = remaining_secs // 60
+                weeks = days // 7
+                days_in_week = days % 7
+                if weeks > 0:
+                    representations.append(f"{weeks:02d}w{days_in_week}d{hrs:02d}h")
+                    representations.append(f"{weeks}w{days_in_week}d{hrs}h")
                 if days > 0:
                     representations.append(f"{days}d{hrs:02d}h{mins:02d}m")
                     representations.append(f"{days}d{hrs}h{mins}m")
@@ -292,6 +310,7 @@ def normalize_string_value(val: str) -> list:
         'advertised': 'advertised',
         'received': 'received',
         'extendedAndStandard': 'extended and standard',
+        'sharedNetwork': 'shared network',
     }
     if val in transformations:
         representations.append(transformations[val])
@@ -555,7 +574,7 @@ def run_single_test(test_data, parser):
         for device in DEVICES:
             if device not in devices_data:
                 tc_result["results"][device] = {
-                    "status": "SKIP",
+                    "status": "NO_ACCEPTABLE_DATA",
                     "message": "No data for device"
                 }
                 continue
@@ -566,14 +585,14 @@ def run_single_test(test_data, parser):
             
             if json_error:
                 tc_result["results"][device] = {
-                    "status": "SKIP",
+                    "status": "NO_ACCEPTABLE_DATA",
                     "message": f"JSON extraction error: {json_error}"
                 }
                 continue
             
             if not json_string or json_string.strip() == "":
                 tc_result["results"][device] = {
-                    "status": "SKIP",
+                    "status": "NO_ACCEPTABLE_DATA",
                     "message": "Empty JSON string"
                 }
                 continue
@@ -646,7 +665,7 @@ def generate_report(all_results):
                     })
     
     # Count stats per device
-    stats = {device: {"PASS": 0, "FAIL": 0, "ERROR": 0, "SKIP": 0} for device in DEVICES}
+    stats = {device: {"PASS": 0, "FAIL": 0, "ERROR": 0, "NO_ACCEPTABLE_DATA": 0} for device in DEVICES}
     for tcr in all_test_case_results:
         stats[tcr["device"]][tcr["status"]] += 1
     
@@ -654,8 +673,8 @@ def generate_report(all_results):
     total_pass = sum(s["PASS"] for s in stats.values())
     total_fail = sum(s["FAIL"] for s in stats.values())
     total_error = sum(s["ERROR"] for s in stats.values())
-    total_skip = sum(s["SKIP"] for s in stats.values())
-    total_tests = total_pass + total_fail + total_error + total_skip
+    total_no_acceptable_data = sum(s["NO_ACCEPTABLE_DATA"] for s in stats.values())
+    total_tests = total_pass + total_fail + total_error + total_no_acceptable_data
     pass_rate = (total_pass / (total_pass + total_fail)) * 100 if (total_pass + total_fail) > 0 else 0
     
     lines = [
@@ -668,18 +687,18 @@ def generate_report(all_results):
         f"**Total Test Cases:** {total_tests}",
         f"**Pass Rate:** {pass_rate:.1f}% ({total_pass} Pass / {total_pass + total_fail} Run)",
         "",
-        "| Device | PASS | FAIL | ERROR | SKIP | Total |",
-        "|--------|------|------|-------|------|-------|",
+        "| Device | PASS | FAIL | ERROR | Total |",
+        "|--------|------|------|-------|-------|",
     ]
     
     for device in DEVICES:
         s = stats[device]
-        total = sum(s.values())
-        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {s['ERROR']} | {s['SKIP']} | {total} |")
+        total = s['PASS'] + s['FAIL'] + s['ERROR']
+        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {s['ERROR']} | {total} |")
     
     lines.extend([
         "",
-        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_error}** | **{total_skip}** | **{total_tests}** |",
+        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_error}** | **{total_pass + total_fail + total_error}** |",
         "",
         "## Detailed Results",
         "",
@@ -717,20 +736,23 @@ def generate_report(all_results):
     lines.extend([
         "### ✅ Pass Summary by Command",
         "",
-        "| Command | Pass | Fail | Skip |",
-        "|---------|------|------|------|",
+        "| Command | Pass | Fail |",
+        "|---------|------|------|",
     ])
     
     cmd_stats = {}
     for tcr in all_test_case_results:
         cmd = tcr["command"]
+        status = tcr["status"]
+        if status == "NO_ACCEPTABLE_DATA":
+            continue  # Skip no acceptable data entries
         if cmd not in cmd_stats:
-            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0, "ERROR": 0, "SKIP": 0}
-        cmd_stats[cmd][tcr["status"]] += 1
+            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0, "ERROR": 0}
+        cmd_stats[cmd][status] += 1
     
     for cmd in sorted(cmd_stats.keys()):
         s = cmd_stats[cmd]
-        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL'] + s['ERROR']} | {s['SKIP']} |")
+        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL'] + s['ERROR']} |")
     
     return '\n'.join(lines)
 
@@ -757,7 +779,7 @@ def main():
     total_pass = 0
     total_fail = 0
     total_error = 0
-    total_skip = 0
+    total_no_acceptable_data = 0
     
     for i, test_data in enumerate(all_test_data, 1):
         command = test_data.get("command", "unknown")
@@ -780,17 +802,17 @@ def main():
                     elif status == "ERROR":
                         total_error += 1
                     else:
-                        total_skip += 1
+                        total_no_acceptable_data += 1
     
     print()
     print("=" * 60)
     print("SUMMARY")
     print("=" * 60)
     print(f"Total Test Cases: {total_tests}")
-    print(f"  PASS:  {total_pass}")
-    print(f"  FAIL:  {total_fail}")
-    print(f"  ERROR: {total_error}")
-    print(f"  SKIP:  {total_skip}")
+    print(f"  PASS:    {total_pass}")
+    print(f"  FAIL:    {total_fail}")
+    print(f"  ERROR:   {total_error}")
+    print(f"  NO_ACCEPTABLE_DATA: {total_no_acceptable_data}")
     
     if total_pass + total_fail > 0:
         pass_rate = total_pass / (total_pass + total_fail) * 100

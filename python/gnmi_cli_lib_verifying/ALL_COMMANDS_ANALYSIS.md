@@ -1,8 +1,8 @@
 # ALL COMMANDS ANALYSIS
 
-**Generated:** 2026-02-06 04:40:14
+**Generated:** 2026-02-09 09:28:03
 **Total Commands:** 70
-**Devices Tested:** 4
+**Devices Tested:** 6
 
 ## Table of Contents
 
@@ -14,104 +14,108 @@
 ### Devices
 
 1. `str2-8102-01`
-2. `str4-7060x6-512-1`
-3. `str4-7060x6-512-13`
-4. `str4-7060x6-512-9`
+2. `str3-8101-02`
+3. `str4-7060x6-512-1`
+4. `str4-7060x6-512-13`
+5. `str4-7060x6-512-9`
+6. `str4-sn5640-7`
 
 ## Overall Summary
 
 | Metric | Count |
 |--------|-------|
-| Total Test Cases (with data) | 416 |
-| ✅ PASS | 406 |
-| ❌ FAIL | 0 |
+| Total Test Cases (with data) | 704 |
+| ✅ PASS | 670 |
+| ❌ FAIL | 11 |
 | ⚠️ ERROR | 0 |
-| ⏭️ SKIP (data error) | 10 |
-| **Pass Rate** | **100.0%** |
+| ⏭️ SKIP (data error) | 23 |
+| **Pass Rate** | **98.4%** |
 
 ## Per-Device Summary
 
 | Device | Total | ✅ Pass | ❌ Fail | ⚠️ Error | ⏭️ Skip | Pass Rate |
 |--------|-------|---------|---------|----------|---------|-----------|
-| `str2-8102-01` | 138 | 135 | 0 | 0 | 3 | 100.0% |
-| `str4-7060x6-512-1` | 139 | 134 | 0 | 0 | 5 | 100.0% |
-| `str4-7060x6-512-13` | 69 | 68 | 0 | 0 | 1 | 100.0% |
-| `str4-7060x6-512-9` | 70 | 69 | 0 | 0 | 1 | 100.0% |
+| `str2-8102-01` | 138 | 133 | 2 | 0 | 3 | 98.5% |
+| `str3-8101-02` | 144 | 139 | 2 | 0 | 3 | 98.6% |
+| `str4-7060x6-512-1` | 139 | 132 | 2 | 0 | 5 | 98.5% |
+| `str4-7060x6-512-13` | 69 | 67 | 1 | 0 | 1 | 98.5% |
+| `str4-7060x6-512-9` | 70 | 68 | 1 | 0 | 1 | 98.6% |
+| `str4-sn5640-7` | 144 | 131 | 3 | 0 | 10 | 97.8% |
 
 ## Quick Reference by Command
 
 | # | Command | Variants | Pass | Fail | Error | Skip |
 |---|---------|----------|------|------|-------|------|
-| 01 | [`show buffer_pool watermark`](#01-show-buffer-pool-watermark) | 1 | 4 | 0 | 0 | 0 |
-| 02 | [`show buffer_pool persistent-watermark`](#02-show-buffer-pool-persistent-watermark) | 1 | 4 | 0 | 0 | 0 |
-| 03 | [`show clock`](#03-show-clock) | 1 | 4 | 0 | 0 | 0 |
-| 04 | [`show clock timezones`](#04-show-clock-timezones) | 1 | 4 | 0 | 0 | 0 |
-| 05 | [`show dropcounters capabilities`](#05-show-dropcounters-capabilities) | 1 | 4 | 0 | 0 | 0 |
-| 06 | [`show dropcounters counts`](#06-show-dropcounters-counts) | 7 | 16 | 0 | 0 | 0 |
-| 07 | [`show headroom-pool watermark`](#07-show-headroom-pool-watermark) | 1 | 4 | 0 | 0 | 0 |
-| 08 | [`show headroom-pool persistent-watermark`](#08-show-headroom-pool-persistent-watermark) | 1 | 4 | 0 | 0 | 0 |
-| 09 | [`show interfaces alias`](#09-show-interfaces-alias) | 3 | 6 | 0 | 0 | 0 |
-| 10 | [`show interfaces counters`](#10-show-interfaces-counters) | 9 | 20 | 0 | 0 | 0 |
-| 11 | [`show interfaces counters detailed`](#11-show-interfaces-counters-detailed) | 4 | 6 | 0 | 0 | 0 |
-| 12 | [`show interfaces counters errors`](#12-show-interfaces-counters-errors) | 2 | 6 | 0 | 0 | 0 |
-| 13 | [`show interfaces counters fec-histogram`](#13-show-interfaces-counters-fec-histogram) | 2 | 4 | 0 | 0 | 0 |
-| 14 | [`show interfaces counters fec-stats`](#14-show-interfaces-counters-fec-stats) | 2 | 6 | 0 | 0 | 0 |
-| 15 | [`show interfaces counters rates`](#15-show-interfaces-counters-rates) | 2 | 6 | 0 | 0 | 0 |
-| 16 | [`show interfaces counters rif`](#16-show-interfaces-counters-rif) | 6 | 10 | 0 | 0 | 0 |
-| 17 | [`show interfaces counters trim`](#17-show-interfaces-counters-trim) | 4 | 8 | 0 | 0 | 0 |
-| 18 | [`show interfaces description`](#18-show-interfaces-description) | 3 | 6 | 0 | 0 | 0 |
-| 19 | [`show interfaces errors`](#19-show-interfaces-errors) | 2 | 4 | 0 | 0 | 0 |
-| 20 | [`show interfaces fec status`](#20-show-interfaces-fec-status) | 3 | 6 | 0 | 0 | 0 |
-| 21 | [`show interfaces flap`](#21-show-interfaces-flap) | 3 | 6 | 0 | 0 | 0 |
-| 22 | [`show interfaces naming_mode`](#22-show-interfaces-naming-mode) | 1 | 4 | 0 | 0 | 0 |
-| 23 | [`show interfaces neighbor expected`](#23-show-interfaces-neighbor-expected) | 3 | 6 | 0 | 0 | 0 |
-| 24 | [`show interfaces portchannel`](#24-show-interfaces-portchannel) | 1 | 4 | 0 | 0 | 0 |
-| 25 | [`show interfaces status`](#25-show-interfaces-status) | 3 | 6 | 0 | 0 | 0 |
-| 26 | [`show interfaces switchport config`](#26-show-interfaces-switchport-config) | 1 | 4 | 0 | 0 | 0 |
-| 27 | [`show interfaces switchport status`](#27-show-interfaces-switchport-status) | 1 | 4 | 0 | 0 | 0 |
-| 28 | [`show interfaces transceiver eeprom`](#28-show-interfaces-transceiver-eeprom) | 6 | 9 | 0 | 0 | 1 |
-| 29 | [`show interfaces transceiver error-status`](#29-show-interfaces-transceiver-error-status) | 3 | 6 | 0 | 0 | 0 |
-| 30 | [`show interfaces transceiver info`](#30-show-interfaces-transceiver-info) | 1 | 3 | 0 | 0 | 1 |
-| 31 | [`show interfaces transceiver lpmode`](#31-show-interfaces-transceiver-lpmode) | 3 | 6 | 0 | 0 | 0 |
-| 32 | [`show interfaces transceiver pm`](#32-show-interfaces-transceiver-pm) | 3 | 6 | 0 | 0 | 0 |
-| 33 | [`show interfaces transceiver presence`](#33-show-interfaces-transceiver-presence) | 3 | 6 | 0 | 0 | 0 |
-| 34 | [`show interfaces transceiver status`](#34-show-interfaces-transceiver-status) | 3 | 5 | 0 | 0 | 1 |
-| 35 | [`show ipv6 prefix-list`](#35-show-ipv6-prefix-list) | 2 | 6 | 0 | 0 | 0 |
-| 36 | [`show ipv6 interfaces`](#36-show-ipv6-interfaces) | 1 | 4 | 0 | 0 | 0 |
-| 37 | [`show ipv6 route`](#37-show-ipv6-route) | 7 | 5 | 0 | 0 | 7 |
-| 38 | [`show ipv6 protocol`](#38-show-ipv6-protocol) | 1 | 4 | 0 | 0 | 0 |
-| 39 | [`show ipv6 bgp neighbors`](#39-show-ipv6-bgp-neighbors) | 9 | 12 | 0 | 0 | 0 |
-| 40 | [`show ipv6 bgp network`](#40-show-ipv6-bgp-network) | 8 | 16 | 0 | 0 | 0 |
-| 41 | [`show ipv6 bgp summary`](#41-show-ipv6-bgp-summary) | 1 | 4 | 0 | 0 | 0 |
-| 42 | [`show ipv6 link-local-mode`](#42-show-ipv6-link-local-mode) | 1 | 4 | 0 | 0 | 0 |
-| 43 | [`show ipv6 fib`](#43-show-ipv6-fib) | 3 | 5 | 0 | 0 | 0 |
-| 44 | [`show lldp neighbors`](#44-show-lldp-neighbors) | 3 | 6 | 0 | 0 | 0 |
-| 45 | [`show lldp table`](#45-show-lldp-table) | 1 | 4 | 0 | 0 | 0 |
-| 46 | [`show mac`](#46-show-mac) | 1 | 4 | 0 | 0 | 0 |
-| 47 | [`show mac aging_time`](#47-show-mac-aging-time) | 1 | 4 | 0 | 0 | 0 |
-| 48 | [`show mmu`](#48-show-mmu) | 1 | 4 | 0 | 0 | 0 |
-| 49 | [`show ndp`](#49-show-ndp) | 6 | 10 | 0 | 0 | 0 |
-| 50 | [`show processes summary`](#50-show-processes-summary) | 1 | 4 | 0 | 0 | 0 |
-| 51 | [`show processes cpu`](#51-show-processes-cpu) | 1 | 4 | 0 | 0 | 0 |
-| 52 | [`show processes memory`](#52-show-processes-memory) | 1 | 4 | 0 | 0 | 0 |
-| 53 | [`show queue counters`](#53-show-queue-counters) | 15 | 25 | 0 | 0 | 0 |
-| 54 | [`show queue persistent-watermark`](#54-show-queue-persistent-watermark) | 1 | 4 | 0 | 0 | 0 |
-| 55 | [`show queue persistent-watermark all`](#55-show-queue-persistent-watermark-all) | 1 | 4 | 0 | 0 | 0 |
-| 56 | [`show queue persistent-watermark multicast`](#56-show-queue-persistent-watermark-multicast) | 1 | 4 | 0 | 0 | 0 |
-| 57 | [`show queue persistent-watermark unicast`](#57-show-queue-persistent-watermark-unicast) | 1 | 4 | 0 | 0 | 0 |
-| 58 | [`show queue watermark`](#58-show-queue-watermark) | 1 | 4 | 0 | 0 | 0 |
-| 59 | [`show queue watermark all`](#59-show-queue-watermark-all) | 1 | 4 | 0 | 0 | 0 |
-| 60 | [`show queue watermark multicast`](#60-show-queue-watermark-multicast) | 1 | 4 | 0 | 0 | 0 |
-| 61 | [`show queue watermark unicast`](#61-show-queue-watermark-unicast) | 1 | 4 | 0 | 0 | 0 |
-| 62 | [`show queue wredcounters`](#62-show-queue-wredcounters) | 3 | 6 | 0 | 0 | 0 |
-| 63 | [`show reboot-cause history`](#63-show-reboot-cause-history) | 1 | 4 | 0 | 0 | 0 |
-| 64 | [`show services`](#64-show-services) | 1 | 4 | 0 | 0 | 0 |
-| 65 | [`show srv6 stats`](#65-show-srv6-stats) | 1 | 4 | 0 | 0 | 0 |
-| 66 | [`show system-memory`](#66-show-system-memory) | 1 | 4 | 0 | 0 | 0 |
-| 67 | [`show uptime`](#67-show-uptime) | 1 | 4 | 0 | 0 | 0 |
-| 68 | [`show version`](#68-show-version) | 1 | 4 | 0 | 0 | 0 |
-| 69 | [`show vlan brief`](#69-show-vlan-brief) | 1 | 4 | 0 | 0 | 0 |
-| 70 | [`show watermark telemetry interval`](#70-show-watermark-telemetry-interval) | 1 | 4 | 0 | 0 | 0 |
+| 01 | [`show buffer_pool watermark`](#01-show-buffer-pool-watermark) | 1 | 6 | 0 | 0 | 0 |
+| 02 | [`show buffer_pool persistent-watermark`](#02-show-buffer-pool-persistent-watermark) | 1 | 6 | 0 | 0 | 0 |
+| 03 | [`show clock`](#03-show-clock) | 1 | 6 | 0 | 0 | 0 |
+| 04 | [`show clock timezones`](#04-show-clock-timezones) | 1 | 6 | 0 | 0 | 0 |
+| 05 | [`show dropcounters capabilities`](#05-show-dropcounters-capabilities) | 1 | 6 | 0 | 0 | 0 |
+| 06 | [`show dropcounters counts`](#06-show-dropcounters-counts) | 7 | 24 | 0 | 0 | 0 |
+| 07 | [`show headroom-pool watermark`](#07-show-headroom-pool-watermark) | 1 | 6 | 0 | 0 | 0 |
+| 08 | [`show headroom-pool persistent-watermark`](#08-show-headroom-pool-persistent-watermark) | 1 | 6 | 0 | 0 | 0 |
+| 09 | [`show interfaces alias`](#09-show-interfaces-alias) | 5 | 10 | 0 | 0 | 0 |
+| 10 | [`show interfaces counters`](#10-show-interfaces-counters) | 9 | 36 | 0 | 0 | 0 |
+| 11 | [`show interfaces counters detailed`](#11-show-interfaces-counters-detailed) | 8 | 10 | 0 | 0 | 0 |
+| 12 | [`show interfaces counters errors`](#12-show-interfaces-counters-errors) | 2 | 10 | 0 | 0 | 0 |
+| 13 | [`show interfaces counters fec-histogram`](#13-show-interfaces-counters-fec-histogram) | 4 | 6 | 0 | 0 | 0 |
+| 14 | [`show interfaces counters fec-stats`](#14-show-interfaces-counters-fec-stats) | 2 | 10 | 0 | 0 | 0 |
+| 15 | [`show interfaces counters rates`](#15-show-interfaces-counters-rates) | 2 | 10 | 0 | 0 | 0 |
+| 16 | [`show interfaces counters rif`](#16-show-interfaces-counters-rif) | 10 | 18 | 0 | 0 | 0 |
+| 17 | [`show interfaces counters trim`](#17-show-interfaces-counters-trim) | 6 | 14 | 0 | 0 | 0 |
+| 18 | [`show interfaces description`](#18-show-interfaces-description) | 5 | 10 | 0 | 0 | 0 |
+| 19 | [`show interfaces errors`](#19-show-interfaces-errors) | 4 | 6 | 0 | 0 | 0 |
+| 20 | [`show interfaces fec status`](#20-show-interfaces-fec-status) | 5 | 10 | 0 | 0 | 0 |
+| 21 | [`show interfaces flap`](#21-show-interfaces-flap) | 5 | 10 | 0 | 0 | 0 |
+| 22 | [`show interfaces naming_mode`](#22-show-interfaces-naming-mode) | 1 | 6 | 0 | 0 | 0 |
+| 23 | [`show interfaces neighbor expected`](#23-show-interfaces-neighbor-expected) | 5 | 10 | 0 | 0 | 0 |
+| 24 | [`show interfaces portchannel`](#24-show-interfaces-portchannel) | 1 | 6 | 0 | 0 | 0 |
+| 25 | [`show interfaces status`](#25-show-interfaces-status) | 5 | 10 | 0 | 0 | 0 |
+| 26 | [`show interfaces switchport config`](#26-show-interfaces-switchport-config) | 1 | 6 | 0 | 0 | 0 |
+| 27 | [`show interfaces switchport status`](#27-show-interfaces-switchport-status) | 1 | 6 | 0 | 0 | 0 |
+| 28 | [`show interfaces transceiver eeprom`](#28-show-interfaces-transceiver-eeprom) | 10 | 15 | 0 | 0 | 3 |
+| 29 | [`show interfaces transceiver error-status`](#29-show-interfaces-transceiver-error-status) | 5 | 10 | 0 | 0 | 0 |
+| 30 | [`show interfaces transceiver info`](#30-show-interfaces-transceiver-info) | 1 | 4 | 0 | 0 | 2 |
+| 31 | [`show interfaces transceiver lpmode`](#31-show-interfaces-transceiver-lpmode) | 5 | 10 | 0 | 0 | 0 |
+| 32 | [`show interfaces transceiver pm`](#32-show-interfaces-transceiver-pm) | 5 | 9 | 0 | 0 | 1 |
+| 33 | [`show interfaces transceiver presence`](#33-show-interfaces-transceiver-presence) | 5 | 10 | 0 | 0 | 0 |
+| 34 | [`show interfaces transceiver status`](#34-show-interfaces-transceiver-status) | 5 | 8 | 0 | 0 | 2 |
+| 35 | [`show ipv6 prefix-list`](#35-show-ipv6-prefix-list) | 2 | 10 | 0 | 0 | 0 |
+| 36 | [`show ipv6 interfaces`](#36-show-ipv6-interfaces) | 1 | 6 | 0 | 0 | 0 |
+| 37 | [`show ipv6 route`](#37-show-ipv6-route) | 7 | 12 | 1 | 0 | 13 |
+| 38 | [`show ipv6 protocol`](#38-show-ipv6-protocol) | 1 | 6 | 0 | 0 | 0 |
+| 39 | [`show ipv6 bgp neighbors`](#39-show-ipv6-bgp-neighbors) | 17 | 12 | 10 | 0 | 0 |
+| 40 | [`show ipv6 bgp network`](#40-show-ipv6-bgp-network) | 19 | 35 | 0 | 0 | 1 |
+| 41 | [`show ipv6 bgp summary`](#41-show-ipv6-bgp-summary) | 1 | 6 | 0 | 0 | 0 |
+| 42 | [`show ipv6 link-local-mode`](#42-show-ipv6-link-local-mode) | 1 | 6 | 0 | 0 | 0 |
+| 43 | [`show ipv6 fib`](#43-show-ipv6-fib) | 5 | 8 | 0 | 0 | 1 |
+| 44 | [`show lldp neighbors`](#44-show-lldp-neighbors) | 5 | 10 | 0 | 0 | 0 |
+| 45 | [`show lldp table`](#45-show-lldp-table) | 1 | 6 | 0 | 0 | 0 |
+| 46 | [`show mac`](#46-show-mac) | 1 | 6 | 0 | 0 | 0 |
+| 47 | [`show mac aging_time`](#47-show-mac-aging-time) | 1 | 6 | 0 | 0 | 0 |
+| 48 | [`show mmu`](#48-show-mmu) | 1 | 6 | 0 | 0 | 0 |
+| 49 | [`show ndp`](#49-show-ndp) | 10 | 18 | 0 | 0 | 0 |
+| 50 | [`show processes summary`](#50-show-processes-summary) | 1 | 6 | 0 | 0 | 0 |
+| 51 | [`show processes cpu`](#51-show-processes-cpu) | 1 | 6 | 0 | 0 | 0 |
+| 52 | [`show processes memory`](#52-show-processes-memory) | 1 | 6 | 0 | 0 | 0 |
+| 53 | [`show queue counters`](#53-show-queue-counters) | 32 | 57 | 0 | 0 | 0 |
+| 54 | [`show queue persistent-watermark`](#54-show-queue-persistent-watermark) | 1 | 6 | 0 | 0 | 0 |
+| 55 | [`show queue persistent-watermark all`](#55-show-queue-persistent-watermark-all) | 1 | 6 | 0 | 0 | 0 |
+| 56 | [`show queue persistent-watermark multicast`](#56-show-queue-persistent-watermark-multicast) | 1 | 6 | 0 | 0 | 0 |
+| 57 | [`show queue persistent-watermark unicast`](#57-show-queue-persistent-watermark-unicast) | 1 | 6 | 0 | 0 | 0 |
+| 58 | [`show queue watermark`](#58-show-queue-watermark) | 1 | 6 | 0 | 0 | 0 |
+| 59 | [`show queue watermark all`](#59-show-queue-watermark-all) | 1 | 6 | 0 | 0 | 0 |
+| 60 | [`show queue watermark multicast`](#60-show-queue-watermark-multicast) | 1 | 6 | 0 | 0 | 0 |
+| 61 | [`show queue watermark unicast`](#61-show-queue-watermark-unicast) | 1 | 6 | 0 | 0 | 0 |
+| 62 | [`show queue wredcounters`](#62-show-queue-wredcounters) | 5 | 10 | 0 | 0 | 0 |
+| 63 | [`show reboot-cause history`](#63-show-reboot-cause-history) | 1 | 6 | 0 | 0 | 0 |
+| 64 | [`show services`](#64-show-services) | 1 | 6 | 0 | 0 | 0 |
+| 65 | [`show srv6 stats`](#65-show-srv6-stats) | 1 | 6 | 0 | 0 | 0 |
+| 66 | [`show system-memory`](#66-show-system-memory) | 1 | 6 | 0 | 0 | 0 |
+| 67 | [`show uptime`](#67-show-uptime) | 1 | 6 | 0 | 0 | 0 |
+| 68 | [`show version`](#68-show-version) | 1 | 6 | 0 | 0 | 0 |
+| 69 | [`show vlan brief`](#69-show-vlan-brief) | 1 | 6 | 0 | 0 | 0 |
+| 70 | [`show watermark telemetry interval`](#70-show-watermark-telemetry-interval) | 1 | 6 | 0 | 0 | 0 |
 
 ---
 
@@ -122,16 +126,18 @@
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="01.1-show-buffer-pool-watermark"></a>
 #### 01.1 `show buffer_pool watermark` (base command)
@@ -139,9 +145,11 @@
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -191,6 +199,42 @@ ingress_lossless_pool    21888
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "egress_lossy_pool": {
+    "Bytes": "41856"
+  },
+  "ingress_lossless_pool": {
+    "Bytes": "22272"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+    egress_lossy_pool    41856
+ingress_lossless_pool    22272
+
+```
+
+**Actual Converter Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+    egress_lossy_pool    41856
+ingress_lossless_pool    22272
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -295,6 +339,52 @@ ingress_lossless_pool        0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "egress_lossless_pool": {
+    "Bytes": "0"
+  },
+  "egress_lossy_pool": {
+    "Bytes": "0"
+  },
+  "ingress_lossless_pool": {
+    "Bytes": "59520"
+  },
+  "ingress_zero_pool": {
+    "Bytes": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ egress_lossless_pool        0
+    egress_lossy_pool        0
+ingress_lossless_pool    59520
+    ingress_zero_pool        0
+
+```
+
+**Actual Converter Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ egress_lossless_pool        0
+    egress_lossy_pool        0
+ingress_lossless_pool    59520
+    ingress_zero_pool        0
+```
+
+</details>
+
 ---
 
 <a id="02-show-buffer-pool-persistent-watermark"></a>
@@ -302,16 +392,18 @@ ingress_lossless_pool        0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="02.1-show-buffer-pool-persistent-watermark"></a>
 #### 02.1 `show buffer_pool persistent-watermark` (base command)
@@ -319,9 +411,11 @@ ingress_lossless_pool        0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -371,6 +465,42 @@ ingress_lossless_pool    21888
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "egress_lossy_pool": {
+    "Bytes": "41856"
+  },
+  "ingress_lossless_pool": {
+    "Bytes": "22272"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+    egress_lossy_pool    41856
+ingress_lossless_pool    22272
+
+```
+
+**Actual Converter Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+    egress_lossy_pool    41856
+ingress_lossless_pool    22272
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -475,6 +605,52 @@ ingress_lossless_pool        0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "egress_lossless_pool": {
+    "Bytes": "0"
+  },
+  "egress_lossy_pool": {
+    "Bytes": "0"
+  },
+  "ingress_lossless_pool": {
+    "Bytes": "59520"
+  },
+  "ingress_zero_pool": {
+    "Bytes": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ egress_lossless_pool        0
+    egress_lossy_pool        0
+ingress_lossless_pool    59520
+    ingress_zero_pool        0
+
+```
+
+**Actual Converter Output:**
+```
+Shared pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ egress_lossless_pool        0
+    egress_lossy_pool        0
+ingress_lossless_pool    59520
+    ingress_zero_pool        0
+```
+
+</details>
+
 ---
 
 <a id="03-show-clock"></a>
@@ -482,16 +658,18 @@ ingress_lossless_pool        0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="03.1-show-clock"></a>
 #### 03.1 `show clock` (base command)
@@ -499,9 +677,11 @@ ingress_lossless_pool        0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -533,6 +713,29 @@ Fri Jan 30 08:07:54 AM UTC 2026
 **Actual Converter Output:**
 ```
 Fri Jan 30 08:12:30 UTC 2026
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "date": "Mon Feb  9 06:09:20 UTC 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+Mon Feb  9 06:02:59 AM UTC 2026
+
+```
+
+**Actual Converter Output:**
+```
+Mon Feb  9 06:09:20 UTC 2026
 ```
 
 </details>
@@ -603,6 +806,29 @@ Mon Jan 26 09:56:41 UTC 2026
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "date": "Mon Feb  9 05:43:17 UTC 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+Mon Feb  9 05:37:59 AM UTC 2026
+
+```
+
+**Actual Converter Output:**
+```
+Mon Feb  9 05:43:17 UTC 2026
+```
+
+</details>
+
 ---
 
 <a id="04-show-clock-timezones"></a>
@@ -610,16 +836,18 @@ Mon Jan 26 09:56:41 UTC 2026
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="04.1-show-clock-timezones"></a>
 #### 04.1 `show clock timezones` (base command)
@@ -627,9 +855,11 @@ Mon Jan 26 09:56:41 UTC 2026
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 597 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 597 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 597 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 597 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -724,6 +954,86 @@ Africa/Djibouti
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "timezones": [
+    "Africa/Abidjan",
+    "Africa/Accra",
+    "Africa/Addis_Ababa",
+    "Africa/Algiers",
+    "Africa/Asmara",
+    "Africa/Asmera",
+    "Africa/Bamako",
+    "Africa/Bangui",
+    "Africa/Banjul",
+    "Africa/Bissau",
+    "Africa/Blantyre",
+    "Africa/Brazzaville",
+    "Africa/Bujumbura",
+    "Africa/Cairo",
+    "Africa/Casablanca",
+    "Africa/Ceuta",
+    "Africa/Conakry",
+    "Africa/Dakar",
+... (582 more lines)
+```
+
+**Expected CLI Output:**
+```
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+Africa/Algiers
+Africa/Asmara
+Africa/Asmera
+Africa/Bamako
+Africa/Bangui
+Africa/Banjul
+Africa/Bissau
+Africa/Blantyre
+Africa/Brazzaville
+Africa/Bujumbura
+Africa/Cairo
+Africa/Casablanca
+Africa/Ceuta
+Africa/Conakry
+Africa/Dakar
+Africa/Dar_es_Salaam
+Africa/Djibouti
+... (579 more lines)
+```
+
+**Actual Converter Output:**
+```
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+Africa/Algiers
+Africa/Asmara
+Africa/Asmera
+Africa/Bamako
+Africa/Bangui
+Africa/Banjul
+Africa/Bissau
+Africa/Blantyre
+Africa/Brazzaville
+Africa/Bujumbura
+Africa/Cairo
+Africa/Casablanca
+Africa/Ceuta
+Africa/Conakry
+Africa/Dakar
+Africa/Dar_es_Salaam
+Africa/Djibouti
+... (578 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -963,6 +1273,86 @@ Africa/Djibouti
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "timezones": [
+    "Africa/Abidjan",
+    "Africa/Accra",
+    "Africa/Addis_Ababa",
+    "Africa/Algiers",
+    "Africa/Asmara",
+    "Africa/Asmera",
+    "Africa/Bamako",
+    "Africa/Bangui",
+    "Africa/Banjul",
+    "Africa/Bissau",
+    "Africa/Blantyre",
+    "Africa/Brazzaville",
+    "Africa/Bujumbura",
+    "Africa/Cairo",
+    "Africa/Casablanca",
+    "Africa/Ceuta",
+    "Africa/Conakry",
+    "Africa/Dakar",
+... (581 more lines)
+```
+
+**Expected CLI Output:**
+```
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+Africa/Algiers
+Africa/Asmara
+Africa/Asmera
+Africa/Bamako
+Africa/Bangui
+Africa/Banjul
+Africa/Bissau
+Africa/Blantyre
+Africa/Brazzaville
+Africa/Bujumbura
+Africa/Cairo
+Africa/Casablanca
+Africa/Ceuta
+Africa/Conakry
+Africa/Dakar
+Africa/Dar_es_Salaam
+Africa/Djibouti
+... (579 more lines)
+```
+
+**Actual Converter Output:**
+```
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+Africa/Algiers
+Africa/Asmara
+Africa/Asmera
+Africa/Bamako
+Africa/Bangui
+Africa/Banjul
+Africa/Bissau
+Africa/Blantyre
+Africa/Brazzaville
+Africa/Bujumbura
+Africa/Cairo
+Africa/Casablanca
+Africa/Ceuta
+Africa/Conakry
+Africa/Dakar
+Africa/Dar_es_Salaam
+Africa/Djibouti
+... (577 more lines)
+```
+
+</details>
+
 ---
 
 <a id="05-show-dropcounters-capabilities"></a>
@@ -970,16 +1360,18 @@ Africa/Djibouti
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="05.1-show-dropcounters-capabilities"></a>
 #### 05.1 `show dropcounters capabilities` (base command)
@@ -987,9 +1379,11 @@ Africa/Djibouti
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 23 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 23 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -1051,6 +1445,83 @@ PORT_INGRESS_DROPS
         LPM4_MISS
         SMAC_EQUALS_DMAC
 ... (38 more lines)
+```
+
+**Actual Converter Output:**
+```
+Counter Type            Total
+--------------------  -------
+PORT_EGRESS_DROPS        5000
+PORT_INGRESS_DROPS       5000
+SWITCH_EGRESS_DROPS      5000
+SWITCH_INGRESS_DROPS     5000
+
+PORT_EGRESS_DROPS
+        L3_EGRESS_LINK_DOWN
+
+PORT_INGRESS_DROPS
+        BLACKHOLE_ROUTE
+        UNRESOLVED_NEXT_HOP
+        IP_HEADER_ERROR
+        NO_L3_HEADER
+        MPLS_MISS
+        MC_DMAC_MISMATCH
+        SMAC_MULTICAST
+        LPM4_MISS
+        SMAC_EQUALS_DMAC
+... (39 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "PORT_EGRESS_DROPS": {
+    "count": "5000",
+    "reasons": "[L3_EGRESS_LINK_DOWN]"
+  },
+  "PORT_INGRESS_DROPS": {
+    "count": "5000",
+    "reasons": "[BLACKHOLE_ROUTE,UNRESOLVED_NEXT_HOP,IP_HEADER_ERROR,NO_L3_HEADER,MPLS_MISS,MC_DMAC_MISMATCH,SMAC_MULTICAST,LPM4_MISS,SMAC_EQUALS_DMAC,INGRESS_STP_FILTER,INGRESS_VLAN_FILTER,FDB_UC_DISCARD,FDB_MC_DISCARD,ACL_ANY,UC_DIP_MC_DMAC,L2_LOOPBACK_FILTER,L3_ANY,NON_ROUTABLE,EXCEEDS_L3_MTU,L2_ANY,TTL]"
+  },
+  "SWITCH_EGRESS_DROPS": {
+    "count": "5000",
+    "reasons": "[L3_EGRESS_LINK_DOWN]"
+  },
+  "SWITCH_INGRESS_DROPS": {
+    "count": "5000",
+    "reasons": "[BLACKHOLE_ROUTE,UNRESOLVED_NEXT_HOP,IP_HEADER_ERROR,NO_L3_HEADER,MPLS_MISS,MC_DMAC_MISMATCH,SMAC_MULTICAST,LPM4_MISS,SMAC_EQUALS_DMAC,INGRESS_STP_FILTER,INGRESS_VLAN_FILTER,FDB_UC_DISCARD,FDB_MC_DISCARD,ACL_ANY,UC_DIP_MC_DMAC,L2_LOOPBACK_FILTER,L3_ANY,NON_ROUTABLE,EXCEEDS_L3_MTU,L2_ANY,TTL]"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Counter Type            Total
+--------------------  -------
+SWITCH_EGRESS_DROPS      5000
+SWITCH_INGRESS_DROPS     5000
+PORT_INGRESS_DROPS       5000
+PORT_EGRESS_DROPS        5000
+
+SWITCH_EGRESS_DROPS
+        L3_EGRESS_LINK_DOWN
+
+SWITCH_INGRESS_DROPS
+        BLACKHOLE_ROUTE
+        UNRESOLVED_NEXT_HOP
+        IP_HEADER_ERROR
+        NO_L3_HEADER
+        MPLS_MISS
+        MC_DMAC_MISMATCH
+        SMAC_MULTICAST
+        LPM4_MISS
+        SMAC_EQUALS_DMAC
+... (39 more lines)
 ```
 
 **Actual Converter Output:**
@@ -1236,6 +1707,71 @@ PORT_INGRESS_DROPS
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "SWITCH_INGRESS_DROPS": {
+    "count": "31",
+    "reasons": "[DECAP_ERROR,BLACKHOLE_ARP,BLACKHOLE_ROUTE,LPM4_MISS,ERIF_DISABLED,IRIF_DISABLED,L2_LOOPBACK_FILTER,UC_DIP_MC_DMAC,FDB_MC_DISCARD,INGRESS_STP_FILTER,VLAN_TAG_NOT_ALLOWED,INGRESS_VLAN_FILTER,DMAC_RESERVED,TTL,L2_ANY,EXCEEDS_L3_MTU,SMAC_EQUALS_DMAC,ACL_ANY,L3_ANY,SMAC_MULTICAST,UNRESOLVED_NEXT_HOP,DIP_LOOPBACK,IPV6_MC_SCOPE1,MC_DMAC_MISMATCH,L3_LOOPBACK_FILTER,DIP_LINK_LOCAL,IP_HEADER_ERROR,SIP_CLASS_E,SIP_LOOPBACK,NON_ROUTABLE,SIP_MC,LPM6_MISS,FDB_UC_DISCARD,SIP_UNSPECIFIED,SIP_BC,DIP_LOCAL,SIP_LINK_LOCAL,NO_L3_HEADER,IPV6_MC_SCOPE0]"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Counter Type            Total
+--------------------  -------
+SWITCH_INGRESS_DROPS       31
+
+SWITCH_INGRESS_DROPS
+        DECAP_ERROR
+        BLACKHOLE_ARP
+        BLACKHOLE_ROUTE
+        LPM4_MISS
+        ERIF_DISABLED
+        IRIF_DISABLED
+        L2_LOOPBACK_FILTER
+        UC_DIP_MC_DMAC
+        FDB_MC_DISCARD
+        INGRESS_STP_FILTER
+        VLAN_TAG_NOT_ALLOWED
+        INGRESS_VLAN_FILTER
+        DMAC_RESERVED
+        TTL
+        L2_ANY
+... (25 more lines)
+```
+
+**Actual Converter Output:**
+```
+Counter Type            Total
+--------------------  -------
+SWITCH_INGRESS_DROPS       31
+
+SWITCH_INGRESS_DROPS
+        DECAP_ERROR
+        BLACKHOLE_ARP
+        BLACKHOLE_ROUTE
+        LPM4_MISS
+        ERIF_DISABLED
+        IRIF_DISABLED
+        L2_LOOPBACK_FILTER
+        UC_DIP_MC_DMAC
+        FDB_MC_DISCARD
+        INGRESS_STP_FILTER
+        VLAN_TAG_NOT_ALLOWED
+        INGRESS_VLAN_FILTER
+        DMAC_RESERVED
+        TTL
+        L2_ANY
+... (25 more lines)
+```
+
+</details>
+
 ---
 
 <a id="06-show-dropcounters-counts"></a>
@@ -1243,16 +1779,18 @@ PORT_INGRESS_DROPS
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 16/28 test cases passed (across 4 devices)
+**Status:** ✅ All 24/42 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 7 | 0 | 0 | 0 |
+| `str3-8101-02` | 4 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 7 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 4 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -1270,9 +1808,11 @@ PORT_INGRESS_DROPS
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 29 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 32 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -1362,6 +1902,86 @@ print(result)
  Ethernet64        U         0         151         0           1
  Ethernet68        U         0          46         0           1
 ... (47 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RX_DROPS": "724",
+    "RX_ERR": "0",
+    "State": "U",
+    "TX_DROPS": "29362",
+    "TX_ERR": "0"
+  },
+  "Ethernet104": {
+    "RX_DROPS": "717",
+    "RX_ERR": "0",
+    "State": "U",
+    "TX_DROPS": "82824",
+    "TX_ERR": "0"
+  },
+  "Ethernet112": {
+    "RX_DROPS": "738",
+    "RX_ERR": "0",
+    "State": "U",
+    "TX_DROPS": "66319",
+... (374 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS    TX_ERR    TX_DROPS
+-----------  -------  --------  ----------  --------  ----------
+  Ethernet0        U         0         724         0       29362
+  Ethernet4        U         0         737         0           0
+  Ethernet8        X         0           0         0           0
+ Ethernet12        X         0           0         0           0
+ Ethernet16        U         0         741         0           0
+ Ethernet20        U         0         718         0           0
+ Ethernet24        X         0           0         0           0
+ Ethernet28        X         0           0         0           0
+ Ethernet32        X         0           0         0           0
+ Ethernet36        X         0           0         0           0
+ Ethernet40        X         0           0         0           0
+ Ethernet44        X         0           0         0           0
+ Ethernet48        X         0           0         0           0
+ Ethernet52        X         0           0         0           0
+ Ethernet56        X         0           0         0           0
+ Ethernet60        X         0           0         0           0
+ Ethernet64        U         0         732         0           0
+ Ethernet68        U         0         741         0           0
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS    TX_ERR    TX_DROPS
+-----------  -------  --------  ----------  --------  ----------
+  Ethernet0        U         0         724         0       29362
+  Ethernet4        U         0         737         0           0
+  Ethernet8        X         0           0         0           0
+ Ethernet12        X         0           0         0           0
+ Ethernet16        U         0         741         0           0
+ Ethernet20        U         0         719         0           0
+ Ethernet24        X         0           0         0           0
+ Ethernet28        X         0           0         0           0
+ Ethernet32        X         0           0         0           0
+ Ethernet36        X         0           0         0           0
+ Ethernet40        X         0           0         0           0
+ Ethernet44        X         0           0         0           0
+ Ethernet48        X         0           0         0           0
+ Ethernet52        X         0           0         0           0
+ Ethernet56        X         0           0         0           0
+ Ethernet60        X         0           0         0           0
+ Ethernet64        U         0         732         0           0
+ Ethernet68        U         0         741         0           0
+... (39 more lines)
 ```
 
 </details>
@@ -1606,13 +2226,95 @@ Ethernet136        U         0         323         0           0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "U",
+    "TX_DROPS": "0",
+    "TX_ERR": "0"
+  },
+  "Ethernet1": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X",
+    "TX_DROPS": "0",
+    "TX_ERR": "0"
+  },
+  "Ethernet10": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X",
+    "TX_DROPS": "0",
+... (3580 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR     RX_DROPS    TX_ERR    TX_DROPS
+-----------  -------  --------  -----------  --------  ----------
+  Ethernet0        U         0            0         0           0
+  Ethernet1        X         0            0         0           0
+  Ethernet2        X         0            0         0           0
+  Ethernet3        X         0            0         0           0
+  Ethernet4        X         0            0         0           0
+  Ethernet5        X         0            0         0           0
+  Ethernet6        X         0            0         0           0
+  Ethernet7        X         0            0         0           0
+  Ethernet8        U         0            1         0           0
+  Ethernet9        X         0            0         0           0
+ Ethernet10        X         0            0         0           0
+ Ethernet11        X         0            0         0           0
+ Ethernet12        X         0            0         0           0
+ Ethernet13        X         0            0         0           0
+ Ethernet14        X         0            0         0           0
+ Ethernet15        X         0            0         0           0
+ Ethernet16        U         0            2         0           0
+ Ethernet17        X         0            0         0           0
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR     RX_DROPS    TX_ERR    TX_DROPS
+-----------  -------  --------  -----------  --------  ----------
+  Ethernet0        U         0            0         0           0
+  Ethernet1        X         0            0         0           0
+  Ethernet2        X         0            0         0           0
+  Ethernet3        X         0            0         0           0
+  Ethernet4        X         0            0         0           0
+  Ethernet5        X         0            0         0           0
+  Ethernet6        X         0            0         0           0
+  Ethernet7        X         0            0         0           0
+  Ethernet8        U         0            1         0           0
+  Ethernet9        X         0            0         0           0
+ Ethernet10        X         0            0         0           0
+ Ethernet11        X         0            0         0           0
+ Ethernet12        X         0            0         0           0
+ Ethernet13        X         0            0         0           0
+ Ethernet14        X         0            0         0           0
+ Ethernet15        X         0            0         0           0
+ Ethernet16        U         0            2         0           0
+ Ethernet17        X         0            0         0           0
+... (497 more lines)
+```
+
+</details>
+
 <a id="06.2-show-dropcounters-counts---counter-type-port-ingress-drops"></a>
 #### 06.2 `show dropcounters counts --counter_type PORT_INGRESS_DROPS`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 25 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 25 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -1707,6 +2409,86 @@ print(result)
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RX_DROPS": "724",
+    "RX_ERR": "0",
+    "State": "U"
+  },
+  "Ethernet104": {
+    "RX_DROPS": "717",
+    "RX_ERR": "0",
+    "State": "U"
+  },
+  "Ethernet112": {
+    "RX_DROPS": "738",
+    "RX_ERR": "0",
+    "State": "U"
+  },
+  "Ethernet12": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+... (262 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS
+-----------  -------  --------  ----------
+  Ethernet0        U         0         724
+  Ethernet4        U         0         737
+  Ethernet8        X         0           0
+ Ethernet12        X         0           0
+ Ethernet16        U         0         741
+ Ethernet20        U         0         718
+ Ethernet24        X         0           0
+ Ethernet28        X         0           0
+ Ethernet32        X         0           0
+ Ethernet36        X         0           0
+ Ethernet40        X         0           0
+ Ethernet44        X         0           0
+ Ethernet48        X         0           0
+ Ethernet52        X         0           0
+ Ethernet56        X         0           0
+ Ethernet60        X         0           0
+ Ethernet64        U         0         732
+ Ethernet68        U         0         741
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DROPS
+-----------  -------  --------  ----------
+  Ethernet0        U         0         724
+  Ethernet4        U         0         737
+  Ethernet8        X         0           0
+ Ethernet12        X         0           0
+ Ethernet16        U         0         741
+ Ethernet20        U         0         719
+ Ethernet24        X         0           0
+ Ethernet28        X         0           0
+ Ethernet32        X         0           0
+ Ethernet36        X         0           0
+ Ethernet40        X         0           0
+ Ethernet44        X         0           0
+ Ethernet48        X         0           0
+ Ethernet52        X         0           0
+ Ethernet56        X         0           0
+ Ethernet60        X         0           0
+ Ethernet64        U         0         732
+ Ethernet68        U         0         741
+... (39 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -1781,6 +2563,86 @@ print(result)
  Ethernet15        X         0           0
  Ethernet16        U         0           0
  Ethernet17        X         0           0
+... (497 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "U"
+  },
+  "Ethernet1": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+  },
+  "Ethernet10": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+  },
+  "Ethernet100": {
+    "RX_DROPS": "0",
+    "RX_ERR": "0",
+    "State": "X"
+... (2552 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR     RX_DROPS
+-----------  -------  --------  -----------
+  Ethernet0        U         0            0
+  Ethernet1        X         0            0
+  Ethernet2        X         0            0
+  Ethernet3        X         0            0
+  Ethernet4        X         0            0
+  Ethernet5        X         0            0
+  Ethernet6        X         0            0
+  Ethernet7        X         0            0
+  Ethernet8        U         0            1
+  Ethernet9        X         0            0
+ Ethernet10        X         0            0
+ Ethernet11        X         0            0
+ Ethernet12        X         0            0
+ Ethernet13        X         0            0
+ Ethernet14        X         0            0
+ Ethernet15        X         0            0
+ Ethernet16        U         0            2
+ Ethernet17        X         0            0
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR     RX_DROPS
+-----------  -------  --------  -----------
+  Ethernet0        U         0            0
+  Ethernet1        X         0            0
+  Ethernet2        X         0            0
+  Ethernet3        X         0            0
+  Ethernet4        X         0            0
+  Ethernet5        X         0            0
+  Ethernet6        X         0            0
+  Ethernet7        X         0            0
+  Ethernet8        U         0            1
+  Ethernet9        X         0            0
+ Ethernet10        X         0            0
+ Ethernet11        X         0            0
+ Ethernet12        X         0            0
+ Ethernet13        X         0            0
+ Ethernet14        X         0            0
+ Ethernet15        X         0            0
+ Ethernet16        U         0            2
+ Ethernet17        X         0            0
 ... (497 more lines)
 ```
 
@@ -1972,7 +2834,9 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -2029,6 +2893,27 @@ Ethernet132        U           907
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+
+
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -2039,6 +2924,27 @@ Ethernet132        U           907
 **Expected CLI Output:**
 ```
 (no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+
+
 ```
 
 **Actual Converter Output:**
@@ -2136,7 +3042,9 @@ Ethernet132        U           907
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -2193,6 +3101,27 @@ Ethernet132        U           907
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+
+
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -2203,6 +3132,27 @@ Ethernet132        U           907
 **Expected CLI Output:**
 ```
 (no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+
+
 ```
 
 **Actual Converter Output:**
@@ -2301,16 +3251,18 @@ Ethernet132        U           907
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="07.1-show-headroom-pool-watermark"></a>
 #### 07.1 `show headroom-pool watermark` (base command)
@@ -2318,9 +3270,11 @@ Ethernet132        U           907
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match (spacing differences only) |
+| `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
+| `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
 **Sample Python Invocation:**
 ```python
@@ -2365,6 +3319,37 @@ ingress_lossless_pool        0
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "ingress_lossless_pool": {
+    "Bytes": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Headroom pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ingress_lossless_pool        0
+
+```
+
+**Actual Converter Output:**
+```
+Headroom pool maximum occupancy:
+Pool                     Bytes
+---------------------  -------
+ingress_lossless_pool        0
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -2448,6 +3433,37 @@ ingress_lossless_pool        0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "ingress_lossless_pool": {
+    "Bytes": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Headroom pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ingress_lossless_pool      N/A
+
+```
+
+**Actual Converter Output:**
+```
+Headroom pool maximum occupancy:
+Pool                   Bytes
+---------------------  -------
+ingress_lossless_pool  N/A
+```
+
+</details>
+
 ---
 
 <a id="08-show-headroom-pool-persistent-watermark"></a>
@@ -2455,16 +3471,18 @@ ingress_lossless_pool        0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="08.1-show-headroom-pool-persistent-watermark"></a>
 #### 08.1 `show headroom-pool persistent-watermark` (base command)
@@ -2472,9 +3490,11 @@ ingress_lossless_pool        0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match (spacing differences only) |
+| `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
+| `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
 **Sample Python Invocation:**
 ```python
@@ -2519,6 +3539,37 @@ ingress_lossless_pool        0
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "ingress_lossless_pool": {
+    "Bytes": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Headroom pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ingress_lossless_pool        0
+
+```
+
+**Actual Converter Output:**
+```
+Headroom pool maximum occupancy:
+Pool                     Bytes
+---------------------  -------
+ingress_lossless_pool        0
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -2602,6 +3653,37 @@ ingress_lossless_pool        0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "ingress_lossless_pool": {
+    "Bytes": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Headroom pool maximum occupancy:
+                 Pool    Bytes
+---------------------  -------
+ingress_lossless_pool      N/A
+
+```
+
+**Actual Converter Output:**
+```
+Headroom pool maximum occupancy:
+Pool                   Bytes
+---------------------  -------
+ingress_lossless_pool  N/A
+```
+
+</details>
+
 ---
 
 <a id="09-show-interfaces-alias"></a>
@@ -2609,22 +3691,26 @@ ingress_lossless_pool        0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [09.1 (base command)](#09.1-show-interfaces-alias)
 - [09.2 Ethernet0](#09.2-show-interfaces-alias-ethernet0)
 - [09.3 Ethernet252](#09.3-show-interfaces-alias-ethernet252)
+- [09.4 Ethernet8](#09.4-show-interfaces-alias-ethernet8)
+- [09.5 Ethernet505](#09.5-show-interfaces-alias-ethernet505)
 
 <a id="09.1-show-interfaces-alias"></a>
 #### 09.1 `show interfaces alias` (base command)
@@ -2632,9 +3718,11 @@ ingress_lossless_pool        0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -2724,6 +3812,86 @@ Ethernet60   etp15
 Ethernet64   etp16
 Ethernet68   etp17
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "alias": "etp0a"
+  },
+  "Ethernet104": {
+    "alias": "etp13"
+  },
+  "Ethernet112": {
+    "alias": "etp14"
+  },
+  "Ethernet12": {
+    "alias": "etp1b"
+  },
+  "Ethernet120": {
+    "alias": "etp15"
+  },
+  "Ethernet128": {
+    "alias": "etp16"
+  },
+  "Ethernet136": {
+... (150 more lines)
+```
+
+**Expected CLI Output:**
+```
+Name         Alias
+-----------  -------
+Ethernet0    etp0a
+Ethernet4    etp0b
+Ethernet8    etp1a
+Ethernet12   etp1b
+Ethernet16   etp2a
+Ethernet20   etp2b
+Ethernet24   etp3a
+Ethernet28   etp3b
+Ethernet32   etp4a
+Ethernet36   etp4b
+Ethernet40   etp5a
+Ethernet44   etp5b
+Ethernet48   etp6a
+Ethernet52   etp6b
+Ethernet56   etp7a
+Ethernet60   etp7b
+Ethernet64   etp8a
+Ethernet68   etp8b
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+Name         Alias
+-----------  -------
+Ethernet0    etp0a
+Ethernet4    etp0b
+Ethernet8    etp1a
+Ethernet12   etp1b
+Ethernet16   etp2a
+Ethernet20   etp2b
+Ethernet24   etp3a
+Ethernet28   etp3b
+Ethernet32   etp4a
+Ethernet36   etp4b
+Ethernet40   etp5a
+Ethernet44   etp5b
+Ethernet48   etp6a
+Ethernet52   etp6b
+Ethernet56   etp7a
+Ethernet60   etp7b
+Ethernet64   etp8a
+Ethernet68   etp8b
+... (38 more lines)
 ```
 
 </details>
@@ -2968,6 +4136,86 @@ Ethernet136  etp18
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "alias": "etp1a"
+  },
+  "Ethernet1": {
+    "alias": "etp1b"
+  },
+  "Ethernet10": {
+    "alias": "etp2c"
+  },
+  "Ethernet100": {
+    "alias": "etp13e"
+  },
+  "Ethernet101": {
+    "alias": "etp13f"
+  },
+  "Ethernet102": {
+    "alias": "etp13g"
+  },
+  "Ethernet103": {
+... (1524 more lines)
+```
+
+**Expected CLI Output:**
+```
+Name         Alias
+-----------  -------
+Ethernet0    etp1a
+Ethernet1    etp1b
+Ethernet2    etp1c
+Ethernet3    etp1d
+Ethernet4    etp1e
+Ethernet5    etp1f
+Ethernet6    etp1g
+Ethernet7    etp1h
+Ethernet8    etp2a
+Ethernet9    etp2b
+Ethernet10   etp2c
+Ethernet11   etp2d
+Ethernet12   etp2e
+Ethernet13   etp2f
+Ethernet14   etp2g
+Ethernet15   etp2h
+Ethernet16   etp3a
+Ethernet17   etp3b
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+Name         Alias
+-----------  -------
+Ethernet0    etp1a
+Ethernet1    etp1b
+Ethernet2    etp1c
+Ethernet3    etp1d
+Ethernet4    etp1e
+Ethernet5    etp1f
+Ethernet6    etp1g
+Ethernet7    etp1h
+Ethernet8    etp2a
+Ethernet9    etp2b
+Ethernet10   etp2c
+Ethernet11   etp2d
+Ethernet12   etp2e
+Ethernet13   etp2f
+Ethernet14   etp2g
+Ethernet15   etp2h
+Ethernet16   etp3a
+Ethernet17   etp3b
+... (496 more lines)
+```
+
+</details>
+
 <a id="09.2-show-interfaces-alias-ethernet0"></a>
 #### 09.2 `show interfaces alias Ethernet0`
 
@@ -3062,6 +4310,102 @@ Ethernet252  etp63
 
 </details>
 
+<a id="09.4-show-interfaces-alias-ethernet8"></a>
+#### 09.4 `show interfaces alias Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces alias Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": {
+    "alias": "etp1a"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Name       Alias
+---------  -------
+Ethernet8  etp1a
+
+```
+
+**Actual Converter Output:**
+```
+Name       Alias
+---------  -------
+Ethernet8  etp1a
+```
+
+</details>
+
+<a id="09.5-show-interfaces-alias-ethernet505"></a>
+#### 09.5 `show interfaces alias Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces alias Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": {
+    "alias": "etp64b"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Name         Alias
+-----------  -------
+Ethernet505  etp64b
+
+```
+
+**Actual Converter Output:**
+```
+Name         Alias
+-----------  -------
+Ethernet505  etp64b
+```
+
+</details>
+
 ---
 
 <a id="10-show-interfaces-counters"></a>
@@ -3069,16 +4413,18 @@ Ethernet252  etp63
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 20/36 test cases passed (across 4 devices)
+**Status:** ✅ All 36/54 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 9 | 0 | 0 | 0 |
+| `str3-8101-02` | 8 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 9 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 8 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -3098,9 +4444,11 @@ Ethernet252  etp63
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 132 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 138 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 125 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 104 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 336 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 175 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -3190,6 +4538,86 @@ print(result)
  Ethernet64        U   12,524  24.33 B/s      0.00%         0       151         0    7,962  740.05 KB/s      0.01%         0         1         0
  Ethernet68        U   12,411  31.49 B/s      0.00%         0        46         0   16,685  739.99 KB/s      0.01%         0         1         0
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "138490",
+    "RxBps": "8.37 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "724",
+    "RxOvr": "0",
+    "TxOk": "117705",
+    "TxBps": "787.34 KB/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "29362",
+    "TxOvr": "0"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "RxOk": "99375",
+    "RxBps": "11.59 B/s",
+... (822 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  -------  ---------  ---------  --------  --------  --------  -------  ------------  ---------  --------  --------  --------
+  Ethernet0        U  138,433   8.34 B/s      0.00%         0       724         0  117,655   648.71 KB/s      0.01%         0    29,362         0
+  Ethernet4        U  138,448   9.53 B/s      0.00%         0       737         0  117,659   648.57 KB/s      0.01%         0         0         0
+  Ethernet8        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet12        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet16        U  138,459  10.00 B/s      0.00%         0       741         0  117,660   656.88 KB/s      0.01%         0         0         0
+ Ethernet20        U  138,415  22.99 B/s      0.00%         0       719         0  117,644   656.79 KB/s      0.01%         0         0         0
+ Ethernet24        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet28        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet32        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet36        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet40        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet44        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet48        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet52        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet56        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet60        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet64        U  138,459   8.96 B/s      0.00%         0       732         0  117,672   655.56 KB/s      0.01%         0         0         0
+ Ethernet68        U  138,431  12.37 B/s      0.00%         0       741         0  117,634   656.02 KB/s      0.01%         0         0         0
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  -------  ---------  ---------  --------  --------  --------  -------  ------------  ---------  --------  --------  --------
+  Ethernet0        U  138,490   8.37 B/s      0.00%         0       724         0  117,705   787.34 KB/s      0.01%         0    29,362         0
+  Ethernet4        U  138,505  14.08 B/s      0.00%         0       737         0  117,709   787.37 KB/s      0.01%         0         0         0
+  Ethernet8        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet12        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet16        U  138,517  14.13 B/s      0.00%         0       741         0  117,710   788.18 KB/s      0.01%         0         0         0
+ Ethernet20        U  138,472  12.51 B/s      0.00%         0       719         0  117,694   788.13 KB/s      0.01%         0         0         0
+ Ethernet24        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet28        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet32        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet36        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet40        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet44        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet48        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet52        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet56        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet60        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet64        U  138,517  21.57 B/s      0.00%         0       732         0  117,723   787.75 KB/s      0.01%         0         0         0
+ Ethernet68        U  138,488  17.41 B/s      0.00%         0       741         0  117,684   787.69 KB/s      0.01%         0         0         0
+... (38 more lines)
 ```
 
 </details>
@@ -3434,13 +4862,95 @@ Ethernet136        U   12,458  16.98 B/s      0.00%         0       323         
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "6707",
+    "RxBps": "0.22 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "35773",
+    "TxBps": "1.96 B/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "RxOk": "0",
+    "RxBps": "0.00 B/s",
+... (7692 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE           RX_OK     RX_BPS    RX_UTIL    RX_ERR          RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------------  ---------  ---------  --------  --------------  --------  -------  ---------  ---------  --------  --------  --------
+  Ethernet0        U           6,705   0.59 B/s      0.00%         0               0         0   35,761   6.33 B/s      0.00%         0         0         0
+  Ethernet1        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet2        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet3        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet4        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet5        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet6        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet7        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet8        U           6,144   0.65 B/s      0.00%         0               1         0   35,201   6.39 B/s      0.00%         0         0         0
+  Ethernet9        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet10        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet11        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet12        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet13        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet14        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet15        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet16        U           6,146   1.05 B/s      0.00%         0               2         0   35,204   6.83 B/s      0.00%         0         0         0
+ Ethernet17        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE           RX_OK     RX_BPS    RX_UTIL    RX_ERR          RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------------  ---------  ---------  --------  --------------  --------  -------  ---------  ---------  --------  --------  --------
+  Ethernet0        U           6,707   0.22 B/s      0.00%         0               0         0   35,773   1.96 B/s      0.00%         0         0         0
+  Ethernet1        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet2        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet3        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet4        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet5        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet6        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet7        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet8        U           6,147   0.45 B/s      0.00%         0               1         0   35,214   2.21 B/s      0.00%         0         0         0
+  Ethernet9        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet10        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet11        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet12        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet13        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet14        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet15        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet16        U           6,148   0.22 B/s      0.00%         0               2         0   35,216   1.96 B/s      0.00%         0         0         0
+ Ethernet17        X               0   0.00 B/s      0.00%         0               0         0        0   0.00 B/s      0.00%         0         0         0
+... (496 more lines)
+```
+
+</details>
+
 <a id="10.2-show-interfaces-counters---interface-ethernet0"></a>
 #### 10.2 `show interfaces counters --interface Ethernet0`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 10 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 10 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -3495,6 +5005,47 @@ Ethernet0        U   12,421  21.92 B/s      0.00%         0        44         0 
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "138490",
+    "RxBps": "8.37 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "724",
+    "RxOvr": "0",
+    "TxOk": "117705",
+    "TxBps": "787.34 KB/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "29362",
+    "TxOvr": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+    IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  ---------  ---------  --------  --------  --------  -------  -----------  ---------  --------  --------  --------
+Ethernet0        U  138,434  21.70 B/s      0.00%         0       724         0  117,656  655.53 KB/s      0.01%         0    29,362         0
+
+```
+
+**Actual Converter Output:**
+```
+    IFACE    STATE    RX_OK    RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  --------  ---------  --------  --------  --------  -------  -----------  ---------  --------  --------  --------
+Ethernet0        U  138,490  8.37 B/s      0.00%         0       724         0  117,705  787.34 KB/s      0.01%         0    29,362         0
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -3534,13 +5085,56 @@ Ethernet0        U      524  0.00 B/s      0.00%         0         0         0  
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "6707",
+    "RxBps": "0.18 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "35773",
+    "TxBps": "1.61 B/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+    IFACE    STATE    RX_OK    RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  --------  ---------  --------  --------  --------  -------  --------  ---------  --------  --------  --------
+Ethernet0        U    6,705  0.40 B/s      0.00%         0         0         0   35,761  4.26 B/s      0.00%         0         0         0
+
+```
+
+**Actual Converter Output:**
+```
+    IFACE    STATE    RX_OK    RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  --------  ---------  --------  --------  --------  -------  --------  ---------  --------  --------  --------
+Ethernet0        U    6,707  0.18 B/s      0.00%         0         0         0   35,773  1.61 B/s      0.00%         0         0         0
+```
+
+</details>
+
 <a id="10.3-show-interfaces-counters---interface-ethernet0---period-2"></a>
 #### 10.3 `show interfaces counters --interface Ethernet0 --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 6 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -3597,6 +5191,49 @@ Ethernet0        U        0  8.13 B/s      0.00%         0         0         0  
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "13.88 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "2",
+    "TxBps": "797.33 KB/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  ---------  ---------  --------  --------  --------  -------  -----------  ---------  --------  --------  --------
+Ethernet0        U        0  32.74 B/s      0.00%         0         0         0        0  644.31 KB/s      0.01%         0         0         0
+
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  ---------  ---------  --------  --------  --------  -------  -----------  ---------  --------  --------  --------
+Ethernet0        U        0  13.88 B/s      0.00%         0         0         0        2  797.33 KB/s      0.01%         0         0         0
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -3638,13 +5275,58 @@ Ethernet0        U        0  0.00 B/s      0.00%         0         0         0  
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "0.10 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "0",
+    "TxBps": "15.65 B/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK    RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  --------  ---------  --------  --------  --------  -------  ---------  ---------  --------  --------  --------
+Ethernet0        U        0  0.08 B/s      0.00%         0         0         0        0  15.64 B/s      0.00%         0         0         0
+
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK    RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+---------  -------  -------  --------  ---------  --------  --------  --------  -------  ---------  ---------  --------  --------  --------
+Ethernet0        U        0  0.10 B/s      0.00%         0         0         0        0  15.65 B/s      0.00%         0         0         0
+```
+
+</details>
+
 <a id="10.4-show-interfaces-counters---interface-ethernet0---printall"></a>
 #### 10.4 `show interfaces counters --interface Ethernet0 --printall`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 12 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 12 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -3703,6 +5385,51 @@ Ethernet0        U   12,421  12.09 B/s    0.10/s      0.00%         0        44 
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "138491",
+    "RxBps": "20.64 B/s",
+    "RxPps": "0.20/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "724",
+    "RxOvr": "0",
+    "TxOk": "117706",
+    "TxBps": "791.14 KB/s",
+    "TxPps": "0.18/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "29362",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (2 more lines)
+```
+
+**Expected CLI Output:**
+```
+    IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+---------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  -----------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+Ethernet0        U  138,436  14.31 B/s    0.15/s      0.00%         0       724         0  117,660  785.36 KB/s    0.26/s      0.01%         0    29,362         0     N/A        N/A         N/A
+
+```
+
+**Actual Converter Output:**
+```
+    IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+---------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  -----------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+Ethernet0        U  138,491  20.64 B/s    0.20/s      0.00%         0       724         0  117,706  791.14 KB/s    0.18/s      0.01%         0    29,362         0          N/A             N/A              N/A
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -3746,13 +5473,60 @@ Ethernet0        U      524  0.00 B/s    0.00/s      0.00%         0         0  
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "6707",
+    "RxBps": "0.15 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "35774",
+    "TxBps": "23.28 B/s",
+    "TxPps": "0.10/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (2 more lines)
+```
+
+**Expected CLI Output:**
+```
+    IFACE    STATE    RX_OK    RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+---------  -------  -------  --------  --------  ---------  --------  --------  --------  -------  ---------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+Ethernet0        U    6,705  0.12 B/s    0.00/s      0.00%         0         0         0   35,762  23.25 B/s    0.10/s      0.00%         0         0         0       0          0           0
+
+```
+
+**Actual Converter Output:**
+```
+    IFACE    STATE    RX_OK    RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+---------  -------  -------  --------  --------  ---------  --------  --------  --------  -------  ---------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+Ethernet0        U    6,707  0.15 B/s    0.00/s      0.00%         0         0         0   35,774  23.28 B/s    0.10/s      0.00%         0         0         0          N/A             N/A              N/A
+```
+
+</details>
+
 <a id="10.5-show-interfaces-counters---interface-ethernet0---printall---period-2"></a>
 #### 10.5 `show interfaces counters --interface Ethernet0 --printall --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 8 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 8 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -3813,6 +5587,53 @@ Ethernet0        U        0  3.01 B/s    0.03/s      0.00%         0         0  
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "21.02 B/s",
+    "RxPps": "0.23/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "0",
+    "TxBps": "793.07 KB/s",
+    "TxPps": "0.38/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (2 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+---------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  -----------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+Ethernet0        U        0  36.10 B/s    0.18/s      0.00%         0         0         0        0  768.60 KB/s    0.05/s      0.01%         0         0         0     N/A        N/A         N/A
+
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK       TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+---------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  -----------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+Ethernet0        U        0  21.02 B/s    0.23/s      0.00%         0         0         0        0  793.07 KB/s    0.38/s      0.01%         0         0         0          N/A             N/A              N/A
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -3858,13 +5679,62 @@ Ethernet0        U        0  0.00 B/s    0.00/s      0.00%         0         0  
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "0.07 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "0",
+    "TxBps": "10.52 B/s",
+    "TxPps": "0.04/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (2 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK    RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+---------  -------  -------  --------  --------  ---------  --------  --------  --------  -------  --------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+Ethernet0        U        0  0.03 B/s    0.00/s      0.00%         0         0         0        0  5.80 B/s    0.02/s      0.00%         0         0         0       0          0           0
+
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+    IFACE    STATE    RX_OK    RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+---------  -------  -------  --------  --------  ---------  --------  --------  --------  -------  ---------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+Ethernet0        U        0  0.07 B/s    0.00/s      0.00%         0         0         0        0  10.52 B/s    0.04/s      0.00%         0         0         0          N/A             N/A              N/A
+```
+
+</details>
+
 <a id="10.6-show-interfaces-counters---period-2"></a>
 #### 10.6 `show interfaces counters --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 63 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 59 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 73 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 86 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -3959,6 +5829,86 @@ The rates are calculated within 2 seconds period
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "1",
+    "RxBps": "20.64 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "1",
+    "TxBps": "791.14 KB/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "6.39 B/s",
+... (822 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  -------  ---------  ---------  --------  --------  --------  -------  ------------  ---------  --------  --------  --------
+  Ethernet0        U        0  25.96 B/s      0.00%         0         0         0        0   779.58 KB/s      0.01%         0         0         0
+  Ethernet4        U        0  21.31 B/s      0.00%         0         0         0        0   779.59 KB/s      0.01%         0         0         0
+  Ethernet8        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet12        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet16        U        0  21.41 B/s      0.00%         0         0         0        0   781.44 KB/s      0.01%         0         0         0
+ Ethernet20        U        0  24.06 B/s      0.00%         0         0         0        0   781.86 KB/s      0.01%         0         0         0
+ Ethernet24        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet28        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet32        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet36        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet40        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet44        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet48        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet52        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet56        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet60        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet64        U        0  23.67 B/s      0.00%         0         0         0        0   779.66 KB/s      0.01%         0         0         0
+... (40 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  -------  ---------  ---------  --------  --------  --------  -------  ------------  ---------  --------  --------  --------
+  Ethernet0        U        1  20.64 B/s      0.00%         0         0         0        1   791.14 KB/s      0.01%         0         0         0
+  Ethernet4        U        0   7.76 B/s      0.00%         0         0         0        0   791.00 KB/s      0.01%         0         0         0
+  Ethernet8        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet12        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet16        U        0   7.79 B/s      0.00%         0         0         0        0   791.21 KB/s      0.01%         0         0         0
+ Ethernet20        U        0   6.90 B/s      0.00%         0         0         0        0   791.17 KB/s      0.01%         0         0         0
+ Ethernet24        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet28        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet32        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet36        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet40        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet44        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet48        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet52        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet56        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet60        X        0   0.00 B/s      0.00%         0         0         0        0      0.00 B/s      0.00%         0         0         0
+ Ethernet64        U        0  11.90 B/s      0.00%         0         0         0        0   790.77 KB/s      0.01%         0         0         0
+... (39 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -4038,13 +5988,95 @@ The rates are calculated within 2 seconds period
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "0.15 B/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "1",
+    "TxBps": "23.28 B/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "RxOk": "0",
+    "RxBps": "0.00 B/s",
+... (7692 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  -------  ---------  ---------  --------  --------  --------  -------  ---------  ---------  --------  --------  --------
+  Ethernet0        U        0   0.18 B/s      0.00%         0         0         0        0   1.92 B/s      0.00%         0         0         0
+  Ethernet1        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet2        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet3        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet4        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet5        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet6        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet7        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet8        U        0   0.20 B/s      0.00%         0         0         0        0   1.94 B/s      0.00%         0         0         0
+  Ethernet9        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet10        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet11        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet12        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet13        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet14        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet15        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet16        U        0   0.32 B/s      0.00%         0         0         0        0   2.08 B/s      0.00%         0         0         0
+... (498 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  -------  ---------  ---------  --------  --------  --------  -------  ---------  ---------  --------  --------  --------
+  Ethernet0        U        0   0.15 B/s      0.00%         0         0         0        1  23.28 B/s      0.00%         0         0         0
+  Ethernet1        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet2        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet3        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet4        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet5        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet6        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet7        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+  Ethernet8        U        0   0.30 B/s      0.00%         0         0         0        1  23.45 B/s      0.00%         0         0         0
+  Ethernet9        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet10        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet11        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet12        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet13        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet14        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet15        X        0   0.00 B/s      0.00%         0         0         0        0   0.00 B/s      0.00%         0         0         0
+ Ethernet16        U        0   0.15 B/s      0.00%         0         0         0        1  23.28 B/s      0.00%         0         0         0
+... (497 more lines)
+```
+
+</details>
+
 <a id="10.7-show-interfaces-counters---printall"></a>
 #### 10.7 `show interfaces counters --printall`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 152 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 148 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 140 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 195 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -4139,6 +6171,86 @@ print(result)
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "138490",
+    "RxBps": "6.87 B/s",
+    "RxPps": "0.03/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "724",
+    "RxOvr": "0",
+    "TxOk": "117705",
+    "TxBps": "779.45 KB/s",
+    "TxPps": "0.00/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "29362",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (1102 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+-----------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  ------------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+  Ethernet0        U  138,434  14.59 B/s    0.12/s      0.00%         0       724         0  117,657   791.45 KB/s    0.25/s      0.01%         0    29,362         0     N/A        N/A         N/A
+  Ethernet4        U  138,448   4.31 B/s    0.02/s      0.00%         0       737         0  117,660   791.46 KB/s    0.16/s      0.01%         0         0         0     N/A        N/A         N/A
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet16        U  138,459   4.52 B/s    0.02/s      0.00%         0       741         0  117,661   795.15 KB/s    0.15/s      0.01%         0         0         0     N/A        N/A         N/A
+ Ethernet20        U  138,415  10.39 B/s    0.07/s      0.00%         0       719         0  117,645   795.09 KB/s    0.19/s      0.01%         0         0         0     N/A        N/A         N/A
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet64        U  138,460  12.88 B/s    0.12/s      0.00%         0       732         0  117,674   661.28 KB/s    0.25/s      0.01%         0         0         0     N/A        N/A         N/A
+ Ethernet68        U  138,431   5.59 B/s    0.04/s      0.00%         0       741         0  117,635   661.08 KB/s    0.16/s      0.01%         0         0         0     N/A        N/A         N/A
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  ------------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+  Ethernet0        U  138,490   6.87 B/s    0.03/s      0.00%         0       724         0  117,705   779.45 KB/s    0.00/s      0.01%         0    29,362         0          N/A             N/A              N/A
+  Ethernet4        U  138,505  11.55 B/s    0.05/s      0.00%         0       737         0  117,709   779.28 KB/s    0.02/s      0.01%         0         0         0          N/A             N/A              N/A
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet16        U  138,517  11.59 B/s    0.05/s      0.00%         0       741         0  117,710   779.61 KB/s    0.01/s      0.01%         0         0         0          N/A             N/A              N/A
+ Ethernet20        U  138,472  10.26 B/s    0.04/s      0.00%         0       719         0  117,694   779.54 KB/s    0.01/s      0.01%         0         0         0          N/A             N/A              N/A
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet64        U  138,517  17.69 B/s    0.12/s      0.00%         0       732         0  117,723   779.17 KB/s    0.08/s      0.01%         0         0         0          N/A             N/A              N/A
+ Ethernet68        U  138,488  14.28 B/s    0.09/s      0.00%         0       741         0  117,684   779.13 KB/s    0.07/s      0.01%         0         0         0          N/A             N/A              N/A
+... (38 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -4218,13 +6330,95 @@ print(result)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "6707",
+    "RxBps": "0.18 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "35773",
+    "TxBps": "1.61 B/s",
+    "TxPps": "0.01/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (10262 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE           RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR          RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+-----------  -------  --------------  ---------  --------  ---------  --------  --------------  --------  -------  ---------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+  Ethernet0        U           6,705   0.40 B/s    0.00/s      0.00%         0               0         0   35,761   4.26 B/s    0.02/s      0.00%         0         0         0       0          0           0
+  Ethernet1        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet2        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet3        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet4        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet5        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet6        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet7        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet8        U           6,144   0.44 B/s    0.00/s      0.00%         0               1         0   35,201   4.29 B/s    0.02/s      0.00%         0         0         0       0          0           0
+  Ethernet9        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet10        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet11        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet12        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet13        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet14        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet15        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet16        U           6,146   0.71 B/s    0.01/s      0.00%         0               2         0   35,204   4.59 B/s    0.02/s      0.00%         0         0         0       0          0           0
+ Ethernet17        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE           RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR          RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  --------------  ---------  --------  ---------  --------  --------------  --------  -------  ---------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+  Ethernet0        U           6,707   0.18 B/s    0.00/s      0.00%         0               0         0   35,773   1.61 B/s    0.01/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet1        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet2        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet3        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet4        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet5        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet6        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet7        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet8        U           6,147   0.37 B/s    0.00/s      0.00%         0               1         0   35,214   1.81 B/s    0.01/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet9        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet10        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet11        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet12        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet13        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet14        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet15        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet16        U           6,148   0.18 B/s    0.00/s      0.00%         0               2         0   35,216   1.61 B/s    0.01/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet17        X               0   0.00 B/s    0.00/s      0.00%         0               0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+... (496 more lines)
+```
+
+</details>
+
 <a id="10.8-show-interfaces-counters---printall---period-2"></a>
 #### 10.8 `show interfaces counters --printall --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 81 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 98 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 90 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 100 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -4319,6 +6513,86 @@ The rates are calculated within 2 seconds period
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "1",
+    "RxBps": "31.27 B/s",
+    "RxPps": "0.34/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "2",
+    "TxBps": "660.43 KB/s",
+    "TxPps": "0.56/s",
+    "TxUtil": "0.01%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (1102 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+-----------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  ------------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+  Ethernet0        U        0  14.80 B/s    0.13/s      0.00%         0         0         0        0   772.11 KB/s    0.11/s      0.01%         0         0         0     N/A        N/A         N/A
+  Ethernet4        U        0   8.84 B/s    0.09/s      0.00%         0         0         0        0   772.55 KB/s    0.09/s      0.01%         0         0         0     N/A        N/A         N/A
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet16        U        0  17.90 B/s    0.15/s      0.00%         0         0         0        0   774.41 KB/s    0.05/s      0.01%         0         0         0     N/A        N/A         N/A
+ Ethernet20        U        0   9.72 B/s    0.08/s      0.00%         0         0         0        0   774.84 KB/s    0.05/s      0.01%         0         0         0     N/A        N/A         N/A
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0     N/A        N/A         N/A
+ Ethernet64        U        0  18.16 B/s    0.13/s      0.00%         0         0         0        0   815.57 KB/s    0.05/s      0.01%         0         0         0     N/A        N/A         N/A
+... (40 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK        TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  ------------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+  Ethernet0        U        1  31.27 B/s    0.34/s      0.00%         0         0         0        2   660.43 KB/s    0.56/s      0.01%         0         0         0          N/A             N/A              N/A
+  Ethernet4        U        1  26.49 B/s    0.28/s      0.00%         0         0         0        2   660.99 KB/s    0.50/s      0.01%         0         0         0          N/A             N/A              N/A
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet16        U        1  26.50 B/s    0.28/s      0.00%         0         0         0        2   662.53 KB/s    0.50/s      0.01%         0         0         0          N/A             N/A              N/A
+ Ethernet20        U        1  26.17 B/s    0.28/s      0.00%         0         0         0        2   662.92 KB/s    0.50/s      0.01%         0         0         0          N/A             N/A              N/A
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0      0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet64        U        1  26.17 B/s    0.30/s      0.00%         0         0         0        1   649.68 KB/s    0.49/s      0.01%         0         0         0          N/A             N/A              N/A
+... (39 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -4393,6 +6667,86 @@ The rates are calculated within 2 seconds period
  Ethernet14        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
  Ethernet15        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
  Ethernet16        U        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   9.42 B/s    0.04/s      0.00%         0         0         0          N/A             N/A              N/A
+... (497 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "0.08 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxOk": "0",
+    "TxBps": "12.84 B/s",
+    "TxPps": "0.05/s",
+    "TxUtil": "0.00%",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+... (10262 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM    TRIM_TX    TRIM_DRP
+-----------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  ---------  --------  ---------  --------  --------  --------  ------  ---------  ----------
+  Ethernet0        U        0   0.05 B/s    0.00/s      0.00%         0         0         0        0  10.51 B/s    0.04/s      0.00%         0         0         0       0          0           0
+  Ethernet1        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet2        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet3        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet4        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet5        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet6        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet7        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+  Ethernet8        U        0   0.06 B/s    0.00/s      0.00%         0         0         0        0  10.52 B/s    0.04/s      0.00%         0         0         0       0          0           0
+  Ethernet9        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet10        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet11        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet13        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet14        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet15        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0       0          0           0
+ Ethernet16        U        0   0.10 B/s    0.00/s      0.00%         0         0         0        0  10.56 B/s    0.04/s      0.00%         0         0         0       0          0           0
+... (498 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    RX_ERR    RX_DRP    RX_OVR    TX_OK     TX_BPS    TX_PPS    TX_UTIL    TX_ERR    TX_DRP    TX_OVR    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -------  ---------  --------  ---------  --------  --------  --------  -------  ---------  --------  ---------  --------  --------  --------  -----------  --------------  ---------------
+  Ethernet0        U        0   0.08 B/s    0.00/s      0.00%         0         0         0        0  12.84 B/s    0.05/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet1        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet2        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet3        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet4        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet5        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet6        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet7        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet8        U        0   0.17 B/s    0.00/s      0.00%         0         0         0        0  12.93 B/s    0.05/s      0.00%         0         0         0          N/A             N/A              N/A
+  Ethernet9        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet10        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet11        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet13        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet14        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet15        X        0   0.00 B/s    0.00/s      0.00%         0         0         0        0   0.00 B/s    0.00/s      0.00%         0         0         0          N/A             N/A              N/A
+ Ethernet16        U        0   0.08 B/s    0.00/s      0.00%         0         0         0        0  12.84 B/s    0.05/s      0.00%         0         0         0          N/A             N/A              N/A
 ... (497 more lines)
 ```
 
@@ -4585,16 +6939,18 @@ The rates are calculated within 2 seconds period
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/16 test cases passed (across 4 devices)
+**Status:** ✅ All 10/48 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -4602,6 +6958,10 @@ The rates are calculated within 2 seconds period
 - [11.2 Ethernet0 --period 2](#11.2-show-interfaces-counters-detailed-ethernet0---period-2)
 - [11.3 Ethernet252](#11.3-show-interfaces-counters-detailed-ethernet252)
 - [11.4 Ethernet252 --period 2](#11.4-show-interfaces-counters-detailed-ethernet252---period-2)
+- [11.5 Ethernet8 --period 2](#11.5-show-interfaces-counters-detailed-ethernet8---period-2)
+- [11.6 Ethernet8](#11.6-show-interfaces-counters-detailed-ethernet8)
+- [11.7 Ethernet505 --period 2](#11.7-show-interfaces-counters-detailed-ethernet505---period-2)
+- [11.8 Ethernet505](#11.8-show-interfaces-counters-detailed-ethernet505)
 
 <a id="11.1-show-interfaces-counters-detailed-ethernet0"></a>
 #### 11.1 `show interfaces counters detailed Ethernet0`
@@ -5161,6 +7521,402 @@ Undersize Received............................. 0
 
 </details>
 
+<a id="11.5-show-interfaces-counters-detailed-ethernet8---period-2"></a>
+#### 11.5 `show interfaces counters detailed Ethernet8 --period 2`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters detailed Ethernet8 --period 2"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": {
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A",
+    "Rx64": "0",
+    "Rx65_127": "0",
+    "Rx128_255": "0",
+    "Rx256_511": "0",
+    "Rx512_1023": "0",
+    "Rx1024_1518": "0",
+    "Rx1519_2047": "0",
+    "Rx2048_4095": "N/A",
+    "Rx4096_9216": "N/A",
+    "Rx9217_16383": "N/A",
+    "Tx64": "0",
+    "Tx65_127": "0",
+    "Tx128_255": "0",
+    "Tx256_511": "0",
+    "Tx512_1023": "0",
+... (20 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. N/A
+Packets Received 4096-9216 Octets.............. N/A
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... N/A
+Fragments Received............................. N/A
+Undersize Received............................. 0
+... (23 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. N/A
+Packets Received 4096-9216 Octets.............. N/A
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... N/A
+Fragments Received............................. N/A
+Undersize Received............................. 0
+... (22 more lines)
+```
+
+</details>
+
+<a id="11.6-show-interfaces-counters-detailed-ethernet8"></a>
+#### 11.6 `show interfaces counters detailed Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters detailed Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": {
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A",
+    "Rx64": "0",
+    "Rx65_127": "0",
+    "Rx128_255": "0",
+    "Rx256_511": "0",
+    "Rx512_1023": "0",
+    "Rx1024_1518": "0",
+    "Rx1519_2047": "0",
+    "Rx2048_4095": "N/A",
+    "Rx4096_9216": "N/A",
+    "Rx9217_16383": "N/A",
+    "Tx64": "0",
+    "Tx65_127": "0",
+    "Tx128_255": "0",
+    "Tx256_511": "0",
+    "Tx512_1023": "0",
+... (20 more lines)
+```
+
+**Expected CLI Output:**
+```
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. N/A
+Packets Received 4096-9216 Octets.............. N/A
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... N/A
+Fragments Received............................. N/A
+Undersize Received............................. 0
+Overruns Received.............................. 0
+... (22 more lines)
+```
+
+**Actual Converter Output:**
+```
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. N/A
+Packets Received 4096-9216 Octets.............. N/A
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... N/A
+Fragments Received............................. N/A
+Undersize Received............................. 0
+Overruns Received.............................. 0
+... (21 more lines)
+```
+
+</details>
+
+<a id="11.7-show-interfaces-counters-detailed-ethernet505---period-2"></a>
+#### 11.7 `show interfaces counters detailed Ethernet505 --period 2`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters detailed Ethernet505 --period 2"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": {
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A",
+    "Rx64": "0",
+    "Rx65_127": "0",
+    "Rx128_255": "0",
+    "Rx256_511": "0",
+    "Rx512_1023": "0",
+    "Rx1024_1518": "0",
+    "Rx1519_2047": "0",
+    "Rx2048_4095": "0",
+    "Rx4096_9216": "0",
+    "Rx9217_16383": "N/A",
+    "Tx64": "0",
+    "Tx65_127": "0",
+    "Tx128_255": "0",
+    "Tx256_511": "0",
+    "Tx512_1023": "0",
+... (20 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. 0
+Packets Received 4096-9216 Octets.............. 0
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... 0
+Fragments Received............................. 0
+Undersize Received............................. 0
+... (26 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. 0
+Packets Received 4096-9216 Octets.............. 0
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... 0
+Fragments Received............................. 0
+Undersize Received............................. 0
+... (22 more lines)
+```
+
+</details>
+
+<a id="11.8-show-interfaces-counters-detailed-ethernet505"></a>
+#### 11.8 `show interfaces counters detailed Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters detailed Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": {
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A",
+    "Rx64": "0",
+    "Rx65_127": "0",
+    "Rx128_255": "0",
+    "Rx256_511": "0",
+    "Rx512_1023": "0",
+    "Rx1024_1518": "0",
+    "Rx1519_2047": "0",
+    "Rx2048_4095": "0",
+    "Rx4096_9216": "0",
+    "Rx9217_16383": "N/A",
+    "Tx64": "0",
+    "Tx65_127": "0",
+    "Tx128_255": "0",
+    "Tx256_511": "0",
+    "Tx512_1023": "0",
+... (20 more lines)
+```
+
+**Expected CLI Output:**
+```
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. 0
+Packets Received 4096-9216 Octets.............. 0
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... 0
+Fragments Received............................. 0
+Undersize Received............................. 0
+Overruns Received.............................. N/A
+... (25 more lines)
+```
+
+**Actual Converter Output:**
+```
+Packets Received 64 Octets..................... 0
+Packets Received 65-127 Octets................. 0
+Packets Received 128-255 Octets................ 0
+Packets Received 256-511 Octets................ 0
+Packets Received 512-1023 Octets............... 0
+Packets Received 1024-1518 Octets.............. 0
+Packets Received 1519-2047 Octets.............. 0
+Packets Received 2048-4095 Octets.............. 0
+Packets Received 4096-9216 Octets.............. 0
+Packets Received 9217-16383 Octets............. N/A
+
+Total Packets Received Without Errors.......... 0
+Unicast Packets Received....................... 0
+Multicast Packets Received..................... 0
+Broadcast Packets Received..................... 0
+
+Jabbers Received............................... 0
+Fragments Received............................. 0
+Undersize Received............................. 0
+Overruns Received.............................. N/A
+... (21 more lines)
+```
+
+</details>
+
 ---
 
 <a id="12-show-interfaces-counters-errors"></a>
@@ -5168,16 +7924,18 @@ Undersize Received............................. 0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/8 test cases passed (across 4 devices)
+**Status:** ✅ All 10/12 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -5190,9 +7948,11 @@ Undersize Received............................. 0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 29 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 32 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -5282,6 +8042,86 @@ print(result)
  Ethernet64        U         0       151         0         0         1         0
  Ethernet68        U         0        46         0         0         1         0
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxErr": "0",
+    "RxDrp": "724",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "29362",
+    "TxOvr": "0"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "RxErr": "0",
+    "RxDrp": "717",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "82824",
+    "TxOvr": "0"
+  },
+  "Ethernet112": {
+... (486 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------  --------  --------  --------  --------
+  Ethernet0        U         0       724         0         0    29,362         0
+  Ethernet4        U         0       737         0         0         0         0
+  Ethernet8        X         0         0         0         0         0         0
+ Ethernet12        X         0         0         0         0         0         0
+ Ethernet16        U         0       741         0         0         0         0
+ Ethernet20        U         0       719         0         0         0         0
+ Ethernet24        X         0         0         0         0         0         0
+ Ethernet28        X         0         0         0         0         0         0
+ Ethernet32        X         0         0         0         0         0         0
+ Ethernet36        X         0         0         0         0         0         0
+ Ethernet40        X         0         0         0         0         0         0
+ Ethernet44        X         0         0         0         0         0         0
+ Ethernet48        X         0         0         0         0         0         0
+ Ethernet52        X         0         0         0         0         0         0
+ Ethernet56        X         0         0         0         0         0         0
+ Ethernet60        X         0         0         0         0         0         0
+ Ethernet64        U         0       732         0         0         0         0
+ Ethernet68        U         0       741         0         0         0         0
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR    RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------  --------  --------  --------  --------
+  Ethernet0        U         0       724         0         0    29,362         0
+  Ethernet4        U         0       737         0         0         0         0
+  Ethernet8        X         0         0         0         0         0         0
+ Ethernet12        X         0         0         0         0         0         0
+ Ethernet16        U         0       741         0         0         0         0
+ Ethernet20        U         0       719         0         0         0         0
+ Ethernet24        X         0         0         0         0         0         0
+ Ethernet28        X         0         0         0         0         0         0
+ Ethernet32        X         0         0         0         0         0         0
+ Ethernet36        X         0         0         0         0         0         0
+ Ethernet40        X         0         0         0         0         0         0
+ Ethernet44        X         0         0         0         0         0         0
+ Ethernet48        X         0         0         0         0         0         0
+ Ethernet52        X         0         0         0         0         0         0
+ Ethernet56        X         0         0         0         0         0         0
+ Ethernet60        X         0         0         0         0         0         0
+ Ethernet64        U         0       732         0         0         0         0
+ Ethernet68        U         0       741         0         0         0         0
+... (38 more lines)
 ```
 
 </details>
@@ -5526,13 +8366,95 @@ Ethernet136        U         0       323         0         0         0         0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet10": {
+... (4608 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_ERR          RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------------  --------  --------  --------  --------
+  Ethernet0        U         0               0         0         0         0         0
+  Ethernet1        X         0               0         0         0         0         0
+  Ethernet2        X         0               0         0         0         0         0
+  Ethernet3        X         0               0         0         0         0         0
+  Ethernet4        X         0               0         0         0         0         0
+  Ethernet5        X         0               0         0         0         0         0
+  Ethernet6        X         0               0         0         0         0         0
+  Ethernet7        X         0               0         0         0         0         0
+  Ethernet8        U         0               1         0         0         0         0
+  Ethernet9        X         0               0         0         0         0         0
+ Ethernet10        X         0               0         0         0         0         0
+ Ethernet11        X         0               0         0         0         0         0
+ Ethernet12        X         0               0         0         0         0         0
+ Ethernet13        X         0               0         0         0         0         0
+ Ethernet14        X         0               0         0         0         0         0
+ Ethernet15        X         0               0         0         0         0         0
+ Ethernet16        U         0               2         0         0         0         0
+ Ethernet17        X         0               0         0         0         0         0
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_ERR          RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------------  --------  --------  --------  --------
+  Ethernet0        U         0               0         0         0         0         0
+  Ethernet1        X         0               0         0         0         0         0
+  Ethernet2        X         0               0         0         0         0         0
+  Ethernet3        X         0               0         0         0         0         0
+  Ethernet4        X         0               0         0         0         0         0
+  Ethernet5        X         0               0         0         0         0         0
+  Ethernet6        X         0               0         0         0         0         0
+  Ethernet7        X         0               0         0         0         0         0
+  Ethernet8        U         0               1         0         0         0         0
+  Ethernet9        X         0               0         0         0         0         0
+ Ethernet10        X         0               0         0         0         0         0
+ Ethernet11        X         0               0         0         0         0         0
+ Ethernet12        X         0               0         0         0         0         0
+ Ethernet13        X         0               0         0         0         0         0
+ Ethernet14        X         0               0         0         0         0         0
+ Ethernet15        X         0               0         0         0         0         0
+ Ethernet16        U         0               2         0         0         0         0
+ Ethernet17        X         0               0         0         0         0         0
+... (496 more lines)
+```
+
+</details>
+
 <a id="12.2-show-interfaces-counters-errors---period-2"></a>
 #### 12.2 `show interfaces counters errors --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -5627,6 +8549,86 @@ The rates are calculated within 2 seconds period
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet112": {
+... (486 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_ERR    RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------  --------  --------  --------  --------
+  Ethernet0        U         0         0         0         0         0         0
+  Ethernet4        U         0         0         0         0         0         0
+  Ethernet8        X         0         0         0         0         0         0
+ Ethernet12        X         0         0         0         0         0         0
+ Ethernet16        U         0         0         0         0         0         0
+ Ethernet20        U         0         0         0         0         0         0
+ Ethernet24        X         0         0         0         0         0         0
+ Ethernet28        X         0         0         0         0         0         0
+ Ethernet32        X         0         0         0         0         0         0
+ Ethernet36        X         0         0         0         0         0         0
+ Ethernet40        X         0         0         0         0         0         0
+ Ethernet44        X         0         0         0         0         0         0
+ Ethernet48        X         0         0         0         0         0         0
+ Ethernet52        X         0         0         0         0         0         0
+ Ethernet56        X         0         0         0         0         0         0
+ Ethernet60        X         0         0         0         0         0         0
+ Ethernet64        U         0         0         0         0         0         0
+... (40 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_ERR    RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------  --------  --------  --------  --------
+  Ethernet0        U         0         0         0         0         0         0
+  Ethernet4        U         0         0         0         0         0         0
+  Ethernet8        X         0         0         0         0         0         0
+ Ethernet12        X         0         0         0         0         0         0
+ Ethernet16        U         0         0         0         0         0         0
+ Ethernet20        U         0         0         0         0         0         0
+ Ethernet24        X         0         0         0         0         0         0
+ Ethernet28        X         0         0         0         0         0         0
+ Ethernet32        X         0         0         0         0         0         0
+ Ethernet36        X         0         0         0         0         0         0
+ Ethernet40        X         0         0         0         0         0         0
+ Ethernet44        X         0         0         0         0         0         0
+ Ethernet48        X         0         0         0         0         0         0
+ Ethernet52        X         0         0         0         0         0         0
+ Ethernet56        X         0         0         0         0         0         0
+ Ethernet60        X         0         0         0         0         0         0
+ Ethernet64        U         0         0         0         0         0         0
+... (39 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -5706,6 +8708,86 @@ The rates are calculated within 2 seconds period
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "RxErr": "0",
+    "RxDrp": "0",
+    "RxOvr": "0",
+    "TxErr": "0",
+    "TxDrp": "0",
+    "TxOvr": "0"
+  },
+  "Ethernet10": {
+... (4608 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_ERR    RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------  --------  --------  --------  --------
+  Ethernet0        U         0         0         0         0         0         0
+  Ethernet1        X         0         0         0         0         0         0
+  Ethernet2        X         0         0         0         0         0         0
+  Ethernet3        X         0         0         0         0         0         0
+  Ethernet4        X         0         0         0         0         0         0
+  Ethernet5        X         0         0         0         0         0         0
+  Ethernet6        X         0         0         0         0         0         0
+  Ethernet7        X         0         0         0         0         0         0
+  Ethernet8        U         0         0         0         0         0         0
+  Ethernet9        X         0         0         0         0         0         0
+ Ethernet10        X         0         0         0         0         0         0
+ Ethernet11        X         0         0         0         0         0         0
+ Ethernet12        X         0         0         0         0         0         0
+ Ethernet13        X         0         0         0         0         0         0
+ Ethernet14        X         0         0         0         0         0         0
+ Ethernet15        X         0         0         0         0         0         0
+ Ethernet16        U         0         0         0         0         0         0
+... (498 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_ERR    RX_DRP    RX_OVR    TX_ERR    TX_DRP    TX_OVR
+-----------  -------  --------  --------  --------  --------  --------  --------
+  Ethernet0        U         0         0         0         0         0         0
+  Ethernet1        X         0         0         0         0         0         0
+  Ethernet2        X         0         0         0         0         0         0
+  Ethernet3        X         0         0         0         0         0         0
+  Ethernet4        X         0         0         0         0         0         0
+  Ethernet5        X         0         0         0         0         0         0
+  Ethernet6        X         0         0         0         0         0         0
+  Ethernet7        X         0         0         0         0         0         0
+  Ethernet8        U         0         0         0         0         0         0
+  Ethernet9        X         0         0         0         0         0         0
+ Ethernet10        X         0         0         0         0         0         0
+ Ethernet11        X         0         0         0         0         0         0
+ Ethernet12        X         0         0         0         0         0         0
+ Ethernet13        X         0         0         0         0         0         0
+ Ethernet14        X         0         0         0         0         0         0
+ Ethernet15        X         0         0         0         0         0         0
+ Ethernet16        U         0         0         0         0         0         0
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="13-show-interfaces-counters-fec-histogram"></a>
@@ -5713,21 +8795,25 @@ The rates are calculated within 2 seconds period
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/8 test cases passed (across 4 devices)
+**Status:** ✅ All 6/24 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [13.1 Ethernet0](#13.1-show-interfaces-counters-fec-histogram-ethernet0)
 - [13.2 Ethernet252](#13.2-show-interfaces-counters-fec-histogram-ethernet252)
+- [13.3 Ethernet8](#13.3-show-interfaces-counters-fec-histogram-ethernet8)
+- [13.4 Ethernet505](#13.4-show-interfaces-counters-fec-histogram-ethernet505)
 
 <a id="13.1-show-interfaces-counters-fec-histogram-ethernet0"></a>
 #### 13.1 `show interfaces counters fec-histogram Ethernet0`
@@ -6065,6 +9151,194 @@ BIN15                                     0
 
 </details>
 
+<a id="13.3-show-interfaces-counters-fec-histogram-ethernet8"></a>
+#### 13.3 `show interfaces counters fec-histogram Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters fec-histogram Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "BinIndex": "BIN0",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN1",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN2",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN3",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN4",
+    "Codewords": "0"
+... (46 more lines)
+```
+
+**Expected CLI Output:**
+```
+Symbol Errors Per Codeword      Codewords
+----------------------------  -----------
+BIN0                                    0
+BIN1                                    0
+BIN2                                    0
+BIN3                                    0
+BIN4                                    0
+BIN5                                    0
+BIN6                                    0
+BIN7                                    0
+BIN8                                    0
+BIN9                                    0
+BIN10                                   0
+BIN11                                   0
+BIN12                                   0
+BIN13                                   0
+BIN14                                   0
+BIN15                                   0
+
+```
+
+**Actual Converter Output:**
+```
+Symbol Errors Per Codeword      Codewords
+----------------------------  -----------
+BIN0                                    0
+BIN1                                    0
+BIN2                                    0
+BIN3                                    0
+BIN4                                    0
+BIN5                                    0
+BIN6                                    0
+BIN7                                    0
+BIN8                                    0
+BIN9                                    0
+BIN10                                   0
+BIN11                                   0
+BIN12                                   0
+BIN13                                   0
+BIN14                                   0
+BIN15                                   0
+```
+
+</details>
+
+<a id="13.4-show-interfaces-counters-fec-histogram-ethernet505"></a>
+#### 13.4 `show interfaces counters fec-histogram Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters fec-histogram Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "BinIndex": "BIN0",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN1",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN2",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN3",
+    "Codewords": "0"
+  },
+  {
+    "BinIndex": "BIN4",
+    "Codewords": "0"
+... (46 more lines)
+```
+
+**Expected CLI Output:**
+```
+Symbol Errors Per Codeword      Codewords
+----------------------------  -----------
+BIN0                                    0
+BIN1                                    0
+BIN2                                    0
+BIN3                                    0
+BIN4                                    0
+BIN5                                    0
+BIN6                                    0
+BIN7                                    0
+BIN8                                    0
+BIN9                                    0
+BIN10                                   0
+BIN11                                   0
+BIN12                                   0
+BIN13                                   0
+BIN14                                   0
+BIN15                                   0
+
+```
+
+**Actual Converter Output:**
+```
+Symbol Errors Per Codeword      Codewords
+----------------------------  -----------
+BIN0                                    0
+BIN1                                    0
+BIN2                                    0
+BIN3                                    0
+BIN4                                    0
+BIN5                                    0
+BIN6                                    0
+BIN7                                    0
+BIN8                                    0
+BIN9                                    0
+BIN10                                   0
+BIN11                                   0
+BIN12                                   0
+BIN13                                   0
+BIN14                                   0
+BIN15                                   0
+```
+
+</details>
+
 ---
 
 <a id="14-show-interfaces-counters-fec-stats"></a>
@@ -6072,16 +9346,18 @@ BIN15                                     0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/8 test cases passed (across 4 devices)
+**Status:** ✅ All 10/12 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -6094,9 +9370,11 @@ BIN15                                     0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 60 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 70 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 61 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 56 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 94 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 161 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -6186,6 +9464,86 @@ print(result)
  Ethernet64        U       33103          1333                 0              0               0
  Ethernet68        U       32781          2027                 0              0               0
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "FecCorr": "10",
+    "FecUncorr": "523",
+    "FecSymbolErr": "0",
+    "FecPreBer": "0.00e+00",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "FecCorr": "9250620",
+    "FecUncorr": "685",
+    "FecSymbolErr": "9204822",
+    "FecPreBer": "1.41e-11",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet112": {
+    "State": "U",
+    "FecCorr": "3221248",
+... (430 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR    FEC_PRE_BER    FEC_POST_BER    FEC_PRE_BER_MAX    FLR(O)    FLR(P) (Accuracy)
+-----------  -------  ----------  ------------  ----------------  -------------  --------------  -----------------  --------  -------------------
+  Ethernet0        U          10           523                 0       0                      0                N/A         0                    0
+  Ethernet4        U       1,925           479                 0       0                      0                N/A         0                    0
+  Ethernet8        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet12        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet16        U       1,549           444                 0       0                      0                N/A         0                    0
+ Ethernet20        U          12           421                 0       0                      0                N/A         0                    0
+ Ethernet24        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet28        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet32        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet36        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet40        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet44        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet48        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet52        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet56        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet60        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet64        U       1,743           381                 0       0                      0                N/A         0                    0
+ Ethernet68        U       2,255           466                 0       0                      0                N/A         0                    0
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR    FEC_PRE_BER    FEC_POST_BER
+-----------  -------  ----------  ------------  ----------------  -------------  --------------
+  Ethernet0        U          10           523                 0              0               0
+  Ethernet4        U        1925           479                 0              0               0
+  Ethernet8        X           0             0                 0              0               0
+ Ethernet12        X           0             0                 0              0               0
+ Ethernet16        U        1549           444                 0              0               0
+ Ethernet20        U          12           421                 0              0               0
+ Ethernet24        X           0             0                 0              0               0
+ Ethernet28        X           0             0                 0              0               0
+ Ethernet32        X           0             0                 0              0               0
+ Ethernet36        X           0             0                 0              0               0
+ Ethernet40        X           0             0                 0              0               0
+ Ethernet44        X           0             0                 0              0               0
+ Ethernet48        X           0             0                 0              0               0
+ Ethernet52        X           0             0                 0              0               0
+ Ethernet56        X           0             0                 0              0               0
+ Ethernet60        X           0             0                 0              0               0
+ Ethernet64        U        1743           381                 0              0               0
+ Ethernet68        U        2255           466                 0              0               0
+... (38 more lines)
 ```
 
 </details>
@@ -6430,13 +9788,95 @@ Ethernet136        U           20             0                20              0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "FecCorr": "4722614",
+    "FecUncorr": "0",
+    "FecSymbolErr": "7762622",
+    "FecPreBer": "1.46e-10",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "FecCorr": "0",
+    "FecUncorr": "0",
+    "FecSymbolErr": "0",
+    "FecPreBer": "0.00e+00",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet10": {
+    "State": "X",
+    "FecCorr": "0",
+... (4094 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR    FEC_PRE_BER    FEC_POST_BER    FEC_PRE_BER_MAX
+-----------  -------  ----------  ------------  ----------------  -------------  --------------  -----------------
+  Ethernet0        U   4,721,160             0         7,760,199       6.59e-11               0           9.88e-10
+  Ethernet1        X           0             0                 0       0                      0                N/A
+  Ethernet2        X           0             0                 0       0                      0                N/A
+  Ethernet3        X           0             0                 0       0                      0                N/A
+  Ethernet4        X           0             0                 0       0                      0                N/A
+  Ethernet5        X           0             0                 0       0                      0                N/A
+  Ethernet6        X           0             0                 0       0                      0                N/A
+  Ethernet7        X           0             0                 0       0                      0                N/A
+  Ethernet8        U   1,201,767             0         1,701,183       4.24e-11               0           2.12e-10
+  Ethernet9        X           0             0                 0       0                      0                N/A
+ Ethernet10        X           0             0                 0       0                      0                N/A
+ Ethernet11        X           0             0                 0       0                      0                N/A
+ Ethernet12        X           0             0                 0       0                      0                N/A
+ Ethernet13        X           0             0                 0       0                      0                N/A
+ Ethernet14        X           0             0                 0       0                      0                N/A
+ Ethernet15        X           0             0                 0       0                      0                N/A
+ Ethernet16        U   4,174,704             0         6,556,306       1.22e-10               0           1.08e-09
+ Ethernet17        X           0             0                 0       0                      0                N/A
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR    FEC_PRE_BER    FEC_POST_BER
+-----------  -------  ----------  ------------  ----------------  -------------  --------------
+  Ethernet0        U     4722614             0           7762622       1.46e-10               0
+  Ethernet1        X           0             0                 0              0               0
+  Ethernet2        X           0             0                 0              0               0
+  Ethernet3        X           0             0                 0              0               0
+  Ethernet4        X           0             0                 0              0               0
+  Ethernet5        X           0             0                 0              0               0
+  Ethernet6        X           0             0                 0              0               0
+  Ethernet7        X           0             0                 0              0               0
+  Ethernet8        U     1202225             0           1701815       2.35e-11               0
+  Ethernet9        X           0             0                 0              0               0
+ Ethernet10        X           0             0                 0              0               0
+ Ethernet11        X           0             0                 0              0               0
+ Ethernet12        X           0             0                 0              0               0
+ Ethernet13        X           0             0                 0              0               0
+ Ethernet14        X           0             0                 0              0               0
+ Ethernet15        X           0             0                 0              0               0
+ Ethernet16        U     4175876             0           6558144          8e-11               0
+ Ethernet17        X           0             0                 0              0               0
+... (496 more lines)
+```
+
+</details>
+
 <a id="14.2-show-interfaces-counters-fec-stats---period-2"></a>
 #### 14.2 `show interfaces counters fec-stats --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 14 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 6 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 62 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -6531,6 +9971,86 @@ The rates are calculated within 2 seconds period
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "FecCorr": "0",
+    "FecUncorr": "0",
+    "FecSymbolErr": "0",
+    "FecPreBer": "0.00e+00",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "FecCorr": "18",
+    "FecUncorr": "0",
+    "FecSymbolErr": "18",
+    "FecPreBer": "2.59e-11",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet112": {
+    "State": "U",
+    "FecCorr": "13",
+... (430 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR    FEC_PRE_BER    FEC_POST_BER    FEC_PRE_BER_MAX    FLR(O)    FLR(P) (Accuracy)
+-----------  -------  ----------  ------------  ----------------  -------------  --------------  -----------------  --------  -------------------
+  Ethernet0        U           0             0                 0       0                      0                N/A         0                    0
+  Ethernet4        U           0             0                 0       0                      0                N/A         0                    0
+  Ethernet8        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet12        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet16        U           0             0                 0       0                      0                N/A         0                    0
+ Ethernet20        U           0             0                 0       0                      0                N/A         0                    0
+ Ethernet24        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet28        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet32        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet36        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet40        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet44        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet48        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet52        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet56        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet60        X           0             0                 0       0                      0                N/A         0                    0
+ Ethernet64        U           0             0                 0       0                      0                N/A         0                    0
+... (40 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR    FEC_PRE_BER    FEC_POST_BER
+-----------  -------  ----------  ------------  ----------------  -------------  --------------
+  Ethernet0        U           0             0                 0              0               0
+  Ethernet4        U           0             0                 0              0               0
+  Ethernet8        X           0             0                 0              0               0
+ Ethernet12        X           0             0                 0              0               0
+ Ethernet16        U           0             0                 0              0               0
+ Ethernet20        U           0             0                 0              0               0
+ Ethernet24        X           0             0                 0              0               0
+ Ethernet28        X           0             0                 0              0               0
+ Ethernet32        X           0             0                 0              0               0
+ Ethernet36        X           0             0                 0              0               0
+ Ethernet40        X           0             0                 0              0               0
+ Ethernet44        X           0             0                 0              0               0
+ Ethernet48        X           0             0                 0              0               0
+ Ethernet52        X           0             0                 0              0               0
+ Ethernet56        X           0             0                 0              0               0
+ Ethernet60        X           0             0                 0              0               0
+ Ethernet64        U           0             0                 0              0               0
+... (39 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -6610,6 +10130,86 @@ The rates are calculated within 2 seconds period
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "FecCorr": "11",
+    "FecUncorr": "0",
+    "FecSymbolErr": "16",
+    "FecPreBer": "7.53e-11",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "FecCorr": "0",
+    "FecUncorr": "0",
+    "FecSymbolErr": "0",
+    "FecPreBer": "0.00e+00",
+    "FecPostBer": "0.00e+00"
+  },
+  "Ethernet10": {
+    "State": "X",
+    "FecCorr": "0",
+... (4094 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR
+-----------  -------  ----------  ------------  ----------------
+  Ethernet0        U          20             0                35
+  Ethernet1        X           0             0                 0
+  Ethernet2        X           0             0                 0
+  Ethernet3        X           0             0                 0
+  Ethernet4        X           0             0                 0
+  Ethernet5        X           0             0                 0
+  Ethernet6        X           0             0                 0
+  Ethernet7        X           0             0                 0
+  Ethernet8        U          11             0                16
+  Ethernet9        X           0             0                 0
+ Ethernet10        X           0             0                 0
+ Ethernet11        X           0             0                 0
+ Ethernet12        X           0             0                 0
+ Ethernet13        X           0             0                 0
+ Ethernet14        X           0             0                 0
+ Ethernet15        X           0             0                 0
+ Ethernet16        U          16             0                25
+... (498 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    FEC_CORR    FEC_UNCORR    FEC_SYMBOL_ERR    FEC_PRE_BER    FEC_POST_BER
+-----------  -------  ----------  ------------  ----------------  -------------  --------------
+  Ethernet0        U          11             0                16       7.53e-11               0
+  Ethernet1        X           0             0                 0              0               0
+  Ethernet2        X           0             0                 0              0               0
+  Ethernet3        X           0             0                 0              0               0
+  Ethernet4        X           0             0                 0              0               0
+  Ethernet5        X           0             0                 0              0               0
+  Ethernet6        X           0             0                 0              0               0
+  Ethernet7        X           0             0                 0              0               0
+  Ethernet8        U           1             0                 2       9.41e-12               0
+  Ethernet9        X           0             0                 0              0               0
+ Ethernet10        X           0             0                 0              0               0
+ Ethernet11        X           0             0                 0              0               0
+ Ethernet12        X           0             0                 0              0               0
+ Ethernet13        X           0             0                 0              0               0
+ Ethernet14        X           0             0                 0              0               0
+ Ethernet15        X           0             0                 0              0               0
+ Ethernet16        U          14             0                20       9.41e-11               0
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="15-show-interfaces-counters-rates"></a>
@@ -6617,16 +10217,18 @@ The rates are calculated within 2 seconds period
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/8 test cases passed (across 4 devices)
+**Status:** ✅ All 10/12 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -6639,9 +10241,11 @@ The rates are calculated within 2 seconds period
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 129 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 130 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 133 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 106 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 343 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 191 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -6731,6 +10335,86 @@ print(result)
  Ethernet64        U   12,525   4.69 B/s    0.04/s      0.00%    7,964  760.82 KB/s    0.19/s      0.01%
  Ethernet68        U   12,411   0.88 B/s    0.01/s      0.00%   16,688  760.74 KB/s    0.23/s      0.01%
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "138494",
+    "RxBps": "17.00 B/s",
+    "RxPps": "0.13/s",
+    "RxUtil": "0.00%",
+    "TxOk": "117710",
+    "TxBps": "659.39 KB/s",
+    "TxPps": "0.08/s",
+    "TxUtil": "0.01%"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "RxOk": "99378",
+    "RxBps": "12.18 B/s",
+    "RxPps": "0.09/s",
+    "RxUtil": "0.00%",
+    "TxOk": "117786",
+    "TxBps": "2237.41 KB/s",
+... (598 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK        TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  -------  ---------  --------  ---------  -------  ------------  --------  ---------
+  Ethernet0        U  138,445  16.61 B/s    0.17/s      0.00%  117,669   663.83 KB/s    0.28/s      0.01%
+  Ethernet4        U  138,460  31.31 B/s    0.25/s      0.00%  117,672   663.90 KB/s    0.23/s      0.01%
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet16        U  138,469  11.72 B/s    0.13/s      0.00%  117,672   664.38 KB/s    0.22/s      0.01%
+ Ethernet20        U  138,425  11.72 B/s    0.13/s      0.00%  117,656   651.35 KB/s    0.22/s      0.01%
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet64        U  138,470  12.23 B/s    0.13/s      0.00%  117,685   648.91 KB/s    0.23/s      0.01%
+ Ethernet68        U  138,442  13.86 B/s    0.15/s      0.00%  117,647   649.01 KB/s    0.25/s      0.01%
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK        TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  -------  ---------  --------  ---------  -------  ------------  --------  ---------
+  Ethernet0        U  138,494  17.00 B/s    0.13/s      0.00%  117,710   659.39 KB/s    0.08/s      0.01%
+  Ethernet4        U  138,508   8.35 B/s    0.08/s      0.00%  117,713   659.55 KB/s    0.07/s      0.01%
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet16        U  138,520   3.64 B/s    0.22/s      0.00%  117,714   659.42 KB/s    0.07/s      0.01%
+ Ethernet20        U  138,475  16.30 B/s    0.12/s      0.00%  117,698   659.36 KB/s    0.07/s      0.01%
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet64        U  138,520  22.49 B/s    0.19/s      0.00%  117,727   655.26 KB/s    0.07/s      0.01%
+ Ethernet68        U  138,492  17.99 B/s    0.16/s      0.00%  117,689   655.41 KB/s    0.09/s      0.01%
+... (38 more lines)
 ```
 
 </details>
@@ -6975,13 +10659,95 @@ Ethernet136        U   12,458  11.42 B/s    0.05/s      0.00%   10,353  17.68 B/
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "6707",
+    "RxBps": "0.02 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "TxOk": "35774",
+    "TxBps": "3.90 B/s",
+    "TxPps": "0.02/s",
+    "TxUtil": "0.00%"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "RxOk": "0",
+    "RxBps": "0.00 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "TxOk": "0",
+    "TxBps": "0.00 B/s",
+... (5636 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE           RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK     TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  --------------  ---------  --------  ---------  -------  ---------  --------  ---------
+  Ethernet0        U           6,705   0.00 B/s    0.00/s      0.00%   35,764   3.88 B/s    0.02/s      0.00%
+  Ethernet1        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet2        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet3        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet4        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet5        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet6        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet7        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet8        U           6,144   0.00 B/s    0.00/s      0.00%   35,204   3.88 B/s    0.02/s      0.00%
+  Ethernet9        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet10        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet11        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet12        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet13        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet14        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet15        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet16        U           6,146   0.00 B/s    0.00/s      0.00%   35,207   3.88 B/s    0.02/s      0.00%
+ Ethernet17        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE           RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK     TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  --------------  ---------  --------  ---------  -------  ---------  --------  ---------
+  Ethernet0        U           6,707   0.02 B/s    0.00/s      0.00%   35,774   3.90 B/s    0.02/s      0.00%
+  Ethernet1        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet2        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet3        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet4        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet5        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet6        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet7        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet8        U           6,147   0.05 B/s    0.00/s      0.00%   35,215   3.93 B/s    0.02/s      0.00%
+  Ethernet9        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet10        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet11        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet12        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet13        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet14        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet15        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet16        U           6,148   0.02 B/s    0.00/s      0.00%   35,217   3.90 B/s    0.02/s      0.00%
+ Ethernet17        X               0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+... (496 more lines)
+```
+
+</details>
+
 <a id="15.2-show-interfaces-counters-rates---period-2"></a>
 #### 15.2 `show interfaces counters rates --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 88 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 80 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 83 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 96 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -7076,6 +10842,86 @@ The rates are calculated within 2 seconds period
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "11.43 B/s",
+    "RxPps": "0.09/s",
+    "RxUtil": "0.00%",
+    "TxOk": "0",
+    "TxBps": "794.73 KB/s",
+    "TxPps": "0.05/s",
+    "TxUtil": "0.01%"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "8.19 B/s",
+    "RxPps": "0.06/s",
+    "RxUtil": "0.00%",
+    "TxOk": "0",
+    "TxBps": "2734.78 KB/s",
+... (598 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK        TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  -------  ---------  --------  ---------  -------  ------------  --------  ---------
+  Ethernet0        U        0  26.40 B/s    0.20/s      0.00%        0   798.21 KB/s    0.13/s      0.01%
+  Ethernet4        U        0  14.15 B/s    0.11/s      0.00%        0   797.97 KB/s    0.11/s      0.01%
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet16        U        0   5.30 B/s    0.06/s      0.00%        0   797.49 KB/s    0.10/s      0.01%
+ Ethernet20        U        0  24.19 B/s    0.18/s      0.00%        0   791.38 KB/s    0.10/s      0.01%
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet64        U        0   5.53 B/s    0.06/s      0.00%        0   788.93 KB/s    0.10/s      0.01%
+... (40 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK        TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  -------  ---------  --------  ---------  -------  ------------  --------  ---------
+  Ethernet0        U        0  11.43 B/s    0.09/s      0.00%        0   794.73 KB/s    0.05/s      0.01%
+  Ethernet4        U        0   5.62 B/s    0.05/s      0.00%        0   794.61 KB/s    0.05/s      0.01%
+  Ethernet8        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet16        U        0  21.34 B/s    0.15/s      0.00%        0   661.41 KB/s    0.05/s      0.01%
+ Ethernet20        U        0  10.96 B/s    0.08/s      0.00%        0   661.39 KB/s    0.05/s      0.01%
+ Ethernet24        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet28        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet32        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet36        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet40        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet44        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet48        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet52        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet56        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet60        X        0   0.00 B/s    0.00/s      0.00%        0      0.00 B/s    0.00/s      0.00%
+ Ethernet64        U        0  15.12 B/s    0.13/s      0.00%        0   658.31 KB/s    0.05/s      0.01%
+... (39 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -7155,6 +11001,86 @@ The rates are calculated within 2 seconds period
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "RxOk": "0",
+    "RxBps": "0.02 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "TxOk": "0",
+    "TxBps": "3.20 B/s",
+    "TxPps": "0.01/s",
+    "TxUtil": "0.00%"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "RxOk": "0",
+    "RxBps": "0.00 B/s",
+    "RxPps": "0.00/s",
+    "RxUtil": "0.00%",
+    "TxOk": "0",
+    "TxBps": "0.00 B/s",
+... (5636 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK    TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  -------  ---------  --------  ---------  -------  --------  --------  ---------
+  Ethernet0        U        0   0.00 B/s    0.00/s      0.00%        0  1.75 B/s    0.01/s      0.00%
+  Ethernet1        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+  Ethernet2        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+  Ethernet3        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+  Ethernet4        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+  Ethernet5        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+  Ethernet6        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+  Ethernet7        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+  Ethernet8        U        0   0.00 B/s    0.00/s      0.00%        0  1.75 B/s    0.01/s      0.00%
+  Ethernet9        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+ Ethernet10        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+ Ethernet11        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+ Ethernet13        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+ Ethernet14        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+ Ethernet15        X        0   0.00 B/s    0.00/s      0.00%        0  0.00 B/s    0.00/s      0.00%
+ Ethernet16        U        0   0.00 B/s    0.00/s      0.00%        0  1.75 B/s    0.01/s      0.00%
+... (498 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    RX_OK     RX_BPS    RX_PPS    RX_UTIL    TX_OK     TX_BPS    TX_PPS    TX_UTIL
+-----------  -------  -------  ---------  --------  ---------  -------  ---------  --------  ---------
+  Ethernet0        U        0   0.02 B/s    0.00/s      0.00%        0   3.20 B/s    0.01/s      0.00%
+  Ethernet1        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet2        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet3        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet4        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet5        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet6        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet7        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+  Ethernet8        U        0   0.04 B/s    0.00/s      0.00%        0   3.22 B/s    0.01/s      0.00%
+  Ethernet9        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet10        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet11        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet12        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet13        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet14        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet15        X        0   0.00 B/s    0.00/s      0.00%        0   0.00 B/s    0.00/s      0.00%
+ Ethernet16        U        0   0.02 B/s    0.00/s      0.00%        0   3.20 B/s    0.01/s      0.00%
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="16-show-interfaces-counters-rif"></a>
@@ -7162,16 +11088,18 @@ The rates are calculated within 2 seconds period
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 10/24 test cases passed (across 4 devices)
+**Status:** ✅ All 18/60 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 4 | 0 | 0 | 0 |
+| `str3-8101-02` | 4 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 4 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 4 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -7181,6 +11109,10 @@ The rates are calculated within 2 seconds period
 - [16.4 Ethernet64 --period 2](#16.4-show-interfaces-counters-rif-ethernet64---period-2)
 - [16.5 PortChannel117](#16.5-show-interfaces-counters-rif-portchannel117)
 - [16.6 PortChannel117 --period 2](#16.6-show-interfaces-counters-rif-portchannel117---period-2)
+- [16.7 PortChannel116 --period 2](#16.7-show-interfaces-counters-rif-portchannel116---period-2)
+- [16.8 PortChannel116](#16.8-show-interfaces-counters-rif-portchannel116)
+- [16.9 Ethernet408 --period 2](#16.9-show-interfaces-counters-rif-ethernet408---period-2)
+- [16.10 Ethernet408](#16.10-show-interfaces-counters-rif-ethernet408)
 
 <a id="16.1-show-interfaces-counters-rif"></a>
 #### 16.1 `show interfaces counters rif` (base command)
@@ -7188,9 +11120,11 @@ The rates are calculated within 2 seconds period
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 90 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 95 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 | `str4-7060x6-512-13` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 | `str4-7060x6-512-9` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
+| `str4-sn5640-7` | ✅ PASS | All 192 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -7279,6 +11213,86 @@ PortChannel115    8,758  0.503736  0.00545707         0        0         0      
 PortChannel116    8,767  0.496197  0.00537235         0        0         0         0         0        791521             0              0              0
 PortChannel117    8,747   11.0771    0.114689         0        0         0         0         0        789514             0              0              0
 PortChannel118    8,756   5.16548   0.0482655         0        0         0         0         0        790326             0              0              0
+... (6 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "PortChannel101": {
+    "RxOkPackets": "61351",
+    "RxBps": "2.3393226637979829",
+    "RxPps": "0.028545495821802627",
+    "RxErrPackets": "0",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "0",
+    "TxErrBits": "0",
+    "RxOkBits": "5537521",
+    "TxOkBits": "0"
+  },
+  "PortChannel102": {
+    "RxOkPackets": "61457",
+    "RxBps": "3.0521816810047024",
+    "RxPps": "0.034467541963636168",
+    "RxErrPackets": "0",
+... (318 more lines)
+```
+
+**Expected CLI Output:**
+```
+         IFACE    RX_OK     RX_BPS    RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR
+--------------  -------  ---------  --------  --------  -------  --------  --------  --------
+PortChannel101   61,330   1.65 B/s    0.02/s         0        0  0.00 B/s    0.00/s         0
+PortChannel102   61,435   1.17 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel103   61,331   1.19 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel104   61,338  11.93 B/s    0.11/s         0        0  0.00 B/s    0.00/s         0
+PortChannel105   61,298  21.03 B/s    0.20/s         0        0  0.00 B/s    0.00/s         0
+PortChannel106   61,316   1.12 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel107   61,346  14.36 B/s    0.14/s         0        0  0.00 B/s    0.00/s         0
+PortChannel108   61,435   1.30 B/s    0.02/s         0        0  0.00 B/s    0.00/s         0
+PortChannel109   61,310   1.32 B/s    0.02/s         0        0  0.00 B/s    0.00/s         0
+PortChannel110   61,340   1.11 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel111   61,433   1.11 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel112   61,326  11.95 B/s    0.11/s         0        0  0.00 B/s    0.00/s         0
+PortChannel113   61,432   1.37 B/s    0.02/s         0        0  0.00 B/s    0.00/s         0
+PortChannel114   61,327   8.79 B/s    0.09/s         0        0  0.00 B/s    0.00/s         0
+PortChannel115   61,314   3.60 B/s    0.04/s         0        0  0.00 B/s    0.00/s         0
+PortChannel116   61,315   1.39 B/s    0.02/s         0        0  0.00 B/s    0.00/s         0
+PortChannel117   61,335  14.25 B/s    0.16/s         0        0  0.00 B/s    0.00/s         0
+PortChannel118   61,413   7.98 B/s    0.09/s         0        0  0.00 B/s    0.00/s         0
+... (7 more lines)
+```
+
+**Actual Converter Output:**
+```
+         IFACE    RX_OK    RX_BPS     RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+--------------  -------  --------  ---------  --------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+PortChannel101   61,351   2.33932  0.0285455         0        0         0         0         0       5537521             0              0              0
+PortChannel102   61,457   3.05218  0.0344675         0        0         0         0         0       6017196             0              0              0
+PortChannel103   61,352   2.05274  0.0252131         0        0         0         0         0       5537930             0              0              0
+PortChannel104   61,359   1.80628  0.0225314         0        0         0         0         0       5538623             0              0              0
+PortChannel105   61,319    1.8148   0.022649         0        0         0         0         0       6005719             0              0              0
+PortChannel106   61,338   1.79932  0.0224676         0        0         0         0         0       5536328             0              0              0
+PortChannel107   61,367   2.17857  0.0267111         0        0         0         0         0       5539245             0              0              0
+PortChannel108   61,457   3.02099   0.034117         0        0         0         0         0       6017827             0              0              0
+PortChannel109   61,332   3.36232  0.0397303         0        0         0         0         0       5535762             0              0              0
+PortChannel110   61,362    2.0883  0.0256944         0        0         0         0         0       5538379             0              0              0
+PortChannel111   61,455   1.88911  0.0232978         0        0         0         0         0       6017176             0              0              0
+PortChannel112   61,348   4.19329  0.0456116         0        0         0         0         0       5536946             0              0              0
+PortChannel113   61,454   1.65524  0.0204227         0        0         0         0         0       5546372             0              0              0
+PortChannel114   61,349   11.5171   0.112946         0        0         0         0         0       5537651             0              0              0
+PortChannel115   61,336   3.13744  0.0356986         0        0         0         0         0       5535948             0              0              0
+PortChannel116   61,337   1.65455  0.0204164         0        0         0         0         0       5535814             0              0              0
+PortChannel117   61,356   2.01631  0.0248863         0        0         0         0         0       5538170             0              0              0
+PortChannel118   61,434   2.92923  0.0345539         0        0         0         0         0       5544506             0              0              0
 ... (6 more lines)
 ```
 
@@ -7516,13 +11530,95 @@ PortChannel112      N/A       N/A    ... (1019 more chars)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RxOkPackets": "6511",
+    "RxBps": "2.2491288887444127e-05",
+    "RxPps": "2.7885815918180846e-07",
+    "RxErrPackets": "194",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "13968",
+    "TxErrBits": "0",
+    "RxOkBits": "562664",
+    "TxOkBits": "0"
+  },
+  "Ethernet104": {
+    "RxOkPackets": "40938",
+    "RxBps": "0.32206978839299538",
+    "RxPps": "0.0044051156711479239",
+    "RxErrPackets": "12",
+... (920 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE       RX_OK     RX_BPS    RX_PPS       RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR
+-----------  ----------  ---------  --------  -----------  -------  --------  --------  --------
+  Ethernet0        6509   0.00 B/s    0.00/s          194        0  0.00 B/s    0.00/s         0
+  Ethernet8        6137   0.00 B/s    0.00/s            6        0  0.00 B/s    0.00/s         0
+ Ethernet16        6140   0.00 B/s    0.00/s            6        0  0.00 B/s    0.00/s         0
+ Ethernet24        6145   0.00 B/s    0.00/s            6        0  0.00 B/s    0.00/s         0
+ Ethernet32        6143   0.00 B/s    0.00/s            6        0  0.00 B/s    0.00/s         0
+ Ethernet40        6140   0.00 B/s    0.00/s            6        0  0.00 B/s    0.00/s         0
+ Ethernet48        6146   0.00 B/s    0.00/s            6        0  0.00 B/s    0.00/s         0
+ Ethernet56        6146   0.00 B/s    0.00/s            6        0  0.00 B/s    0.00/s         0
+ Ethernet64       40942   0.01 B/s    0.00/s           12        0  0.00 B/s    0.00/s         0
+ Ethernet72       40954   0.04 B/s    0.00/s           12        0  0.00 B/s    0.00/s         0
+ Ethernet80       40932   2.26 B/s    0.02/s           12        0  0.00 B/s    0.00/s         0
+ Ethernet88       40936   0.01 B/s    0.00/s           11        0  0.00 B/s    0.00/s         0
+ Ethernet96       40927   0.12 B/s    0.00/s           12        0  0.00 B/s    0.00/s         0
+Ethernet104       40927   0.39 B/s    0.00/s           12        0  0.00 B/s    0.00/s         0
+Ethernet112       40928   0.86 B/s    0.01/s           12        0  0.00 B/s    0.00/s         0
+Ethernet120       40977   2.76 B/s    0.03/s           11        0  0.00 B/s    0.00/s         0
+Ethernet128       40937  16.40 B/s    0.18/s           12        0  0.00 B/s    0.00/s         0
+Ethernet136       40926   0.05 B/s    0.00/s           11        0  0.00 B/s    0.00/s         0
+... (50 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE          RX_OK       RX_BPS       RX_PPS          RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+-----------  -------------  -----------  -----------  --------------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+  Ethernet0          6,511  2.24913e-05  2.78858e-07             194        0         0         0         0        562664             0          13968              0
+  Ethernet8          6,140  7.02561e-05  1.00925e-06               6        0         0         0         0        531192             0            432              0
+ Ethernet16          6,142  2.24913e-05  2.78858e-07               6        0         0         0         0        531320             0            432              0
+ Ethernet24          6,147  2.24913e-05  2.78858e-07               6        0         0         0         0        531640             0            432              0
+ Ethernet32          6,145  2.57066e-05  3.23515e-07               6        0         0         0         0        531512             0            432              0
+ Ethernet40          6,142  2.74284e-05  3.40071e-07               6        0         0         0         0        531320             0            432              0
+ Ethernet48          6,148  2.74284e-05  3.40071e-07               6        0         0         0         0        531704             0            432              0
+ Ethernet56          6,148  2.74284e-05  3.40071e-07               6        0         0         0         0        531704             0            432              0
+ Ethernet64         40,954      13.5225     0.148863              12        0         0         0         0       4139031             0            848              0
+ Ethernet72         40,965     0.127766   0.00150163              12        0         0         0         0       4127120             0            848              0
+ Ethernet80         40,943     0.388786   0.00466387              12        0         0         0         0       4126189             0            848              0
+ Ethernet88         40,948     0.250647    0.0030754              11        0         0         0         0       4134606             0            776              0
+ Ethernet96         40,939      11.0572     0.121626              12        0         0         0         0       4125998             0            848              0
+Ethernet104         40,938      0.32207   0.00440512              12        0         0         0         0       4125555             0            848              0
+Ethernet112         40,939     0.557338   0.00769501              12        0         0         0         0       4126702             0            848              0
+Ethernet120         40,988     0.248803   0.00344413              11        0         0         0         0       4138761             0            776              0
+Ethernet128         40,948     0.507349   0.00686301              12        0         0         0         0       4131751             0            848              0
+Ethernet136         40,938      2.91188    0.0339138              11        0         0         0         0       4125379             0            776              0
+... (49 more lines)
+```
+
+</details>
+
 <a id="16.2-show-interfaces-counters-rif---period-2"></a>
 #### 16.2 `show interfaces counters rif --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 51 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 51 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
+| `str4-sn5640-7` | ✅ PASS | All 83 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -7617,6 +11713,86 @@ PortChannel117        0   7.44826   0.0771171         0        0         0      
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "PortChannel101": {
+    "RxOkPackets": "0",
+    "RxBps": "1.572960559137764",
+    "RxPps": "0.01919399139058009",
+    "RxErrPackets": "0",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "0",
+    "TxErrBits": "0",
+    "RxOkBits": "0",
+    "TxOkBits": "0"
+  },
+  "PortChannel102": {
+    "RxOkPackets": "0",
+    "RxBps": "2.0522869623075626",
+    "RxPps": "0.023175975216348961",
+    "RxErrPackets": "0",
+... (318 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+         IFACE    RX_OK     RX_BPS    RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR
+--------------  -------  ---------  --------  --------  -------  --------  --------  --------
+PortChannel101        0   0.61 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel102        0  11.21 B/s    0.13/s         0        0  0.00 B/s    0.00/s         0
+PortChannel103        0   0.44 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel104        0   4.42 B/s    0.04/s         0        0  0.00 B/s    0.00/s         0
+PortChannel105        0   7.80 B/s    0.07/s         0        0  0.00 B/s    0.00/s         0
+PortChannel106        0   0.42 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel107        0   5.33 B/s    0.05/s         0        0  0.00 B/s    0.00/s         0
+PortChannel108        0   0.48 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel109        0   0.49 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel110        0   9.28 B/s    0.09/s         0        0  0.00 B/s    0.00/s         0
+PortChannel111        0  11.18 B/s    0.13/s         0        0  0.00 B/s    0.00/s         0
+PortChannel112        0   4.43 B/s    0.04/s         0        0  0.00 B/s    0.00/s         0
+PortChannel113        0   0.51 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+PortChannel114        0   3.26 B/s    0.03/s         0        0  0.00 B/s    0.00/s         0
+PortChannel115        0   1.33 B/s    0.02/s         0        0  0.00 B/s    0.00/s         0
+PortChannel116        0  11.33 B/s    0.11/s         0        0  0.00 B/s    0.00/s         0
+PortChannel117        0   5.28 B/s    0.06/s         0        0  0.00 B/s    0.00/s         0
+... (8 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+         IFACE    RX_OK    RX_BPS     RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+--------------  -------  --------  ---------  --------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+PortChannel101        0   1.57296   0.019194         0        0         0         0         0             0             0              0              0
+PortChannel102        0   2.05229   0.023176         0        0         0         0         0             0             0              0              0
+PortChannel103        0   1.38026  0.0169533         0        0         0         0         0             0             0              0              0
+PortChannel104        0   1.21454  0.0151501         0        0         0         0         0             0             0              0              0
+PortChannel105        0   1.22027  0.0152292         0        0         0         0         0             0             0              0              0
+PortChannel106        0   1.20987  0.0151072         0        0         0         0         0             0             0              0              0
+PortChannel107        0   1.46487  0.0179605         0        0         0         0         0             0             0              0              0
+PortChannel108        0   2.03131  0.0229403         0        0         0         0         0             0             0              0              0
+PortChannel109        0   2.26083  0.0267147         0        0         0         0         0             0             0              0              0
+PortChannel110        0   1.40417  0.0172769         0        0         0         0         0             0             0              0              0
+PortChannel111        0   1.27024  0.0156654         0        0         0         0         0             0             0              0              0
+PortChannel112        0   2.81957  0.0306692         0        0         0         0         0             0             0              0              0
+PortChannel113        0   1.11298  0.0137322         0        0         0         0         0             0             0              0              0
+PortChannel114        0    7.7441  0.0759446         0        0         0         0         0             0             0              0              0
+PortChannel115        0   2.10961  0.0240037         0        0         0         0         0             0             0              0              0
+PortChannel116        1   20.7325   0.193728         0        0         0         0         0           109             0              0              0
+PortChannel117        0   1.35577  0.0167336         0        0         0         0         0             0             0              0              0
+... (7 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -7692,6 +11868,86 @@ Ethernet176      N/A       N/A       N/A       N/A      N/A       N/A       N/A 
 Ethernet184      N/A       N/A       N/A       N/A      N/A       N/A       N/A       N/A           N/A           N/A            N/A            N/A
 Ethernet320      N/A       N/A       N/A       N/A      N/A       N/A       N/A       N/A           N/A           N/A            N/A            N/A
 ... (18 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "RxOkPackets": "0",
+    "RxBps": "1.2400976971292296e-05",
+    "RxPps": "1.537534655117554e-07",
+    "RxErrPackets": "0",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "0",
+    "TxErrBits": "0",
+    "RxOkBits": "0",
+    "TxOkBits": "0"
+  },
+  "Ethernet104": {
+    "RxOkPackets": "0",
+    "RxBps": "0.17757897508666914",
+    "RxPps": "0.0024288398173694893",
+    "RxErrPackets": "0",
+... (920 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    RX_OK     RX_BPS    RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR
+-----------  -------  ---------  --------  --------  -------  --------  --------  --------
+  Ethernet0        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+  Ethernet8        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet16        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet24        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet32        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet40        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet48        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet56        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet64        0   0.01 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet72        0   0.02 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet80        0   1.25 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet88        0   0.00 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+ Ethernet96        0   0.06 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+Ethernet104        0   0.22 B/s    0.00/s         0        0  0.00 B/s    0.00/s         0
+Ethernet112        0   0.48 B/s    0.01/s         0        0  0.00 B/s    0.00/s         0
+Ethernet120        0   1.52 B/s    0.02/s         0        0  0.00 B/s    0.00/s         0
+Ethernet128        0   9.04 B/s    0.10/s         0        0  0.00 B/s    0.00/s         0
+... (51 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    RX_OK       RX_BPS       RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+-----------  -------  -----------  -----------  --------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+  Ethernet0        0   1.2401e-05  1.53753e-07         0        0         0         0         0             0             0              0              0
+  Ethernet8        0   3.8737e-05  5.56471e-07         0        0         0         0         0             0             0              0              0
+ Ethernet16        0   1.2401e-05  1.53753e-07         0        0         0         0         0             0             0              0              0
+ Ethernet24        0   1.2401e-05  1.53753e-07         0        0         0         0         0             0             0              0              0
+ Ethernet32        0  1.41738e-05  1.78376e-07         0        0         0         0         0             0             0              0              0
+ Ethernet40        0  1.51231e-05  1.87504e-07         0        0         0         0         0             0             0              0              0
+ Ethernet48        0  1.51231e-05  1.87504e-07         0        0         0         0         0             0             0              0              0
+ Ethernet56        0  1.51231e-05  1.87504e-07         0        0         0         0         0             0             0              0              0
+ Ethernet64        0       7.4559    0.0820781         0        0         0         0         0             0             0              0              0
+ Ethernet72        0    0.0704458  0.000827952         0        0         0         0         0             0             0              0              0
+ Ethernet80        0     0.214364   0.00257151         0        0         0         0         0             0             0              0              0
+ Ethernet88        0     0.138199   0.00169568         0        0         0         0         0             0             0              0              0
+ Ethernet96        0      6.09656    0.0670608         0        0         0         0         0             0             0              0              0
+Ethernet104        0     0.177579   0.00242884         0        0         0         0         0             0             0              0              0
+Ethernet112        0     0.307298   0.00424278         0        0         0         0         0             0             0              0              0
+Ethernet120        0     0.137182   0.00189898         0        0         0         0         0             0             0              0              0
+Ethernet128        0     0.279736   0.00378404         0        0         0         0         0             0             0              0              0
+... (50 more lines)
 ```
 
 </details>
@@ -7972,6 +12228,286 @@ PortChannel117        0   4.10673  0.0425199         0        0         0       
 
 </details>
 
+<a id="16.7-show-interfaces-counters-rif-portchannel116---period-2"></a>
+#### 16.7 `show interfaces counters rif PortChannel116 --period 2`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters rif PortChannel116 --period 2"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "PortChannel116": {
+    "RxOkPackets": "0",
+    "RxBps": "11.431246869703774",
+    "RxPps": "0.10681539953677362",
+    "RxErrPackets": "0",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "0",
+    "TxErrBits": "0",
+    "RxOkBits": "0",
+    "TxOkBits": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+PortChannel116
+--------------
+
+        RX:
+                 0 packets
+                 0 bytes
+                 0 error packets
+                 0 error bytes
+        TX:
+                 0 packets
+                 0 bytes
+                 0 error packets
+                 0 error bytes
+
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+         IFACE    RX_OK    RX_BPS    RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+--------------  -------  --------  --------  --------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+PortChannel116        0   11.4312  0.106815         0        0         0         0         0             0             0              0              0
+```
+
+</details>
+
+<a id="16.8-show-interfaces-counters-rif-portchannel116"></a>
+#### 16.8 `show interfaces counters rif PortChannel116`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters rif PortChannel116"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "PortChannel116": {
+    "RxOkPackets": "61337",
+    "RxBps": "1.6545475781864105",
+    "RxPps": "0.020416363861626645",
+    "RxErrPackets": "0",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "0",
+    "TxErrBits": "0",
+    "RxOkBits": "5535814",
+    "TxOkBits": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+PortChannel116
+--------------
+
+        RX:
+            61,315 packets
+         5,533,826 bytes
+                 0 error packets
+                 0 error bytes
+        TX:
+                 0 packets
+                 0 bytes
+                 0 error packets
+                 0 error bytes
+
+```
+
+**Actual Converter Output:**
+```
+         IFACE    RX_OK    RX_BPS     RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+--------------  -------  --------  ---------  --------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+PortChannel116   61,337   1.65455  0.0204164         0        0         0         0         0       5535814             0              0              0
+```
+
+</details>
+
+<a id="16.9-show-interfaces-counters-rif-ethernet408---period-2"></a>
+#### 16.9 `show interfaces counters rif Ethernet408 --period 2`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters rif Ethernet408 --period 2"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet408": {
+    "RxOkPackets": "0",
+    "RxBps": "11.819442302799517",
+    "RxPps": "0.13221949997328772",
+    "RxErrPackets": "0",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "0",
+    "TxErrBits": "0",
+    "RxOkBits": "0",
+    "TxOkBits": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+Ethernet408
+-----------
+
+        RX:
+                 0 packets
+                 0 bytes
+                 0 error packets
+                 0 error bytes
+        TX:
+                 0 packets
+                 0 bytes
+                 0 error packets
+                 0 error bytes
+
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    RX_OK    RX_BPS    RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+-----------  -------  --------  --------  --------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+Ethernet408        0   11.8194  0.132219         0        0         0         0         0             0             0              0              0
+```
+
+</details>
+
+<a id="16.10-show-interfaces-counters-rif-ethernet408"></a>
+#### 16.10 `show interfaces counters rif Ethernet408`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters rif Ethernet408"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet408": {
+    "RxOkPackets": "40935",
+    "RxBps": "2.1727643186302026",
+    "RxPps": "0.030176146908635491",
+    "RxErrPackets": "12",
+    "TxOkPackets": "0",
+    "TxBps": "0",
+    "TxPps": "0",
+    "TxErrPackets": "0",
+    "RxErrBits": "848",
+    "TxErrBits": "0",
+    "RxOkBits": "4125033",
+    "TxOkBits": "0"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Ethernet408
+-----------
+
+        RX:
+             40924 packets
+           4124101 bytes
+                12 error packets
+               848 error bytes
+        TX:
+                 0 packets
+                 0 bytes
+                 0 error packets
+                 0 error bytes
+
+```
+
+**Actual Converter Output:**
+```
+      IFACE    RX_OK    RX_BPS     RX_PPS    RX_ERR    TX_OK    TX_BPS    TX_PPS    TX_ERR    RX_OK_BITS    TX_OK_BITS    RX_ERR_BITS    TX_ERR_BITS
+-----------  -------  --------  ---------  --------  -------  --------  --------  --------  ------------  ------------  -------------  -------------
+Ethernet408   40,935   2.17276  0.0301761        12        0         0         0         0       4125033             0            848              0
+```
+
+</details>
+
 ---
 
 <a id="17-show-interfaces-counters-trim"></a>
@@ -7979,16 +12515,18 @@ PortChannel117        0   4.10673  0.0425199         0        0         0       
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 8/16 test cases passed (across 4 devices)
+**Status:** ✅ All 14/36 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 3 | 0 | 0 | 0 |
+| `str3-8101-02` | 3 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 3 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 3 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -7996,6 +12534,8 @@ PortChannel117        0   4.10673  0.0425199         0        0         0       
 - [17.2 --period 2](#17.2-show-interfaces-counters-trim---period-2)
 - [17.3 Ethernet0](#17.3-show-interfaces-counters-trim-ethernet0)
 - [17.4 Ethernet252](#17.4-show-interfaces-counters-trim-ethernet252)
+- [17.5 Ethernet8](#17.5-show-interfaces-counters-trim-ethernet8)
+- [17.6 Ethernet505](#17.6-show-interfaces-counters-trim-ethernet505)
 
 <a id="17.1-show-interfaces-counters-trim"></a>
 #### 17.1 `show interfaces counters trim` (base command)
@@ -8003,9 +12543,11 @@ PortChannel117        0   4.10673  0.0425199         0        0         0       
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -8095,6 +12637,86 @@ print(result)
  Ethernet64        U          N/A             N/A              N/A
  Ethernet68        U          N/A             N/A              N/A
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet112": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet12": {
+... (318 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U          N/A             N/A              N/A
+  Ethernet4        U          N/A             N/A              N/A
+  Ethernet8        X          N/A             N/A              N/A
+ Ethernet12        X          N/A             N/A              N/A
+ Ethernet16        U          N/A             N/A              N/A
+ Ethernet20        U          N/A             N/A              N/A
+ Ethernet24        X          N/A             N/A              N/A
+ Ethernet28        X          N/A             N/A              N/A
+ Ethernet32        X          N/A             N/A              N/A
+ Ethernet36        X          N/A             N/A              N/A
+ Ethernet40        X          N/A             N/A              N/A
+ Ethernet44        X          N/A             N/A              N/A
+ Ethernet48        X          N/A             N/A              N/A
+ Ethernet52        X          N/A             N/A              N/A
+ Ethernet56        X          N/A             N/A              N/A
+ Ethernet60        X          N/A             N/A              N/A
+ Ethernet64        U          N/A             N/A              N/A
+ Ethernet68        U          N/A             N/A              N/A
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U          N/A             N/A              N/A
+  Ethernet4        U          N/A             N/A              N/A
+  Ethernet8        X          N/A             N/A              N/A
+ Ethernet12        X          N/A             N/A              N/A
+ Ethernet16        U          N/A             N/A              N/A
+ Ethernet20        U          N/A             N/A              N/A
+ Ethernet24        X          N/A             N/A              N/A
+ Ethernet28        X          N/A             N/A              N/A
+ Ethernet32        X          N/A             N/A              N/A
+ Ethernet36        X          N/A             N/A              N/A
+ Ethernet40        X          N/A             N/A              N/A
+ Ethernet44        X          N/A             N/A              N/A
+ Ethernet48        X          N/A             N/A              N/A
+ Ethernet52        X          N/A             N/A              N/A
+ Ethernet56        X          N/A             N/A              N/A
+ Ethernet60        X          N/A             N/A              N/A
+ Ethernet64        U          N/A             N/A              N/A
+ Ethernet68        U          N/A             N/A              N/A
+... (38 more lines)
 ```
 
 </details>
@@ -8339,13 +12961,95 @@ Ethernet136        U          N/A             N/A              N/A
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet10": {
+    "State": "X",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet100": {
+... (3066 more lines)
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U            0               0                0
+  Ethernet1        X            0               0                0
+  Ethernet2        X            0               0                0
+  Ethernet3        X            0               0                0
+  Ethernet4        X            0               0                0
+  Ethernet5        X            0               0                0
+  Ethernet6        X            0               0                0
+  Ethernet7        X            0               0                0
+  Ethernet8        U            0               0                0
+  Ethernet9        X            0               0                0
+ Ethernet10        X            0               0                0
+ Ethernet11        X            0               0                0
+ Ethernet12        X            0               0                0
+ Ethernet13        X            0               0                0
+ Ethernet14        X            0               0                0
+ Ethernet15        X            0               0                0
+ Ethernet16        U            0               0                0
+ Ethernet17        X            0               0                0
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U          N/A             N/A              N/A
+  Ethernet1        X          N/A             N/A              N/A
+  Ethernet2        X          N/A             N/A              N/A
+  Ethernet3        X          N/A             N/A              N/A
+  Ethernet4        X          N/A             N/A              N/A
+  Ethernet5        X          N/A             N/A              N/A
+  Ethernet6        X          N/A             N/A              N/A
+  Ethernet7        X          N/A             N/A              N/A
+  Ethernet8        U          N/A             N/A              N/A
+  Ethernet9        X          N/A             N/A              N/A
+ Ethernet10        X          N/A             N/A              N/A
+ Ethernet11        X          N/A             N/A              N/A
+ Ethernet12        X          N/A             N/A              N/A
+ Ethernet13        X          N/A             N/A              N/A
+ Ethernet14        X          N/A             N/A              N/A
+ Ethernet15        X          N/A             N/A              N/A
+ Ethernet16        U          N/A             N/A              N/A
+ Ethernet17        X          N/A             N/A              N/A
+... (496 more lines)
+```
+
+</details>
+
 <a id="17.2-show-interfaces-counters-trim---period-2"></a>
 #### 17.2 `show interfaces counters trim --period 2`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -8440,6 +13144,86 @@ The rates are calculated within 2 seconds period
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet104": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet112": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet12": {
+... (318 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U          N/A             N/A              N/A
+  Ethernet4        U          N/A             N/A              N/A
+  Ethernet8        X          N/A             N/A              N/A
+ Ethernet12        X          N/A             N/A              N/A
+ Ethernet16        U          N/A             N/A              N/A
+ Ethernet20        U          N/A             N/A              N/A
+ Ethernet24        X          N/A             N/A              N/A
+ Ethernet28        X          N/A             N/A              N/A
+ Ethernet32        X          N/A             N/A              N/A
+ Ethernet36        X          N/A             N/A              N/A
+ Ethernet40        X          N/A             N/A              N/A
+ Ethernet44        X          N/A             N/A              N/A
+ Ethernet48        X          N/A             N/A              N/A
+ Ethernet52        X          N/A             N/A              N/A
+ Ethernet56        X          N/A             N/A              N/A
+ Ethernet60        X          N/A             N/A              N/A
+ Ethernet64        U          N/A             N/A              N/A
+... (40 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U          N/A             N/A              N/A
+  Ethernet4        U          N/A             N/A              N/A
+  Ethernet8        X          N/A             N/A              N/A
+ Ethernet12        X          N/A             N/A              N/A
+ Ethernet16        U          N/A             N/A              N/A
+ Ethernet20        U          N/A             N/A              N/A
+ Ethernet24        X          N/A             N/A              N/A
+ Ethernet28        X          N/A             N/A              N/A
+ Ethernet32        X          N/A             N/A              N/A
+ Ethernet36        X          N/A             N/A              N/A
+ Ethernet40        X          N/A             N/A              N/A
+ Ethernet44        X          N/A             N/A              N/A
+ Ethernet48        X          N/A             N/A              N/A
+ Ethernet52        X          N/A             N/A              N/A
+ Ethernet56        X          N/A             N/A              N/A
+ Ethernet60        X          N/A             N/A              N/A
+ Ethernet64        U          N/A             N/A              N/A
+... (39 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -8490,6 +13274,86 @@ The rates are calculated within 2 seconds period
  Ethernet15        X            0               0                0
  Ethernet16        U            0               0                0
 ... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U          N/A             N/A              N/A
+  Ethernet1        X          N/A             N/A              N/A
+  Ethernet2        X          N/A             N/A              N/A
+  Ethernet3        X          N/A             N/A              N/A
+  Ethernet4        X          N/A             N/A              N/A
+  Ethernet5        X          N/A             N/A              N/A
+  Ethernet6        X          N/A             N/A              N/A
+  Ethernet7        X          N/A             N/A              N/A
+  Ethernet8        U          N/A             N/A              N/A
+  Ethernet9        X          N/A             N/A              N/A
+ Ethernet10        X          N/A             N/A              N/A
+ Ethernet11        X          N/A             N/A              N/A
+ Ethernet12        X          N/A             N/A              N/A
+ Ethernet13        X          N/A             N/A              N/A
+ Ethernet14        X          N/A             N/A              N/A
+ Ethernet15        X          N/A             N/A              N/A
+ Ethernet16        U          N/A             N/A              N/A
+... (497 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "State": "U",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet1": {
+    "State": "X",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet10": {
+    "State": "X",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  },
+  "Ethernet100": {
+... (3066 more lines)
+```
+
+**Expected CLI Output:**
+```
+The rates are calculated within 2 seconds period
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+  Ethernet0        U            0               0                0
+  Ethernet1        X            0               0                0
+  Ethernet2        X            0               0                0
+  Ethernet3        X            0               0                0
+  Ethernet4        X            0               0                0
+  Ethernet5        X            0               0                0
+  Ethernet6        X            0               0                0
+  Ethernet7        X            0               0                0
+  Ethernet8        U            0               0                0
+  Ethernet9        X            0               0                0
+ Ethernet10        X            0               0                0
+ Ethernet11        X            0               0                0
+ Ethernet12        X            0               0                0
+ Ethernet13        X            0               0                0
+ Ethernet14        X            0               0                0
+ Ethernet15        X            0               0                0
+ Ethernet16        U            0               0                0
+... (498 more lines)
 ```
 
 **Actual Converter Output:**
@@ -8619,6 +13483,108 @@ Ethernet252        U          N/A             N/A              N/A
 
 </details>
 
+<a id="17.5-show-interfaces-counters-trim-ethernet8"></a>
+#### 17.5 `show interfaces counters trim Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters trim Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": {
+    "State": "X",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+    IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+---------  -------  -----------  --------------  ---------------
+Ethernet8        X          N/A             N/A              N/A
+
+```
+
+**Actual Converter Output:**
+```
+    IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+---------  -------  -----------  --------------  ---------------
+Ethernet8        X          N/A             N/A              N/A
+```
+
+</details>
+
+<a id="17.6-show-interfaces-counters-trim-ethernet505"></a>
+#### 17.6 `show interfaces counters trim Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces counters trim Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": {
+    "State": "X",
+    "TrimPkts": "N/A",
+    "TrimSent": "N/A",
+    "TrimDrp": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+Ethernet505        X            0               0                0
+
+```
+
+**Actual Converter Output:**
+```
+      IFACE    STATE    TRIM_PKTS    TRIM_TX_PKTS    TRIM_DRP_PKTS
+-----------  -------  -----------  --------------  ---------------
+Ethernet505        X          N/A             N/A              N/A
+```
+
+</details>
+
 ---
 
 <a id="18-show-interfaces-description"></a>
@@ -8626,22 +13592,26 @@ Ethernet252        U          N/A             N/A              N/A
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [18.1 (base command)](#18.1-show-interfaces-description)
 - [18.2 Ethernet0](#18.2-show-interfaces-description-ethernet0)
 - [18.3 Ethernet252](#18.3-show-interfaces-description-ethernet252)
+- [18.4 Ethernet8](#18.4-show-interfaces-description-ethernet8)
+- [18.5 Ethernet505](#18.5-show-interfaces-description-ethernet505)
 
 <a id="18.1-show-interfaces-description"></a>
 #### 18.1 `show interfaces description` (base command)
@@ -8649,9 +13619,11 @@ Ethernet252        U          N/A             N/A              N/A
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -8741,6 +13713,86 @@ print(result)
  Ethernet64      up       up    etp16  ARISTA05T2:Ethernet1
  Ethernet68      up       up    etp17  ARISTA05T2:Ethernet2
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "Admin": "up",
+    "Alias": "etp0a",
+    "Description": "ARISTA01T0:Ethernet1",
+    "Oper": "up"
+  },
+  "Ethernet104": {
+    "Admin": "up",
+    "Alias": "etp13",
+    "Description": "ARISTA01T2:Ethernet2",
+    "Oper": "up"
+  },
+  "Ethernet112": {
+    "Admin": "up",
+    "Alias": "etp14",
+    "Description": "ARISTA03T2:Ethernet1",
+    "Oper": "up"
+  },
+  "Ethernet12": {
+... (318 more lines)
+```
+
+**Expected CLI Output:**
+```
+  Interface    Oper    Admin    Alias           Description
+-----------  ------  -------  -------  --------------------
+  Ethernet0      up       up    etp0a  ARISTA01T0:Ethernet1
+  Ethernet4      up       up    etp0b  ARISTA02T0:Ethernet1
+  Ethernet8    down     down    etp1a                 etp1a
+ Ethernet12    down     down    etp1b                 etp1b
+ Ethernet16      up       up    etp2a  ARISTA03T0:Ethernet1
+ Ethernet20      up       up    etp2b  ARISTA04T0:Ethernet1
+ Ethernet24    down     down    etp3a                 etp3a
+ Ethernet28    down     down    etp3b                 etp3b
+ Ethernet32    down     down    etp4a                 etp4a
+ Ethernet36    down     down    etp4b                 etp4b
+ Ethernet40    down     down    etp5a                 etp5a
+ Ethernet44    down     down    etp5b                 etp5b
+ Ethernet48    down     down    etp6a                 etp6a
+ Ethernet52    down     down    etp6b                 etp6b
+ Ethernet56    down     down    etp7a                 etp7a
+ Ethernet60    down     down    etp7b                 etp7b
+ Ethernet64      up       up    etp8a  ARISTA05T0:Ethernet1
+ Ethernet68      up       up    etp8b  ARISTA06T0:Ethernet1
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+  Interface    Oper    Admin    Alias           Description
+-----------  ------  -------  -------  --------------------
+  Ethernet0      up       up    etp0a  ARISTA01T0:Ethernet1
+  Ethernet4      up       up    etp0b  ARISTA02T0:Ethernet1
+  Ethernet8    down     down    etp1a                 etp1a
+ Ethernet12    down     down    etp1b                 etp1b
+ Ethernet16      up       up    etp2a  ARISTA03T0:Ethernet1
+ Ethernet20      up       up    etp2b  ARISTA04T0:Ethernet1
+ Ethernet24    down     down    etp3a                 etp3a
+ Ethernet28    down     down    etp3b                 etp3b
+ Ethernet32    down     down    etp4a                 etp4a
+ Ethernet36    down     down    etp4b                 etp4b
+ Ethernet40    down     down    etp5a                 etp5a
+ Ethernet44    down     down    etp5b                 etp5b
+ Ethernet48    down     down    etp6a                 etp6a
+ Ethernet52    down     down    etp6b                 etp6b
+ Ethernet56    down     down    etp7a                 etp7a
+ Ethernet60    down     down    etp7b                 etp7b
+ Ethernet64      up       up    etp8a  ARISTA05T0:Ethernet1
+ Ethernet68      up       up    etp8b  ARISTA06T0:Ethernet1
+... (38 more lines)
 ```
 
 </details>
@@ -8985,6 +14037,86 @@ Ethernet136      up       up    etp18  ARISTA14FT2:Ethernet1
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "Admin": "up",
+    "Alias": "etp1a",
+    "Description": "Servers0:eth0",
+    "Oper": "up"
+  },
+  "Ethernet1": {
+    "Admin": "down",
+    "Alias": "etp1b",
+    "Description": "etp1b",
+    "Oper": "down"
+  },
+  "Ethernet10": {
+    "Admin": "down",
+    "Alias": "etp2c",
+    "Description": "etp2c",
+    "Oper": "down"
+  },
+  "Ethernet100": {
+... (3066 more lines)
+```
+
+**Expected CLI Output:**
+```
+  Interface    Oper    Admin    Alias            Description
+-----------  ------  -------  -------  ---------------------
+  Ethernet0      up       up    etp1a          Servers0:eth0
+  Ethernet1    down     down    etp1b                  etp1b
+  Ethernet2    down     down    etp1c                  etp1c
+  Ethernet3    down     down    etp1d                  etp1d
+  Ethernet4    down     down    etp1e                  etp1e
+  Ethernet5    down     down    etp1f                  etp1f
+  Ethernet6    down     down    etp1g                  etp1g
+  Ethernet7    down     down    etp1h                  etp1h
+  Ethernet8      up       up    etp2a          Servers1:eth0
+  Ethernet9    down     down    etp2b                  etp2b
+ Ethernet10    down     down    etp2c                  etp2c
+ Ethernet11    down     down    etp2d                  etp2d
+ Ethernet12    down     down    etp2e                  etp2e
+ Ethernet13    down     down    etp2f                  etp2f
+ Ethernet14    down     down    etp2g                  etp2g
+ Ethernet15    down     down    etp2h                  etp2h
+ Ethernet16      up       up    etp3a          Servers2:eth0
+ Ethernet17    down     down    etp3b                  etp3b
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+  Interface    Oper    Admin    Alias            Description
+-----------  ------  -------  -------  ---------------------
+  Ethernet0      up       up    etp1a          Servers0:eth0
+  Ethernet1    down     down    etp1b                  etp1b
+  Ethernet2    down     down    etp1c                  etp1c
+  Ethernet3    down     down    etp1d                  etp1d
+  Ethernet4    down     down    etp1e                  etp1e
+  Ethernet5    down     down    etp1f                  etp1f
+  Ethernet6    down     down    etp1g                  etp1g
+  Ethernet7    down     down    etp1h                  etp1h
+  Ethernet8      up       up    etp2a          Servers1:eth0
+  Ethernet9    down     down    etp2b                  etp2b
+ Ethernet10    down     down    etp2c                  etp2c
+ Ethernet11    down     down    etp2d                  etp2d
+ Ethernet12    down     down    etp2e                  etp2e
+ Ethernet13    down     down    etp2f                  etp2f
+ Ethernet14    down     down    etp2g                  etp2g
+ Ethernet15    down     down    etp2h                  etp2h
+ Ethernet16      up       up    etp3a          Servers2:eth0
+ Ethernet17    down     down    etp3b                  etp3b
+... (496 more lines)
+```
+
+</details>
+
 <a id="18.2-show-interfaces-description-ethernet0"></a>
 #### 18.2 `show interfaces description Ethernet0`
 
@@ -9111,6 +14243,134 @@ Ethernet252      up       up    etp63  ARISTA20T0:Ethernet1
 
 </details>
 
+<a id="18.4-show-interfaces-description-ethernet8"></a>
+#### 18.4 `show interfaces description Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces description Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "Admin": "up",
+    "Alias": "etp0a",
+    "Description": "ARISTA01T0:Ethernet1",
+    "Oper": "up"
+  },
+  "Ethernet104": {
+    "Admin": "up",
+    "Alias": "etp13",
+    "Description": "ARISTA01T2:Ethernet2",
+    "Oper": "up"
+  },
+  "Ethernet112": {
+    "Admin": "up",
+    "Alias": "etp14",
+    "Description": "ARISTA03T2:Ethernet1",
+    "Oper": "up"
+  },
+  "Ethernet12": {
+... (318 more lines)
+```
+
+**Expected CLI Output:**
+```
+  Interface    Oper    Admin    Alias    Description
+-----------  ------  -------  -------  -------------
+  Ethernet8    down     down    etp1a          etp1a
+
+```
+
+**Actual Converter Output:**
+```
+  Interface    Oper    Admin    Alias    Description
+-----------  ------  -------  -------  -------------
+  Ethernet8    down     down    etp1a          etp1a
+```
+
+</details>
+
+<a id="18.5-show-interfaces-description-ethernet505"></a>
+#### 18.5 `show interfaces description Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces description Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "Admin": "up",
+    "Alias": "etp1a",
+    "Description": "Servers0:eth0",
+    "Oper": "up"
+  },
+  "Ethernet1": {
+    "Admin": "down",
+    "Alias": "etp1b",
+    "Description": "etp1b",
+    "Oper": "down"
+  },
+  "Ethernet10": {
+    "Admin": "down",
+    "Alias": "etp2c",
+    "Description": "etp2c",
+    "Oper": "down"
+  },
+  "Ethernet100": {
+... (3066 more lines)
+```
+
+**Expected CLI Output:**
+```
+  Interface    Oper    Admin    Alias    Description
+-----------  ------  -------  -------  -------------
+Ethernet505    down     down   etp64b         etp64b
+
+```
+
+**Actual Converter Output:**
+```
+  Interface    Oper    Admin    Alias    Description
+-----------  ------  -------  -------  -------------
+Ethernet505    down     down   etp64b         etp64b
+```
+
+</details>
+
 ---
 
 <a id="19-show-interfaces-errors"></a>
@@ -9118,21 +14378,25 @@ Ethernet252      up       up    etp63  ARISTA20T0:Ethernet1
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/8 test cases passed (across 4 devices)
+**Status:** ✅ All 6/24 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [19.1 Ethernet0](#19.1-show-interfaces-errors-ethernet0)
 - [19.2 Ethernet252](#19.2-show-interfaces-errors-ethernet252)
+- [19.3 Ethernet8](#19.3-show-interfaces-errors-ethernet8)
+- [19.4 Ethernet505](#19.4-show-interfaces-errors-ethernet505)
 
 <a id="19.1-show-interfaces-errors-ethernet0"></a>
 #### 19.1 `show interfaces errors Ethernet0`
@@ -9454,6 +14718,186 @@ no rx reachability                  0  Never
 
 </details>
 
+<a id="19.3-show-interfaces-errors-ethernet8"></a>
+#### 19.3 `show interfaces errors Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces errors Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "oper error status"
+  },
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "mac local fault"
+  },
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "mac remote fault"
+  },
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "fec sync loss"
+... (52 more lines)
+```
+
+**Expected CLI Output:**
+```
+Port Errors                     Count  Last timestamp(UTC)
+----------------------------  -------  ---------------------
+code group error                    0  Never
+crc rate                            0  Never
+data unit crc error                 0  Never
+data unit misalignment error        0  Never
+data unit size                      0  Never
+fec alignment loss                  0  Never
+fec sync loss                       0  Never
+high ber error                      0  Never
+high ser error                      0  Never
+mac local fault                     0  Never
+mac remote fault                    0  Never
+no rx reachability                  0  Never
+oper error status                   0  Never
+signal local error                  0  Never
+
+```
+
+**Actual Converter Output:**
+```
+Port Errors                     Count  Last timestamp(UTC)
+----------------------------  -------  ---------------------
+oper error status                   0  Never
+mac local fault                     0  Never
+mac remote fault                    0  Never
+fec sync loss                       0  Never
+fec alignment loss                  0  Never
+high ser error                      0  Never
+high ber error                      0  Never
+data unit crc error                 0  Never
+data unit misalignment error        0  Never
+signal local error                  0  Never
+crc rate                            0  Never
+data unit size                      0  Never
+code group error                    0  Never
+no rx reachability                  0  Never
+```
+
+</details>
+
+<a id="19.4-show-interfaces-errors-ethernet505"></a>
+#### 19.4 `show interfaces errors Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces errors Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "oper error status"
+  },
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "mac local fault"
+  },
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "mac remote fault"
+  },
+  {
+    "Count": "0",
+    "Last timestamp(UTC)": "Never",
+    "Port Errors": "fec sync loss"
+... (52 more lines)
+```
+
+**Expected CLI Output:**
+```
+Port Errors                     Count  Last timestamp(UTC)
+----------------------------  -------  ---------------------
+code group error                    0  Never
+crc rate                            0  Never
+data unit crc error                 0  Never
+data unit misalignment error        0  Never
+data unit size                      0  Never
+fec alignment loss                  0  Never
+fec sync loss                       0  Never
+high ber error                      0  Never
+high ser error                      0  Never
+mac local fault                     0  Never
+mac remote fault                    0  Never
+no rx reachability                  0  Never
+oper error status                   0  Never
+signal local error                  0  Never
+
+```
+
+**Actual Converter Output:**
+```
+Port Errors                     Count  Last timestamp(UTC)
+----------------------------  -------  ---------------------
+oper error status                   0  Never
+mac local fault                     0  Never
+mac remote fault                    0  Never
+fec sync loss                       0  Never
+fec alignment loss                  0  Never
+high ser error                      0  Never
+high ber error                      0  Never
+data unit crc error                 0  Never
+data unit misalignment error        0  Never
+signal local error                  0  Never
+crc rate                            0  Never
+data unit size                      0  Never
+code group error                    0  Never
+no rx reachability                  0  Never
+```
+
+</details>
+
 ---
 
 <a id="20-show-interfaces-fec-status"></a>
@@ -9461,22 +14905,26 @@ no rx reachability                  0  Never
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [20.1 (base command)](#20.1-show-interfaces-fec-status)
 - [20.2 Ethernet0](#20.2-show-interfaces-fec-status-ethernet0)
 - [20.3 Ethernet252](#20.3-show-interfaces-fec-status-ethernet252)
+- [20.4 Ethernet8](#20.4-show-interfaces-fec-status-ethernet8)
+- [20.5 Ethernet505](#20.5-show-interfaces-fec-status-ethernet505)
 
 <a id="20.1-show-interfaces-fec-status"></a>
 #### 20.1 `show interfaces fec status` (base command)
@@ -9484,9 +14932,11 @@ no rx reachability                  0  Never
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -9576,6 +15026,86 @@ print(result)
  Ethernet64          rs           rs
  Ethernet68          rs           rs
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "FEC Admin": "rs",
+    "FEC Oper": "rs",
+    "Interface": "Ethernet0"
+  },
+  {
+    "FEC Admin": "rs",
+    "FEC Oper": "rs",
+    "Interface": "Ethernet4"
+  },
+  {
+    "FEC Admin": "N/A",
+    "FEC Oper": "N/A",
+    "Interface": "Ethernet8"
+  },
+  {
+    "FEC Admin": "N/A",
+    "FEC Oper": "N/A",
+    "Interface": "Ethernet12"
+... (262 more lines)
+```
+
+**Expected CLI Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+  Ethernet0          rs           rs
+  Ethernet4          rs           rs
+  Ethernet8         N/A          N/A
+ Ethernet12         N/A          N/A
+ Ethernet16          rs           rs
+ Ethernet20          rs           rs
+ Ethernet24         N/A          N/A
+ Ethernet28         N/A          N/A
+ Ethernet32         N/A          N/A
+ Ethernet36         N/A          N/A
+ Ethernet40         N/A          N/A
+ Ethernet44         N/A          N/A
+ Ethernet48         N/A          N/A
+ Ethernet52         N/A          N/A
+ Ethernet56         N/A          N/A
+ Ethernet60         N/A          N/A
+ Ethernet64          rs           rs
+ Ethernet68          rs           rs
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+  Ethernet0          rs           rs
+  Ethernet4          rs           rs
+  Ethernet8         N/A          N/A
+ Ethernet12         N/A          N/A
+ Ethernet16          rs           rs
+ Ethernet20          rs           rs
+ Ethernet24         N/A          N/A
+ Ethernet28         N/A          N/A
+ Ethernet32         N/A          N/A
+ Ethernet36         N/A          N/A
+ Ethernet40         N/A          N/A
+ Ethernet44         N/A          N/A
+ Ethernet48         N/A          N/A
+ Ethernet52         N/A          N/A
+ Ethernet56         N/A          N/A
+ Ethernet60         N/A          N/A
+ Ethernet64          rs           rs
+ Ethernet68          rs           rs
+... (38 more lines)
 ```
 
 </details>
@@ -9820,6 +15350,86 @@ Ethernet136          rs           rs
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "FEC Admin": "rs",
+    "FEC Oper": "rs",
+    "Interface": "Ethernet0"
+  },
+  {
+    "FEC Admin": "rs",
+    "FEC Oper": "N/A",
+    "Interface": "Ethernet1"
+  },
+  {
+    "FEC Admin": "rs",
+    "FEC Oper": "N/A",
+    "Interface": "Ethernet2"
+  },
+  {
+    "FEC Admin": "rs",
+    "FEC Oper": "N/A",
+    "Interface": "Ethernet3"
+... (2552 more lines)
+```
+
+**Expected CLI Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+  Ethernet0          rs           rs
+  Ethernet1         N/A           rs
+  Ethernet2         N/A           rs
+  Ethernet3         N/A           rs
+  Ethernet4         N/A           rs
+  Ethernet5         N/A           rs
+  Ethernet6         N/A           rs
+  Ethernet7         N/A           rs
+  Ethernet8          rs           rs
+  Ethernet9         N/A           rs
+ Ethernet10         N/A           rs
+ Ethernet11         N/A           rs
+ Ethernet12         N/A           rs
+ Ethernet13         N/A           rs
+ Ethernet14         N/A           rs
+ Ethernet15         N/A           rs
+ Ethernet16          rs           rs
+ Ethernet17         N/A           rs
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+  Ethernet0          rs           rs
+  Ethernet1         N/A           rs
+  Ethernet2         N/A           rs
+  Ethernet3         N/A           rs
+  Ethernet4         N/A           rs
+  Ethernet5         N/A           rs
+  Ethernet6         N/A           rs
+  Ethernet7         N/A           rs
+  Ethernet8          rs           rs
+  Ethernet9         N/A           rs
+ Ethernet10         N/A           rs
+ Ethernet11         N/A           rs
+ Ethernet12         N/A           rs
+ Ethernet13         N/A           rs
+ Ethernet14         N/A           rs
+ Ethernet15         N/A           rs
+ Ethernet16          rs           rs
+ Ethernet17         N/A           rs
+... (496 more lines)
+```
+
+</details>
+
 <a id="20.2-show-interfaces-fec-status-ethernet0"></a>
 #### 20.2 `show interfaces fec status Ethernet0`
 
@@ -9918,6 +15528,106 @@ Ethernet252          rs           rs
 
 </details>
 
+<a id="20.4-show-interfaces-fec-status-ethernet8"></a>
+#### 20.4 `show interfaces fec status Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces fec status Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "FEC Admin": "N/A",
+    "FEC Oper": "N/A",
+    "Interface": "Ethernet8"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+  Ethernet8         N/A          N/A
+
+```
+
+**Actual Converter Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+  Ethernet8         N/A          N/A
+```
+
+</details>
+
+<a id="20.5-show-interfaces-fec-status-ethernet505"></a>
+#### 20.5 `show interfaces fec status Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces fec status Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "FEC Admin": "rs",
+    "FEC Oper": "N/A",
+    "Interface": "Ethernet505"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+Ethernet505         N/A           rs
+
+```
+
+**Actual Converter Output:**
+```
+  Interface    FEC Oper    FEC Admin
+-----------  ----------  -----------
+Ethernet505         N/A           rs
+```
+
+</details>
+
 ---
 
 <a id="21-show-interfaces-flap"></a>
@@ -9925,22 +15635,26 @@ Ethernet252          rs           rs
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [21.1 (base command)](#21.1-show-interfaces-flap)
 - [21.2 Ethernet0](#21.2-show-interfaces-flap-ethernet0)
 - [21.3 Ethernet252](#21.3-show-interfaces-flap-ethernet252)
+- [21.4 Ethernet8](#21.4-show-interfaces-flap-ethernet8)
+- [21.5 Ethernet505](#21.5-show-interfaces-flap-ethernet505)
 
 <a id="21.1-show-interfaces-flap"></a>
 #### 21.1 `show interfaces flap` (base command)
@@ -9948,9 +15662,11 @@ Ethernet252          rs           rs
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -10040,6 +15756,86 @@ Ethernet60              0  Down     Down    Never                       Never
 Ethernet64              3  Up       Up      Wed Jan 28 23:12:24 2026    Wed Jan 28 23:12:25 2026
 Ethernet68              3  Up       Up      Wed Jan 28 23:12:24 2026    Wed Jan 28 23:12:25 2026
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "Up",
+    "Flap Count": "1",
+    "Interface": "Ethernet0",
+    "Link Down TimeStamp(UTC)": "Never",
+    "Link Up TimeStamp(UTC)": "Fri Jan 30 11:28:25 2026",
+    "Oper": "Up"
+  },
+  {
+    "Admin": "Up",
+    "Flap Count": "1",
+    "Interface": "Ethernet4",
+    "Link Down TimeStamp(UTC)": "Never",
+    "Link Up TimeStamp(UTC)": "Fri Jan 30 11:28:25 2026",
+    "Oper": "Up"
+  },
+  {
+    "Admin": "Down",
+    "Flap Count": "0",
+... (446 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet0               1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet4               1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet8               0  Down     Down    Never                       Never
+Ethernet12              0  Down     Down    Never                       Never
+Ethernet16              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet20              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet24              0  Down     Down    Never                       Never
+Ethernet28              0  Down     Down    Never                       Never
+Ethernet32              0  Down     Down    Never                       Never
+Ethernet36              0  Down     Down    Never                       Never
+Ethernet40              0  Down     Down    Never                       Never
+Ethernet44              0  Down     Down    Never                       Never
+Ethernet48              0  Down     Down    Never                       Never
+Ethernet52              0  Down     Down    Never                       Never
+Ethernet56              0  Down     Down    Never                       Never
+Ethernet60              0  Down     Down    Never                       Never
+Ethernet64              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet68              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet0               1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet4               1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet8               0  Down     Down    Never                       Never
+Ethernet12              0  Down     Down    Never                       Never
+Ethernet16              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet20              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet24              0  Down     Down    Never                       Never
+Ethernet28              0  Down     Down    Never                       Never
+Ethernet32              0  Down     Down    Never                       Never
+Ethernet36              0  Down     Down    Never                       Never
+Ethernet40              0  Down     Down    Never                       Never
+Ethernet44              0  Down     Down    Never                       Never
+Ethernet48              0  Down     Down    Never                       Never
+Ethernet52              0  Down     Down    Never                       Never
+Ethernet56              0  Down     Down    Never                       Never
+Ethernet60              0  Down     Down    Never                       Never
+Ethernet64              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+Ethernet68              1  Up       Up      Never                       Fri Jan 30 11:28:25 2026
+... (38 more lines)
 ```
 
 </details>
@@ -10284,6 +16080,86 @@ Ethernet136             1  Up       Up      Never                       Sun Jan 
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "Up",
+    "Flap Count": "1",
+    "Interface": "Ethernet0",
+    "Link Down TimeStamp(UTC)": "Never",
+    "Link Up TimeStamp(UTC)": "Fri Jan 30 03:30:19 2026",
+    "Oper": "Up"
+  },
+  {
+    "Admin": "Down",
+    "Flap Count": "0",
+    "Interface": "Ethernet1",
+    "Link Down TimeStamp(UTC)": "Never",
+    "Link Up TimeStamp(UTC)": "Never",
+    "Oper": "Down"
+  },
+  {
+    "Admin": "Down",
+    "Flap Count": "0",
+... (4110 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet0               1  Up       Up      Never                       Fri Jan 30 03:30:19 2026
+Ethernet1               0  Down     Down    Never                       Never
+Ethernet2               0  Down     Down    Never                       Never
+Ethernet3               0  Down     Down    Never                       Never
+Ethernet4               0  Down     Down    Never                       Never
+Ethernet5               0  Down     Down    Never                       Never
+Ethernet6               0  Down     Down    Never                       Never
+Ethernet7               0  Down     Down    Never                       Never
+Ethernet8               1  Up       Up      Never                       Fri Jan 30 03:30:01 2026
+Ethernet9               0  Down     Down    Never                       Never
+Ethernet10              0  Down     Down    Never                       Never
+Ethernet11              0  Down     Down    Never                       Never
+Ethernet12              0  Down     Down    Never                       Never
+Ethernet13              0  Down     Down    Never                       Never
+Ethernet14              0  Down     Down    Never                       Never
+Ethernet15              0  Down     Down    Never                       Never
+Ethernet16              1  Up       Up      Never                       Fri Jan 30 03:30:01 2026
+Ethernet17              0  Down     Down    Never                       Never
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet0               1  Up       Up      Never                       Fri Jan 30 03:30:19 2026
+Ethernet1               0  Down     Down    Never                       Never
+Ethernet2               0  Down     Down    Never                       Never
+Ethernet3               0  Down     Down    Never                       Never
+Ethernet4               0  Down     Down    Never                       Never
+Ethernet5               0  Down     Down    Never                       Never
+Ethernet6               0  Down     Down    Never                       Never
+Ethernet7               0  Down     Down    Never                       Never
+Ethernet8               1  Up       Up      Never                       Fri Jan 30 03:30:01 2026
+Ethernet9               0  Down     Down    Never                       Never
+Ethernet10              0  Down     Down    Never                       Never
+Ethernet11              0  Down     Down    Never                       Never
+Ethernet12              0  Down     Down    Never                       Never
+Ethernet13              0  Down     Down    Never                       Never
+Ethernet14              0  Down     Down    Never                       Never
+Ethernet15              0  Down     Down    Never                       Never
+Ethernet16              1  Up       Up      Never                       Fri Jan 30 03:30:01 2026
+Ethernet17              0  Down     Down    Never                       Never
+... (496 more lines)
+```
+
+</details>
+
 <a id="21.2-show-interfaces-flap-ethernet0"></a>
 #### 21.2 `show interfaces flap Ethernet0`
 
@@ -10388,6 +16264,112 @@ Ethernet252             3  Up       Up      Wed Jan 28 23:12:25 2026    Wed Jan 
 
 </details>
 
+<a id="21.4-show-interfaces-flap-ethernet8"></a>
+#### 21.4 `show interfaces flap Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces flap Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "Down",
+    "Flap Count": "0",
+    "Interface": "Ethernet8",
+    "Link Down TimeStamp(UTC)": "Never",
+    "Link Up TimeStamp(UTC)": "Never",
+    "Oper": "Down"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet8               0  Down     Down    Never                       Never
+
+```
+
+**Actual Converter Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet8               0  Down     Down    Never                       Never
+```
+
+</details>
+
+<a id="21.5-show-interfaces-flap-ethernet505"></a>
+#### 21.5 `show interfaces flap Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces flap Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "Down",
+    "Flap Count": "0",
+    "Interface": "Ethernet505",
+    "Link Down TimeStamp(UTC)": "Never",
+    "Link Up TimeStamp(UTC)": "Never",
+    "Oper": "Down"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet505             0  Down     Down    Never                       Never
+
+```
+
+**Actual Converter Output:**
+```
+Interface      Flap Count  Admin    Oper    Link Down TimeStamp(UTC)    Link Up TimeStamp(UTC)
+-----------  ------------  -------  ------  --------------------------  ------------------------
+Ethernet505             0  Down     Down    Never                       Never
+```
+
+</details>
+
 ---
 
 <a id="22-show-interfaces-naming-mode"></a>
@@ -10395,16 +16377,18 @@ Ethernet252             3  Up       Up      Wed Jan 28 23:12:25 2026    Wed Jan 
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="22.1-show-interfaces-naming-mode"></a>
 #### 22.1 `show interfaces naming_mode` (base command)
@@ -10412,9 +16396,11 @@ Ethernet252             3  Up       Up      Wed Jan 28 23:12:25 2026    Wed Jan 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -10441,6 +16427,29 @@ print(result)
 **Expected CLI Output:**
 ```
 default
+```
+
+**Actual Converter Output:**
+```
+default
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "naming_mode": "default"
+}
+```
+
+**Expected CLI Output:**
+```
+default
+
 ```
 
 **Actual Converter Output:**
@@ -10516,6 +16525,29 @@ default
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "naming_mode": "default"
+}
+```
+
+**Expected CLI Output:**
+```
+default
+
+```
+
+**Actual Converter Output:**
+```
+default
+```
+
+</details>
+
 ---
 
 <a id="23-show-interfaces-neighbor-expected"></a>
@@ -10523,22 +16555,26 @@ default
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [23.1 (base command)](#23.1-show-interfaces-neighbor-expected)
 - [23.2 Ethernet64](#23.2-show-interfaces-neighbor-expected-ethernet64)
 - [23.3 Ethernet80](#23.3-show-interfaces-neighbor-expected-ethernet80)
+- [23.4 Ethernet220](#23.4-show-interfaces-neighbor-expected-ethernet220)
+- [23.5 Ethernet352](#23.5-show-interfaces-neighbor-expected-ethernet352)
 
 <a id="23.1-show-interfaces-neighbor-expected"></a>
 #### 23.1 `show interfaces neighbor expected` (base command)
@@ -10546,9 +16582,11 @@ default
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -10637,6 +16675,86 @@ Ethernet176  ARISTA07T0  Ethernet1       None                172.16.48.118   ToR
 Ethernet180  ARISTA08T0  Ethernet1       None                172.16.48.119   ToRRouter
 Ethernet184  ARISTA09T0  Ethernet1       None                172.16.48.120   ToRRouter
 Ethernet188  ARISTA10T0  Ethernet1       None                172.16.48.121   ToRRouter
+... (10 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "Neighbor": "ARISTA01T0",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.40.138",
+    "NeighborPort": "Ethernet1",
+    "NeighborType": "ToRRouter"
+  },
+  "Ethernet104": {
+    "Neighbor": "ARISTA01T2",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.40.146",
+    "NeighborPort": "Ethernet2",
+    "NeighborType": "SpineRouter"
+  },
+  "Ethernet112": {
+    "Neighbor": "ARISTA03T2",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.40.147",
+    "NeighborPort": "Ethernet1",
+... (178 more lines)
+```
+
+**Expected CLI Output:**
+```
+LocalPort    Neighbor    NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  ----------  --------------  ------------------  --------------  --------------
+Ethernet0    ARISTA01T0  Ethernet1       None                172.16.40.138   ToRRouter
+Ethernet4    ARISTA02T0  Ethernet1       None                172.16.40.139   ToRRouter
+Ethernet16   ARISTA03T0  Ethernet1       None                172.16.40.140   ToRRouter
+Ethernet20   ARISTA04T0  Ethernet1       None                172.16.40.141   ToRRouter
+Ethernet64   ARISTA05T0  Ethernet1       None                172.16.40.142   ToRRouter
+Ethernet68   ARISTA06T0  Ethernet1       None                172.16.40.143   ToRRouter
+Ethernet80   ARISTA07T0  Ethernet1       None                172.16.40.144   ToRRouter
+Ethernet84   ARISTA08T0  Ethernet1       None                172.16.40.145   ToRRouter
+Ethernet96   ARISTA01T2  Ethernet1       None                172.16.40.146   SpineRouter
+Ethernet104  ARISTA01T2  Ethernet2       None                172.16.40.146   SpineRouter
+Ethernet112  ARISTA03T2  Ethernet1       None                172.16.40.147   SpineRouter
+Ethernet120  ARISTA03T2  Ethernet2       None                172.16.40.147   SpineRouter
+Ethernet128  ARISTA05T2  Ethernet1       None                172.16.40.148   SpineRouter
+Ethernet136  ARISTA05T2  Ethernet2       None                172.16.40.148   SpineRouter
+Ethernet144  ARISTA07T2  Ethernet1       None                172.16.40.149   SpineRouter
+Ethernet152  ARISTA07T2  Ethernet2       None                172.16.40.149   SpineRouter
+Ethernet168  ARISTA09T0  Ethernet1       None                172.16.40.150   ToRRouter
+Ethernet180  ARISTA10T0  Ethernet1       None                172.16.40.151   ToRRouter
+... (11 more lines)
+```
+
+**Actual Converter Output:**
+```
+LocalPort    Neighbor    NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  ----------  --------------  ------------------  --------------  --------------
+Ethernet0    ARISTA01T0  Ethernet1       None                172.16.40.138   ToRRouter
+Ethernet4    ARISTA02T0  Ethernet1       None                172.16.40.139   ToRRouter
+Ethernet16   ARISTA03T0  Ethernet1       None                172.16.40.140   ToRRouter
+Ethernet20   ARISTA04T0  Ethernet1       None                172.16.40.141   ToRRouter
+Ethernet64   ARISTA05T0  Ethernet1       None                172.16.40.142   ToRRouter
+Ethernet68   ARISTA06T0  Ethernet1       None                172.16.40.143   ToRRouter
+Ethernet80   ARISTA07T0  Ethernet1       None                172.16.40.144   ToRRouter
+Ethernet84   ARISTA08T0  Ethernet1       None                172.16.40.145   ToRRouter
+Ethernet96   ARISTA01T2  Ethernet1       None                172.16.40.146   SpineRouter
+Ethernet104  ARISTA01T2  Ethernet2       None                172.16.40.146   SpineRouter
+Ethernet112  ARISTA03T2  Ethernet1       None                172.16.40.147   SpineRouter
+Ethernet120  ARISTA03T2  Ethernet2       None                172.16.40.147   SpineRouter
+Ethernet128  ARISTA05T2  Ethernet1       None                172.16.40.148   SpineRouter
+Ethernet136  ARISTA05T2  Ethernet2       None                172.16.40.148   SpineRouter
+Ethernet144  ARISTA07T2  Ethernet1       None                172.16.40.149   SpineRouter
+Ethernet152  ARISTA07T2  Ethernet2       None                172.16.40.149   SpineRouter
+Ethernet168  ARISTA09T0  Ethernet1       None                172.16.40.150   ToRRouter
+Ethernet180  ARISTA10T0  Ethernet1       None                172.16.40.151   ToRRouter
 ... (10 more lines)
 ```
 
@@ -10882,6 +17000,86 @@ Ethernet168  ARISTA18FT2  Ethernet1       None                172.16.41.251   Fa
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet104": {
+    "Neighbor": "ARISTA41T1",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.41.173",
+    "NeighborPort": "Ethernet1",
+    "NeighborType": "BackEndLeafRouter"
+  },
+  "Ethernet112": {
+    "Neighbor": "ARISTA49T1",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.41.174",
+    "NeighborPort": "Ethernet1",
+    "NeighborType": "BackEndLeafRouter"
+  },
+  "Ethernet120": {
+    "Neighbor": "ARISTA57T1",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.41.175",
+    "NeighborPort": "Ethernet1",
+... (220 more lines)
+```
+
+**Expected CLI Output:**
+```
+LocalPort    Neighbor     NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  -----------  --------------  ------------------  --------------  -----------------
+Ethernet64   ARISTA01T1   Ethernet1       None                172.16.41.168   BackEndLeafRouter
+Ethernet72   ARISTA09T1   Ethernet1       None                172.16.41.169   BackEndLeafRouter
+Ethernet80   ARISTA17T1   Ethernet1       None                172.16.41.170   BackEndLeafRouter
+Ethernet88   ARISTA25T1   Ethernet1       None                172.16.41.171   BackEndLeafRouter
+Ethernet96   ARISTA33T1   Ethernet1       None                172.16.41.172   BackEndLeafRouter
+Ethernet104  ARISTA41T1   Ethernet1       None                172.16.41.173   BackEndLeafRouter
+Ethernet112  ARISTA49T1   Ethernet1       None                172.16.41.174   BackEndLeafRouter
+Ethernet120  ARISTA57T1   Ethernet1       None                172.16.41.175   BackEndLeafRouter
+Ethernet128  ARISTA65T1   Ethernet1       None                172.16.41.176   BackEndLeafRouter
+Ethernet136  ARISTA73T1   Ethernet1       None                172.16.41.177   BackEndLeafRouter
+Ethernet144  ARISTA81T1   Ethernet1       None                172.16.41.178   BackEndLeafRouter
+Ethernet152  ARISTA89T1   Ethernet1       None                172.16.41.179   BackEndLeafRouter
+Ethernet160  ARISTA97T1   Ethernet1       None                172.16.41.180   BackEndLeafRouter
+Ethernet168  ARISTA105T1  Ethernet1       None                172.16.41.181   BackEndLeafRouter
+Ethernet176  ARISTA113T1  Ethernet1       None                172.16.41.182   BackEndLeafRouter
+Ethernet184  ARISTA121T1  Ethernet1       None                172.16.41.183   BackEndLeafRouter
+Ethernet320  ARISTA129T1  Ethernet1       None                172.16.41.184   BackEndLeafRouter
+Ethernet328  ARISTA137T1  Ethernet1       None                172.16.41.185   BackEndLeafRouter
+... (17 more lines)
+```
+
+**Actual Converter Output:**
+```
+LocalPort    Neighbor     NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  -----------  --------------  ------------------  --------------  -----------------
+Ethernet64   ARISTA01T1   Ethernet1       None                172.16.41.168   BackEndLeafRouter
+Ethernet72   ARISTA09T1   Ethernet1       None                172.16.41.169   BackEndLeafRouter
+Ethernet80   ARISTA17T1   Ethernet1       None                172.16.41.170   BackEndLeafRouter
+Ethernet88   ARISTA25T1   Ethernet1       None                172.16.41.171   BackEndLeafRouter
+Ethernet96   ARISTA33T1   Ethernet1       None                172.16.41.172   BackEndLeafRouter
+Ethernet104  ARISTA41T1   Ethernet1       None                172.16.41.173   BackEndLeafRouter
+Ethernet112  ARISTA49T1   Ethernet1       None                172.16.41.174   BackEndLeafRouter
+Ethernet120  ARISTA57T1   Ethernet1       None                172.16.41.175   BackEndLeafRouter
+Ethernet128  ARISTA65T1   Ethernet1       None                172.16.41.176   BackEndLeafRouter
+Ethernet136  ARISTA73T1   Ethernet1       None                172.16.41.177   BackEndLeafRouter
+Ethernet144  ARISTA81T1   Ethernet1       None                172.16.41.178   BackEndLeafRouter
+Ethernet152  ARISTA89T1   Ethernet1       None                172.16.41.179   BackEndLeafRouter
+Ethernet160  ARISTA97T1   Ethernet1       None                172.16.41.180   BackEndLeafRouter
+Ethernet168  ARISTA105T1  Ethernet1       None                172.16.41.181   BackEndLeafRouter
+Ethernet176  ARISTA113T1  Ethernet1       None                172.16.41.182   BackEndLeafRouter
+Ethernet184  ARISTA121T1  Ethernet1       None                172.16.41.183   BackEndLeafRouter
+Ethernet320  ARISTA129T1  Ethernet1       None                172.16.41.184   BackEndLeafRouter
+Ethernet328  ARISTA137T1  Ethernet1       None                172.16.41.185   BackEndLeafRouter
+... (16 more lines)
+```
+
+</details>
+
 <a id="23.2-show-interfaces-neighbor-expected-ethernet64"></a>
 #### 23.2 `show interfaces neighbor expected Ethernet64`
 
@@ -10984,6 +17182,110 @@ Ethernet80   ARISTA07T2  Ethernet1       None                172.16.48.111   Spi
 
 </details>
 
+<a id="23.4-show-interfaces-neighbor-expected-ethernet220"></a>
+#### 23.4 `show interfaces neighbor expected Ethernet220`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces neighbor expected Ethernet220"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet220": {
+    "Neighbor": "ARISTA15T0",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.40.156",
+    "NeighborPort": "Ethernet1",
+    "NeighborType": "ToRRouter"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+LocalPort    Neighbor    NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  ----------  --------------  ------------------  --------------  --------------
+Ethernet220  ARISTA15T0  Ethernet1       None                172.16.40.156   ToRRouter
+
+```
+
+**Actual Converter Output:**
+```
+LocalPort    Neighbor    NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  ----------  --------------  ------------------  --------------  --------------
+Ethernet220  ARISTA15T0  Ethernet1       None                172.16.40.156   ToRRouter
+```
+
+</details>
+
+<a id="23.5-show-interfaces-neighbor-expected-ethernet352"></a>
+#### 23.5 `show interfaces neighbor expected Ethernet352`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces neighbor expected Ethernet352"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet352": {
+    "Neighbor": "ARISTA161T1",
+    "NeighborLoopback": "None",
+    "NeighborMgmt": "172.16.41.188",
+    "NeighborPort": "Ethernet1",
+    "NeighborType": "BackEndLeafRouter"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+LocalPort    Neighbor     NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  -----------  --------------  ------------------  --------------  -----------------
+Ethernet352  ARISTA161T1  Ethernet1       None                172.16.41.188   BackEndLeafRouter
+
+```
+
+**Actual Converter Output:**
+```
+LocalPort    Neighbor     NeighborPort    NeighborLoopback    NeighborMgmt    NeighborType
+-----------  -----------  --------------  ------------------  --------------  -----------------
+Ethernet352  ARISTA161T1  Ethernet1       None                172.16.41.188   BackEndLeafRouter
+```
+
+</details>
+
 ---
 
 <a id="24-show-interfaces-portchannel"></a>
@@ -10991,16 +17293,18 @@ Ethernet80   ARISTA07T2  Ethernet1       None                172.16.48.111   Spi
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="24.1-show-interfaces-portchannel"></a>
 #### 24.1 `show interfaces portchannel` (base command)
@@ -11008,9 +17312,11 @@ Ethernet80   ARISTA07T2  Ethernet1       None                172.16.48.111   Spi
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 56 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 56 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | All 50 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -11099,6 +17405,86 @@ Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
   114  PortChannel114  LACP(A)(Up)  Ethernet188(S)
   115  PortChannel115  LACP(A)(Up)  Ethernet200(S)
   116  PortChannel116  LACP(A)(Up)  Ethernet208(S)
+... (8 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "101": {
+    "Ports": [
+      {
+        "in_sync": true,
+        "name": "Ethernet0",
+        "selected": true,
+        "status": "enabled"
+      }
+    ],
+    "Protocol": {
+      "active": true,
+      "name": "LACP",
+      "operational_status": "up"
+    },
+    "Team Dev": "PortChannel101"
+  },
+  "102": {
+    "Ports": [
+      {
+... (390 more lines)
+```
+
+**Expected CLI Output:**
+```
+Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
+       S - selected, D - deselected, * - not synced
+  No.  Team Dev        Protocol     Ports
+-----  --------------  -----------  -----------------------------
+  101  PortChannel101  LACP(A)(Up)  Ethernet0(S)
+  102  PortChannel102  LACP(A)(Up)  Ethernet96(S) Ethernet104(S)
+  103  PortChannel103  LACP(A)(Up)  Ethernet4(S)
+  104  PortChannel104  LACP(A)(Up)  Ethernet16(S)
+  105  PortChannel105  LACP(A)(Up)  Ethernet112(S) Ethernet120(S)
+  106  PortChannel106  LACP(A)(Up)  Ethernet20(S)
+  107  PortChannel107  LACP(A)(Up)  Ethernet64(S)
+  108  PortChannel108  LACP(A)(Up)  Ethernet136(S) Ethernet128(S)
+  109  PortChannel109  LACP(A)(Up)  Ethernet68(S)
+  110  PortChannel110  LACP(A)(Up)  Ethernet80(S)
+  111  PortChannel111  LACP(A)(Up)  Ethernet152(S) Ethernet144(S)
+  112  PortChannel112  LACP(A)(Up)  Ethernet84(S)
+  113  PortChannel113  LACP(A)(Up)  Ethernet168(S)
+  114  PortChannel114  LACP(A)(Up)  Ethernet180(S)
+  115  PortChannel115  LACP(A)(Up)  Ethernet200(S)
+  116  PortChannel116  LACP(A)(Up)  Ethernet204(S)
+... (9 more lines)
+```
+
+**Actual Converter Output:**
+```
+Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
+       S - selected, D - deselected, * - not synced
+  No.  Team Dev        Protocol     Ports
+-----  --------------  -----------  -----------------------------
+  101  PortChannel101  LACP(A)(Up)  Ethernet0(S)
+  102  PortChannel102  LACP(A)(Up)  Ethernet96(S) Ethernet104(S)
+  103  PortChannel103  LACP(A)(Up)  Ethernet4(S)
+  104  PortChannel104  LACP(A)(Up)  Ethernet16(S)
+  105  PortChannel105  LACP(A)(Up)  Ethernet112(S) Ethernet120(S)
+  106  PortChannel106  LACP(A)(Up)  Ethernet20(S)
+  107  PortChannel107  LACP(A)(Up)  Ethernet64(S)
+  108  PortChannel108  LACP(A)(Up)  Ethernet128(S) Ethernet136(S)
+  109  PortChannel109  LACP(A)(Up)  Ethernet68(S)
+  110  PortChannel110  LACP(A)(Up)  Ethernet80(S)
+  111  PortChannel111  LACP(A)(Up)  Ethernet144(S) Ethernet152(S)
+  112  PortChannel112  LACP(A)(Up)  Ethernet84(S)
+  113  PortChannel113  LACP(A)(Up)  Ethernet168(S)
+  114  PortChannel114  LACP(A)(Up)  Ethernet180(S)
+  115  PortChannel115  LACP(A)(Up)  Ethernet200(S)
+  116  PortChannel116  LACP(A)(Up)  Ethernet204(S)
 ... (8 more lines)
 ```
 
@@ -11290,6 +17676,33 @@ Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
+       S - selected, D - deselected, * - not synced
+No.    Team Dev    Protocol    Ports
+-----  ----------  ----------  -------
+
+```
+
+**Actual Converter Output:**
+```
+Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
+       S - selected, D - deselected, * - not synced
+No.    Team Dev    Protocol    Ports
+-----  ----------  ----------  -------
+```
+
+</details>
+
 ---
 
 <a id="25-show-interfaces-status"></a>
@@ -11297,22 +17710,26 @@ Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [25.1 (base command)](#25.1-show-interfaces-status)
 - [25.2 Ethernet0](#25.2-show-interfaces-status-ethernet0)
 - [25.3 Ethernet252](#25.3-show-interfaces-status-ethernet252)
+- [25.4 Ethernet8](#25.4-show-interfaces-status-ethernet8)
+- [25.5 Ethernet505](#25.5-show-interfaces-status-ethernet505)
 
 <a id="25.1-show-interfaces-status"></a>
 #### 25.1 `show interfaces status` (base command)
@@ -11320,9 +17737,11 @@ Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match (spacing differences only) |
+| `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
+| `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
 **Sample Python Invocation:**
 ```python
@@ -11412,6 +17831,86 @@ print(result)
     Ethernet64  2832,2833,2834,2835     100G   9100     rs    etp16  PortChannel108      up       up  QSFP28 or later         off
     Ethernet68  2836,2837,2838,2839     100G   9100     rs    etp17  PortChannel108      up       up  QSFP28 or later         off
 ... (70 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "up",
+    "Alias": "etp0a",
+    "Asym": "off",
+    "FEC": "rs",
+    "Interface": "Ethernet0",
+    "Lanes": "2304,2305,2306,2307",
+    "MTU": "9100",
+    "Oper": "up",
+    "Speed": "100G",
+    "Type": "N/A",
+    "Vlan": "PortChannel101"
+  },
+  {
+    "Admin": "up",
+    "Alias": "etp0b",
+    "Asym": "off",
+    "FEC": "rs",
+    "Interface": "Ethernet4",
+... (1022 more lines)
+```
+
+**Expected CLI Output:**
+```
+     Interface                                    Lanes    Speed    MTU    FEC    Alias            Vlan    Oper    Admin                                             Type    Asym PFC
+--------------  ---------------------------------------  -------  -----  -----  -------  --------------  ------  -------  -----------------------------------------------  ----------
+     Ethernet0                      2304,2305,2306,2307     100G   9100     rs    etp0a  PortChannel101      up       up                                              N/A         off
+     Ethernet4                      2308,2309,2310,2311     100G   9100     rs    etp0b  PortChannel103      up       up                                              N/A         off
+     Ethernet8                      2320,2321,2322,2323     200G   9100    N/A    etp1a          routed    down     down                                  QSFP28 or later         off
+    Ethernet12                      2324,2325,2326,2327     200G   9100    N/A    etp1b          routed    down     down                                  QSFP28 or later         off
+    Ethernet16                      2312,2313,2314,2315     100G   9100     rs    etp2a  PortChannel104      up       up                                              N/A         off
+    Ethernet20                      2316,2317,2318,2319     100G   9100     rs    etp2b  PortChannel106      up       up                                              N/A         off
+    Ethernet24                      2056,2057,2058,2059     200G   9100    N/A    etp3a          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet28                      2060,2061,2062,2063     200G   9100    N/A    etp3b          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet32                      1792,1793,1794,1795     200G   9100    N/A    etp4a          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet36                      1796,1797,1798,1799     200G   9100    N/A    etp4b          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet40                      2048,2049,2050,2051     200G   9100    N/A    etp5a          routed    down     down                                  QSFP28 or later         off
+    Ethernet44                      2052,2053,2054,2055     200G   9100    N/A    etp5b          routed    down     down                                  QSFP28 or later         off
+    Ethernet48                      2560,2561,2562,2563     200G   9100    N/A    etp6a          routed    down     down                                  QSFP28 or later         off
+    Ethernet52                      2564,2565,2566,2567     200G   9100    N/A    etp6b          routed    down     down                                  QSFP28 or later         off
+    Ethernet56                      2824,2825,2826,2827     200G   9100    N/A    etp7a          routed    down     down                                  QSFP28 or later         off
+    Ethernet60                      2828,2829,2830,2831     200G   9100    N/A    etp7b          routed    down     down                                  QSFP28 or later         off
+    Ethernet64                      2832,2833,2834,2835     100G   9100     rs    etp8a  PortChannel107      up       up                                              N/A         off
+    Ethernet68                      2836,2837,2838,2839     100G   9100     rs    etp8b  PortChannel109      up       up                                              N/A         off
+... (63 more lines)
+```
+
+**Actual Converter Output:**
+```
+     Interface                                    Lanes    Speed    MTU    FEC    Alias            Vlan    Oper    Admin  Type                                               Asym PFC
+--------------  ---------------------------------------  -------  -----  -----  -------  --------------  ------  -------  -----------------------------------------------  ----------
+     Ethernet0                      2304,2305,2306,2307     100G   9100     rs    etp0a  PortChannel101      up       up  N/A                                                     off
+     Ethernet4                      2308,2309,2310,2311     100G   9100     rs    etp0b  PortChannel103      up       up  N/A                                                     off
+     Ethernet8                      2320,2321,2322,2323     200G   9100    N/A    etp1a          routed    down     down  QSFP28 or later                                         off
+    Ethernet12                      2324,2325,2326,2327     200G   9100    N/A    etp1b          routed    down     down  QSFP28 or later                                         off
+    Ethernet16                      2312,2313,2314,2315     100G   9100     rs    etp2a  PortChannel104      up       up  N/A                                                     off
+    Ethernet20                      2316,2317,2318,2319     100G   9100     rs    etp2b  PortChannel106      up       up  N/A                                                     off
+    Ethernet24                      2056,2057,2058,2059     200G   9100    N/A    etp3a          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet28                      2060,2061,2062,2063     200G   9100    N/A    etp3b          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet32                      1792,1793,1794,1795     200G   9100    N/A    etp4a          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet36                      1796,1797,1798,1799     200G   9100    N/A    etp4b          routed    down     down  QSFP-DD Double Density 8X Pluggable Transceiver         off
+    Ethernet40                      2048,2049,2050,2051     200G   9100    N/A    etp5a          routed    down     down  QSFP28 or later                                         off
+    Ethernet44                      2052,2053,2054,2055     200G   9100    N/A    etp5b          routed    down     down  QSFP28 or later                                         off
+    Ethernet48                      2560,2561,2562,2563     200G   9100    N/A    etp6a          routed    down     down  QSFP28 or later                                         off
+    Ethernet52                      2564,2565,2566,2567     200G   9100    N/A    etp6b          routed    down     down  QSFP28 or later                                         off
+    Ethernet56                      2824,2825,2826,2827     200G   9100    N/A    etp7a          routed    down     down  QSFP28 or later                                         off
+    Ethernet60                      2828,2829,2830,2831     200G   9100    N/A    etp7b          routed    down     down  QSFP28 or later                                         off
+    Ethernet64                      2832,2833,2834,2835     100G   9100     rs    etp8a  PortChannel107      up       up  N/A                                                     off
+    Ethernet68                      2836,2837,2838,2839     100G   9100     rs    etp8b  PortChannel109      up       up  N/A                                                     off
+... (62 more lines)
 ```
 
 </details>
@@ -11656,6 +18155,86 @@ print(result)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "up",
+    "Alias": "etp1a",
+    "Asym": "off",
+    "FEC": "rs",
+    "Interface": "Ethernet0",
+    "Lanes": "0",
+    "MTU": "9100",
+    "Oper": "up",
+    "Speed": "100G",
+    "Type": "OSFP 8X Pluggable Transceiver",
+    "Vlan": "routed"
+  },
+  {
+    "Admin": "down",
+    "Alias": "etp1b",
+    "Asym": "off",
+    "FEC": "rs",
+    "Interface": "Ethernet1",
+... (6664 more lines)
+```
+
+**Expected CLI Output:**
+```
+  Interface    Lanes    Speed    MTU    FEC    Alias    Vlan    Oper    Admin                           Type    Asym PFC
+-----------  -------  -------  -----  -----  -------  ------  ------  -------  -----------------------------  ----------
+  Ethernet0        0     100G   9100     rs    etp1a  routed      up       up  OSFP 8X Pluggable Transceiver         off
+  Ethernet1        1     100G   9100     rs    etp1b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet2        2     100G   9100     rs    etp1c  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet3        3     100G   9100     rs    etp1d  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet4        4     100G   9100     rs    etp1e  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet5        5     100G   9100     rs    etp1f  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet6        6     100G   9100     rs    etp1g  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet7        7     100G   9100     rs    etp1h  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet8        8     100G   9100     rs    etp2a  routed      up       up  OSFP 8X Pluggable Transceiver         off
+  Ethernet9        9     100G   9100     rs    etp2b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet10       10     100G   9100     rs    etp2c  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet11       11     100G   9100     rs    etp2d  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet12       12     100G   9100     rs    etp2e  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet13       13     100G   9100     rs    etp2f  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet14       14     100G   9100     rs    etp2g  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet15       15     100G   9100     rs    etp2h  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet16       16     100G   9100     rs    etp3a  routed      up       up  OSFP 8X Pluggable Transceiver         off
+ Ethernet17       17     100G   9100     rs    etp3b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+  Interface    Lanes    Speed    MTU    FEC    Alias    Vlan    Oper    Admin  Type                             Asym PFC
+-----------  -------  -------  -----  -----  -------  ------  ------  -------  -----------------------------  ----------
+  Ethernet0        0     100G   9100     rs    etp1a  routed      up       up  OSFP 8X Pluggable Transceiver         off
+  Ethernet1        1     100G   9100     rs    etp1b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet2        2     100G   9100     rs    etp1c  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet3        3     100G   9100     rs    etp1d  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet4        4     100G   9100     rs    etp1e  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet5        5     100G   9100     rs    etp1f  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet6        6     100G   9100     rs    etp1g  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet7        7     100G   9100     rs    etp1h  routed    down     down  OSFP 8X Pluggable Transceiver         off
+  Ethernet8        8     100G   9100     rs    etp2a  routed      up       up  OSFP 8X Pluggable Transceiver         off
+  Ethernet9        9     100G   9100     rs    etp2b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet10       10     100G   9100     rs    etp2c  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet11       11     100G   9100     rs    etp2d  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet12       12     100G   9100     rs    etp2e  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet13       13     100G   9100     rs    etp2f  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet14       14     100G   9100     rs    etp2g  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet15       15     100G   9100     rs    etp2h  routed    down     down  OSFP 8X Pluggable Transceiver         off
+ Ethernet16       16     100G   9100     rs    etp3a  routed      up       up  OSFP 8X Pluggable Transceiver         off
+ Ethernet17       17     100G   9100     rs    etp3b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+... (496 more lines)
+```
+
+</details>
+
 <a id="25.2-show-interfaces-status-ethernet0"></a>
 #### 25.2 `show interfaces status Ethernet0`
 
@@ -11770,6 +18349,122 @@ Ethernet252  532,533,534,535     100G   9100     rs    etp63  PortChannel124    
 
 </details>
 
+<a id="25.4-show-interfaces-status-ethernet8"></a>
+#### 25.4 `show interfaces status Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces status Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "down",
+    "Alias": "etp1a",
+    "Asym": "off",
+    "FEC": "N/A",
+    "Interface": "Ethernet8",
+    "Lanes": "2320,2321,2322,2323",
+    "MTU": "9100",
+    "Oper": "down",
+    "Speed": "200G",
+    "Type": "QSFP28 or later",
+    "Vlan": "routed"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+  Interface                Lanes    Speed    MTU    FEC    Alias    Vlan    Oper    Admin             Type    Asym PFC
+-----------  -------------------  -------  -----  -----  -------  ------  ------  -------  ---------------  ----------
+  Ethernet8  2320,2321,2322,2323     200G   9100    N/A    etp1a  routed    down     down  QSFP28 or later         off
+
+```
+
+**Actual Converter Output:**
+```
+  Interface                Lanes    Speed    MTU    FEC    Alias    Vlan    Oper    Admin  Type               Asym PFC
+-----------  -------------------  -------  -----  -----  -------  ------  ------  -------  ---------------  ----------
+  Ethernet8  2320,2321,2322,2323     200G   9100    N/A    etp1a  routed    down     down  QSFP28 or later         off
+```
+
+</details>
+
+<a id="25.5-show-interfaces-status-ethernet505"></a>
+#### 25.5 `show interfaces status Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces status Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Admin": "down",
+    "Alias": "etp64b",
+    "Asym": "off",
+    "FEC": "rs",
+    "Interface": "Ethernet505",
+    "Lanes": "505",
+    "MTU": "9100",
+    "Oper": "down",
+    "Speed": "100G",
+    "Type": "OSFP 8X Pluggable Transceiver",
+    "Vlan": "routed"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+  Interface    Lanes    Speed    MTU    FEC    Alias    Vlan    Oper    Admin                           Type    Asym PFC
+-----------  -------  -------  -----  -----  -------  ------  ------  -------  -----------------------------  ----------
+Ethernet505      505     100G   9100     rs   etp64b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+
+```
+
+**Actual Converter Output:**
+```
+  Interface    Lanes    Speed    MTU    FEC    Alias    Vlan    Oper    Admin  Type                             Asym PFC
+-----------  -------  -------  -----  -----  -------  ------  ------  -------  -----------------------------  ----------
+Ethernet505      505     100G   9100     rs   etp64b  routed    down     down  OSFP 8X Pluggable Transceiver         off
+```
+
+</details>
+
 ---
 
 <a id="26-show-interfaces-switchport-config"></a>
@@ -11777,16 +18472,18 @@ Ethernet252  532,533,534,535     100G   9100     rs    etp63  PortChannel124    
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="26.1-show-interfaces-switchport-config"></a>
 #### 26.1 `show interfaces switchport config` (base command)
@@ -11794,9 +18491,11 @@ Ethernet252  532,533,534,535     100G   9100     rs    etp63  PortChannel124    
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 61 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 53 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | All 87 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 97 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -11886,6 +18585,86 @@ Ethernet92      routed
 Ethernet96      routed
 Ethernet100     routed
 ... (42 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Interface": "Ethernet8",
+    "Mode": "routed",
+    "Tagged": "",
+    "Untagged": ""
+  },
+  {
+    "Interface": "Ethernet12",
+    "Mode": "routed",
+    "Tagged": "",
+    "Untagged": ""
+  },
+  {
+    "Interface": "Ethernet24",
+    "Mode": "routed",
+    "Tagged": "",
+    "Untagged": ""
+  },
+  {
+... (294 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface       Mode    Untagged    Tagged
+--------------  ------  ----------  --------
+Ethernet8       routed
+Ethernet12      routed
+Ethernet16      routed
+Ethernet24      routed
+Ethernet28      routed
+Ethernet32      routed
+Ethernet36      routed
+Ethernet40      routed
+Ethernet44      routed
+Ethernet48      routed
+Ethernet52      routed
+Ethernet56      routed
+Ethernet60      routed
+Ethernet68      routed
+Ethernet72      routed
+Ethernet76      routed
+Ethernet84      routed
+Ethernet88      routed
+... (45 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface       Mode    Untagged    Tagged
+--------------  ------  ----------  --------
+Ethernet8       routed
+Ethernet12      routed
+Ethernet24      routed
+Ethernet28      routed
+Ethernet32      routed
+Ethernet36      routed
+Ethernet40      routed
+Ethernet44      routed
+Ethernet48      routed
+Ethernet52      routed
+Ethernet56      routed
+Ethernet60      routed
+Ethernet72      routed
+Ethernet76      routed
+Ethernet88      routed
+Ethernet92      routed
+Ethernet160     routed
+Ethernet164     routed
+... (34 more lines)
 ```
 
 </details>
@@ -12130,6 +18909,86 @@ Ethernet136     routed
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Interface": "Ethernet0",
+    "Mode": "routed",
+    "Tagged": "",
+    "Untagged": ""
+  },
+  {
+    "Interface": "Ethernet1",
+    "Mode": "routed",
+    "Tagged": "",
+    "Untagged": ""
+  },
+  {
+    "Interface": "Ethernet2",
+    "Mode": "routed",
+    "Tagged": "",
+    "Untagged": ""
+  },
+  {
+... (3066 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface    Mode    Untagged    Tagged
+-----------  ------  ----------  --------
+Ethernet0    routed
+Ethernet1    routed
+Ethernet2    routed
+Ethernet3    routed
+Ethernet4    routed
+Ethernet5    routed
+Ethernet6    routed
+Ethernet7    routed
+Ethernet8    routed
+Ethernet9    routed
+Ethernet10   routed
+Ethernet11   routed
+Ethernet12   routed
+Ethernet13   routed
+Ethernet14   routed
+Ethernet15   routed
+Ethernet16   routed
+Ethernet17   routed
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface    Mode    Untagged    Tagged
+-----------  ------  ----------  --------
+Ethernet0    routed
+Ethernet1    routed
+Ethernet2    routed
+Ethernet3    routed
+Ethernet4    routed
+Ethernet5    routed
+Ethernet6    routed
+Ethernet7    routed
+Ethernet8    routed
+Ethernet9    routed
+Ethernet10   routed
+Ethernet11   routed
+Ethernet12   routed
+Ethernet13   routed
+Ethernet14   routed
+Ethernet15   routed
+Ethernet16   routed
+Ethernet17   routed
+... (496 more lines)
+```
+
+</details>
+
 ---
 
 <a id="27-show-interfaces-switchport-status"></a>
@@ -12137,16 +18996,18 @@ Ethernet136     routed
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="27.1-show-interfaces-switchport-status"></a>
 #### 27.1 `show interfaces switchport status` (base command)
@@ -12154,9 +19015,11 @@ Ethernet136     routed
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 61 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 53 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | All 87 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 97 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -12246,6 +19109,86 @@ Ethernet92      routed
 Ethernet96      routed
 Ethernet100     routed
 ... (42 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Interface": "Ethernet8",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet12",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet24",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet28",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet32",
+    "Mode": "routed"
+... (190 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface       Mode
+--------------  ------
+Ethernet8       routed
+Ethernet12      routed
+Ethernet16      routed
+Ethernet24      routed
+Ethernet28      routed
+Ethernet32      routed
+Ethernet36      routed
+Ethernet40      routed
+Ethernet44      routed
+Ethernet48      routed
+Ethernet52      routed
+Ethernet56      routed
+Ethernet60      routed
+Ethernet68      routed
+Ethernet72      routed
+Ethernet76      routed
+Ethernet84      routed
+Ethernet88      routed
+... (45 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface       Mode
+--------------  ------
+Ethernet8       routed
+Ethernet12      routed
+Ethernet24      routed
+Ethernet28      routed
+Ethernet32      routed
+Ethernet36      routed
+Ethernet40      routed
+Ethernet44      routed
+Ethernet48      routed
+Ethernet52      routed
+Ethernet56      routed
+Ethernet60      routed
+Ethernet72      routed
+Ethernet76      routed
+Ethernet88      routed
+Ethernet92      routed
+Ethernet160     routed
+Ethernet164     routed
+... (34 more lines)
 ```
 
 </details>
@@ -12490,6 +19433,86 @@ Ethernet136     routed
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Interface": "Ethernet0",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet1",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet2",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet3",
+    "Mode": "routed"
+  },
+  {
+    "Interface": "Ethernet4",
+    "Mode": "routed"
+... (2038 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface    Mode
+-----------  ------
+Ethernet0    routed
+Ethernet1    routed
+Ethernet2    routed
+Ethernet3    routed
+Ethernet4    routed
+Ethernet5    routed
+Ethernet6    routed
+Ethernet7    routed
+Ethernet8    routed
+Ethernet9    routed
+Ethernet10   routed
+Ethernet11   routed
+Ethernet12   routed
+Ethernet13   routed
+Ethernet14   routed
+Ethernet15   routed
+Ethernet16   routed
+Ethernet17   routed
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface    Mode
+-----------  ------
+Ethernet0    routed
+Ethernet1    routed
+Ethernet2    routed
+Ethernet3    routed
+Ethernet4    routed
+Ethernet5    routed
+Ethernet6    routed
+Ethernet7    routed
+Ethernet8    routed
+Ethernet9    routed
+Ethernet10   routed
+Ethernet11   routed
+Ethernet12   routed
+Ethernet13   routed
+Ethernet14   routed
+Ethernet15   routed
+Ethernet16   routed
+Ethernet17   routed
+... (496 more lines)
+```
+
+</details>
+
 ---
 
 <a id="28-show-interfaces-transceiver-eeprom"></a>
@@ -12497,16 +19520,18 @@ Ethernet136     routed
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 9/24 test cases passed (across 4 devices)
+**Status:** ✅ All 15/60 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 4 | 0 | 0 | 0 |
+| `str3-8101-02` | 4 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 3 | 0 | 0 | 1 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 2 |
 
 **Test Case Variants:**
 
@@ -12516,6 +19541,10 @@ Ethernet136     routed
 - [28.4 Ethernet0 --dom](#28.4-show-interfaces-transceiver-eeprom-ethernet0---dom)
 - [28.5 Ethernet252](#28.5-show-interfaces-transceiver-eeprom-ethernet252)
 - [28.6 Ethernet252 --dom](#28.6-show-interfaces-transceiver-eeprom-ethernet252---dom)
+- [28.7 Ethernet8 --dom](#28.7-show-interfaces-transceiver-eeprom-ethernet8---dom)
+- [28.8 Ethernet8](#28.8-show-interfaces-transceiver-eeprom-ethernet8)
+- [28.9 Ethernet505 --dom](#28.9-show-interfaces-transceiver-eeprom-ethernet505---dom)
+- [28.10 Ethernet505](#28.10-show-interfaces-transceiver-eeprom-ethernet505)
 
 <a id="28.1-show-interfaces-transceiver-eeprom"></a>
 #### 28.1 `show interfaces transceiver eeprom` (base command)
@@ -12523,9 +19552,11 @@ Ethernet136     routed
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 77 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 41 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -12615,6 +19646,86 @@ Ethernet4: SFP EEPROM detected
         Application Advertisement: N/A
         Connector: No separable connector
 ... (1067 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": "{}",
+  "Ethernet104": "{}",
+  "Ethernet112": "{}",
+  "Ethernet12": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"2.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-26   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M206     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF212920611E7  \"}",
+  "Ethernet120": "{}",
+  "Ethernet128": "{}",
+  "Ethernet136": "{}",
+  "Ethernet144": "{}",
+  "Ethernet152": "{}",
+  "Ethernet16": "{}",
+  "Ethernet160": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018VAY  \"}",
+  "Ethernet164": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018VAY  \"}",
+  "Ethernet168": "{}",
+  "Ethernet172": "{}",
+  "Ethernet176": "{}",
+  "Ethernet180": "{}",
+  "Ethernet184": "{}",
+  "Ethernet188": "{}",
+  "Ethernet192": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018V33  \"}",
+... (38 more lines)
+```
+
+**Expected CLI Output:**
+```
+Ethernet0: SFP EEPROM Not detected
+
+Ethernet4: SFP EEPROM Not detected
+
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance:
+                10/40G Ethernet Compliance Code: 40GBASE-CR4,Extended
+                Extended Specification Compliance: 25GBASE-CR CA-25G-N or 50GBASE-CR2 with no FEC
+                Fibre Channel Link Length: Unknown
+                Fibre Channel Speed: Unknown
+                Fibre Channel Transmission Media: Unknown
+                Fibre Channel Transmitter Technology: Unknown
+... (644 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet0: SFP EEPROM Not detected
+
+Ethernet4: SFP EEPROM Not detected
+
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance: N/A
+        Vendor Date Code(YYYY-MM-DD Lot): 2021-07-26   
+        Vendor Name: Amphenol        
+        Vendor OUI: 78-a7-14
+        Vendor PN: NDAAFS-M206     
+        Vendor Rev: E 
+        Vendor SN: APF212920611E7  
+... (455 more lines)
 ```
 
 </details>
@@ -12785,7 +19896,9 @@ Ethernet0: SFP EEPROM detected
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 77 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 66 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 181 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -12875,6 +19988,86 @@ Ethernet0: SFP EEPROM detected
         Vendor Rev: G 
         Vendor SN: APF20342010T54  
 ... (1323 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": "{}",
+  "Ethernet104": "{}",
+  "Ethernet112": "{}",
+  "Ethernet12": "{\"Application Advertisement\":\"N/A\",\"ChannelMonitorValues\":{},\"ChannelThresholdValues\":{},\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"2.0\",\"ModuleMonitorValues\":{},\"ModuleThresholdValues\":{},\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-26   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M206     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF212920611E7  \"}",
+  "Ethernet120": "{}",
+  "Ethernet128": "{}",
+  "Ethernet136": "{}",
+  "Ethernet144": "{}",
+  "Ethernet152": "{}",
+  "Ethernet16": "{}",
+  "Ethernet160": "{\"Application Advertisement\":\"N/A\",\"ChannelMonitorValues\":{},\"ChannelThresholdValues\":{},\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"ModuleMonitorValues\":{},\"ModuleThresholdValues\":{},\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018VAY  \"}",
+  "Ethernet164": "{\"Application Advertisement\":\"N/A\",\"ChannelMonitorValues\":{},\"ChannelThresholdValues\":{},\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"ModuleMonitorValues\":{},\"ModuleThresholdValues\":{},\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018VAY  \"}",
+  "Ethernet168": "{}",
+  "Ethernet172": "{}",
+  "Ethernet176": "{}",
+  "Ethernet180": "{}",
+  "Ethernet184": "{}",
+  "Ethernet188": "{}",
+  "Ethernet192": "{\"Application Advertisement\":\"N/A\",\"ChannelMonitorValues\":{},\"ChannelThresholdValues\":{},\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"ModuleMonitorValues\":{},\"ModuleThresholdValues\":{},\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018V33  \"}",
+... (38 more lines)
+```
+
+**Expected CLI Output:**
+```
+Ethernet0: SFP EEPROM Not detected
+
+Ethernet4: SFP EEPROM Not detected
+
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance:
+                10/40G Ethernet Compliance Code: 40GBASE-CR4,Extended
+                Extended Specification Compliance: 25GBASE-CR CA-25G-N or 50GBASE-CR2 with no FEC
+                Fibre Channel Link Length: Unknown
+                Fibre Channel Speed: Unknown
+                Fibre Channel Transmission Media: Unknown
+                Fibre Channel Transmitter Technology: Unknown
+... (908 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet0: SFP EEPROM Not detected
+
+Ethernet4: SFP EEPROM Not detected
+
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        ChannelMonitorValues:
+        ChannelThresholdValues:
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        ModuleMonitorValues:
+        ModuleThresholdValues:
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance: N/A
+        Vendor Date Code(YYYY-MM-DD Lot): 2021-07-26   
+        Vendor Name: Amphenol        
+... (535 more lines)
 ```
 
 </details>
@@ -13277,6 +20470,324 @@ Ethernet252: SFP EEPROM detected
 
 </details>
 
+<a id="28.7-show-interfaces-transceiver-eeprom-ethernet8---dom"></a>
+#### 28.7 `show interfaces transceiver eeprom Ethernet8 --dom`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver eeprom Ethernet8 --dom"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": "{\"Application Advertisement\":\"N/A\",\"ChannelMonitorValues\":{},\"ChannelThresholdValues\":{},\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"2.0\",\"ModuleMonitorValues\":{},\"ModuleThresholdValues\":{},\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-26   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M206     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF212920611E7  \"}"
+}
+```
+
+**Expected CLI Output:**
+```
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance:
+                10/40G Ethernet Compliance Code: 40GBASE-CR4,Extended
+                Extended Specification Compliance: 25GBASE-CR CA-25G-N or 50GBASE-CR2 with no FEC
+                Fibre Channel Link Length: Unknown
+                Fibre Channel Speed: Unknown
+                Fibre Channel Transmission Media: Unknown
+                Fibre Channel Transmitter Technology: Unknown
+                Gigabit Ethernet Compliant Codes: Unknown
+                SAS/SATA Compliance Codes: Unknown
+                SONET Compliance Codes: Unknown
+        Vendor Date Code(YYYY-MM-DD Lot): 2021-07-26   
+... (12 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        ChannelMonitorValues:
+        ChannelThresholdValues:
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        ModuleMonitorValues:
+        ModuleThresholdValues:
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance: N/A
+        Vendor Date Code(YYYY-MM-DD Lot): 2021-07-26   
+        Vendor Name: Amphenol        
+        Vendor OUI: 78-a7-14
+        Vendor PN: NDAAFS-M206     
+        Vendor Rev: E 
+        Vendor SN: APF212920611E7
+```
+
+</details>
+
+<a id="28.8-show-interfaces-transceiver-eeprom-ethernet8"></a>
+#### 28.8 `show interfaces transceiver eeprom Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver eeprom Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"2.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-26   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M206     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF212920611E7  \"}"
+}
+```
+
+**Expected CLI Output:**
+```
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance:
+                10/40G Ethernet Compliance Code: 40GBASE-CR4,Extended
+                Extended Specification Compliance: 25GBASE-CR CA-25G-N or 50GBASE-CR2 with no FEC
+                Fibre Channel Link Length: Unknown
+                Fibre Channel Speed: Unknown
+                Fibre Channel Transmission Media: Unknown
+                Fibre Channel Transmitter Technology: Unknown
+                Gigabit Ethernet Compliant Codes: Unknown
+                SAS/SATA Compliance Codes: Unknown
+                SONET Compliance Codes: Unknown
+        Vendor Date Code(YYYY-MM-DD Lot): 2021-07-26   
+... (8 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance: N/A
+        Vendor Date Code(YYYY-MM-DD Lot): 2021-07-26   
+        Vendor Name: Amphenol        
+        Vendor OUI: 78-a7-14
+        Vendor PN: NDAAFS-M206     
+        Vendor Rev: E 
+        Vendor SN: APF212920611E7
+```
+
+</details>
+
+<a id="28.9-show-interfaces-transceiver-eeprom-ethernet505---dom"></a>
+#### 28.9 `show interfaces transceiver eeprom Ethernet505 --dom`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 22 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver eeprom Ethernet505 --dom"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": "{\"Active Firmware\":\"N/A\",\"Active application selected code assigned to host lane 1\":\"N/A\",\"Active application selected code assigned to host lane 2\":\"N/A\",\"Active application selected code assigned to host lane 3\":\"N/A\",\"Active application selected code assigned to host lane 4\":\"N/A\",\"Active application selected code assigned to host lane 5\":\"N/A\",\"Active application selected code assigned to host lane 6\":\"N/A\",\"Active application selected code assigned to host lane 7\":\"N/A\",\"Active application selected code assigned to host lane 8\":\"N/A\",\"Application Advertisement\":[\"800G-ETC-CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)\",\"400GBASE-CR4 (Clause 162) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\",\"400G CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)\",\"200GBASE-CR4 (Clause 136) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\",\"100GBASE-CR4 (Clause 92) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\",\"40GBASE-CR4 (Clause 85) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\"],\"CMIS Rev\":\"5.0\",\"ChannelMonitorValues\":{},\"ChannelThresholdValues\":{},\"Connector\":\"No separable connector\",\"Encoding\":\"N/A\",\"Extended Identifier\":\"Power Class 1 (0.25W Max)\",\"Extended RateSelect Compliance\":\"N/A\",\"Host Lane Count\":\"8\",\"Identifier\":\"OSFP 8X Pluggable Transceiver\",\"Inactive Firmware\":\"N/A\",\"Length Cable Assembly(m)\":\"1.0\",\"Media Interface Technology\":\"Copper cable unequalized\",\"Media Lane Count\":\"0\",\"Module Hardware Rev\":\"0.0\",\"ModuleMonitorValues\":{},\"ModuleThresholdValues\":{},\"Nominal Bit Rate(100Mbs)\":\"N/A\",\"Specification compliance\":\"passive_copper_media_interface\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2024-11-26\",\"Vendor Name\":\"Amphenol\",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NJMMER-M201\",\"Vendor Rev\":\"A\",\"Vendor SN\":\"APF244720122UR\"}"
+}
+```
+
+**Expected CLI Output:**
+```
+Ethernet505: SFP EEPROM detected
+        Active Firmware: N/A
+        Active application selected code assigned to host lane 1: N/A
+        Active application selected code assigned to host lane 2: N/A
+        Active application selected code assigned to host lane 3: N/A
+        Active application selected code assigned to host lane 4: N/A
+        Active application selected code assigned to host lane 5: N/A
+        Active application selected code assigned to host lane 6: N/A
+        Active application selected code assigned to host lane 7: N/A
+        Active application selected code assigned to host lane 8: N/A
+        Application Advertisement: 800G-ETC-CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   400GBASE-CR4 (Clause 162) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   400G CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   200GBASE-CR4 (Clause 136) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   100GBASE-CR4 (Clause 92) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   40GBASE-CR4 (Clause 85) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+        CMIS Rev: 5.0
+        Connector: No separable connector
+        Encoding: N/A
+        Extended Identifier: Power Class 1 (0.25W Max)
+... (21 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet505: SFP EEPROM detected
+        Active Firmware: N/A
+        Active application selected code assigned to host lane 1: N/A
+        Active application selected code assigned to host lane 2: N/A
+        Active application selected code assigned to host lane 3: N/A
+        Active application selected code assigned to host lane 4: N/A
+        Active application selected code assigned to host lane 5: N/A
+        Active application selected code assigned to host lane 6: N/A
+        Active application selected code assigned to host lane 7: N/A
+        Active application selected code assigned to host lane 8: N/A
+        Application Advertisement: 800G-ETC-CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   400GBASE-CR4 (Clause 162) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   400G CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   200GBASE-CR4 (Clause 136) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   100GBASE-CR4 (Clause 92) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   40GBASE-CR4 (Clause 85) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+        CMIS Rev: 5.0
+        ChannelMonitorValues:
+        ChannelThresholdValues:
+        Connector: No separable connector
+... (20 more lines)
+```
+
+</details>
+
+<a id="28.10-show-interfaces-transceiver-eeprom-ethernet505"></a>
+#### 28.10 `show interfaces transceiver eeprom Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver eeprom Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": "{\"Active Firmware\":\"N/A\",\"Active application selected code assigned to host lane 1\":\"N/A\",\"Active application selected code assigned to host lane 2\":\"N/A\",\"Active application selected code assigned to host lane 3\":\"N/A\",\"Active application selected code assigned to host lane 4\":\"N/A\",\"Active application selected code assigned to host lane 5\":\"N/A\",\"Active application selected code assigned to host lane 6\":\"N/A\",\"Active application selected code assigned to host lane 7\":\"N/A\",\"Active application selected code assigned to host lane 8\":\"N/A\",\"Application Advertisement\":[\"800G-ETC-CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)\",\"400GBASE-CR4 (Clause 162) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\",\"400G CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)\",\"200GBASE-CR4 (Clause 136) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\",\"100GBASE-CR4 (Clause 92) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\",\"40GBASE-CR4 (Clause 85) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)\"],\"CMIS Rev\":\"5.0\",\"Connector\":\"No separable connector\",\"Encoding\":\"N/A\",\"Extended Identifier\":\"Power Class 1 (0.25W Max)\",\"Extended RateSelect Compliance\":\"N/A\",\"Host Lane Count\":\"8\",\"Identifier\":\"OSFP 8X Pluggable Transceiver\",\"Inactive Firmware\":\"N/A\",\"Length Cable Assembly(m)\":\"1.0\",\"Media Interface Technology\":\"Copper cable unequalized\",\"Media Lane Count\":\"0\",\"Module Hardware Rev\":\"0.0\",\"Nominal Bit Rate(100Mbs)\":\"N/A\",\"Specification compliance\":\"passive_copper_media_interface\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2024-11-26\",\"Vendor Name\":\"Amphenol\",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NJMMER-M201\",\"Vendor Rev\":\"A\",\"Vendor SN\":\"APF244720122UR\"}"
+}
+```
+
+**Expected CLI Output:**
+```
+Ethernet505: SFP EEPROM detected
+        Active Firmware: N/A
+        Active application selected code assigned to host lane 1: N/A
+        Active application selected code assigned to host lane 2: N/A
+        Active application selected code assigned to host lane 3: N/A
+        Active application selected code assigned to host lane 4: N/A
+        Active application selected code assigned to host lane 5: N/A
+        Active application selected code assigned to host lane 6: N/A
+        Active application selected code assigned to host lane 7: N/A
+        Active application selected code assigned to host lane 8: N/A
+        Application Advertisement: 800G-ETC-CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   400GBASE-CR4 (Clause 162) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   400G CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   200GBASE-CR4 (Clause 136) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   100GBASE-CR4 (Clause 92) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   40GBASE-CR4 (Clause 85) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+        CMIS Rev: 5.0
+        Connector: No separable connector
+        Encoding: N/A
+        Extended Identifier: Power Class 1 (0.25W Max)
+... (17 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet505: SFP EEPROM detected
+        Active Firmware: N/A
+        Active application selected code assigned to host lane 1: N/A
+        Active application selected code assigned to host lane 2: N/A
+        Active application selected code assigned to host lane 3: N/A
+        Active application selected code assigned to host lane 4: N/A
+        Active application selected code assigned to host lane 5: N/A
+        Active application selected code assigned to host lane 6: N/A
+        Active application selected code assigned to host lane 7: N/A
+        Active application selected code assigned to host lane 8: N/A
+        Application Advertisement: 800G-ETC-CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   400GBASE-CR4 (Clause 162) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   400G CR8 - Host Assign (0x1) - Copper cable - Media Assign (Unknown)
+                                   200GBASE-CR4 (Clause 136) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   100GBASE-CR4 (Clause 92) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+                                   40GBASE-CR4 (Clause 85) - Host Assign (0x11) - Copper cable - Media Assign (Unknown)
+        CMIS Rev: 5.0
+        Connector: No separable connector
+        Encoding: N/A
+        Extended Identifier: Power Class 1 (0.25W Max)
+... (16 more lines)
+```
+
+</details>
+
 ---
 
 <a id="29-show-interfaces-transceiver-error-status"></a>
@@ -13284,22 +20795,26 @@ Ethernet252: SFP EEPROM detected
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [29.1 (base command)](#29.1-show-interfaces-transceiver-error-status)
 - [29.2 Ethernet0](#29.2-show-interfaces-transceiver-error-status-ethernet0)
 - [29.3 Ethernet252](#29.3-show-interfaces-transceiver-error-status-ethernet252)
+- [29.4 Ethernet8](#29.4-show-interfaces-transceiver-error-status-ethernet8)
+- [29.5 Ethernet505](#29.5-show-interfaces-transceiver-error-status-ethernet505)
 
 <a id="29.1-show-interfaces-transceiver-error-status"></a>
 #### 29.1 `show interfaces transceiver error-status` (base command)
@@ -13307,9 +20822,11 @@ Ethernet252: SFP EEPROM detected
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -13399,6 +20916,86 @@ Ethernet60   OK
 Ethernet64   OK
 Ethernet68   OK
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+  },
+  "Ethernet104": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+  },
+  "Ethernet112": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+  },
+  "Ethernet12": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+... (262 more lines)
+```
+
+**Expected CLI Output:**
+```
+Port         Error Status
+-----------  --------------
+Ethernet0    OK
+Ethernet4    OK
+Ethernet8    OK
+Ethernet12   OK
+Ethernet16   OK
+Ethernet20   OK
+Ethernet24   OK
+Ethernet28   OK
+Ethernet32   OK
+Ethernet36   OK
+Ethernet40   OK
+Ethernet44   OK
+Ethernet48   OK
+Ethernet52   OK
+Ethernet56   OK
+Ethernet60   OK
+Ethernet64   OK
+Ethernet68   OK
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+Port         Error Status
+-----------  --------------
+Ethernet0    OK
+Ethernet4    OK
+Ethernet8    OK
+Ethernet12   OK
+Ethernet16   OK
+Ethernet20   OK
+Ethernet24   OK
+Ethernet28   OK
+Ethernet32   OK
+Ethernet36   OK
+Ethernet40   OK
+Ethernet44   OK
+Ethernet48   OK
+Ethernet52   OK
+Ethernet56   OK
+Ethernet60   OK
+Ethernet64   OK
+Ethernet68   OK
+... (38 more lines)
 ```
 
 </details>
@@ -13643,6 +21240,86 @@ Ethernet136  OK
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+  },
+  "Ethernet1": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+  },
+  "Ethernet10": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+  },
+  "Ethernet100": {
+    "cmis_state": "READY",
+    "error": "N/A",
+    "status": "1"
+... (2552 more lines)
+```
+
+**Expected CLI Output:**
+```
+Port         Error Status
+-----------  --------------
+Ethernet0    OK
+Ethernet1    OK
+Ethernet2    OK
+Ethernet3    OK
+Ethernet4    OK
+Ethernet5    OK
+Ethernet6    OK
+Ethernet7    OK
+Ethernet8    OK
+Ethernet9    OK
+Ethernet10   OK
+Ethernet11   OK
+Ethernet12   OK
+Ethernet13   OK
+Ethernet14   OK
+Ethernet15   OK
+Ethernet16   OK
+Ethernet17   OK
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+Port         Error Status
+-----------  --------------
+Ethernet0    OK
+Ethernet1    OK
+Ethernet2    OK
+Ethernet3    OK
+Ethernet4    OK
+Ethernet5    OK
+Ethernet6    OK
+Ethernet7    OK
+Ethernet8    OK
+Ethernet9    OK
+Ethernet10   OK
+Ethernet11   OK
+Ethernet12   OK
+Ethernet13   OK
+Ethernet14   OK
+Ethernet15   OK
+Ethernet16   OK
+Ethernet17   OK
+... (496 more lines)
+```
+
+</details>
+
 <a id="29.2-show-interfaces-transceiver-error-status-ethernet0"></a>
 #### 29.2 `show interfaces transceiver error-status Ethernet0`
 
@@ -13736,6 +21413,102 @@ Ethernet252  OK
 
 </details>
 
+<a id="29.4-show-interfaces-transceiver-error-status-ethernet8"></a>
+#### 29.4 `show interfaces transceiver error-status Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver error-status Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "cmis_state": "READY",
+  "error": "N/A",
+  "status": "1"
+}
+```
+
+**Expected CLI Output:**
+```
+Port       Error Status
+---------  --------------
+Ethernet8  OK
+
+```
+
+**Actual Converter Output:**
+```
+Port       Error Status
+---------  --------------
+Ethernet8  OK
+```
+
+</details>
+
+<a id="29.5-show-interfaces-transceiver-error-status-ethernet505"></a>
+#### 29.5 `show interfaces transceiver error-status Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver error-status Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "cmis_state": "READY",
+  "error": "N/A",
+  "status": "1"
+}
+```
+
+**Expected CLI Output:**
+```
+Port         Error Status
+-----------  --------------
+Ethernet505  OK
+
+```
+
+**Actual Converter Output:**
+```
+Port         Error Status
+-----------  --------------
+Ethernet505  OK
+```
+
+</details>
+
 ---
 
 <a id="30-show-interfaces-transceiver-info"></a>
@@ -13743,16 +21516,18 @@ Ethernet252  OK
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 3/4 test cases passed (across 4 devices)
+**Status:** ✅ All 4/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 0 | 0 | 0 | 1 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 0 | 0 | 0 | 1 |
 
 <a id="30.1-show-interfaces-transceiver-info"></a>
 #### 30.1 `show interfaces transceiver info` (base command)
@@ -13760,9 +21535,11 @@ Ethernet252  OK
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 77 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 41 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -13852,6 +21629,86 @@ Ethernet4: SFP EEPROM detected
         Application Advertisement: N/A
         Connector: No separable connector
 ... (1067 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": "{}",
+  "Ethernet104": "{}",
+  "Ethernet112": "{}",
+  "Ethernet12": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"2.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-26   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M206     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF212920611E7  \"}",
+  "Ethernet120": "{}",
+  "Ethernet128": "{}",
+  "Ethernet136": "{}",
+  "Ethernet144": "{}",
+  "Ethernet152": "{}",
+  "Ethernet16": "{}",
+  "Ethernet160": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018VAY  \"}",
+  "Ethernet164": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018VAY  \"}",
+  "Ethernet168": "{}",
+  "Ethernet172": "{}",
+  "Ethernet176": "{}",
+  "Ethernet180": "{}",
+  "Ethernet184": "{}",
+  "Ethernet188": "{}",
+  "Ethernet192": "{\"Application Advertisement\":\"N/A\",\"Connector\":\"No separable connector\",\"Encoding\":\"64B/66B\",\"Extended Identifier\":\"Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX\",\"Extended RateSelect Compliance\":\"Unknown\",\"Identifier\":\"QSFP28 or later\",\"Length Cable Assembly(m)\":\"1.0\",\"Nominal Bit Rate(100Mbs)\":\"255\",\"Specification compliance\":\"N/A\",\"Vendor Date Code(YYYY-MM-DD Lot)\":\"2021-07-21   \",\"Vendor Name\":\"Amphenol        \",\"Vendor OUI\":\"78-a7-14\",\"Vendor PN\":\"NDAAFS-M201     \",\"Vendor Rev\":\"E \",\"Vendor SN\":\"APF21292018V33  \"}",
+... (38 more lines)
+```
+
+**Expected CLI Output:**
+```
+Ethernet0: SFP EEPROM Not detected
+
+Ethernet4: SFP EEPROM Not detected
+
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance:
+                10/40G Ethernet Compliance Code: 40GBASE-CR4,Extended
+                Extended Specification Compliance: 25GBASE-CR CA-25G-N or 50GBASE-CR2 with no FEC
+                Fibre Channel Link Length: Unknown
+                Fibre Channel Speed: Unknown
+                Fibre Channel Transmission Media: Unknown
+                Fibre Channel Transmitter Technology: Unknown
+... (644 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet0: SFP EEPROM Not detected
+
+Ethernet4: SFP EEPROM Not detected
+
+Ethernet8: SFP EEPROM detected
+        Application Advertisement: N/A
+        Connector: No separable connector
+        Encoding: 64B/66B
+        Extended Identifier: Power Class 1 Module (1.5W max.), No CLEI code present in Page 02h, No CDR in TX, No CDR in RX
+        Extended RateSelect Compliance: Unknown
+        Identifier: QSFP28 or later
+        Length Cable Assembly(m): 2.0
+        Nominal Bit Rate(100Mbs): 255
+        Specification compliance: N/A
+        Vendor Date Code(YYYY-MM-DD Lot): 2021-07-26   
+        Vendor Name: Amphenol        
+        Vendor OUI: 78-a7-14
+        Vendor PN: NDAAFS-M206     
+        Vendor Rev: E 
+        Vendor SN: APF212920611E7  
+... (455 more lines)
 ```
 
 </details>
@@ -14023,22 +21880,26 @@ Ethernet0: SFP EEPROM detected
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [31.1 (base command)](#31.1-show-interfaces-transceiver-lpmode)
 - [31.2 Ethernet0](#31.2-show-interfaces-transceiver-lpmode-ethernet0)
 - [31.3 Ethernet252](#31.3-show-interfaces-transceiver-lpmode-ethernet252)
+- [31.4 Ethernet8](#31.4-show-interfaces-transceiver-lpmode-ethernet8)
+- [31.5 Ethernet505](#31.5-show-interfaces-transceiver-lpmode-ethernet505)
 
 <a id="31.1-show-interfaces-transceiver-lpmode"></a>
 #### 31.1 `show interfaces transceiver lpmode` (base command)
@@ -14046,9 +21907,11 @@ Ethernet0: SFP EEPROM detected
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | All 58 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -14138,6 +22001,86 @@ Ethernet60   Off
 Ethernet64   Off
 Ethernet68   Off
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Port": "Ethernet0",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet4",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet8",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet12",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet16",
+    "Low-power Mode": "Off"
+... (206 more lines)
+```
+
+**Expected CLI Output:**
+```
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+Failed to get firmware management features
+Error creating API: Failed to initialize firmware handler
+... (111 more lines)
+```
+
+**Actual Converter Output:**
+```
+Port         Low-power Mode
+-----------  ----------------
+Ethernet0    Off
+Ethernet4    Off
+Ethernet8    Off
+Ethernet12   Off
+Ethernet16   Off
+Ethernet20   Off
+Ethernet24   On
+Ethernet28   On
+Ethernet32   On
+Ethernet36   On
+Ethernet40   Off
+Ethernet44   Off
+Ethernet48   Off
+Ethernet52   Off
+Ethernet56   Off
+Ethernet60   Off
+Ethernet64   Off
+Ethernet68   Off
+... (38 more lines)
 ```
 
 </details>
@@ -14382,6 +22325,86 @@ Ethernet136  Off
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Port": "Ethernet0",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet1",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet2",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet3",
+    "Low-power Mode": "Off"
+  },
+  {
+    "Port": "Ethernet4",
+    "Low-power Mode": "Off"
+... (2038 more lines)
+```
+
+**Expected CLI Output:**
+```
+Port         Low-power Mode
+-----------  ----------------
+Ethernet0    Off
+Ethernet1    Off
+Ethernet2    Off
+Ethernet3    Off
+Ethernet4    Off
+Ethernet5    Off
+Ethernet6    Off
+Ethernet7    Off
+Ethernet8    Off
+Ethernet9    Off
+Ethernet10   Off
+Ethernet11   Off
+Ethernet12   Off
+Ethernet13   Off
+Ethernet14   Off
+Ethernet15   Off
+Ethernet16   Off
+Ethernet17   Off
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+Port         Low-power Mode
+-----------  ----------------
+Ethernet0    Off
+Ethernet1    Off
+Ethernet2    Off
+Ethernet3    Off
+Ethernet4    Off
+Ethernet5    Off
+Ethernet6    Off
+Ethernet7    Off
+Ethernet8    Off
+Ethernet9    Off
+Ethernet10   Off
+Ethernet11   Off
+Ethernet12   Off
+Ethernet13   Off
+Ethernet14   Off
+Ethernet15   Off
+Ethernet16   Off
+Ethernet17   Off
+... (496 more lines)
+```
+
+</details>
+
 <a id="31.2-show-interfaces-transceiver-lpmode-ethernet0"></a>
 #### 31.2 `show interfaces transceiver lpmode Ethernet0`
 
@@ -14478,6 +22501,104 @@ Ethernet252  Off
 
 </details>
 
+<a id="31.4-show-interfaces-transceiver-lpmode-ethernet8"></a>
+#### 31.4 `show interfaces transceiver lpmode Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver lpmode Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Port": "Ethernet8",
+    "Low-power Mode": "Off"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+Port       Low-power Mode
+---------  ----------------
+Ethernet8  Off
+
+```
+
+**Actual Converter Output:**
+```
+Port       Low-power Mode
+---------  ----------------
+Ethernet8  Off
+```
+
+</details>
+
+<a id="31.5-show-interfaces-transceiver-lpmode-ethernet505"></a>
+#### 31.5 `show interfaces transceiver lpmode Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver lpmode Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "Port": "Ethernet505",
+    "Low-power Mode": "Off"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+Port         Low-power Mode
+-----------  ----------------
+Ethernet505  Off
+
+```
+
+**Actual Converter Output:**
+```
+Port         Low-power Mode
+-----------  ----------------
+Ethernet505  Off
+```
+
+</details>
+
 ---
 
 <a id="32-show-interfaces-transceiver-pm"></a>
@@ -14485,22 +22606,26 @@ Ethernet252  Off
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 9/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 1 |
 
 **Test Case Variants:**
 
 - [32.1 (base command)](#32.1-show-interfaces-transceiver-pm)
 - [32.2 Ethernet0](#32.2-show-interfaces-transceiver-pm-ethernet0)
 - [32.3 Ethernet252](#32.3-show-interfaces-transceiver-pm-ethernet252)
+- [32.4 Ethernet8](#32.4-show-interfaces-transceiver-pm-ethernet8)
+- [32.5 Ethernet505](#32.5-show-interfaces-transceiver-pm-ethernet505)
 
 <a id="32.1-show-interfaces-transceiver-pm"></a>
 #### 32.1 `show interfaces transceiver pm` (base command)
@@ -14508,9 +22633,11 @@ Ethernet252  Off
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -14600,6 +22727,86 @@ Ethernet32: Transceiver performance monitoring not applicable
 Ethernet36: Transceiver performance monitoring not applicable
 
 ... (107 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "description": "Transceiver performance monitoring not applicable",
+    "interface": "Ethernet0"
+  },
+  {
+    "description": "Transceiver performance monitoring not applicable",
+    "interface": "Ethernet4"
+  },
+  {
+    "description": "Transceiver performance monitoring not applicable",
+    "interface": "Ethernet8"
+  },
+  {
+    "description": "Transceiver performance monitoring not applicable",
+    "interface": "Ethernet12"
+  },
+  {
+    "description": "Transceiver performance monitoring not applicable",
+    "interface": "Ethernet16"
+... (206 more lines)
+```
+
+**Expected CLI Output:**
+```
+Ethernet0: Transceiver performance monitoring not applicable
+
+Ethernet4: Transceiver performance monitoring not applicable
+
+Ethernet8: Transceiver performance monitoring not applicable
+
+Ethernet12: Transceiver performance monitoring not applicable
+
+Ethernet16: Transceiver performance monitoring not applicable
+
+Ethernet20: Transceiver performance monitoring not applicable
+
+Ethernet24: Transceiver performance monitoring not applicable
+
+Ethernet28: Transceiver performance monitoring not applicable
+
+Ethernet32: Transceiver performance monitoring not applicable
+
+Ethernet36: Transceiver performance monitoring not applicable
+
+... (92 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet0: Transceiver performance monitoring not applicable
+
+Ethernet4: Transceiver performance monitoring not applicable
+
+Ethernet8: Transceiver performance monitoring not applicable
+
+Ethernet12: Transceiver performance monitoring not applicable
+
+Ethernet16: Transceiver performance monitoring not applicable
+
+Ethernet20: Transceiver performance monitoring not applicable
+
+Ethernet24: Transceiver performance monitoring not applicable
+
+Ethernet28: Transceiver performance monitoring not applicable
+
+Ethernet32: Transceiver performance monitoring not applicable
+
+Ethernet36: Transceiver performance monitoring not applicable
+
+... (91 more lines)
 ```
 
 </details>
@@ -14932,6 +23139,96 @@ Ethernet252: Transceiver performance monitoring not applicable
 
 </details>
 
+<a id="32.4-show-interfaces-transceiver-pm-ethernet8"></a>
+#### 32.4 `show interfaces transceiver pm Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver pm Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "description": "Transceiver performance monitoring not applicable",
+    "interface": "Ethernet8"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+Ethernet8: Transceiver performance monitoring not applicable
+
+```
+
+**Actual Converter Output:**
+```
+Ethernet8: Transceiver performance monitoring not applicable
+```
+
+</details>
+
+<a id="32.5-show-interfaces-transceiver-pm-ethernet505"></a>
+#### 32.5 `show interfaces transceiver pm Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver pm Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "description": "Transceiver performance monitoring not applicable",
+    "interface": "Ethernet505"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+Ethernet505: Transceiver performance monitoring not applicable
+
+```
+
+**Actual Converter Output:**
+```
+Ethernet505: Transceiver performance monitoring not applicable
+```
+
+</details>
+
 ---
 
 <a id="33-show-interfaces-transceiver-presence"></a>
@@ -14939,22 +23236,26 @@ Ethernet252: Transceiver performance monitoring not applicable
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [33.1 (base command)](#33.1-show-interfaces-transceiver-presence)
 - [33.2 Ethernet0](#33.2-show-interfaces-transceiver-presence-ethernet0)
 - [33.3 Ethernet252](#33.3-show-interfaces-transceiver-presence-ethernet252)
+- [33.4 Ethernet8](#33.4-show-interfaces-transceiver-presence-ethernet8)
+- [33.5 Ethernet505](#33.5-show-interfaces-transceiver-presence-ethernet505)
 
 <a id="33.1-show-interfaces-transceiver-presence"></a>
 #### 33.1 `show interfaces transceiver presence` (base command)
@@ -14962,9 +23263,11 @@ Ethernet252: Transceiver performance monitoring not applicable
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -15054,6 +23357,86 @@ Ethernet60   Present
 Ethernet64   Present
 Ethernet68   Present
 ... (46 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": "Not Present",
+  "Ethernet104": "Not Present",
+  "Ethernet112": "Not Present",
+  "Ethernet12": "Present",
+  "Ethernet120": "Not Present",
+  "Ethernet128": "Not Present",
+  "Ethernet136": "Not Present",
+  "Ethernet144": "Not Present",
+  "Ethernet152": "Not Present",
+  "Ethernet16": "Not Present",
+  "Ethernet160": "Present",
+  "Ethernet164": "Present",
+  "Ethernet168": "Not Present",
+  "Ethernet172": "Not Present",
+  "Ethernet176": "Not Present",
+  "Ethernet180": "Not Present",
+  "Ethernet184": "Not Present",
+  "Ethernet188": "Not Present",
+  "Ethernet192": "Present",
+... (38 more lines)
+```
+
+**Expected CLI Output:**
+```
+Port         Presence
+-----------  -----------
+Ethernet0    Not present
+Ethernet4    Not present
+Ethernet8    Present
+Ethernet12   Present
+Ethernet16   Not present
+Ethernet20   Not present
+Ethernet24   Present
+Ethernet28   Present
+Ethernet32   Present
+Ethernet36   Present
+Ethernet40   Present
+Ethernet44   Present
+Ethernet48   Present
+Ethernet52   Present
+Ethernet56   Present
+Ethernet60   Present
+Ethernet64   Not present
+Ethernet68   Not present
+... (39 more lines)
+```
+
+**Actual Converter Output:**
+```
+Port         Presence
+-----------  -----------
+Ethernet0    Not present
+Ethernet4    Not present
+Ethernet8    Present
+Ethernet12   Present
+Ethernet16   Not present
+Ethernet20   Not present
+Ethernet24   Present
+Ethernet28   Present
+Ethernet32   Present
+Ethernet36   Present
+Ethernet40   Present
+Ethernet44   Present
+Ethernet48   Present
+Ethernet52   Present
+Ethernet56   Present
+Ethernet60   Present
+Ethernet64   Not present
+Ethernet68   Not present
+... (38 more lines)
 ```
 
 </details>
@@ -15298,6 +23681,86 @@ Ethernet136  Present
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": "Present",
+  "Ethernet1": "Present",
+  "Ethernet10": "Present",
+  "Ethernet100": "Present",
+  "Ethernet101": "Present",
+  "Ethernet102": "Present",
+  "Ethernet103": "Present",
+  "Ethernet104": "Present",
+  "Ethernet105": "Present",
+  "Ethernet106": "Present",
+  "Ethernet107": "Present",
+  "Ethernet108": "Present",
+  "Ethernet109": "Present",
+  "Ethernet11": "Present",
+  "Ethernet110": "Present",
+  "Ethernet111": "Present",
+  "Ethernet112": "Present",
+  "Ethernet113": "Present",
+  "Ethernet114": "Present",
+... (496 more lines)
+```
+
+**Expected CLI Output:**
+```
+Port         Presence
+-----------  ----------
+Ethernet0    Present
+Ethernet1    Present
+Ethernet2    Present
+Ethernet3    Present
+Ethernet4    Present
+Ethernet5    Present
+Ethernet6    Present
+Ethernet7    Present
+Ethernet8    Present
+Ethernet9    Present
+Ethernet10   Present
+Ethernet11   Present
+Ethernet12   Present
+Ethernet13   Present
+Ethernet14   Present
+Ethernet15   Present
+Ethernet16   Present
+Ethernet17   Present
+... (497 more lines)
+```
+
+**Actual Converter Output:**
+```
+Port         Presence
+-----------  ----------
+Ethernet0    Present
+Ethernet1    Present
+Ethernet2    Present
+Ethernet3    Present
+Ethernet4    Present
+Ethernet5    Present
+Ethernet6    Present
+Ethernet7    Present
+Ethernet8    Present
+Ethernet9    Present
+Ethernet10   Present
+Ethernet11   Present
+Ethernet12   Present
+Ethernet13   Present
+Ethernet14   Present
+Ethernet15   Present
+Ethernet16   Present
+Ethernet17   Present
+... (496 more lines)
+```
+
+</details>
+
 <a id="33.2-show-interfaces-transceiver-presence-ethernet0"></a>
 #### 33.2 `show interfaces transceiver presence Ethernet0`
 
@@ -15388,6 +23851,98 @@ Ethernet252  Present
 
 </details>
 
+<a id="33.4-show-interfaces-transceiver-presence-ethernet8"></a>
+#### 33.4 `show interfaces transceiver presence Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver presence Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": "Present"
+}
+```
+
+**Expected CLI Output:**
+```
+Port       Presence
+---------  ----------
+Ethernet8  Present
+
+```
+
+**Actual Converter Output:**
+```
+Port       Presence
+---------  ----------
+Ethernet8  Present
+```
+
+</details>
+
+<a id="33.5-show-interfaces-transceiver-presence-ethernet505"></a>
+#### 33.5 `show interfaces transceiver presence Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver presence Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": "Present"
+}
+```
+
+**Expected CLI Output:**
+```
+Port         Presence
+-----------  ----------
+Ethernet505  Present
+
+```
+
+**Actual Converter Output:**
+```
+Port         Presence
+-----------  ----------
+Ethernet505  Present
+```
+
+</details>
+
 ---
 
 <a id="34-show-interfaces-transceiver-status"></a>
@@ -15395,22 +23950,26 @@ Ethernet252  Present
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 5/12 test cases passed (across 4 devices)
+**Status:** ✅ All 8/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 1 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 1 |
 
 **Test Case Variants:**
 
 - [34.1 (base command)](#34.1-show-interfaces-transceiver-status)
 - [34.2 Ethernet0](#34.2-show-interfaces-transceiver-status-ethernet0)
 - [34.3 Ethernet252](#34.3-show-interfaces-transceiver-status-ethernet252)
+- [34.4 Ethernet8](#34.4-show-interfaces-transceiver-status-ethernet8)
+- [34.5 Ethernet505](#34.5-show-interfaces-transceiver-status-ethernet505)
 
 <a id="34.1-show-interfaces-transceiver-status"></a>
 #### 34.1 `show interfaces transceiver status` (base command)
@@ -15418,9 +23977,11 @@ Ethernet252  Present
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
+| `str3-8101-02` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -15510,6 +24071,86 @@ Ethernet4:
         Rx loss of signal flag on media lane 2: N/A
         Rx loss of signal flag on media lane 3: N/A
 ... (939 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet104": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet112": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet12": "{\"CMIS State (SW)\":\"READY\",\"Disabled TX channels\":\"N/A\",\"Rx loss of signal flag on media lane 1\":\"N/A\",\"Rx loss of signal flag on media lane 2\":\"N/A\",\"Rx loss of signal flag on media lane 3\":\"N/A\",\"Rx loss of signal flag on media lane 4\":\"N/A\",\"TX disable status on lane 1\":\"N/A\",\"TX disable status on lane 2\":\"N/A\",\"TX disable status on lane 3\":\"N/A\",\"TX disable status on lane 4\":\"N/A\",\"Tx fault flag on media lane 1\":\"N/A\",\"Tx fault flag on media lane 2\":\"N/A\",\"Tx fault flag on media lane 3\":\"N/A\",\"Tx fault flag on media lane 4\":\"N/A\"}",
+  "Ethernet120": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet128": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet136": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet144": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet152": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet16": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet160": "{\"CMIS State (SW)\":\"READY\",\"Disabled TX channels\":\"N/A\",\"Rx loss of signal flag on media lane 1\":\"N/A\",\"Rx loss of signal flag on media lane 2\":\"N/A\",\"Rx loss of signal flag on media lane 3\":\"N/A\",\"Rx loss of signal flag on media lane 4\":\"N/A\",\"TX disable status on lane 1\":\"N/A\",\"TX disable status on lane 2\":\"N/A\",\"TX disable status on lane 3\":\"N/A\",\"TX disable status on lane 4\":\"N/A\",\"Tx fault flag on media lane 1\":\"N/A\",\"Tx fault flag on media lane 2\":\"N/A\",\"Tx fault flag on media lane 3\":\"N/A\",\"Tx fault flag on media lane 4\":\"N/A\"}",
+  "Ethernet164": "{\"CMIS State (SW)\":\"READY\",\"Disabled TX channels\":\"N/A\",\"Rx loss of signal flag on media lane 1\":\"N/A\",\"Rx loss of signal flag on media lane 2\":\"N/A\",\"Rx loss of signal flag on media lane 3\":\"N/A\",\"Rx loss of signal flag on media lane 4\":\"N/A\",\"TX disable status on lane 1\":\"N/A\",\"TX disable status on lane 2\":\"N/A\",\"TX disable status on lane 3\":\"N/A\",\"TX disable status on lane 4\":\"N/A\",\"Tx fault flag on media lane 1\":\"N/A\",\"Tx fault flag on media lane 2\":\"N/A\",\"Tx fault flag on media lane 3\":\"N/A\",\"Tx fault flag on media lane 4\":\"N/A\"}",
+  "Ethernet168": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet172": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet176": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet180": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet184": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet188": "{\"CMIS State (SW)\":\"READY\"}",
+  "Ethernet192": "{\"CMIS State (SW)\":\"READY\",\"Disabled TX channels\":\"N/A\",\"Rx loss of signal flag on media lane 1\":\"N/A\",\"Rx loss of signal flag on media lane 2\":\"N/A\",\"Rx loss of signal flag on media lane 3\":\"N/A\",\"Rx loss of signal flag on media lane 4\":\"N/A\",\"TX disable status on lane 1\":\"N/A\",\"TX disable status on lane 2\":\"N/A\",\"TX disable status on lane 3\":\"N/A\",\"TX disable status on lane 4\":\"N/A\",\"Tx fault flag on media lane 1\":\"N/A\",\"Tx fault flag on media lane 2\":\"N/A\",\"Tx fault flag on media lane 3\":\"N/A\",\"Tx fault flag on media lane 4\":\"N/A\"}",
+... (38 more lines)
+```
+
+**Expected CLI Output:**
+```
+Ethernet0: Transceiver status info not applicable
+
+Ethernet4: Transceiver status info not applicable
+
+Ethernet8: 
+        CMIS State (SW): READY
+        Tx fault flag on media lane 1: N/A
+        Tx fault flag on media lane 2: N/A
+        Tx fault flag on media lane 3: N/A
+        Tx fault flag on media lane 4: N/A
+        Rx loss of signal flag on media lane 1: N/A
+        Rx loss of signal flag on media lane 2: N/A
+        Rx loss of signal flag on media lane 3: N/A
+        Rx loss of signal flag on media lane 4: N/A
+        TX disable status on lane 1: N/A
+        TX disable status on lane 2: N/A
+        TX disable status on lane 3: N/A
+        TX disable status on lane 4: N/A
+        Disabled TX channels: N/A
+
+... (1128 more lines)
+```
+
+**Actual Converter Output:**
+```
+Ethernet0: 
+        CMIS State (SW): READY
+
+Ethernet4: 
+        CMIS State (SW): READY
+
+Ethernet8: 
+        CMIS State (SW): READY
+        Disabled TX channels: N/A
+        Rx loss of signal flag on media lane 1: N/A
+        Rx loss of signal flag on media lane 2: N/A
+        Rx loss of signal flag on media lane 3: N/A
+        Rx loss of signal flag on media lane 4: N/A
+        TX disable status on lane 1: N/A
+        TX disable status on lane 2: N/A
+        TX disable status on lane 3: N/A
+        TX disable status on lane 4: N/A
+        Tx fault flag on media lane 1: N/A
+        Tx fault flag on media lane 2: N/A
+        Tx fault flag on media lane 3: N/A
+... (1163 more lines)
 ```
 
 </details>
@@ -15810,6 +24451,146 @@ Ethernet252:
 
 </details>
 
+<a id="34.4-show-interfaces-transceiver-status-ethernet8"></a>
+#### 34.4 `show interfaces transceiver status Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver status Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet8": "{\"CMIS State (SW)\":\"READY\",\"Disabled TX channels\":\"N/A\",\"Rx loss of signal flag on media lane 1\":\"N/A\",\"Rx loss of signal flag on media lane 2\":\"N/A\",\"Rx loss of signal flag on media lane 3\":\"N/A\",\"Rx loss of signal flag on media lane 4\":\"N/A\",\"TX disable status on lane 1\":\"N/A\",\"TX disable status on lane 2\":\"N/A\",\"TX disable status on lane 3\":\"N/A\",\"TX disable status on lane 4\":\"N/A\",\"Tx fault flag on media lane 1\":\"N/A\",\"Tx fault flag on media lane 2\":\"N/A\",\"Tx fault flag on media lane 3\":\"N/A\",\"Tx fault flag on media lane 4\":\"N/A\"}"
+}
+```
+
+**Expected CLI Output:**
+```
+Ethernet8: 
+        CMIS State (SW): READY
+        Tx fault flag on media lane 1: N/A
+        Tx fault flag on media lane 2: N/A
+        Tx fault flag on media lane 3: N/A
+        Tx fault flag on media lane 4: N/A
+        Rx loss of signal flag on media lane 1: N/A
+        Rx loss of signal flag on media lane 2: N/A
+        Rx loss of signal flag on media lane 3: N/A
+        Rx loss of signal flag on media lane 4: N/A
+        TX disable status on lane 1: N/A
+        TX disable status on lane 2: N/A
+        TX disable status on lane 3: N/A
+        TX disable status on lane 4: N/A
+        Disabled TX channels: N/A
+
+```
+
+**Actual Converter Output:**
+```
+Ethernet8: 
+        CMIS State (SW): READY
+        Disabled TX channels: N/A
+        Rx loss of signal flag on media lane 1: N/A
+        Rx loss of signal flag on media lane 2: N/A
+        Rx loss of signal flag on media lane 3: N/A
+        Rx loss of signal flag on media lane 4: N/A
+        TX disable status on lane 1: N/A
+        TX disable status on lane 2: N/A
+        TX disable status on lane 3: N/A
+        TX disable status on lane 4: N/A
+        Tx fault flag on media lane 1: N/A
+        Tx fault flag on media lane 2: N/A
+        Tx fault flag on media lane 3: N/A
+        Tx fault flag on media lane 4: N/A
+```
+
+</details>
+
+<a id="34.5-show-interfaces-transceiver-status-ethernet505"></a>
+#### 34.5 `show interfaces transceiver status Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show interfaces transceiver status Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505": "{\"CMIS State (SW)\":\"READY\",\"Current module state\":\"ModuleReady\",\"Datapath firmware fault\":\"False\",\"Module firmware fault\":\"False\",\"Module state changed\":\"False\",\"Reason of entering the module fault state\":\"No Fault detected\",\"Temperature high alarm flag\":\"False\",\"Temperature high warning flag\":\"False\",\"Temperature low alarm flag\":\"False\",\"Temperature low warning flag\":\"False\",\"Vcc high alarm flag\":\"False\",\"Vcc high warning flag\":\"False\",\"Vcc low alarm flag\":\"False\",\"Vcc low warning flag\":\"False\"}"
+}
+```
+
+**Expected CLI Output:**
+```
+Ethernet505: 
+        CMIS State (SW): READY
+        Current module state: ModuleReady
+        Reason of entering the module fault state: No Fault detected
+        Datapath firmware fault: False
+        Module firmware fault: False
+        Module state changed: False
+        Temperature high alarm flag: False
+        Temperature high warning flag: False
+        Temperature low warning flag: False
+        Temperature low alarm flag: False
+        Vcc high alarm flag: False
+        Vcc high warning flag: False
+        Vcc low warning flag: False
+        Vcc low alarm flag: False
+
+```
+
+**Actual Converter Output:**
+```
+Ethernet505: 
+        CMIS State (SW): READY
+        Current module state: ModuleReady
+        Reason of entering the module fault state: No Fault detected
+        Datapath firmware fault: False
+        Module firmware fault: False
+        Module state changed: False
+        Temperature high alarm flag: False
+        Temperature high warning flag: False
+        Temperature low warning flag: False
+        Temperature low alarm flag: False
+        Vcc high alarm flag: False
+        Vcc high warning flag: False
+        Vcc low warning flag: False
+        Vcc low alarm flag: False
+```
+
+</details>
+
 ---
 
 <a id="35-show-ipv6-prefix-list"></a>
@@ -15817,16 +24598,18 @@ Ethernet252:
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/8 test cases passed (across 4 devices)
+**Status:** ✅ All 10/12 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -15839,9 +24622,11 @@ Ethernet252:
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 6 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 6 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 10 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 15 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -15895,6 +24680,65 @@ BGP: ipv6 prefix-list IPV6_64_ONLY: 1 entries
    seq 5 permit ::/0 ge 64 le 64
 BGP: ipv6 prefix-list PL_LoopbackV6: 1 entries
    seq 5 permit fc00:1::/64
+```
+
+**Actual Converter Output:**
+```
+bgpd: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+bgpd: ipv6 prefix-list IPV6_64_ONLY: 1 entries
+   seq 5 permit ::/0 le 64
+bgpd: ipv6 prefix-list PL_LoopbackV6: 1 entries
+   seq 5 permit fc00:1::/64
+zebra: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+zebra: ipv6 prefix-list IPV6_64_ONLY: 1 entries
+   seq 5 permit ::/0 le 64
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "bgpd": {
+    "DEFAULT_IPV6": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+          "type": "permit",
+          "prefix": "::/0"
+        }
+      ]
+    },
+    "IPV6_64_ONLY": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+          "type": "permit",
+          "prefix": "::/0",
+          "maximumPrefixLength": 64
+... (38 more lines)
+```
+
+**Expected CLI Output:**
+```
+ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+ZEBRA: ipv6 prefix-list IPV6_64_ONLY: 1 entries
+   seq 5 permit ::/0 ge 64 le 64
+BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+BGP: ipv6 prefix-list IPV6_64_ONLY: 1 entries
+   seq 5 permit ::/0 ge 64 le 64
+BGP: ipv6 prefix-list PL_LoopbackV6: 1 entries
+   seq 5 permit fc00:1::/64
+
 ```
 
 **Actual Converter Output:**
@@ -16129,13 +24973,70 @@ ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 56 entries
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "BGP": {
+    "DEFAULT_IPV6": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+          "type": "permit",
+          "prefix": "::/0",
+          "maximumPrefixLength": 128
+        }
+      ]
+    },
+    "LOCAL_VLAN_IPV6_PREFIX": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+          "type": "permit",
+          "prefix": "fc02:1000::/104"
+... (28 more lines)
+```
+
+**Expected CLI Output:**
+```
+ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit any
+BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit any
+BGP: ipv6 prefix-list LOCAL_VLAN_IPV6_PREFIX: 1 entries
+   seq 5 permit fc02:1000::/104
+BGP: ipv6 prefix-list PL_LoopbackV6: 1 entries
+   seq 5 permit fc00:1::/64
+
+```
+
+**Actual Converter Output:**
+```
+ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0 le 128
+BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0 le 128
+BGP: ipv6 prefix-list LOCAL_VLAN_IPV6_PREFIX: 1 entries
+   seq 5 permit fc02:1000::/104
+BGP: ipv6 prefix-list PL_LoopbackV6: 1 entries
+   seq 5 permit fc00:1::/64
+```
+
+</details>
+
 <a id="35.2-show-ipv6-prefix-list-default-ipv6"></a>
 #### 35.2 `show ipv6 prefix-list DEFAULT_IPV6`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -16196,6 +25097,53 @@ zebra: ipv6 prefix-list DEFAULT_IPV6: 1 entries
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "bgpd": {
+    "DEFAULT_IPV6": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+          "type": "permit",
+          "prefix": "::/0"
+        }
+      ]
+    }
+  },
+  "zebra": {
+    "DEFAULT_IPV6": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+          "type": "permit",
+... (6 more lines)
+```
+
+**Expected CLI Output:**
+```
+ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+
+```
+
+**Actual Converter Output:**
+```
+bgpd: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+zebra: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -16241,6 +25189,53 @@ BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "BGP": {
+    "DEFAULT_IPV6": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+          "type": "permit",
+          "prefix": "::/0",
+          "maximumPrefixLength": 128
+        }
+      ]
+    }
+  },
+  "ZEBRA": {
+    "DEFAULT_IPV6": {
+      "addressFamily": "IPv6",
+      "entries": [
+        {
+          "sequenceNumber": 5,
+... (8 more lines)
+```
+
+**Expected CLI Output:**
+```
+ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit any
+BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit any
+
+```
+
+**Actual Converter Output:**
+```
+ZEBRA: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0 le 128
+BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
+   seq 5 permit ::/0 le 128
+```
+
+</details>
+
 ---
 
 <a id="36-show-ipv6-interfaces"></a>
@@ -16248,16 +25243,18 @@ BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="36.1-show-ipv6-interfaces"></a>
 #### 36.1 `show ipv6 interfaces` (base command)
@@ -16265,9 +25262,11 @@ BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 108 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 108 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 118 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 86 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 334 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 148 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -16356,6 +25355,86 @@ Ethernet136     PortChannel101  fe80::9e54:16ff:fe4e:29f0%Ethernet136/64     up/
 Ethernet144     PortChannel103  fe80::9e54:16ff:fe4e:29f0%Ethernet144/64     up/up         N/A             N/A
 Ethernet148     PortChannel104  fe80::9e54:16ff:fe4e:29f0%Ethernet148/64     up/up         N/A             N/A
 Ethernet152     PortChannel106  fe80::9e54:16ff:fe4e:29f0%Ethernet152/64     up/up         N/A             N/A
+... (70 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Bridge": {
+    "ipv6_addresses": [
+      {
+        "address": "fe80::de05:39ff:fec8:bac8/64",
+        "bgp_neighbor_ip": "N/A",
+        "bgp_neighbor_name": "N/A"
+      }
+    ],
+    "admin_status": "up",
+    "oper_status": "up",
+    "master": ""
+  },
+  "Ethernet0": {
+    "ipv6_addresses": [
+      {
+        "address": "fe80::de05:39ff:fec8:bac8/64",
+        "bgp_neighbor_ip": "N/A",
+        "bgp_neighbor_name": "N/A"
+      }
+... (849 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface       Master          IPv6 address/mask                            Admin/Oper    BGP Neighbor    Neighbor IP
+--------------  --------------  -------------------------------------------  ------------  --------------  -------------
+Bridge                          fe80::de05:39ff:fec8:bac8%Bridge/64          up/up         N/A             N/A
+Ethernet0       PortChannel101  fe80::de05:39ff:fec8:bac8%Ethernet0/64       up/up         N/A             N/A
+Ethernet4       PortChannel103  fe80::de05:39ff:fec8:bac8%Ethernet4/64       up/up         N/A             N/A
+Ethernet16      PortChannel104  fe80::de05:39ff:fec8:bac8%Ethernet16/64      up/up         N/A             N/A
+Ethernet20      PortChannel106  fe80::de05:39ff:fec8:bac8%Ethernet20/64      up/up         N/A             N/A
+Ethernet64      PortChannel107  fe80::de05:39ff:fec8:bac8%Ethernet64/64      up/up         N/A             N/A
+Ethernet68      PortChannel109  fe80::de05:39ff:fec8:bac8%Ethernet68/64      up/up         N/A             N/A
+Ethernet80      PortChannel110  fe80::de05:39ff:fec8:bac8%Ethernet80/64      up/up         N/A             N/A
+Ethernet84      PortChannel112  fe80::de05:39ff:fec8:bac8%Ethernet84/64      up/up         N/A             N/A
+Ethernet96      PortChannel102  fe80::de05:39ff:fec8:bac8%Ethernet96/64      up/up         N/A             N/A
+Ethernet104     PortChannel102  fe80::de05:39ff:fec8:bac8%Ethernet104/64     up/up         N/A             N/A
+Ethernet112     PortChannel105  fe80::de05:39ff:fec8:bac8%Ethernet112/64     up/up         N/A             N/A
+Ethernet120     PortChannel105  fe80::de05:39ff:fec8:bac8%Ethernet120/64     up/up         N/A             N/A
+Ethernet128     PortChannel108  fe80::de05:39ff:fec8:bac8%Ethernet128/64     up/up         N/A             N/A
+Ethernet136     PortChannel108  fe80::de05:39ff:fec8:bac8%Ethernet136/64     up/up         N/A             N/A
+Ethernet144     PortChannel111  fe80::de05:39ff:fec8:bac8%Ethernet144/64     up/up         N/A             N/A
+Ethernet152     PortChannel111  fe80::de05:39ff:fec8:bac8%Ethernet152/64     up/up         N/A             N/A
+Ethernet168     PortChannel113  fe80::de05:39ff:fec8:bac8%Ethernet168/64     up/up         N/A             N/A
+... (71 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface       Master          IPv6 address/mask                            Admin/Oper    BGP Neighbor    Neighbor IP
+--------------  --------------  -------------------------------------------  ------------  --------------  -------------
+Bridge                          fe80::de05:39ff:fec8:bac8%Bridge/64          up/up         N/A             N/A
+docker0                         fd00::1/80                                   up/down       N/A             N/A
+                                fe80::1%docker0/64                                         N/A             N/A
+dummy           Bridge          fe80::50fc:71ff:fefa:9e37%dummy/64           up/up         N/A             N/A
+eth0                            2a01:111:e210:3000::a03:92bf/64              up/up         N/A             N/A
+                                fe80::de05:39ff:fec8:bac8%eth0/64                          N/A             N/A
+Ethernet0       PortChannel101  fe80::de05:39ff:fec8:bac8%Ethernet0/64       up/up         N/A             N/A
+Ethernet4       PortChannel103  fe80::de05:39ff:fec8:bac8%Ethernet4/64       up/up         N/A             N/A
+Ethernet16      PortChannel104  fe80::de05:39ff:fec8:bac8%Ethernet16/64      up/up         N/A             N/A
+Ethernet20      PortChannel106  fe80::de05:39ff:fec8:bac8%Ethernet20/64      up/up         N/A             N/A
+Ethernet64      PortChannel107  fe80::de05:39ff:fec8:bac8%Ethernet64/64      up/up         N/A             N/A
+Ethernet68      PortChannel109  fe80::de05:39ff:fec8:bac8%Ethernet68/64      up/up         N/A             N/A
+Ethernet80      PortChannel110  fe80::de05:39ff:fec8:bac8%Ethernet80/64      up/up         N/A             N/A
+Ethernet84      PortChannel112  fe80::de05:39ff:fec8:bac8%Ethernet84/64      up/up         N/A             N/A
+Ethernet96      PortChannel102  fe80::de05:39ff:fec8:bac8%Ethernet96/64      up/up         N/A             N/A
+Ethernet104     PortChannel102  fe80::de05:39ff:fec8:bac8%Ethernet104/64     up/up         N/A             N/A
+Ethernet112     PortChannel105  fe80::de05:39ff:fec8:bac8%Ethernet112/64     up/up         N/A             N/A
+Ethernet120     PortChannel105  fe80::de05:39ff:fec8:bac8%Ethernet120/64     up/up         N/A             N/A
 ... (70 more lines)
 ```
 
@@ -16601,6 +25680,86 @@ Ethernet32                      fc00::11/126                                 up/
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Bridge": {
+    "ipv6_addresses": [
+      {
+        "address": "fe80::5200:e6ff:fee6:8208/64",
+        "bgp_neighbor_ip": "N/A",
+        "bgp_neighbor_name": "N/A"
+      }
+    ],
+    "admin_status": "up",
+    "oper_status": "up",
+    "master": ""
+  },
+  "Ethernet0": {
+    "ipv6_addresses": [
+      {
+        "address": "fc02:1000::25/126",
+        "bgp_neighbor_ip": "N/A",
+        "bgp_neighbor_name": "N/A"
+      },
+... (1220 more lines)
+```
+
+**Expected CLI Output:**
+```
+Interface    Master    IPv6 address/mask                         Admin/Oper    BGP Neighbor    Neighbor IP
+-----------  --------  ----------------------------------------  ------------  --------------  -------------
+Bridge                 fe80::5200:e6ff:fee6:8208%Bridge/64       up/up         N/A             N/A
+Ethernet0              fc02:1000::25/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet0/64                  N/A             N/A
+Ethernet8              fc02:1000::17/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet8/64                  N/A             N/A
+Ethernet16             fc02:1000::61/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet16/64                 N/A             N/A
+Ethernet24             fc02:1000::85/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet24/64                 N/A             N/A
+Ethernet32             fc02:1000::89/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet32/64                 N/A             N/A
+Ethernet40             fc02:1000::21/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet40/64                 N/A             N/A
+Ethernet48             fc02:1000::93/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet48/64                 N/A             N/A
+Ethernet56             fc02:1000::37/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet56/64                 N/A             N/A
+Ethernet64             fc00::101/126                             up/up         ARISTA01T1      fc00::102
+... (127 more lines)
+```
+
+**Actual Converter Output:**
+```
+Interface    Master    IPv6 address/mask                         Admin/Oper    BGP Neighbor    Neighbor IP
+-----------  --------  ----------------------------------------  ------------  --------------  -------------
+Bridge                 fe80::5200:e6ff:fee6:8208%Bridge/64       up/up         N/A             N/A
+docker0                fd00::1/80                                up/down       N/A             N/A
+                       fe80::1%docker0/64                                      N/A             N/A
+dummy        Bridge    fe80::7c82:69ff:fe7e:9111%dummy/64        up/up         N/A             N/A
+eth0                   2a01:111:e210:b000::a40:f6b8/121          up/up         N/A             N/A
+                       fe80::5200:e6ff:febb:46e0%eth0/64                       N/A             N/A
+Ethernet0              fc02:1000::25/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet0/64                  N/A             N/A
+Ethernet8              fc02:1000::17/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet8/64                  N/A             N/A
+Ethernet16             fc02:1000::61/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet16/64                 N/A             N/A
+Ethernet24             fc02:1000::85/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet24/64                 N/A             N/A
+Ethernet32             fc02:1000::89/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet32/64                 N/A             N/A
+Ethernet40             fc02:1000::21/126                         up/up         N/A             N/A
+                       fe80::5200:e6ff:fee6:8208%Ethernet40/64                 N/A             N/A
+... (126 more lines)
+```
+
+</details>
+
 ---
 
 <a id="37-show-ipv6-route"></a>
@@ -16608,16 +25767,18 @@ Ethernet32                      fc00::11/126                                 up/
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 5/28 test cases passed (across 4 devices)
+**Status:** ❌ 1 failures, 0 errors
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 4 | 0 | 0 | 3 |
+| `str3-8101-02` | 4 | 0 | 0 | 3 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 2 |
 | `str4-7060x6-512-13` | 0 | 0 | 0 | 1 |
 | `str4-7060x6-512-9` | 0 | 0 | 0 | 1 |
+| `str4-sn5640-7` | 3 | 1 | 0 | 3 |
 
 **Test Case Variants:**
 
@@ -16635,9 +25796,11 @@ Ethernet32                      fc00::11/126                                 up/
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str3-8101-02` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 | `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
 | `str4-7060x6-512-13` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
 | `str4-7060x6-512-9` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -16659,7 +25822,9 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -16754,6 +25919,86 @@ Routing entry for fe80::/64
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fe80::/64": [
+    {
+      "distance": 0,
+      "installed": true,
+      "internalFlags": 256,
+      "internalNextHopActiveNum": 1,
+      "internalNextHopNum": 1,
+      "internalStatus": 16,
+      "metric": 0,
+      "nexthopGroupId": 237,
+      "nexthops": [
+        {
+          "active": true,
+          "directlyConnected": true,
+          "fib": true,
+          "flags": 515,
+          "interfaceIndex": 180,
+          "interfaceName": "PortChannel102",
+          "linkDown": true,
+... (1781 more lines)
+```
+
+**Expected CLI Output:**
+```
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w2d18h ago
+  * directly connected, PortChannel102
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w2d18h ago
+  * directly connected, PortChannel109
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w2d18h ago
+  * directly connected, Ethernet96
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+... (335 more lines)
+```
+
+**Actual Converter Output:**
+```
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w2d18h ago
+  * directly connected, PortChannel102
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w2d18h ago
+  * directly connected, PortChannel109
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w2d18h ago
+  * directly connected, Ethernet96
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+... (332 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -16833,13 +26078,95 @@ Routing entry for fe80::/64
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fe80::/64": [
+    {
+      "distance": 0,
+      "installed": true,
+      "internalFlags": 256,
+      "internalNextHopActiveNum": 1,
+      "internalNextHopNum": 1,
+      "internalStatus": 16,
+      "metric": 0,
+      "nexthopGroupId": 570,
+      "nexthops": [
+        {
+          "active": true,
+          "directlyConnected": true,
+          "fib": true,
+          "flags": 3,
+          "interfaceIndex": 1025,
+          "interfaceName": "Ethernet496"
+        }
+... (2003 more lines)
+```
+
+**Expected CLI Output:**
+```
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w3d02h ago
+  * directly connected, Ethernet496
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w3d02h ago
+  * directly connected, Ethernet432
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w3d02h ago
+  * directly connected, Ethernet56
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+... (413 more lines)
+```
+
+**Actual Converter Output:**
+```
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w3d02h ago
+  * directly connected, Ethernet496
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w3d02h ago
+  * directly connected, Ethernet432
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+  Last update 01w3d02h ago
+  * directly connected, Ethernet56
+
+
+Routing entry for fe80::/64
+  Known via "connected", distance 0, metric 0
+... (410 more lines)
+```
+
+</details>
+
 <a id="37.3-show-ipv6-route-vrf-default"></a>
 #### 37.3 `show ipv6 route vrf default`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str3-8101-02` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 | `str4-7060x6-512-1` | ⏭️ SKIP | JSON extraction error: JSON parse error: Expecting value: line 1 column 1 (char 0) |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -16861,6 +26188,8 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ⏭️ SKIP | JSON extraction error: gRPC error: received message larger than max (6706789 vs. 4194304) |
+| `str3-8101-02` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -16882,6 +26211,8 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -16975,12 +26306,174 @@ C>* fc00::54/126 is directly connected, PortChannel109 linkdown, weight 1, 01w1d
 
 </details>
 
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "2a01:111:e210:3000::/64": [
+    {
+      "destSelected": true,
+      "distance": 0,
+      "installed": true,
+      "installedNexthopGroupId": 14,
+      "internalFlags": 264,
+      "internalNextHopActiveNum": 1,
+      "internalNextHopNum": 1,
+      "internalStatus": 16,
+      "metric": 0,
+      "nexthopGroupId": 14,
+      "nexthops": [
+        {
+          "active": true,
+          "directlyConnected": true,
+          "fib": true,
+          "flags": 3,
+          "interfaceIndex": 2,
+... (2715 more lines)
+```
+
+**Expected CLI Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv6 unicast VRF default:
+C>* 2a01:111:e210:3000::/64 is directly connected, eth0, weight 1, 01w2d18h
+C>* fc00::/126 is directly connected, PortChannel102 linkdown, weight 1, 01w2d18h
+C>* fc00::4/126 is directly connected, PortChannel105 linkdown, weight 1, 01w2d18h
+C>* fc00::8/126 is directly connected, PortChannel108 linkdown, weight 1, 01w2d18h
+C>* fc00::c/126 is directly connected, PortChannel111 linkdown, weight 1, 01w2d18h
+C>* fc00::40/126 is directly connected, PortChannel101 linkdown, weight 1, 01w2d18h
+C>* fc00::44/126 is directly connected, PortChannel103 linkdown, weight 1, 01w2d18h
+C>* fc00::48/126 is directly connected, PortChannel104 linkdown, weight 1, 01w2d18h
+C>* fc00::4c/126 is directly connected, PortChannel106 linkdown, weight 1, 01w2d18h
+C>* fc00::50/126 is directly connected, PortChannel107 linkdown, weight 1, 01w2d18h
+C>* fc00::54/126 is directly connected, PortChannel109 linkdown, weight 1, 01w2d18h
+... (76 more lines)
+```
+
+**Actual Converter Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv6 unicast VRF default:
+C>* 2a01:111:e210:3000::/64 is directly connected, eth0, weight 1, 01w2d18h
+C>* fc00::/126 is directly connected, PortChannel102 linkdown, weight 1, 01w2d18h
+C>* fc00::4/126 is directly connected, PortChannel105 linkdown, weight 1, 01w2d18h
+C>* fc00::8/126 is directly connected, PortChannel108 linkdown, weight 1, 01w2d18h
+C>* fc00::c/126 is directly connected, PortChannel111 linkdown, weight 1, 01w2d18h
+C>* fc00::40/126 is directly connected, PortChannel101 linkdown, weight 1, 01w2d18h
+C>* fc00::44/126 is directly connected, PortChannel103 linkdown, weight 1, 01w2d18h
+C>* fc00::48/126 is directly connected, PortChannel104 linkdown, weight 1, 01w2d18h
+C>* fc00::4c/126 is directly connected, PortChannel106 linkdown, weight 1, 01w2d18h
+C>* fc00::50/126 is directly connected, PortChannel107 linkdown, weight 1, 01w2d18h
+C>* fc00::54/126 is directly connected, PortChannel109 linkdown, weight 1, 01w2d18h
+... (74 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "2a01:111:e210:b000::a40:f680/121": [
+    {
+      "destSelected": true,
+      "distance": 0,
+      "installed": true,
+      "installedNexthopGroupId": 33,
+      "internalFlags": 264,
+      "internalNextHopActiveNum": 1,
+      "internalNextHopNum": 1,
+      "internalStatus": 16,
+      "metric": 0,
+      "nexthopGroupId": 33,
+      "nexthops": [
+        {
+          "active": true,
+          "directlyConnected": true,
+          "fib": true,
+          "flags": 3,
+          "interfaceIndex": 2,
+... (4280 more lines)
+```
+
+**Expected CLI Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+C>* 2a01:111:e210:b000::a40:f680/121 is directly connected, eth0, 01w3d02h
+C>* fc00::100/126 is directly connected, Ethernet64, 01w3d02h
+C>* fc00::120/126 is directly connected, Ethernet72, 01w3d02h
+C>* fc00::140/126 is directly connected, Ethernet80, 01w3d02h
+C>* fc00::160/126 is directly connected, Ethernet88, 01w3d02h
+C>* fc00::180/126 is directly connected, Ethernet96, 01w3d02h
+C>* fc00::1a0/126 is directly connected, Ethernet104, 01w3d02h
+C>* fc00::1c0/126 is directly connected, Ethernet112, 01w3d02h
+C>* fc00::1e0/126 is directly connected, Ethernet120, 01w3d02h
+C>* fc00::200/126 is directly connected, Ethernet128, 01w3d02h
+C>* fc00::220/126 is directly connected, Ethernet136, 01w3d02h
+C>* fc00::240/126 is directly connected, Ethernet144, 01w3d02h
+... (131 more lines)
+```
+
+**Actual Converter Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+C>* 2a01:111:e210:b000::a40:f680/121 is directly connected, eth0, 01w3d02h
+C>* fc00::100/126 is directly connected, Ethernet64, 01w3d02h
+C>* fc00::120/126 is directly connected, Ethernet72, 01w3d02h
+C>* fc00::140/126 is directly connected, Ethernet80, 01w3d02h
+C>* fc00::160/126 is directly connected, Ethernet88, 01w3d02h
+C>* fc00::180/126 is directly connected, Ethernet96, 01w3d02h
+C>* fc00::1a0/126 is directly connected, Ethernet104, 01w3d02h
+C>* fc00::1c0/126 is directly connected, Ethernet112, 01w3d02h
+C>* fc00::1e0/126 is directly connected, Ethernet120, 01w3d02h
+C>* fc00::200/126 is directly connected, Ethernet128, 01w3d02h
+C>* fc00::220/126 is directly connected, Ethernet136, 01w3d02h
+C>* fc00::240/126 is directly connected, Ethernet144, 01w3d02h
+... (129 more lines)
+```
+
+</details>
+
 <a id="37.6-show-ipv6-route-local"></a>
 #### 37.6 `show ipv6 route local`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -17014,12 +26507,54 @@ print(result)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
 <a id="37.7-show-ipv6-route-static"></a>
 #### 37.7 `show ipv6 route static`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ❌ FAIL | See diff below |
 
 **Sample Python Invocation:**
 ```python
@@ -17091,6 +26626,135 @@ S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w1d03h
 
 </details>
 
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fc00:1::/64": [
+    {
+      "destSelected": true,
+      "distance": 1,
+      "installed": true,
+      "installedNexthopGroupId": 76,
+      "internalFlags": 329,
+      "internalNextHopActiveNum": 1,
+      "internalNextHopNum": 1,
+      "internalStatus": 16,
+      "metric": 0,
+      "nexthopGroupId": 76,
+      "nexthops": [
+        {
+          "active": true,
+          "directlyConnected": true,
+          "fib": true,
+          "flags": 3,
+          "interfaceIndex": 205,
+... (17 more lines)
+```
+
+**Expected CLI Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv6 unicast VRF default:
+S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w2d18h
+
+
+```
+
+**Actual Converter Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv6 unicast VRF default:
+S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w2d18h
+```
+
+</details>
+
+<details>
+<summary><b>❌ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fc00:1::/64": [
+    {
+      "destSelected": true,
+      "distance": 1,
+      "installed": true,
+      "installedNexthopGroupId": 49,
+      "internalFlags": 329,
+      "internalNextHopActiveNum": 1,
+      "internalNextHopNum": 1,
+      "internalStatus": 16,
+      "metric": 0,
+      "nexthopGroupId": 49,
+      "nexthops": [
+        {
+          "active": true,
+          "directlyConnected": true,
+          "fib": true,
+          "flags": 3,
+          "interfaceIndex": 525,
+... (16 more lines)
+```
+
+**Expected CLI Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w3d02h
+
+
+```
+
+**Actual Converter Output:**
+```
+:
+Codes: K - kernel route, C - connected, L - local, S - static,
+       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric, t - Table-Direct,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+IPv6 unicast VRF default:
+S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w3d02h
+```
+
+**Diff Details:**
+```
+Line count: expected=9, actual=10
+First diff at line 9:
+  Expected: S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w3d02h
+  Actual:   IPv6 unicast VRF default:
+Line count mismatch
+gNMI Coverage: Coverage: 66.7% (10/15). Missing: ['49', '329', '254', '16', '525']
+```
+
+</details>
+
 ---
 
 <a id="38-show-ipv6-protocol"></a>
@@ -17098,16 +26762,18 @@ S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w1d03h
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="38.1-show-ipv6-protocol"></a>
 #### 38.1 `show ipv6 protocol` (base command)
@@ -17115,9 +26781,11 @@ S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w1d03h
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -17212,6 +26880,86 @@ table                     : none
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "VRF": "default",
+    "Protocols": [
+      {
+        "Protocol": "system",
+        "route-map": "none"
+      },
+      {
+        "Protocol": "kernel",
+        "route-map": "none"
+      },
+      {
+        "Protocol": "connected",
+        "route-map": "none"
+      },
+      {
+        "Protocol": "local",
+        "route-map": "none"
+      },
+... (119 more lines)
+```
+
+**Expected CLI Output:**
+```
+VRF: default
+Protocol                  : route-map
+-------------------------------------
+system                    : none
+kernel                    : none
+connected                 : none
+local                     : none
+static                    : none
+rip                       : none
+ripng                     : none
+ospf                      : none
+ospf6                     : none
+isis                      : none
+bgp                       : RM_SET_SRC6
+pim                       : none
+eigrp                     : none
+nhrp                      : none
+hsls                      : none
+olsr                      : none
+table                     : none
+... (17 more lines)
+```
+
+**Actual Converter Output:**
+```
+VRF: default
+Protocol                  : route-map
+-------------------------------------
+system                    : none
+kernel                    : none
+connected                 : none
+local                     : none
+static                    : none
+rip                       : none
+ripng                     : none
+ospf                      : none
+ospf6                     : none
+isis                      : none
+bgp                       : RM_SET_SRC6
+pim                       : none
+eigrp                     : none
+nhrp                      : none
+hsls                      : none
+olsr                      : none
+table                     : none
+... (16 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -17451,6 +27199,86 @@ table                     : none
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "VRF": "default",
+    "Protocols": [
+      {
+        "Protocol": "system",
+        "route-map": "none"
+      },
+      {
+        "Protocol": "kernel",
+        "route-map": "none"
+      },
+      {
+        "Protocol": "connected",
+        "route-map": "none"
+      },
+      {
+        "Protocol": "local",
+        "route-map": "none"
+      },
+... (123 more lines)
+```
+
+**Expected CLI Output:**
+```
+VRF: default
+Protocol                  : route-map
+-------------------------------------
+system                    : none
+kernel                    : none
+connected                 : none
+local                     : none
+static                    : none
+rip                       : none
+ripng                     : none
+ospf                      : none
+ospf6                     : none
+isis                      : none
+bgp                       : RM_SET_SRC6
+pim                       : none
+eigrp                     : none
+nhrp                      : none
+hsls                      : none
+olsr                      : none
+table                     : none
+... (18 more lines)
+```
+
+**Actual Converter Output:**
+```
+VRF: default
+Protocol                  : route-map
+-------------------------------------
+system                    : none
+kernel                    : none
+connected                 : none
+local                     : none
+static                    : none
+rip                       : none
+ripng                     : none
+ospf                      : none
+ospf6                     : none
+isis                      : none
+bgp                       : RM_SET_SRC6
+pim                       : none
+eigrp                     : none
+nhrp                      : none
+hsls                      : none
+olsr                      : none
+table                     : none
+... (17 more lines)
+```
+
+</details>
+
 ---
 
 <a id="39-show-ipv6-bgp-neighbors"></a>
@@ -17458,16 +27286,18 @@ table                     : none
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 12/36 test cases passed (across 4 devices)
+**Status:** ❌ 10 failures, 0 errors
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
-| `str2-8102-01` | 5 | 0 | 0 | 0 |
-| `str4-7060x6-512-1` | 5 | 0 | 0 | 0 |
-| `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
-| `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str2-8102-01` | 3 | 2 | 0 | 0 |
+| `str3-8101-02` | 3 | 2 | 0 | 0 |
+| `str4-7060x6-512-1` | 3 | 2 | 0 | 0 |
+| `str4-7060x6-512-13` | 0 | 1 | 0 | 0 |
+| `str4-7060x6-512-9` | 0 | 1 | 0 | 0 |
+| `str4-sn5640-7` | 3 | 2 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -17480,16 +27310,26 @@ table                     : none
 - [39.7 fc00::42 advertised-routes](#39.7-show-ipv6-bgp-neighbors-fc00--42-advertised-routes)
 - [39.8 fc00::42 received-routes](#39.8-show-ipv6-bgp-neighbors-fc00--42-received-routes)
 - [39.9 fc00::42 routes](#39.9-show-ipv6-bgp-neighbors-fc00--42-routes)
+- [39.10 fc00 8a advertised-routes](#39.10-show-ipv6-bgp-neighbors-fc00-8a-advertised-routes)
+- [39.11 fc00 8a received-routes](#39.11-show-ipv6-bgp-neighbors-fc00-8a-received-routes)
+- [39.12 fc00 8a routes](#39.12-show-ipv6-bgp-neighbors-fc00-8a-routes)
+- [39.13 fc00 8a](#39.13-show-ipv6-bgp-neighbors-fc00-8a)
+- [39.14 fc00 6e2 advertised-routes](#39.14-show-ipv6-bgp-neighbors-fc00-6e2-advertised-routes)
+- [39.15 fc00 6e2 received-routes](#39.15-show-ipv6-bgp-neighbors-fc00-6e2-received-routes)
+- [39.16 fc00 6e2 routes](#39.16-show-ipv6-bgp-neighbors-fc00-6e2-routes)
+- [39.17 fc00 6e2](#39.17-show-ipv6-bgp-neighbors-fc00-6e2)
 
 <a id="39.1-show-ipv6-bgp-neighbors"></a>
 #### 39.1 `show ipv6 bgp neighbors` (base command)
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | All 265 values from gNMI JSON covered (100%) |
-| `str4-7060x6-512-1` | ✅ PASS | All 307 values from gNMI JSON covered (100%) |
-| `str4-7060x6-512-13` | ✅ PASS | All 229 values from gNMI JSON covered (100%) |
-| `str4-7060x6-512-9` | ✅ PASS | All 796 values from gNMI JSON covered (100%) |
+| `str2-8102-01` | ❌ FAIL | See diff below |
+| `str3-8101-02` | ❌ FAIL | See diff below |
+| `str4-7060x6-512-1` | ❌ FAIL | See diff below |
+| `str4-7060x6-512-13` | ❌ FAIL | See diff below |
+| `str4-7060x6-512-9` | ❌ FAIL | See diff below |
+| `str4-sn5640-7` | ❌ FAIL | See diff below |
 
 **Sample Python Invocation:**
 ```python
@@ -17504,7 +27344,7 @@ print(result)
 ```
 
 <details>
-<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+<summary><b>❌ Device: str2-8102-01</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -17578,13 +27418,113 @@ BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
   Foreign host: fc00::2, Foreign port: 179
   Nexthop: 10.0.0.0
   Nexthop global: fc00::1
-... (2184 more lines)
+... (2112 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=2395, actual=2131
+First diff at line 1:
+  Expected: BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
+  Actual:   BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
+Line count mismatch
+gNMI Coverage: Coverage: 99.6% (264/265). Missing: ['sharedNetwork']
 ```
 
 </details>
 
 <details>
-<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+<summary><b>❌ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fc00::2": {
+    "remoteAs": 65200,
+    "localAs": 65100,
+    "nbrExternalLink": true,
+    "localRole": "undefined",
+    "remoteRole": "undefined",
+    "nbrDesc": "ARISTA01T2",
+    "hostname": "Unknown",
+    "peerGroup": "TIER2_V6",
+    "bgpVersion": 4,
+    "remoteRouterId": "100.1.0.1",
+    "localRouterId": "10.1.0.32",
+    "bgpState": "Established",
+    "bgpTimerUpMsec": 844907000,
+    "bgpTimerUpString": "01w2d18h",
+    "bgpTimerUpEstablishedEpoch": 1769772507,
+    "bgpTimerLastRead": 48000,
+    "bgpTimerLastWrite": 47000,
+    "bgpInUpdateElapsedTimeMsecs": 67307000,
+... (3366 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA01T0
+ Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
+  BGP version 4, remote router ID 100.1.0.17, local router ID 10.1.0.32
+  BGP state = Established, up for 01w2d18h
+  Last read 00:00:40, Last write 00:00:21
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    Extended Message: advertised
+    AddPath:
+      IPv6 Unicast: RX advertised and received
+    Paths-Limit:
+      IPv6 Unicast: advertised (0)
+    Long-lived Graceful Restart: advertised
+... (2376 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA01T2
+ Member of peer-group TIER2_V6 for session parameters
+  BGP version 4, remote router ID 100.1.0.1, local router ID 10.1.0.32
+  BGP state = Established, up for 01w2d18h
+  Last update from fc00::2 18:41:47 ago
+  Last read 00:00:48, Last write 00:00:47
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Connect retry timer: 30 seconds
+  Peer established epoch: 1769772507
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::1, Local port: 179
+  Foreign host: fc00::2, Foreign port: 44507
+  Nexthop: 10.0.0.0
+  Nexthop global: fc00::1
+... (2136 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=2395, actual=2155
+First diff at line 1:
+  Expected: BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
+  Actual:   BGP neighbor is fc00::2, remote AS 65200, local AS 65100, external link
+Line count mismatch
+gNMI Coverage: Coverage: 98.6% (283/287). Missing: ['844908000', 'sharedNetwork', '844904000', '844907000']
+```
+
+</details>
+
+<details>
+<summary><b>❌ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -17658,13 +27598,23 @@ BGP neighbor is fc00::102, remote AS 64600, local AS 65100, external link
   Foreign host: fc00::102, Foreign port: 46323
   Nexthop: 10.0.0.128
   Nexthop global: fc00::101
-... (3108 more lines)
+... (3006 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=2991, actual=3025
+First diff at line 7:
+  Expected:   BGP state = Established, up for 04:43:30
+  Actual:     BGP state = Established, up for 04:46:31
+Line count mismatch
+gNMI Coverage: Coverage: 99.7% (306/307). Missing: ['sharedNetwork']
 ```
 
 </details>
 
 <details>
-<summary><b>✅ Device: str4-7060x6-512-13</b> (click to expand)</summary>
+<summary><b>❌ Device: str4-7060x6-512-13</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -17738,13 +27688,23 @@ BGP neighbor is fc00::2, remote AS 64001, local AS 65100, external link
   Foreign host: fc00::2, Foreign port: 179
   Nexthop: 10.0.0.0
   Nexthop global: fc00::1
-... (1638 more lines)
+... (1584 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=1598, actual=1603
+First diff at line 7:
+  Expected:   BGP state = Established, up for 1d17h40m
+  Actual:     BGP state = Established, up for 1d17h41m
+Line count mismatch
+gNMI Coverage: Coverage: 99.6% (228/229). Missing: ['sharedNetwork']
 ```
 
 </details>
 
 <details>
-<summary><b>✅ Device: str4-7060x6-512-9</b> (click to expand)</summary>
+<summary><b>❌ Device: str4-7060x6-512-9</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -17818,7 +27778,107 @@ BGP neighbor is fc00::2, remote AS 4200300000, local AS 4200200000, confed-exter
   Foreign host: fc00::2, Foreign port: 56068
   Nexthop: 10.0.0.0
   Nexthop global: fc00::1
-... (7855 more lines)
+... (7831 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=7831, actual=7850
+First diff at line 8:
+  Expected:   BGP state = Established, up for 1d00h33m
+  Actual:     BGP state = Established, up for 1d00h34m
+Line count mismatch
+gNMI Coverage: Coverage: 99.9% (795/796). Missing: ['sharedNetwork']
+```
+
+</details>
+
+<details>
+<summary><b>❌ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fc00::102": {
+    "remoteAs": 4200100000,
+    "localAs": 4200000000,
+    "nbrExternalLink": true,
+    "localRole": "undefined",
+    "remoteRole": "undefined",
+    "nbrDesc": "ARISTA01T1",
+    "hostname": "Unknown",
+    "peerGroup": "BE_TIER1_V6",
+    "bgpVersion": 4,
+    "remoteRouterId": "100.1.0.65",
+    "localRouterId": "10.1.0.32",
+    "bgpState": "Established",
+    "bgpTimerUpMsec": 450288000,
+    "bgpTimerUpString": "5d05h04m",
+    "bgpTimerUpEstablishedEpoch": 1770165619,
+    "bgpTimerLastRead": 28000,
+    "bgpTimerLastWrite": 47000,
+    "bgpInUpdateElapsedTimeMsecs": 18221000,
+... (4776 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP neighbor is fc00::102, remote AS 4200100000, local AS 4200000000, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA01T1
+ Member of peer-group BE_TIER1_V6 for session parameters
+  BGP version 4, remote router ID 100.1.0.65, local router ID 10.1.0.32
+  BGP state = Established, up for 5d05h01m
+  Last read 00:00:12, Last write 00:00:43
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    Extended Message: advertised
+    AddPath:
+      IPv6 Unicast: RX advertised and received
+    Long-lived Graceful Restart: advertised
+    Route refresh: advertised and received
+    Enhanced Route Refresh: advertised and received
+... (2972 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP neighbor is fc00::102, remote AS 4200100000, local AS 4200000000, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA01T1
+ Member of peer-group BE_TIER1_V6 for session parameters
+  BGP version 4, remote router ID 100.1.0.65, local router ID 10.1.0.32
+  BGP state = Established, up for 5d05h04m
+  Last update from fc00::102 05:03:41 ago
+  Last read 00:00:28, Last write 00:00:47
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1770165619
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::101, Local port: 179
+  Foreign host: fc00::102, Foreign port: 43483
+  Nexthop: 10.1.0.32
+  Nexthop global: fc00::101
+... (3005 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=2991, actual=3024
+First diff at line 7:
+  Expected:   BGP state = Established, up for 5d05h01m
+  Actual:     BGP state = Established, up for 5d05h04m
+Line count mismatch
+gNMI Coverage: Coverage: 99.8% (463/464). Missing: ['sharedNetwork']
 ```
 
 </details>
@@ -17828,7 +27888,7 @@ BGP neighbor is fc00::2, remote AS 4200300000, local AS 4200200000, confed-exter
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-1` | ✅ PASS | All 60 values from gNMI JSON covered (100%) |
+| `str4-7060x6-512-1` | ❌ FAIL | See diff below |
 
 **Sample Python Invocation:**
 ```python
@@ -17843,7 +27903,7 @@ print(result)
 ```
 
 <details>
-<summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
+<summary><b>❌ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -17917,7 +27977,17 @@ BGP neighbor is fc00::182, remote AS 64600, local AS 65100, external link
   Foreign host: fc00::182, Foreign port: 179
   Nexthop: 10.0.0.192
   Nexthop global: fc00::181
-... (72 more lines)
+... (69 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=87, actual=88
+First diff at line 7:
+  Expected:   BGP state = Established, up for 04:43:31
+  Actual:     BGP state = Established, up for 04:46:32
+Line count mismatch
+gNMI Coverage: Coverage: 98.3% (59/60). Missing: ['sharedNetwork']
 ```
 
 </details>
@@ -18224,7 +28294,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str2-8102-01` | ✅ PASS | All 56 values from gNMI JSON covered (100%) |
+| `str2-8102-01` | ❌ FAIL | See diff below |
 
 **Sample Python Invocation:**
 ```python
@@ -18239,7 +28309,7 @@ print(result)
 ```
 
 <details>
-<summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+<summary><b>❌ Device: str2-8102-01</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -18313,7 +28383,17 @@ BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
   Foreign host: fc00::42, Foreign port: 179
   Nexthop: 10.0.0.32
   Nexthop global: fc00::41
-... (72 more lines)
+... (69 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=99, actual=88
+First diff at line 7:
+  Expected:   BGP state = Established, up for 1d08h57m
+  Actual:     BGP state = Established, up for 1d08h59m
+Line count mismatch
+gNMI Coverage: Coverage: 98.2% (55/56). Missing: ['sharedNetwork']
 ```
 
 </details>
@@ -18589,6 +28669,750 @@ Displayed 2 routes
 
 </details>
 
+<a id="39.10-show-ipv6-bgp-neighbors-fc00-8a-advertised-routes"></a>
+#### 39.10 `show ipv6 bgp neighbors fc00 8a advertised-routes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 16025 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 8a advertised-routes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "bgpTableVersion": 24922,
+  "bgpLocalRouterId": "10.1.0.32",
+  "defaultLocPrf": 100,
+  "localAS": 65100,
+  "advertisedRoutes": {
+    "2064:100::1/128": {
+      "addrPrefix": "2064:100::1",
+      "prefixLen": 128,
+      "network": "2064:100::1/128",
+      "nextHopGlobal": "::",
+      "weight": 0,
+      "path": "65200",
+      "origin": "IGP",
+      "valid": true,
+      "best": true
+    },
+    "2064:100::3/128": {
+      "addrPrefix": "2064:100::3",
+      "prefixLen": 128,
+... (76234 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  ::/0             ::                                     0 65200 6666 6667 i
+ *=  ::/0             ::                                     0 65200 6666 6667 i
+ *=  ::/0             ::                                     0 65200 6666 6667 i
+ *=  ::/0             ::                                     0 65200 6666 6667 i
+ *>  2064:100::1/128  ::                                     0 65200 i
+ *>  2064:100::3/128  ::                                     0 65200 i
+ *>  2064:100::5/128  ::                                     0 65200 i
+ *>  2064:100::7/128  ::                                     0 65200 i
+ *>  20c0:a800::/64   ::                                     0 64001 i
+ *>  20c0:a800:0:80::/64
+                    ::                                     0 64001 i
+... (38249 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> ::/0             ::                                     0 65200 6666 6667 i
+ *> 2064:100::1/128  ::                                     0 65200 i
+ *> 2064:100::3/128  ::                                     0 65200 i
+ *> 2064:100::5/128  ::                                     0 65200 i
+ *> 2064:100::7/128  ::                                     0 65200 i
+ *> 20c0:a800::/64   ::                                     0 64001 i
+ *> 20c0:a800:0:80::/64
+                    ::                                     0 64001 i
+ *> 20c0:a808::/64   ::                                     0 64002 i
+ *> 20c0:a808:0:80::/64
+                    ::                                     0 64002 i
+... (9595 more lines)
+```
+
+</details>
+
+<a id="39.11-show-ipv6-bgp-neighbors-fc00-8a-received-routes"></a>
+#### 39.11 `show ipv6 bgp neighbors fc00 8a received-routes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 8a received-routes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "bgpTableVersion": 24922,
+  "bgpLocalRouterId": "10.1.0.32",
+  "defaultLocPrf": 100,
+  "localAS": 65100,
+  "receivedRoutes": {
+    "2064:100::23/128": {
+      "addrPrefix": "2064:100::23",
+      "prefixLen": 128,
+      "network": "2064:100::23/128",
+      "nextHopGlobal": "fc00::8a",
+      "weight": 0,
+      "path": "64019",
+      "origin": "IGP",
+      "valid": true,
+      "best": true
+    }
+  },
+  "totalPrefixCounter": 1,
+  "filteredPrefixCounter": 1
+... (1 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *> 2064:100::23/128 fc00::8a                               0 64019 i
+
+Total number of prefixes 1 (1 filtered)
+
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> 2064:100::23/128 fc00::8a                               0 64019 i
+
+Displayed 1 routes
+```
+
+</details>
+
+<a id="39.12-show-ipv6-bgp-neighbors-fc00-8a-routes"></a>
+#### 39.12 `show ipv6 bgp neighbors fc00 8a routes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 8a routes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "vrfId": 0,
+  "vrfName": "default",
+  "tableVersion": 24922,
+  "routerId": "10.1.0.32",
+  "defaultLocPrf": 100,
+  "localAS": 65100,
+  "routes": {}
+}
+```
+
+**Expected CLI Output:**
+```
+
+
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="39.13-show-ipv6-bgp-neighbors-fc00-8a"></a>
+#### 39.13 `show ipv6 bgp neighbors fc00 8a`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ❌ FAIL | See diff below |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 8a"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>❌ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fc00::8a": {
+    "remoteAs": 64019,
+    "localAs": 65100,
+    "nbrExternalLink": true,
+    "localRole": "undefined",
+    "remoteRole": "undefined",
+    "nbrDesc": "ARISTA19T0",
+    "hostname": "Unknown",
+    "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0",
+    "bgpVersion": 4,
+    "remoteRouterId": "100.1.0.35",
+    "localRouterId": "10.1.0.32",
+    "bgpState": "Established",
+    "bgpTimerUpMsec": 844907000,
+    "bgpTimerUpString": "01w2d18h",
+    "bgpTimerUpEstablishedEpoch": 1769772508,
+    "bgpTimerLastRead": 42000,
+    "bgpTimerLastWrite": 47000,
+    "bgpInUpdateElapsedTimeMsecs": 67307000,
+... (123 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP neighbor is fc00::8a, remote AS 64019, local AS 65100, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA19T0
+ Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
+  BGP version 4, remote router ID 100.1.0.35, local router ID 10.1.0.32
+  BGP state = Established, up for 01w2d18h
+  Last read 00:00:34, Last write 00:00:23
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    Extended Message: advertised
+    AddPath:
+      IPv6 Unicast: RX advertised and received
+    Paths-Limit:
+      IPv6 Unicast: advertised (0)
+    Long-lived Graceful Restart: advertised
+... (80 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP neighbor is fc00::8a, remote AS 64019, local AS 65100, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA19T0
+ Member of peer-group TIER0_V6_DEPLOYMENT_ID_0 for session parameters
+  BGP version 4, remote router ID 100.1.0.35, local router ID 10.1.0.32
+  BGP state = Established, up for 01w2d18h
+  Last update from fc00::8a 18:41:47 ago
+  Last read 00:00:42, Last write 00:00:47
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Connect retry timer: 30 seconds
+  Peer established epoch: 1769772508
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::89, Local port: 179
+  Foreign host: fc00::8a, Foreign port: 46231
+  Nexthop: 10.0.0.68
+  Nexthop global: fc00::89
+... (70 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=99, actual=89
+First diff at line 8:
+  Expected:   Last read 00:00:34, Last write 00:00:23
+  Actual:     Last update from fc00::8a 18:41:47 ago
+Line count mismatch
+gNMI Coverage: Coverage: 96.6% (56/58). Missing: ['844907000', 'sharedNetwork']
+```
+
+</details>
+
+<a id="39.14-show-ipv6-bgp-neighbors-fc00-6e2-advertised-routes"></a>
+#### 39.14 `show ipv6 bgp neighbors fc00 6e2 advertised-routes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 15091 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 6e2 advertised-routes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "bgpTableVersion": 480183,
+  "bgpLocalRouterId": "10.1.0.32",
+  "defaultLocPrf": 100,
+  "localAS": 4200000000,
+  "advertisedRoutes": {
+    "2064:100:0:141::/128": {
+      "addrPrefix": "2064:100:0:141::",
+      "prefixLen": 128,
+      "network": "2064:100:0:141::/128",
+      "nextHopGlobal": "::",
+      "weight": 0,
+      "path": "4200100000",
+      "origin": "IGP",
+      "valid": true,
+      "best": true
+    },
+    "2064:100:0:149::/128": {
+      "addrPrefix": "2064:100:0:149::",
+      "prefixLen": 128,
+... (72398 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> ::/0             ::                                     0 4200100000 4200200000 6666 6667 i
+ *> 2064:100::c0a8:800:0/120
+                    ::                                     0 4200100000 4200000001 i
+ *> 2064:100::c0a8:880:0/120
+                    ::                                     0 4200100000 4200000001 i
+ *> 2064:100::c0a8:1000:0/120
+                    ::                                     0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1080:0/120
+                    ::                                     0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1800:0/120
+                    ::                                     0 4200100000 4200000003 i
+... (12063 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> ::/0             ::                                     0 4200100000 4200200000 6666 6667 i
+ *> 2064:100::c0a8:800:0/120
+                    ::                                     0 4200100000 4200000001 i
+ *> 2064:100::c0a8:880:0/120
+                    ::                                     0 4200100000 4200000001 i
+ *> 2064:100::c0a8:1000:0/120
+                    ::                                     0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1080:0/120
+                    ::                                     0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1800:0/120
+                    ::                                     0 4200100000 4200000003 i
+... (12062 more lines)
+```
+
+</details>
+
+<a id="39.15-show-ipv6-bgp-neighbors-fc00-6e2-received-routes"></a>
+#### 39.15 `show ipv6 bgp neighbors fc00 6e2 received-routes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 16012 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 6e2 received-routes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "bgpTableVersion": 480183,
+  "bgpLocalRouterId": "10.1.0.32",
+  "defaultLocPrf": 100,
+  "localAS": 4200000000,
+  "receivedRoutes": {
+    "2064:100:0:1b9::/128": {
+      "addrPrefix": "2064:100:0:1b9::",
+      "prefixLen": 128,
+      "network": "2064:100:0:1b9::/128",
+      "nextHopGlobal": "fc00::6e2",
+      "weight": 0,
+      "path": "4200100000",
+      "origin": "IGP",
+      "valid": true,
+      "best": true
+    },
+    "2064:100::c0a8:1000:0/120": {
+      "addrPrefix": "2064:100::c0a8:1000:0",
+      "prefixLen": 120,
+... (76391 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> ::/0             fc00::6e2                              0 4200100000 4200200000 6666 6667 i
+ *> 2064:100::c0a8:800:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *> 2064:100::c0a8:880:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *> 2064:100::c0a8:1000:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1080:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1800:0/120
+                    fc00::6e2                              0 4200100000 4200000003 i
+... (12791 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> ::/0             fc00::6e2                              0 4200100000 4200200000 6666 6667 i
+ *> 2064:100::c0a8:800:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *> 2064:100::c0a8:880:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *> 2064:100::c0a8:1000:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1080:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *> 2064:100::c0a8:1800:0/120
+                    fc00::6e2                              0 4200100000 4200000003 i
+... (12790 more lines)
+```
+
+</details>
+
+<a id="39.16-show-ipv6-bgp-neighbors-fc00-6e2-routes"></a>
+#### 39.16 `show ipv6 bgp neighbors fc00 6e2 routes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | BGP routes acceptable nuances: Line 12014: total paths not in GNMI (acceptable) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 6e2 routes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "vrfId": 0,
+  "vrfName": "default",
+  "tableVersion": 480183,
+  "routerId": "10.1.0.32",
+  "defaultLocPrf": 100,
+  "localAS": 4200000000,
+  "routes": {
+    "2064:100:0:1b9::/128": [
+      {
+        "valid": true,
+        "bestpath": true,
+        "selectionReason": "First path received",
+        "pathFrom": "external",
+        "prefix": "2064:100:0:1b9::",
+        "prefixLen": 128,
+        "network": "2064:100:0:1b9::/128",
+        "version": 365695,
+        "weight": 0,
+        "peerId": "fc00::6e2",
+... (138037 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *= ::/0             fc00::6e2                              0 4200100000 4200200000 6666 6667 i
+ *= 2064:100::c0a8:800:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *= 2064:100::c0a8:880:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *= 2064:100::c0a8:1000:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *= 2064:100::c0a8:1080:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *= 2064:100::c0a8:1800:0/120
+                    fc00::6e2                              0 4200100000 4200000003 i
+... (11995 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *= ::/0             fc00::6e2                              0 4200100000 4200200000 6666 6667 i
+ *= 2064:100::c0a8:800:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *= 2064:100::c0a8:880:0/120
+                    fc00::6e2                              0 4200100000 4200000001 i
+ *= 2064:100::c0a8:1000:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *= 2064:100::c0a8:1080:0/120
+                    fc00::6e2                              0 4200100000 4200000002 i
+ *= 2064:100::c0a8:1800:0/120
+                    fc00::6e2                              0 4200100000 4200000003 i
+... (11994 more lines)
+```
+
+</details>
+
+<a id="39.17-show-ipv6-bgp-neighbors-fc00-6e2"></a>
+#### 39.17 `show ipv6 bgp neighbors fc00 6e2`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ❌ FAIL | See diff below |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp neighbors fc00 6e2"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>❌ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fc00::6e2": {
+    "remoteAs": 4200100000,
+    "localAs": 4200000000,
+    "nbrExternalLink": true,
+    "localRole": "undefined",
+    "remoteRole": "undefined",
+    "nbrDesc": "ARISTA249T1",
+    "hostname": "Unknown",
+    "peerGroup": "BE_TIER1_V6",
+    "bgpVersion": 4,
+    "remoteRouterId": "100.1.1.185",
+    "localRouterId": "10.1.0.32",
+    "bgpState": "Established",
+    "bgpTimerUpMsec": 450273000,
+    "bgpTimerUpString": "5d05h04m",
+    "bgpTimerUpEstablishedEpoch": 1770165635,
+    "bgpTimerLastRead": 37000,
+    "bgpTimerLastWrite": 33000,
+    "bgpInUpdateElapsedTimeMsecs": 18171000,
+... (123 more lines)
+```
+
+**Expected CLI Output:**
+```
+BGP neighbor is fc00::6e2, remote AS 4200100000, local AS 4200000000, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA249T1
+ Member of peer-group BE_TIER1_V6 for session parameters
+  BGP version 4, remote router ID 100.1.1.185, local router ID 10.1.0.32
+  BGP state = Established, up for 5d05h01m
+  Last read 00:00:04, Last write 00:00:30
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Neighbor capabilities:
+    4 Byte AS: advertised and received
+    Extended Message: advertised
+    AddPath:
+      IPv6 Unicast: RX advertised and received
+    Long-lived Graceful Restart: advertised
+    Route refresh: advertised and received
+    Enhanced Route Refresh: advertised and received
+... (68 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP neighbor is fc00::6e2, remote AS 4200100000, local AS 4200000000, external link
+  Local Role: undefined
+  Remote Role: undefined
+ Description: ARISTA249T1
+ Member of peer-group BE_TIER1_V6 for session parameters
+  BGP version 4, remote router ID 100.1.1.185, local router ID 10.1.0.32
+  BGP state = Established, up for 5d05h04m
+  Last update from fc00::6e2 05:02:51 ago
+  Last read 00:00:37, Last write 00:00:33
+  Hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured hold time is 180 seconds, keepalive interval is 60 seconds
+  Configured tcp-mss is 0, synced tcp-mss is 9028
+  Configured conditional advertisements interval is 60 seconds
+  Connect retry timer: 120 seconds
+  Peer established epoch: 1770165635
+  External BGP neighbor may be up to 1 hops away.
+  Local host: fc00::6e1, Local port: 179
+  Foreign host: fc00::6e2, Foreign port: 45203
+  Nexthop: 10.1.0.32
+  Nexthop global: fc00::6e1
+... (69 more lines)
+```
+
+**Diff Details:**
+```
+Line count: expected=87, actual=88
+First diff at line 7:
+  Expected:   BGP state = Established, up for 5d05h01m
+  Actual:     BGP state = Established, up for 5d05h04m
+Line count mismatch
+gNMI Coverage: Coverage: 98.4% (60/61). Missing: ['sharedNetwork']
+```
+
+</details>
+
 ---
 
 <a id="40-show-ipv6-bgp-network"></a>
@@ -18596,16 +29420,18 @@ Displayed 2 routes
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 16/32 test cases passed (across 4 devices)
+**Status:** ✅ All 35/114 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 8 | 0 | 0 | 0 |
+| `str3-8101-02` | 10 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 7 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 0 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 9 | 0 | 0 | 1 |
 
 **Test Case Variants:**
 
@@ -18617,6 +29443,17 @@ Displayed 2 routes
 - [40.6 fc00::182](#40.6-show-ipv6-bgp-network-fc00--182)
 - [40.7 fc00::182 bestpath](#40.7-show-ipv6-bgp-network-fc00--182-bestpath)
 - [40.8 fc00::182 multipath](#40.8-show-ipv6-bgp-network-fc00--182-multipath)
+- [40.9 20c0 d1d0 64 bestpath](#40.9-show-ipv6-bgp-network-20c0-d1d0-64-bestpath)
+- [40.10 20c0 d1d0 64 json](#40.10-show-ipv6-bgp-network-20c0-d1d0-64-json)
+- [40.11 20c0 d1d0 64 longer-prefixes](#40.11-show-ipv6-bgp-network-20c0-d1d0-64-longer-prefixes)
+- [40.12 20c0 d1d0 64 multipath](#40.12-show-ipv6-bgp-network-20c0-d1d0-64-multipath)
+- [40.13 20c0 d1d0 64](#40.13-show-ipv6-bgp-network-20c0-d1d0-64)
+- [40.14 fc00 182 json](#40.14-show-ipv6-bgp-network-fc00-182-json)
+- [40.15 2064 100 0 1b9 128 bestpath](#40.15-show-ipv6-bgp-network-2064-100-0-1b9-128-bestpath)
+- [40.16 2064 100 0 1b9 128 json](#40.16-show-ipv6-bgp-network-2064-100-0-1b9-128-json)
+- [40.17 2064 100 0 1b9 128 longer-prefixes](#40.17-show-ipv6-bgp-network-2064-100-0-1b9-128-longer-prefixes)
+- [40.18 2064 100 0 1b9 128 multipath](#40.18-show-ipv6-bgp-network-2064-100-0-1b9-128-multipath)
+- [40.19 2064 100 0 1b9 128](#40.19-show-ipv6-bgp-network-2064-100-0-1b9-128)
 
 <a id="40.1-show-ipv6-bgp-network"></a>
 #### 40.1 `show ipv6 bgp network` (base command)
@@ -18624,7 +29461,9 @@ Displayed 2 routes
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -18685,6 +29524,67 @@ RPKI validation codes: V valid, I invalid, N Not found
      Network          Next Hop            Metric LocPrf Weight Path
  *>  ::/0             fc00::2                                0 65200 6666 6667 i
  *=                   fc00::6                                0 65200 6666 6667 i
+ *=                   fc00::a                                0 65200 6666 6667 i
+ *=                   fc00::e                                0 65200 6666 6667 i
+ *>  2064:100::1/128  fc00::2                                0 65200 i
+ *>  2064:100::3/128  fc00::6                                0 65200 i
+ *>  2064:100::5/128  fc00::a                                0 65200 i
+ *>  2064:100::7/128  fc00::e                                0 65200 i
+ *>  20c0:a800::/64   fc00::42                               0 64001 i
+ *>  20c0:a800:0:80::/64
+                    fc00::42                               0 64001 i
+... (28702 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0\nDefault local pref 100, local AS 65100\nStatus codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,\n               i internal, r RIB-failure, S Stale, R Removed\nNexthop codes: @NNN nexthop's vrf id, < announce-nh-self\nOrigin codes:  i - IGP, e - EGP, ? - incomplete\nRPKI validation codes: V valid, I invalid, N Not found\n\n     Network          Next Hop            Metric LocPrf Weight Path\n *>  ::/0             fc00::6                                0 65200 6666 6667 i\n *=                   fc00::2                                0 65200 6666 6667 i\n *=                   fc00::a                                0 65200 6666 6667 i\n *=                   fc00::e                                0 65200 6666 6667 i\n *>  2064:100::1/128  fc00::2                                0 65200 i\n *>  2064:100::3/128  fc00::6                                0 65200 i\n *>  2064:100::5/128  fc00::a                                0 65200 i\n *>  2064:100::7/128  fc00::e                                0 65200 i\n *>  20c0:a800::/64   fc00::42                               0 64001 i\n *>  20c0:a800:0:80::/64\n                    fc00::42                               0 64001 i\n *>  20c0:a808::/64   fc00::46                               0 64002 i\n *>  20c0:a808:0:80::/64\n                    fc00::46                               0 64002 i\n *>  20c0:a810::/64   fc00::4a                               0 64003 i\n *>  20c0:a810:0:80::/64\n                    fc00::4a                               0 64003 i\n *>  20c0:a818::/64   fc00::4e                               0 64004 i\n *>  20c0:a818:0:80::/64\n                    fc00::4e                               0 64004 i\n *>  20c0:a820::/64   fc00::52                               0 64005 i\n *>  20c0:a820:0:80::/64\n                    fc00::52                               0 64005 i\n *>  20c0:a828::/64   fc00::56  ... (2217534 more chars)
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  ::/0             fc00::6                                0 65200 6666 6667 i
+ *=                   fc00::2                                0 65200 6666 6667 i
+ *=                   fc00::a                                0 65200 6666 6667 i
+ *=                   fc00::e                                0 65200 6666 6667 i
+ *>  2064:100::1/128  fc00::2                                0 65200 i
+ *>  2064:100::3/128  fc00::6                                0 65200 i
+ *>  2064:100::5/128  fc00::a                                0 65200 i
+ *>  2064:100::7/128  fc00::e                                0 65200 i
+ *>  20c0:a800::/64   fc00::42                               0 64001 i
+ *>  20c0:a800:0:80::/64
+                    fc00::42                               0 64001 i
+... (28703 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  ::/0             fc00::6                                0 65200 6666 6667 i
+ *=                   fc00::2                                0 65200 6666 6667 i
  *=                   fc00::a                                0 65200 6666 6667 i
  *=                   fc00::e                                0 65200 6666 6667 i
  *>  2064:100::1/128  fc00::2                                0 65200 i
@@ -19148,7 +30048,9 @@ Paths: (4 available, best #1, table default)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str3-8101-02` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -19225,6 +30127,68 @@ Paths: (4 available, best #1, table default)
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for ::/0, version 18552\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 6666 6667\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026\n  65200 6666 6667\n    fc00::2 from fc00::2 (100.1.0.1)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:28 2026\n  65200 6666 6667\n    fc00::a from fc00::a (100.1.0.5)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:29 2026\n  65200 6666 6667\n    fc00::e from fc00::e (100.1.0.7)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:28 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for ::/0, version 18552
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 6666 6667
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:26 2026
+  65200 6666 6667
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 6666 6667
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 6666 6667
+... (5 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for ::/0, version 18552
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 6666 6667
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 6666 6667
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 6666 6667
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:29 2026
+  65200 6666 6667
+... (4 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -19285,13 +30249,76 @@ Paths: (32 available, best #1, table default)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for ::/0, version 474183\nPaths: (32 available, best #1, table default)\n  Advertised to non peer-group peers:\n  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2\n  4200100000 4200200000 6666 6667\n    fc00::122 from fc00::122 (100.1.0.73)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Last update: Wed Feb  4 00:40:22 2026\n  4200100000 4200200000 6666 6667\n    fc00::102 from fc00::102 (100.1.0.65)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:27 2026\n  4200100000 4200200000 6666 6667\n    fc00::142 from fc00::142 (100.1.0.81)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:24 2026\n  4200100000 4200200000 6666 6667\n    fc00::162 from fc00::162 (100.1.0.89)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:26 2026\n  4200100000 4200200000 6666 6667\n    fc00::182 from fc00::182 (100.1.0.97)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:23 2026\n  4200100000 4200200000 6666 6667\n    fc00::1a2 from fc00::1a2 (100.1.0.105)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:41:09 2026\n  4200100000 4200200000 6666 6667\n    fc00::1c2 from fc00::1c2 (100.1.0.113)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:41:09 2026\n  4200100000 4200200000 6666 6667\n    fc00::1e2 from fc00::1e2 (100.1.0.121)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:41:09 2026\n  4200100000 4200200000 6666 6667\n    fc00::202 from fc00::202 (100.1.0.129)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb ... (3924 more chars)
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for ::/0, version 474183
+Paths: (32 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000 4200200000 6666 6667
+    fc00::122 from fc00::122 (100.1.0.73)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Last update: Wed Feb  4 00:40:22 2026
+  4200100000 4200200000 6666 6667
+    fc00::102 from fc00::102 (100.1.0.65)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:27 2026
+  4200100000 4200200000 6666 6667
+    fc00::142 from fc00::142 (100.1.0.81)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:24 2026
+  4200100000 4200200000 6666 6667
+    fc00::162 from fc00::162 (100.1.0.89)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:26 2026
+... (113 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for ::/0, version 474183
+Paths: (32 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000 4200200000 6666 6667
+    fc00::122 from fc00::122 (100.1.0.73)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Last update: Wed Feb  4 00:40:22 2026
+  4200100000 4200200000 6666 6667
+    fc00::102 from fc00::102 (100.1.0.65)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:27 2026
+  4200100000 4200200000 6666 6667
+    fc00::142 from fc00::142 (100.1.0.81)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:24 2026
+  4200100000 4200200000 6666 6667
+    fc00::162 from fc00::162 (100.1.0.89)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:26 2026
+... (112 more lines)
+```
+
+</details>
+
 <a id="40.7-show-ipv6-bgp-network-fc00--182-bestpath"></a>
 #### 40.7 `show ipv6 bgp network fc00::182 bestpath`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
 **Sample Python Invocation:**
 ```python
@@ -19344,6 +30371,45 @@ Paths: (4 available, best #1, table default)
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for ::/0, version 18552\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 6666 6667\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:26 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for ::/0, version 18552
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 6666 6667
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:26 2026
+
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for ::/0, version 18552
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 6666 6667
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:26 2026
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -19379,13 +30445,52 @@ Paths: (32 available, best #1, table default)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for ::/0, version 474183\nPaths: (32 available, best #1, table default)\n  Advertised to non peer-group peers:\n  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2\n  4200100000 4200200000 6666 6667\n    fc00::122 from fc00::122 (100.1.0.73)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Last update: Wed Feb  4 00:40:22 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for ::/0, version 474183
+Paths: (32 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000 4200200000 6666 6667
+    fc00::122 from fc00::122 (100.1.0.73)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Last update: Wed Feb  4 00:40:21 2026
+
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for ::/0, version 474183
+Paths: (32 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000 4200200000 6666 6667
+    fc00::122 from fc00::122 (100.1.0.73)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Last update: Wed Feb  4 00:40:22 2026
+```
+
+</details>
+
 <a id="40.8-show-ipv6-bgp-network-fc00--182-multipath"></a>
 #### 40.8 `show ipv6 bgp network fc00::182 multipath`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
 **Sample Python Invocation:**
 ```python
@@ -19462,6 +30567,68 @@ Paths: (4 available, best #1, table default)
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for ::/0, version 18552\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 6666 6667\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026\n  65200 6666 6667\n    fc00::2 from fc00::2 (100.1.0.1)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:28 2026\n  65200 6666 6667\n    fc00::a from fc00::a (100.1.0.5)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:29 2026\n  65200 6666 6667\n    fc00::e from fc00::e (100.1.0.7)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:28 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for ::/0, version 18552
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 6666 6667
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:26 2026
+  65200 6666 6667
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 6666 6667
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 6666 6667
+... (5 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for ::/0, version 18552
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 6666 6667
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 6666 6667
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 6666 6667
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:29 2026
+  65200 6666 6667
+... (4 more lines)
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -19522,6 +30689,889 @@ Paths: (32 available, best #1, table default)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for ::/0, version 474183\nPaths: (32 available, best #1, table default)\n  Advertised to non peer-group peers:\n  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2\n  4200100000 4200200000 6666 6667\n    fc00::122 from fc00::122 (100.1.0.73)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Last update: Wed Feb  4 00:40:22 2026\n  4200100000 4200200000 6666 6667\n    fc00::102 from fc00::102 (100.1.0.65)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:27 2026\n  4200100000 4200200000 6666 6667\n    fc00::142 from fc00::142 (100.1.0.81)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:24 2026\n  4200100000 4200200000 6666 6667\n    fc00::162 from fc00::162 (100.1.0.89)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:26 2026\n  4200100000 4200200000 6666 6667\n    fc00::182 from fc00::182 (100.1.0.97)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:40:23 2026\n  4200100000 4200200000 6666 6667\n    fc00::1a2 from fc00::1a2 (100.1.0.105)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:41:09 2026\n  4200100000 4200200000 6666 6667\n    fc00::1c2 from fc00::1c2 (100.1.0.113)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:41:09 2026\n  4200100000 4200200000 6666 6667\n    fc00::1e2 from fc00::1e2 (100.1.0.121)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb  4 00:41:09 2026\n  4200100000 4200200000 6666 6667\n    fc00::202 from fc00::202 (100.1.0.129)\n      Origin IGP, valid, external, multipath\n      Last update: Wed Feb ... (3924 more chars)
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for ::/0, version 474183
+Paths: (32 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000 4200200000 6666 6667
+    fc00::122 from fc00::122 (100.1.0.73)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Last update: Wed Feb  4 00:40:21 2026
+  4200100000 4200200000 6666 6667
+    fc00::102 from fc00::102 (100.1.0.65)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:26 2026
+  4200100000 4200200000 6666 6667
+    fc00::142 from fc00::142 (100.1.0.81)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:23 2026
+  4200100000 4200200000 6666 6667
+    fc00::162 from fc00::162 (100.1.0.89)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:25 2026
+... (113 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for ::/0, version 474183
+Paths: (32 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000 4200200000 6666 6667
+    fc00::122 from fc00::122 (100.1.0.73)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Last update: Wed Feb  4 00:40:22 2026
+  4200100000 4200200000 6666 6667
+    fc00::102 from fc00::102 (100.1.0.65)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:27 2026
+  4200100000 4200200000 6666 6667
+    fc00::142 from fc00::142 (100.1.0.81)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:24 2026
+  4200100000 4200200000 6666 6667
+    fc00::162 from fc00::162 (100.1.0.89)
+      Origin IGP, valid, external, multipath
+      Last update: Wed Feb  4 00:40:26 2026
+... (112 more lines)
+```
+
+</details>
+
+<a id="40.9-show-ipv6-bgp-network-20c0-d1d0-64-bestpath"></a>
+#### 40.9 `show ipv6 bgp network 20c0 d1d0 64 bestpath`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 20c0 d1d0 64 bestpath"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 20c0:d1d0::/64, version 20968\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 64683 65510\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 20c0:d1d0::/64, version 20968
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64683 65510
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 20c0:d1d0::/64, version 20968
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64683 65510
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+```
+
+</details>
+
+<a id="40.10-show-ipv6-bgp-network-20c0-d1d0-64-json"></a>
+#### 40.10 `show ipv6 bgp network 20c0 d1d0 64 json`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 32 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 20c0 d1d0 64 json"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "prefix": "20c0:d1d0::/64",
+  "version": 20968,
+  "advertisedTo": {
+    "fc00::42": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::46": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4a": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4e": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::52": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::56": {
+... (245 more lines)
+```
+
+**Expected CLI Output:**
+```
+{
+  "prefix":"20c0:d1d0::/64",
+  "version":20968,
+  "advertisedTo":{
+    "fc00::42":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::46":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4a":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4e":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::52":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::56":{
+... (246 more lines)
+```
+
+**Actual Converter Output:**
+```
+{'prefix': '20c0:d1d0::/64', 'version': 20968, 'advertisedTo': {'fc00::42': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::46': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::4a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::4e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::52': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::56': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::5a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::5e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::62': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::66': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::6a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::6e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::72': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::76': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::7a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::7e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::82': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::86': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::8a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::8e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}}, 'pathCount': 4, 'paths': [{'aspath': {'string': '65200 64683 65510', 'segments': [{'type': 'as-sequence', 'list': [65200, 64683, 65510]}], 'length': 3}, 'origin': 'IGP', 'valid': True, 'version': 20968, 'multipath': True, 'bestpath': {'overall': True, 'selectionReason': 'Older Path'}, 'community': {'string': '8075:54000', 'list': ['8075:54000']}, 'lastUpdate': {'epoch': 1769772508, 'string': 'Fri Jan 30 11:28:28 2026'}, 'fibInstalled': True, 'nexthops': [{'ip': 'fc00::6', 'afi': 'ipv6', 'scope': 'global', 'linkLocalOnly': False, 'length': 16, 'metric': 0, 'accessible': True, 'used': True}], 'peer': {'peerId': 'fc00::6', 'routerId': '100.1.0.3', 'type': 'external'}}, {'aspath': {'string': '65200 64683 65510', 'segments': [{'type': 'as-sequence', 'list': [65200, 64683, 65510]}], 'length': 3}, 'origin': 'IGP', 'valid': True, '... (1595 more chars)
+```
+
+</details>
+
+<a id="40.11-show-ipv6-bgp-network-20c0-d1d0-64-longer-prefixes"></a>
+#### 40.11 `show ipv6 bgp network 20c0 d1d0 64 longer-prefixes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 20c0 d1d0 64 longer-prefixes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0\nDefault local pref 100, local AS 65100\nStatus codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,\n               i internal, r RIB-failure, S Stale, R Removed\nNexthop codes: @NNN nexthop's vrf id, < announce-nh-self\nOrigin codes:  i - IGP, e - EGP, ? - incomplete\nRPKI validation codes: V valid, I invalid, N Not found\n\n     Network          Next Hop            Metric LocPrf Weight Path\n *>  20c0:d1d0::/64   fc00::6                                0 65200 64683 65510 i\n *=                   fc00::2                                0 65200 64683 65510 i\n *=                   fc00::a                                0 65200 64683 65510 i\n *=                   fc00::e                                0 65200 64683 65510 i\n\nDisplayed 1 routes and 25513 total paths"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  20c0:d1d0::/64   fc00::6                                0 65200 64683 65510 i
+ *=                   fc00::2                                0 65200 64683 65510 i
+ *=                   fc00::a                                0 65200 64683 65510 i
+ *=                   fc00::e                                0 65200 64683 65510 i
+
+Displayed 1 routes and 25513 total paths
+
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 24922, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 65100
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  20c0:d1d0::/64   fc00::6                                0 65200 64683 65510 i
+ *=                   fc00::2                                0 65200 64683 65510 i
+ *=                   fc00::a                                0 65200 64683 65510 i
+ *=                   fc00::e                                0 65200 64683 65510 i
+
+Displayed 1 routes and 25513 total paths
+```
+
+</details>
+
+<a id="40.12-show-ipv6-bgp-network-20c0-d1d0-64-multipath"></a>
+#### 40.12 `show ipv6 bgp network 20c0 d1d0 64 multipath`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 20c0 d1d0 64 multipath"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 20c0:d1d0::/64, version 20968\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 64683 65510\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026\n  65200 64683 65510\n    fc00::2 from fc00::2 (100.1.0.1)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026\n  65200 64683 65510\n    fc00::a from fc00::a (100.1.0.5)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:28 2026\n  65200 64683 65510\n    fc00::e from fc00::e (100.1.0.7)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 20c0:d1d0::/64, version 20968
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64683 65510
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 64683 65510
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 64683 65510
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:29 2026
+  65200 64683 65510
+... (5 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 20c0:d1d0::/64, version 20968
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64683 65510
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 64683 65510
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 64683 65510
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 64683 65510
+... (4 more lines)
+```
+
+</details>
+
+<a id="40.13-show-ipv6-bgp-network-20c0-d1d0-64"></a>
+#### 40.13 `show ipv6 bgp network 20c0 d1d0 64`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 20c0 d1d0 64"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 20c0:d1d0::/64, version 20968\nPaths: (4 available, best #1, table default)\n  Advertised to peers:\n  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e\n  65200 64683 65510\n    fc00::6 from fc00::6 (100.1.0.3)\n      Origin IGP, valid, external, multipath, best (Older Path)\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026\n  65200 64683 65510\n    fc00::2 from fc00::2 (100.1.0.1)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026\n  65200 64683 65510\n    fc00::a from fc00::a (100.1.0.5)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:28 2026\n  65200 64683 65510\n    fc00::e from fc00::e (100.1.0.7)\n      Origin IGP, valid, external, multipath\n      Community: 8075:54000\n      Last update: Fri Jan 30 11:28:27 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 20c0:d1d0::/64, version 20968
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64683 65510
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 64683 65510
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 64683 65510
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 64683 65510
+... (5 more lines)
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 20c0:d1d0::/64, version 20968
+Paths: (4 available, best #1, table default)
+  Advertised to peers:
+  fc00::42 fc00::46 fc00::4a fc00::4e fc00::52 fc00::56 fc00::5a fc00::5e fc00::62 fc00::66 fc00::6a fc00::6e fc00::72 fc00::76 fc00::7a fc00::7e fc00::82 fc00::86 fc00::8a fc00::8e
+  65200 64683 65510
+    fc00::6 from fc00::6 (100.1.0.3)
+      Origin IGP, valid, external, multipath, best (Older Path)
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 64683 65510
+    fc00::2 from fc00::2 (100.1.0.1)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:27 2026
+  65200 64683 65510
+    fc00::a from fc00::a (100.1.0.5)
+      Origin IGP, valid, external, multipath
+      Community: 8075:54000
+      Last update: Fri Jan 30 11:28:28 2026
+  65200 64683 65510
+... (4 more lines)
+```
+
+</details>
+
+<a id="40.14-show-ipv6-bgp-network-fc00-182-json"></a>
+#### 40.14 `show ipv6 bgp network fc00 182 json`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 34 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 113 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network fc00 182 json"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "prefix": "::/0",
+  "version": 18552,
+  "advertisedTo": {
+    "fc00::42": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::46": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4a": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4e": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::52": {
+      "peerGroup": "TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::56": {
+... (245 more lines)
+```
+
+**Expected CLI Output:**
+```
+{
+  "prefix":"::/0",
+  "version":18552,
+  "advertisedTo":{
+    "fc00::42":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::46":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4a":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::4e":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::52":{
+      "peerGroup":"TIER0_V6_DEPLOYMENT_ID_0"
+    },
+    "fc00::56":{
+... (246 more lines)
+```
+
+**Actual Converter Output:**
+```
+{'prefix': '::/0', 'version': 18552, 'advertisedTo': {'fc00::42': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::46': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::4a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::4e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::52': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::56': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::5a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::5e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::62': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::66': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::6a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::6e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::72': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::76': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::7a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::7e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::82': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::86': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::8a': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}, 'fc00::8e': {'peerGroup': 'TIER0_V6_DEPLOYMENT_ID_0'}}, 'pathCount': 4, 'paths': [{'aspath': {'string': '65200 6666 6667', 'segments': [{'type': 'as-sequence', 'list': [65200, 6666, 6667]}], 'length': 3}, 'origin': 'IGP', 'valid': True, 'version': 18552, 'multipath': True, 'bestpath': {'overall': True, 'selectionReason': 'Older Path'}, 'community': {'string': '8075:54000', 'list': ['8075:54000']}, 'lastUpdate': {'epoch': 1769772506, 'string': 'Fri Jan 30 11:28:26 2026'}, 'fibInstalled': True, 'nexthops': [{'ip': 'fc00::6', 'afi': 'ipv6', 'scope': 'global', 'linkLocalOnly': False, 'length': 16, 'metric': 0, 'accessible': True, 'used': True}], 'peer': {'peerId': 'fc00::6', 'routerId': '100.1.0.3', 'type': 'external'}}, {'aspath': {'string': '65200 6666 6667', 'segments': [{'type': 'as-sequence', 'list': [65200, 6666, 6667]}], 'length': 3}, 'origin': 'IGP', 'valid': True, 'version': 18552, '... (1569 more chars)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "prefix": "::/0",
+  "version": 474183,
+  "advertisedTo": {
+    "fc00::102": {},
+    "fc00::122": {},
+    "fc00::142": {},
+    "fc00::162": {},
+    "fc00::182": {},
+    "fc00::1a2": {},
+    "fc00::1c2": {},
+    "fc00::1e2": {},
+    "fc00::202": {},
+    "fc00::222": {},
+    "fc00::242": {},
+    "fc00::262": {},
+    "fc00::282": {},
+    "fc00::2a2": {},
+    "fc00::2c2": {},
+    "fc00::2e2": {},
+... (1337 more lines)
+```
+
+**Expected CLI Output:**
+```
+{
+  "prefix":"::/0",
+  "version":474183,
+  "advertisedTo":{
+    "fc00::102":{
+    },
+    "fc00::122":{
+    },
+    "fc00::142":{
+    },
+    "fc00::162":{
+    },
+    "fc00::182":{
+    },
+    "fc00::1a2":{
+    },
+    "fc00::1c2":{
+    },
+    "fc00::1e2":{
+    },
+... (1370 more lines)
+```
+
+**Actual Converter Output:**
+```
+{'prefix': '::/0', 'version': 474183, 'advertisedTo': {'fc00::102': {}, 'fc00::122': {}, 'fc00::142': {}, 'fc00::162': {}, 'fc00::182': {}, 'fc00::1a2': {}, 'fc00::1c2': {}, 'fc00::1e2': {}, 'fc00::202': {}, 'fc00::222': {}, 'fc00::242': {}, 'fc00::262': {}, 'fc00::282': {}, 'fc00::2a2': {}, 'fc00::2c2': {}, 'fc00::2e2': {}, 'fc00::502': {}, 'fc00::522': {}, 'fc00::542': {}, 'fc00::562': {}, 'fc00::582': {}, 'fc00::5a2': {}, 'fc00::5c2': {}, 'fc00::5e2': {}, 'fc00::602': {}, 'fc00::622': {}, 'fc00::642': {}, 'fc00::662': {}, 'fc00::682': {}, 'fc00::6a2': {}, 'fc00::6c2': {}, 'fc00::6e2': {}}, 'pathCount': 32, 'paths': [{'aspath': {'string': '4200100000 4200200000 6666 6667', 'segments': [{'type': 'as-sequence', 'list': [4200100000, 4200200000, 6666, 6667]}], 'length': 4}, 'origin': 'IGP', 'valid': True, 'version': 474183, 'multipath': True, 'bestpath': {'overall': True, 'selectionReason': 'Older Path'}, 'lastUpdate': {'epoch': 1770165621, 'string': 'Wed Feb  4 00:40:21 2026\n'}, 'fibInstalled': True, 'nexthops': [{'ip': 'fc00::122', 'afi': 'ipv6', 'scope': 'global', 'metric': 0, 'accessible': True, 'used': True}], 'peer': {'peerId': 'fc00::122', 'routerId': '100.1.0.73', 'type': 'external'}}, {'aspath': {'string': '4200100000 4200200000 6666 6667', 'segments': [{'type': 'as-sequence', 'list': [4200100000, 4200200000, 6666, 6667]}], 'length': 4}, 'origin': 'IGP', 'valid': True, 'version': 474183, 'multipath': True, 'lastUpdate': {'epoch': 1770165626, 'string': 'Wed Feb  4 00:40:26 2026\n'}, 'fibInstalled': True, 'nexthops': [{'ip': 'fc00::102', 'afi': 'ipv6', 'scope': 'global', 'metric': 0, 'accessible': True, 'used': True}], 'peer': {'peerId': 'fc00::102', 'routerId': '100.1.0.65', 'type': 'external'}}, {'aspath': {'string': '4200100000 4200200000 6666 6667', 'segments': [{'type': 'as-sequence', 'list': [4200100000, 4200200000, 6666, 6667]}], 'length': 4}, 'origin': 'IGP', 'valid': True, 'version': 474183, 'multipath': True, 'lastUpdate': {'epoch': 1770165623, 'stri... (15385 more chars)
+```
+
+</details>
+
+<a id="40.15-show-ipv6-bgp-network-2064-100-0-1b9-128-bestpath"></a>
+#### 40.15 `show ipv6 bgp network 2064 100 0 1b9 128 bestpath`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 2064 100 0 1b9 128 bestpath"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 2064:100:0:1b9::/128, version 365695\nPaths: (1 available, best #1, table default)\n  Advertised to non peer-group peers:\n  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2\n  4200100000\n    fc00::6e2 from fc00::6e2 (100.1.1.185)\n      Origin IGP, valid, external, best (First path received)\n      Last update: Wed Feb  4 00:40:34 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 2064:100:0:1b9::/128, version 365695
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000
+    fc00::6e2 from fc00::6e2 (100.1.1.185)
+      Origin IGP, valid, external, best (First path received)
+      Last update: Wed Feb  4 00:40:35 2026
+
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 2064:100:0:1b9::/128, version 365695
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000
+    fc00::6e2 from fc00::6e2 (100.1.1.185)
+      Origin IGP, valid, external, best (First path received)
+      Last update: Wed Feb  4 00:40:34 2026
+```
+
+</details>
+
+<a id="40.16-show-ipv6-bgp-network-2064-100-0-1b9-128-json"></a>
+#### 40.16 `show ipv6 bgp network 2064 100 0 1b9 128 json`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 2064 100 0 1b9 128 json"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "prefix": "2064:100:0:1b9::/128",
+  "version": 365695,
+  "advertisedTo": {
+    "fc00::102": {},
+    "fc00::122": {},
+    "fc00::142": {},
+    "fc00::162": {},
+    "fc00::182": {},
+    "fc00::1a2": {},
+    "fc00::1c2": {},
+    "fc00::1e2": {},
+    "fc00::202": {},
+    "fc00::222": {},
+    "fc00::242": {},
+    "fc00::262": {},
+    "fc00::282": {},
+    "fc00::2a2": {},
+    "fc00::2c2": {},
+    "fc00::2e2": {},
+... (62 more lines)
+```
+
+**Expected CLI Output:**
+```
+{
+  "prefix":"2064:100:0:1b9::/128",
+  "version":365695,
+  "advertisedTo":{
+    "fc00::102":{
+    },
+    "fc00::122":{
+    },
+    "fc00::142":{
+    },
+    "fc00::162":{
+    },
+    "fc00::182":{
+    },
+    "fc00::1a2":{
+    },
+    "fc00::1c2":{
+    },
+    "fc00::1e2":{
+    },
+... (95 more lines)
+```
+
+**Actual Converter Output:**
+```
+{'prefix': '2064:100:0:1b9::/128', 'version': 365695, 'advertisedTo': {'fc00::102': {}, 'fc00::122': {}, 'fc00::142': {}, 'fc00::162': {}, 'fc00::182': {}, 'fc00::1a2': {}, 'fc00::1c2': {}, 'fc00::1e2': {}, 'fc00::202': {}, 'fc00::222': {}, 'fc00::242': {}, 'fc00::262': {}, 'fc00::282': {}, 'fc00::2a2': {}, 'fc00::2c2': {}, 'fc00::2e2': {}, 'fc00::502': {}, 'fc00::522': {}, 'fc00::542': {}, 'fc00::562': {}, 'fc00::582': {}, 'fc00::5a2': {}, 'fc00::5c2': {}, 'fc00::5e2': {}, 'fc00::602': {}, 'fc00::622': {}, 'fc00::642': {}, 'fc00::662': {}, 'fc00::682': {}, 'fc00::6a2': {}, 'fc00::6c2': {}, 'fc00::6e2': {}}, 'pathCount': 1, 'paths': [{'aspath': {'string': '4200100000', 'segments': [{'type': 'as-sequence', 'list': [4200100000]}], 'length': 1}, 'origin': 'IGP', 'valid': True, 'version': 365695, 'bestpath': {'overall': True, 'selectionReason': 'First path received'}, 'lastUpdate': {'epoch': 1770165635, 'string': 'Wed Feb  4 00:40:35 2026\n'}, 'fibInstalled': True, 'nexthops': [{'ip': 'fc00::6e2', 'afi': 'ipv6', 'scope': 'global', 'metric': 0, 'accessible': True, 'used': True}], 'peer': {'peerId': 'fc00::6e2', 'routerId': '100.1.1.185', 'type': 'external'}}]}
+```
+
+</details>
+
+<a id="40.17-show-ipv6-bgp-network-2064-100-0-1b9-128-longer-prefixes"></a>
+#### 40.17 `show ipv6 bgp network 2064 100 0 1b9 128 longer-prefixes`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 2064 100 0 1b9 128 longer-prefixes"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0\nDefault local pref 100, local AS 4200000000\nStatus codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,\n               i internal, r RIB-failure, S Stale, R Removed\nNexthop codes: @NNN nexthop's vrf id, < announce-nh-self\nOrigin codes:  i - IGP, e - EGP, ? - incomplete\nRPKI validation codes: V valid, I invalid, N Not found\n\n    Network          Next Hop            Metric LocPrf Weight Path\n *> 2064:100:0:1b9::/128\n                    fc00::6e2                              0 4200100000 i\n\nDisplayed 1 routes and 192068 total paths"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> 2064:100:0:1b9::/128
+                    fc00::6e2                              0 4200100000 i
+
+Displayed 1 routes and 192068 total paths
+
+```
+
+**Actual Converter Output:**
+```
+BGP table version is 480183, local router ID is 10.1.0.32, vrf id 0
+Default local pref 100, local AS 4200000000
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop's vrf id, < announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+    Network          Next Hop            Metric LocPrf Weight Path
+ *> 2064:100:0:1b9::/128
+                    fc00::6e2                              0 4200100000 i
+
+Displayed 1 routes and 192068 total paths
+```
+
+</details>
+
+<a id="40.18-show-ipv6-bgp-network-2064-100-0-1b9-128-multipath"></a>
+#### 40.18 `show ipv6 bgp network 2064 100 0 1b9 128 multipath`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 2064 100 0 1b9 128 multipath"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 2064:100:0:1b9::/128, version 365695\nPaths: (1 available, best #1, table default)\n  Advertised to non peer-group peers:\n  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2\n  4200100000\n    fc00::6e2 from fc00::6e2 (100.1.1.185)\n      Origin IGP, valid, external, best (First path received)\n      Last update: Wed Feb  4 00:40:35 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 2064:100:0:1b9::/128, version 365695
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000
+    fc00::6e2 from fc00::6e2 (100.1.1.185)
+      Origin IGP, valid, external, best (First path received)
+      Last update: Wed Feb  4 00:40:35 2026
+
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 2064:100:0:1b9::/128, version 365695
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000
+    fc00::6e2 from fc00::6e2 (100.1.1.185)
+      Origin IGP, valid, external, best (First path received)
+      Last update: Wed Feb  4 00:40:35 2026
+```
+
+</details>
+
+<a id="40.19-show-ipv6-bgp-network-2064-100-0-1b9-128"></a>
+#### 40.19 `show ipv6 bgp network 2064 100 0 1b9 128`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 bgp network 2064 100 0 1b9 128"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "output": "BGP routing table entry for 2064:100:0:1b9::/128, version 365695\nPaths: (1 available, best #1, table default)\n  Advertised to non peer-group peers:\n  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2\n  4200100000\n    fc00::6e2 from fc00::6e2 (100.1.1.185)\n      Origin IGP, valid, external, best (First path received)\n      Last update: Wed Feb  4 00:40:35 2026"
+}
+```
+
+**Expected CLI Output:**
+```
+BGP routing table entry for 2064:100:0:1b9::/128, version 365695
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000
+    fc00::6e2 from fc00::6e2 (100.1.1.185)
+      Origin IGP, valid, external, best (First path received)
+      Last update: Wed Feb  4 00:40:34 2026
+
+```
+
+**Actual Converter Output:**
+```
+BGP routing table entry for 2064:100:0:1b9::/128, version 365695
+Paths: (1 available, best #1, table default)
+  Advertised to non peer-group peers:
+  fc00::102 fc00::122 fc00::142 fc00::162 fc00::182 fc00::1a2 fc00::1c2 fc00::1e2 fc00::202 fc00::222 fc00::242 fc00::262 fc00::282 fc00::2a2 fc00::2c2 fc00::2e2 fc00::502 fc00::522 fc00::542 fc00::562 fc00::582 fc00::5a2 fc00::5c2 fc00::5e2 fc00::602 fc00::622 fc00::642 fc00::662 fc00::682 fc00::6a2 fc00::6c2 fc00::6e2
+  4200100000
+    fc00::6e2 from fc00::6e2 (100.1.1.185)
+      Origin IGP, valid, external, best (First path received)
+      Last update: Wed Feb  4 00:40:35 2026
+```
+
+</details>
+
 ---
 
 <a id="41-show-ipv6-bgp-summary"></a>
@@ -19529,16 +31579,18 @@ Paths: (32 available, best #1, table default)
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="41.1-show-ipv6-bgp-summary"></a>
 #### 41.1 `show ipv6 bgp summary` (base command)
@@ -19546,9 +31598,11 @@ Paths: (32 available, best #1, table default)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 79 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 87 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 67 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 66 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 168 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 104 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -19637,6 +31691,86 @@ fc00::52       4  64005       2323       5185      8965      0       0  1d08h59m
 fc00::56       4  64006       2335       5185      8965      0       0  1d08h59m                2  ARISTA06T0
 fc00::5a       4  64007       2328       5185      8965      0       0  1d08h59m                2  ARISTA07T0
 fc00::5e       4  64008       2330       5185      8965      0       0  1d08h59m                2  ARISTA08T0
+... (15 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "ipv6Unicast": {
+    "routerId": "10.1.0.32",
+    "as": 65100,
+    "vrfId": 0,
+    "tableVersion": 24922,
+    "ribCount": 12849,
+    "ribMemory": 1644672,
+    "peerCount": 24,
+    "peerMemory": 577728,
+    "peerGroupCount": 4,
+    "peerGroupMemory": 256,
+    "peers": {
+      "fc00::2": {
+        "version": 4,
+        "remoteAs": 65200,
+        "msgRcvd": 19718,
+        "msgSent": 14104,
+        "tableVersion": 24922,
+        "inq": 0,
+... (308 more lines)
+```
+
+**Expected CLI Output:**
+```
+
+IPv6 Unicast Summary:
+BGP router identifier 10.1.0.32, local AS number 65100 vrf-id 0
+BGP table version 24922
+RIB entries 12849, using 1644672 bytes of memory
+Peers 24, using 577728 KiB of memory
+Peer groups 4, using 256 bytes of memory
+
+
+Neighbhor      V     AS    MsgRcvd    MsgSent    TblVer    InQ    OutQ  Up/Down      State/PfxRcd  NeighborName
+-----------  ---  -----  ---------  ---------  --------  -----  ------  ---------  --------------  --------------
+fc00::2        4  65200      19715      14101     24922      0       0  01w2d18h             6370  ARISTA01T2
+fc00::4a       4  64003      16559      17287     24922      0       0  01w2d18h                2  ARISTA03T0
+fc00::4e       4  64004      16539      17287     24922      0       0  01w2d18h                2  ARISTA04T0
+fc00::5a       4  64007      16548      17287     24922      0       0  01w2d18h                2  ARISTA07T0
+fc00::5e       4  64008      16532      17287     24922      0       0  01w2d18h                2  ARISTA08T0
+fc00::6        4  65200      19721      14100     24922      0       0  01w2d18h             6370  ARISTA03T2
+fc00::6a       4  64011      16535      17287     24922      0       0  01w2d18h                2  ARISTA11T0
+fc00::6e       4  64012      16528      17287     24922      0       0  01w2d18h                2  ARISTA12T0
+fc00::7a       4  64015      16532      17288     24922      0       0  01w2d18h                2  ARISTA15T0
+... (18 more lines)
+```
+
+**Actual Converter Output:**
+```
+
+IPv6 Unicast Summary:
+BGP router identifier 10.1.0.32, local AS number 65100 vrf-id 0
+BGP table version 24922
+RIB entries 12849, using 1644672 bytes of memory
+Peers 24, using 577728 KiB of memory
+Peer groups 4, using 256 bytes of memory
+
+
+Neighbhor      V     AS    MsgRcvd    MsgSent    TblVer    InQ    OutQ  Up/Down      State/PfxRcd  NeighborName
+-----------  ---  -----  ---------  ---------  --------  -----  ------  ---------  --------------  --------------
+fc00::2        4  65200      19718      14104     24922      0       0  01w2d18h             6370  ARISTA01T2
+fc00::42       4  64001      16545      17290     24922      0       0  01w2d18h                2  ARISTA01T0
+fc00::46       4  64002      16560      17290     24922      0       0  01w2d18h                2  ARISTA02T0
+fc00::4a       4  64003      16563      17290     24922      0       0  01w2d18h                2  ARISTA03T0
+fc00::4e       4  64004      16543      17290     24922      0       0  01w2d18h                2  ARISTA04T0
+fc00::52       4  64005      16566      17290     24922      0       0  01w2d18h                2  ARISTA05T0
+fc00::56       4  64006      16542      17290     24922      0       0  01w2d18h                2  ARISTA06T0
+fc00::5a       4  64007      16551      17290     24922      0       0  01w2d18h                2  ARISTA07T0
+fc00::5e       4  64008      16536      17290     24922      0       0  01w2d18h                2  ARISTA08T0
 ... (15 more lines)
 ```
 
@@ -19882,6 +32016,86 @@ fc00::12       4  4200300000       1858       1873    135211      0       0  1d0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "ipv6Unicast": {
+    "routerId": "10.1.0.32",
+    "as": 4200000000,
+    "vrfId": 0,
+    "tableVersion": 480183,
+    "ribCount": 12867,
+    "ribMemory": 1646976,
+    "peerCount": 34,
+    "peerMemory": 700672,
+    "peerGroupCount": 4,
+    "peerGroupMemory": 256,
+    "peers": {
+      "fc00::102": {
+        "version": 4,
+        "remoteAs": 4200100000,
+        "msgRcvd": 23638,
+        "msgSent": 20536,
+        "tableVersion": 480183,
+        "inq": 0,
+... (438 more lines)
+```
+
+**Expected CLI Output:**
+```
+
+IPv6 Unicast Summary:
+BGP router identifier 10.1.0.32, local AS number 4200000000 vrf-id 0
+BGP table version 480183
+RIB entries 12867, using 1646976 bytes of memory
+Peers 34, using 700672 KiB of memory
+Peer groups 4, using 256 bytes of memory
+
+
+Neighbhor      V          AS    MsgRcvd    MsgSent    TblVer    InQ    OutQ  Up/Down      State/PfxRcd  NeighborName
+-----------  ---  ----------  ---------  ---------  --------  -----  ------  ---------  --------------  --------------
+fc00::1a2      4  4200100000      23451      20537    480183      0       0  5d05h01m             6002  ARISTA41T1
+fc00::1c2      4  4200100000      23479      21014    480183      0       0  5d05h01m             6002  ARISTA49T1
+fc00::1e2      4  4200100000      23594      20534    480183      0       0  5d05h01m             6002  ARISTA57T1
+fc00::2a2      4  4200100000      23414      20537    480183      0       0  5d05h01m             6002  ARISTA105T1
+fc00::2c2      4  4200100000      23457      21016    480183      0       0  5d05h01m             6002  ARISTA113T1
+fc00::2e2      4  4200100000      23599      20527    480183      0       0  5d05h01m             6002  ARISTA121T1
+fc00::5a2      4  4200100000      23544      21011    480183      0       0  5d05h01m             6002  ARISTA169T1
+fc00::5c2      4  4200100000      23449      21002    480183      0       0  5d05h01m             6002  ARISTA177T1
+fc00::5e2      4  4200100000      23460      20529    480183      0       0  5d05h01m             6002  ARISTA185T1
+... (28 more lines)
+```
+
+**Actual Converter Output:**
+```
+
+IPv6 Unicast Summary:
+BGP router identifier 10.1.0.32, local AS number 4200000000 vrf-id 0
+BGP table version 480183
+RIB entries 12867, using 1646976 bytes of memory
+Peers 34, using 700672 KiB of memory
+Peer groups 4, using 256 bytes of memory
+
+
+Neighbhor      V          AS    MsgRcvd    MsgSent    TblVer    InQ    OutQ  Up/Down      State/PfxRcd  NeighborName
+-----------  ---  ----------  ---------  ---------  --------  -----  ------  ---------  --------------  --------------
+fc00::102      4  4200100000      23638      20536    480183      0       0  5d05h04m             6002  ARISTA01T1
+fc00::122      4  4200100000      23469      21031    480183      0       0  5d05h05m             6002  ARISTA09T1
+fc00::142      4  4200100000      23461      21026    480183      0       0  5d05h04m             6002  ARISTA17T1
+fc00::162      4  4200100000      23474      20540    480183      0       0  5d05h04m             6002  ARISTA25T1
+fc00::182      4  4200100000      23455      21018    480183      0       0  5d05h05m             6002  ARISTA33T1
+fc00::1a2      4  4200100000      23455      20540    480183      0       0  5d05h04m             6002  ARISTA41T1
+fc00::1c2      4  4200100000      23482      21017    480183      0       0  5d05h04m             6002  ARISTA49T1
+fc00::1e2      4  4200100000      23597      20537    480183      0       0  5d05h04m             6002  ARISTA57T1
+fc00::202      4  4200100000      23479      21019    480183      0       0  5d05h04m             6002  ARISTA65T1
+... (25 more lines)
+```
+
+</details>
+
 ---
 
 <a id="42-show-ipv6-link-local-mode"></a>
@@ -19889,16 +32103,18 @@ fc00::12       4  4200300000       1858       1873    135211      0       0  1d0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="42.1-show-ipv6-link-local-mode"></a>
 #### 42.1 `show ipv6 link-local-mode` (base command)
@@ -19906,9 +32122,11 @@ fc00::12       4  4200300000       1858       1873    135211      0       0  1d0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -19998,6 +32216,86 @@ print(result)
 +------------------+----------+
 | Ethernet124      | Disabled |
 ... (159 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "port": "Ethernet0",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet104",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet112",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet12",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet120",
+    "mode": "Disabled"
+... (302 more lines)
+```
+
+**Expected CLI Output:**
+```
++------------------+----------+
+| Interface Name   | Mode     |
++==================+==========+
+| Ethernet0        | Disabled |
++------------------+----------+
+| Ethernet104      | Disabled |
++------------------+----------+
+| Ethernet112      | Disabled |
++------------------+----------+
+| Ethernet12       | Disabled |
++------------------+----------+
+| Ethernet120      | Disabled |
++------------------+----------+
+| Ethernet128      | Disabled |
++------------------+----------+
+| Ethernet136      | Disabled |
++------------------+----------+
+| Ethernet144      | Disabled |
++------------------+----------+
+| Ethernet152      | Disabled |
+... (144 more lines)
+```
+
+**Actual Converter Output:**
+```
++------------------+----------+
+| Interface Name   | Mode     |
++==================+==========+
+| Ethernet0        | Disabled |
++------------------+----------+
+| Ethernet104      | Disabled |
++------------------+----------+
+| Ethernet112      | Disabled |
++------------------+----------+
+| Ethernet12       | Disabled |
++------------------+----------+
+| Ethernet120      | Disabled |
++------------------+----------+
+| Ethernet128      | Disabled |
++------------------+----------+
+| Ethernet136      | Disabled |
++------------------+----------+
+| Ethernet144      | Disabled |
++------------------+----------+
+| Ethernet152      | Disabled |
+... (143 more lines)
 ```
 
 </details>
@@ -20242,6 +32540,86 @@ print(result)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "port": "Ethernet0",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet1",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet10",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet100",
+    "mode": "Disabled"
+  },
+  {
+    "port": "Ethernet101",
+    "mode": "Disabled"
+... (2042 more lines)
+```
+
+**Expected CLI Output:**
+```
++------------------+----------+
+| Interface Name   | Mode     |
++==================+==========+
+| Ethernet0        | Disabled |
++------------------+----------+
+| Ethernet1        | Disabled |
++------------------+----------+
+| Ethernet10       | Disabled |
++------------------+----------+
+| Ethernet100      | Disabled |
++------------------+----------+
+| Ethernet101      | Disabled |
++------------------+----------+
+| Ethernet102      | Disabled |
++------------------+----------+
+| Ethernet103      | Disabled |
++------------------+----------+
+| Ethernet104      | Disabled |
++------------------+----------+
+| Ethernet105      | Disabled |
+... (1014 more lines)
+```
+
+**Actual Converter Output:**
+```
++------------------+----------+
+| Interface Name   | Mode     |
++==================+==========+
+| Ethernet0        | Disabled |
++------------------+----------+
+| Ethernet1        | Disabled |
++------------------+----------+
+| Ethernet10       | Disabled |
++------------------+----------+
+| Ethernet100      | Disabled |
++------------------+----------+
+| Ethernet101      | Disabled |
++------------------+----------+
+| Ethernet102      | Disabled |
++------------------+----------+
+| Ethernet103      | Disabled |
++------------------+----------+
+| Ethernet104      | Disabled |
++------------------+----------+
+| Ethernet105      | Disabled |
+... (1013 more lines)
+```
+
+</details>
+
 ---
 
 <a id="43-show-ipv6-fib"></a>
@@ -20249,22 +32627,26 @@ print(result)
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 5/12 test cases passed (across 4 devices)
+**Status:** ✅ All 8/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 1 |
 
 **Test Case Variants:**
 
 - [43.1 (base command)](#43.1-show-ipv6-fib)
 - [43.2 fc00::88/126](#43.2-show-ipv6-fib-fc00--88-126)
 - [43.3 fc00::5c0/126](#43.3-show-ipv6-fib-fc00--5c0-126)
+- [43.4 fc00 54 126](#43.4-show-ipv6-fib-fc00-54-126)
+- [43.5 fc00 180 126](#43.5-show-ipv6-fib-fc00-180-126)
 
 <a id="43.1-show-ipv6-fib"></a>
 #### 43.1 `show ipv6 fib` (base command)
@@ -20272,8 +32654,10 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ⏭️ SKIP | JSON extraction error: No JSON found in file |
 
 **Sample Python Invocation:**
 ```python
@@ -20338,6 +32722,86 @@ print(result)
    17         20c0:a830:0:80::/64  fc00::5a                         PortChannel110
    18         20c0:a830::/64       fc00::5a                         PortChannel110
 ... (6414 more lines)
+```
+
+**Actual Converter Output:**
+```
+  No.  Vrf    Route                Nexthop                          Ifname
+-----  -----  -------------------  -------------------------------  -----------------------------------------------------------
+    1         2064:100::1          fc00::2                          PortChannel102
+    2         2064:100::3          fc00::6                          PortChannel105
+    3         2064:100::5          fc00::a                          PortChannel108
+    4         2064:100::7          fc00::e                          PortChannel111
+    5         20c0:a800:0:80::/64  fc00::42                         PortChannel101
+    6         20c0:a800::/64       fc00::42                         PortChannel101
+    7         20c0:a808:0:80::/64  fc00::46                         PortChannel103
+    8         20c0:a808::/64       fc00::46                         PortChannel103
+    9         20c0:a810:0:80::/64  fc00::4a                         PortChannel104
+   10         20c0:a810::/64       fc00::4a                         PortChannel104
+   11         20c0:a818:0:80::/64  fc00::4e                         PortChannel106
+   12         20c0:a818::/64       fc00::4e                         PortChannel106
+   13         20c0:a820:0:80::/64  fc00::52                         PortChannel107
+   14         20c0:a820::/64       fc00::52                         PortChannel107
+   15         20c0:a828:0:80::/64  fc00::56                         PortChannel109
+   16         20c0:a828::/64       fc00::56                         PortChannel109
+   17         20c0:a830:0:80::/64  fc00::5a                         PortChannel110
+   18         20c0:a830::/64       fc00::5a                         PortChannel110
+... (6414 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total": 6431,
+  "entries": [
+    {
+      "index": 1,
+      "route": "2064:100::1",
+      "nexthop": "fc00::2",
+      "ifname": "PortChannel102"
+    },
+    {
+      "index": 2,
+      "route": "2064:100::3",
+      "nexthop": "fc00::6",
+      "ifname": "PortChannel105"
+    },
+    {
+      "index": 3,
+      "route": "2064:100::5",
+      "nexthop": "fc00::a",
+      "ifname": "PortChannel108"
+... (38571 more lines)
+```
+
+**Expected CLI Output:**
+```
+  No.  Vrf    Route                Nexthop                          Ifname
+-----  -----  -------------------  -------------------------------  -----------------------------------------------------------
+    1         2064:100::1          fc00::2                          PortChannel102
+    2         2064:100::3          fc00::6                          PortChannel105
+    3         2064:100::5          fc00::a                          PortChannel108
+    4         2064:100::7          fc00::e                          PortChannel111
+    5         20c0:a800:0:80::/64  fc00::42                         PortChannel101
+    6         20c0:a800::/64       fc00::42                         PortChannel101
+    7         20c0:a808:0:80::/64  fc00::46                         PortChannel103
+    8         20c0:a808::/64       fc00::46                         PortChannel103
+    9         20c0:a810:0:80::/64  fc00::4a                         PortChannel104
+   10         20c0:a810::/64       fc00::4a                         PortChannel104
+   11         20c0:a818:0:80::/64  fc00::4e                         PortChannel106
+   12         20c0:a818::/64       fc00::4e                         PortChannel106
+   13         20c0:a820:0:80::/64  fc00::52                         PortChannel107
+   14         20c0:a820::/64       fc00::52                         PortChannel107
+   15         20c0:a828:0:80::/64  fc00::56                         PortChannel109
+   16         20c0:a828::/64       fc00::56                         PortChannel109
+   17         20c0:a830:0:80::/64  fc00::5a                         PortChannel110
+   18         20c0:a830::/64       fc00::5a                         PortChannel110
+... (6415 more lines)
 ```
 
 **Actual Converter Output:**
@@ -20628,6 +33092,118 @@ Total number of entries 0
 
 </details>
 
+<a id="43.4-show-ipv6-fib-fc00-54-126"></a>
+#### 43.4 `show ipv6 fib fc00 54 126`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 fib fc00 54 126"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total": 1,
+  "entries": [
+    {
+      "index": 1,
+      "route": "fc00::54/126",
+      "nexthop": "::",
+      "ifname": "PortChannel109"
+    }
+  ]
+}
+```
+
+**Expected CLI Output:**
+```
+  No.  Vrf    Route         Nexthop    Ifname
+-----  -----  ------------  ---------  --------------
+    1         fc00::54/126  ::         PortChannel109
+Total number of entries 1
+
+```
+
+**Actual Converter Output:**
+```
+  No.  Vrf    Route         Nexthop    Ifname
+-----  -----  ------------  ---------  --------------
+    1         fc00::54/126  ::         PortChannel109
+Total number of entries 1
+```
+
+</details>
+
+<a id="43.5-show-ipv6-fib-fc00-180-126"></a>
+#### 43.5 `show ipv6 fib fc00 180 126`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ipv6 fib fc00 180 126"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total": 1,
+  "entries": [
+    {
+      "index": 1,
+      "route": "fc00::180/126",
+      "nexthop": "::",
+      "ifname": "Ethernet96"
+    }
+  ]
+}
+```
+
+**Expected CLI Output:**
+```
+  No.  Vrf    Route          Nexthop    Ifname
+-----  -----  -------------  ---------  ----------
+    1         fc00::180/126  ::         Ethernet96
+Total number of entries 1
+
+```
+
+**Actual Converter Output:**
+```
+  No.  Vrf    Route          Nexthop    Ifname
+-----  -----  -------------  ---------  ----------
+    1         fc00::180/126  ::         Ethernet96
+Total number of entries 1
+```
+
+</details>
+
 ---
 
 <a id="44-show-lldp-neighbors"></a>
@@ -20635,22 +33211,26 @@ Total number of entries 0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [44.1 (base command)](#44.1-show-lldp-neighbors)
 - [44.2 Ethernet0](#44.2-show-lldp-neighbors-ethernet0)
 - [44.3 Ethernet252](#44.3-show-lldp-neighbors-ethernet252)
+- [44.4 Ethernet8](#44.4-show-lldp-neighbors-ethernet8)
+- [44.5 Ethernet505](#44.5-show-lldp-neighbors-ethernet505)
 
 <a id="44.1-show-lldp-neighbors"></a>
 #### 44.1 `show lldp neighbors` (base command)
@@ -20658,9 +33238,11 @@ Total number of entries 0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 127 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 123 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 162 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 101 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 382 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 179 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -20749,6 +33331,86 @@ Interface:    Ethernet136, via: LLDP, RID: 1, Time: 1 day, 09:00:57
 Interface:    Ethernet144, via: LLDP, RID: 19, Time: 1 day, 09:00:57
   Chassis:     
     ChassisID:    mac 06:3c:2b:40:fd:79
+... (394 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "title": "LLDP neighbors",
+  "interfaces": {
+    "Ethernet0": {
+      "via": "LLDP",
+      "RID": "7",
+      "Time": "9 days, 18:41:55",
+      "Chassis": {
+        "ChassisID": "mac 1a:ce:9f:57:d6:d6",
+        "SysName": "ARISTA01T0",
+        "SysDescr": "Arista Networks EOS version 4.32.5M-41241764.4325M (engineering build) running on an Arista cEOSLab",
+        "MgmtIP": "172.16.40.138",
+        "MgmtIface": "999000",
+        "Capability": [
+          "Bridge, on",
+          "Router, on"
+        ]
+      },
+      "Port": {
+        "PortID": "ifname Ethernet1",
+... (650 more lines)
+```
+
+**Expected CLI Output:**
+```
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    Ethernet80, via: LLDP, RID: 18, Time: 9 days, 18:38:57
+  Chassis:     
+    ChassisID:    mac 22:c5:6b:07:88:84
+    SysName:      ARISTA07T0
+    SysDescr:     Arista Networks EOS version 4.32.5M-41241764.4325M (engineering build) running on an Arista cEOSLab
+    MgmtIP:       172.16.40.144
+    MgmtIface:    999000
+    Capability:   Bridge, on
+    Capability:   Router, on
+  Port:        
+    PortID:       ifname Ethernet1
+    TTL:          120
+    MFS:          9236
+    Port is aggregated. PortAggregID: 1000001
+-------------------------------------------------------------------------------
+Interface:    Ethernet84, via: LLDP, RID: 19, Time: 9 days, 18:38:57
+  Chassis:     
+... (425 more lines)
+```
+
+**Actual Converter Output:**
+```
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    eth0, via: LLDP, RID: 2, Time: 9 days, 18:41:59
+  Chassis:     
+    ChassisID:    mac ac:4a:67:d4:fe:ba
+    SysName:      STR-MGSW-254-C14.ntwk.msn.net
+    SysDescr:     Cisco Nexus Operating System (NX-OS) Software 6.0(2)U6(7)
+                  TAC support: http://www.cisco.com/tac
+                  Copyright (c) 2002-2016, Cisco Systems, Inc. All rights reserved.
+    Capability:   Bridge, on
+    Capability:   Router, on
+  Port:        
+    PortID:       ifname Ethernet1/19
+    PortDescr:    Ethernet1/19
+    TTL:          120
+  VLAN:         146, pvid: yes
+  Unknown TLVs:
+    TLV:          OUI: 00,1B,21, SubType: 2, Len: 31 02,0A,00,00,00,00,00,01,00,00,00,00,04,11,00,00,80,00,00,00,00,00,64,00,00,00,00,00,00,00,01
+    TLV:          OUI: 00,01,42, SubType: 1, Len: 1 01
 ... (394 more lines)
 ```
 
@@ -20994,6 +33656,86 @@ Interface:    eth0, via: LLDP, RID: 1, Time: 1 day, 02:12:02
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "title": "LLDP neighbors",
+  "interfaces": {
+    "Ethernet104": {
+      "via": "LLDP",
+      "RID": "51",
+      "Time": "5 days, 05:04:46",
+      "Chassis": {
+        "ChassisID": "mac 22:1d:af:91:ba:2c",
+        "SysName": "ARISTA41T1",
+        "SysDescr": "Arista Networks EOS version 4.32.5M-41241764.4325M (engineering build) running on an Arista cEOSLab",
+        "MgmtIP": "172.16.41.173",
+        "MgmtIface": "999000",
+        "Capability": [
+          "Bridge, on",
+          "Router, on"
+        ]
+      },
+      "Port": {
+        "PortID": "ifname Ethernet1",
+... (788 more lines)
+```
+
+**Expected CLI Output:**
+```
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    eth0, via: LLDP, RID: 1, Time: 10 days, 02:12:04
+  Chassis:     
+    ChassisID:    mac ac:4a:67:de:bf:d5
+    SysName:      STR43-0101-0400-06M0.phx.gbl
+    SysDescr:     Cisco Nexus Operating System (NX-OS) Software 9.3(7)
+                  TAC support: http://www.cisco.com/tac
+                  Copyright (c) 2002-2021, Cisco Systems, Inc. All rights reserved.
+    Capability:   Bridge, on
+    Capability:   Router, on
+  Port:        
+    PortID:       ifname Ethernet1/14
+    PortDescr:    Ethernet1/14
+    TTL:          120
+  VLAN:         200, pvid: yes
+  Unknown TLVs:
+    TLV:          OUI: 00,01,42, SubType: 1, Len: 1 01
+    TLV:          OUI: 00,80,C2, SubType: 9, Len: 21 01,00,00,00,00,64,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+... (482 more lines)
+```
+
+**Actual Converter Output:**
+```
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+Interface:    eth0, via: LLDP, RID: 1, Time: 10 days, 02:14:57
+  Chassis:     
+    ChassisID:    mac ac:4a:67:de:bf:d5
+    SysName:      STR43-0101-0400-06M0.phx.gbl
+    SysDescr:     Cisco Nexus Operating System (NX-OS) Software 9.3(7)
+                  TAC support: http://www.cisco.com/tac
+                  Copyright (c) 2002-2021, Cisco Systems, Inc. All rights reserved.
+    Capability:   Bridge, on
+    Capability:   Router, on
+  Port:        
+    PortID:       ifname Ethernet1/14
+    PortDescr:    Ethernet1/14
+    TTL:          120
+  VLAN:         200, pvid: yes
+  Unknown TLVs:
+    TLV:          OUI: 00,01,42, SubType: 1, Len: 1 01
+    TLV:          OUI: 00,80,C2, SubType: 9, Len: 21 01,00,00,00,00,64,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+... (479 more lines)
+```
+
+</details>
+
 <a id="44.2-show-lldp-neighbors-ethernet0"></a>
 #### 44.2 `show lldp neighbors Ethernet0`
 
@@ -21130,6 +33872,96 @@ Interface:    Ethernet252, via: LLDP, RID: 41, Time: 1 day, 09:00:53
 
 </details>
 
+<a id="44.4-show-lldp-neighbors-ethernet8"></a>
+#### 44.4 `show lldp neighbors Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show lldp neighbors Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "title": "LLDP neighbors",
+  "interfaces": {}
+}
+```
+
+**Expected CLI Output:**
+```
+
+
+```
+
+**Actual Converter Output:**
+```
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+```
+
+</details>
+
+<a id="44.5-show-lldp-neighbors-ethernet505"></a>
+#### 44.5 `show lldp neighbors Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show lldp neighbors Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "title": "LLDP neighbors",
+  "interfaces": {}
+}
+```
+
+**Expected CLI Output:**
+```
+
+
+```
+
+**Actual Converter Output:**
+```
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+```
+
+</details>
+
 ---
 
 <a id="45-show-lldp-table"></a>
@@ -21137,16 +33969,18 @@ Interface:    Ethernet252, via: LLDP, RID: 41, Time: 1 day, 09:00:53
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="45.1-show-lldp-table"></a>
 #### 45.1 `show lldp table` (base command)
@@ -21154,9 +33988,11 @@ Interface:    Ethernet252, via: LLDP, RID: 41, Time: 1 day, 09:00:53
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 60 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 60 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 75 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 54 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 183 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 75 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -21245,6 +34081,86 @@ Ethernet156  ARISTA05T0                      Ethernet1       BR
 Ethernet168  ARISTA06T0                      Ethernet1       BR
 Ethernet176  ARISTA07T0                      Ethernet1       BR
 Ethernet180  ARISTA08T0                      Ethernet1       BR
+... (14 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "capability_codes_helper": "Capability codes: (R) Router, (B) Bridge, (O) Other",
+  "neighbors": [
+    {
+      "localPort": "Ethernet80",
+      "remoteDevice": "ARISTA07T0",
+      "remotePortId": "Ethernet1",
+      "capability": "BR",
+      "remotePortDescr": ""
+    },
+    {
+      "localPort": "Ethernet84",
+      "remoteDevice": "ARISTA08T0",
+      "remotePortId": "Ethernet1",
+      "capability": "BR",
+      "remotePortDescr": ""
+    },
+    {
+      "localPort": "eth0",
+      "remoteDevice": "STR-MGSW-254-C14.ntwk.msn.net",
+... (189 more lines)
+```
+
+**Expected CLI Output:**
+```
+Capability codes: (R) Router, (B) Bridge, (O) Other
+LocalPort    RemoteDevice                   RemotePortID    Capability    RemotePortDescr
+-----------  -----------------------------  --------------  ------------  -----------------
+Ethernet0    ARISTA01T0                     Ethernet1       BR
+Ethernet4    ARISTA02T0                     Ethernet1       BR
+Ethernet16   ARISTA03T0                     Ethernet1       BR
+Ethernet20   ARISTA04T0                     Ethernet1       BR
+Ethernet64   ARISTA05T0                     Ethernet1       BR
+Ethernet68   ARISTA06T0                     Ethernet1       BR
+Ethernet80   ARISTA07T0                     Ethernet1       BR
+Ethernet84   ARISTA08T0                     Ethernet1       BR
+Ethernet96   ARISTA01T2                     Ethernet1       BR
+Ethernet104  ARISTA01T2                     Ethernet2       BR
+Ethernet112  ARISTA03T2                     Ethernet1       BR
+Ethernet120  ARISTA03T2                     Ethernet2       BR
+Ethernet128  ARISTA05T2                     Ethernet1       BR
+Ethernet136  ARISTA05T2                     Ethernet2       BR
+Ethernet144  ARISTA07T2                     Ethernet1       BR
+Ethernet152  ARISTA07T2                     Ethernet2       BR
+Ethernet168  ARISTA09T0                     Ethernet1       BR
+... (15 more lines)
+```
+
+**Actual Converter Output:**
+```
+Capability codes: (R) Router, (B) Bridge, (O) Other
+LocalPort    RemoteDevice                   RemotePortID    Capability    RemotePortDescr
+-----------  -----------------------------  --------------  ------------  -----------------
+eth0         STR-MGSW-254-C14.ntwk.msn.net  Ethernet1/19    BR            Ethernet1/19
+Ethernet0    ARISTA01T0                     Ethernet1       BR
+Ethernet4    ARISTA02T0                     Ethernet1       BR
+Ethernet16   ARISTA03T0                     Ethernet1       BR
+Ethernet20   ARISTA04T0                     Ethernet1       BR
+Ethernet64   ARISTA05T0                     Ethernet1       BR
+Ethernet68   ARISTA06T0                     Ethernet1       BR
+Ethernet80   ARISTA07T0                     Ethernet1       BR
+Ethernet84   ARISTA08T0                     Ethernet1       BR
+Ethernet96   ARISTA01T2                     Ethernet1       BR
+Ethernet104  ARISTA01T2                     Ethernet2       BR
+Ethernet112  ARISTA03T2                     Ethernet1       BR
+Ethernet120  ARISTA03T2                     Ethernet2       BR
+Ethernet128  ARISTA05T2                     Ethernet1       BR
+Ethernet136  ARISTA05T2                     Ethernet2       BR
+Ethernet144  ARISTA07T2                     Ethernet1       BR
+Ethernet152  ARISTA07T2                     Ethernet2       BR
 ... (14 more lines)
 ```
 
@@ -21490,6 +34406,86 @@ Ethernet152  ARISTA16FT2                   Ethernet1       BR
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "capability_codes_helper": "Capability codes: (R) Router, (B) Bridge, (O) Other",
+  "neighbors": [
+    {
+      "localPort": "eth0",
+      "remoteDevice": "STR43-0101-0400-06M0.phx.gbl",
+      "remotePortId": "Ethernet1/14",
+      "capability": "BR",
+      "remotePortDescr": "Ethernet1/14"
+    },
+    {
+      "localPort": "Ethernet512",
+      "remoteDevice": "ARISTA01PT0",
+      "remotePortId": "Ethernet1",
+      "capability": "BR",
+      "remotePortDescr": ""
+    },
+    {
+      "localPort": "Ethernet520",
+      "remoteDevice": "ARISTA02PT0",
+... (231 more lines)
+```
+
+**Expected CLI Output:**
+```
+Capability codes: (R) Router, (B) Bridge, (O) Other
+LocalPort    RemoteDevice                  RemotePortID    Capability    RemotePortDescr
+-----------  ----------------------------  --------------  ------------  -----------------
+Ethernet64   ARISTA01T1                    Ethernet1       BR
+Ethernet72   ARISTA09T1                    Ethernet1       BR
+Ethernet80   ARISTA17T1                    Ethernet1       BR
+Ethernet88   ARISTA25T1                    Ethernet1       BR
+Ethernet96   ARISTA33T1                    Ethernet1       BR
+Ethernet104  ARISTA41T1                    Ethernet1       BR
+Ethernet112  ARISTA49T1                    Ethernet1       BR
+Ethernet120  ARISTA57T1                    Ethernet1       BR
+Ethernet128  ARISTA65T1                    Ethernet1       BR
+Ethernet136  ARISTA73T1                    Ethernet1       BR
+Ethernet144  ARISTA81T1                    Ethernet1       BR
+Ethernet152  ARISTA89T1                    Ethernet1       BR
+Ethernet160  ARISTA97T1                    Ethernet1       BR
+Ethernet168  ARISTA105T1                   Ethernet1       BR
+Ethernet176  ARISTA113T1                   Ethernet1       BR
+Ethernet184  ARISTA121T1                   Ethernet1       BR
+Ethernet320  ARISTA129T1                   Ethernet1       BR
+... (21 more lines)
+```
+
+**Actual Converter Output:**
+```
+Capability codes: (R) Router, (B) Bridge, (O) Other
+LocalPort    RemoteDevice                  RemotePortID    Capability    RemotePortDescr
+-----------  ----------------------------  --------------  ------------  -----------------
+eth0         STR43-0101-0400-06M0.phx.gbl  Ethernet1/14    BR            Ethernet1/14
+Ethernet64   ARISTA01T1                    Ethernet1       BR
+Ethernet72   ARISTA09T1                    Ethernet1       BR
+Ethernet80   ARISTA17T1                    Ethernet1       BR
+Ethernet88   ARISTA25T1                    Ethernet1       BR
+Ethernet96   ARISTA33T1                    Ethernet1       BR
+Ethernet104  ARISTA41T1                    Ethernet1       BR
+Ethernet112  ARISTA49T1                    Ethernet1       BR
+Ethernet120  ARISTA57T1                    Ethernet1       BR
+Ethernet128  ARISTA65T1                    Ethernet1       BR
+Ethernet136  ARISTA73T1                    Ethernet1       BR
+Ethernet144  ARISTA81T1                    Ethernet1       BR
+Ethernet152  ARISTA89T1                    Ethernet1       BR
+Ethernet160  ARISTA97T1                    Ethernet1       BR
+Ethernet168  ARISTA105T1                   Ethernet1       BR
+Ethernet176  ARISTA113T1                   Ethernet1       BR
+Ethernet184  ARISTA121T1                   Ethernet1       BR
+... (20 more lines)
+```
+
+</details>
+
 ---
 
 <a id="46-show-mac"></a>
@@ -21497,16 +34493,18 @@ Ethernet152  ARISTA16FT2                   Ethernet1       BR
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="46.1-show-mac"></a>
 #### 46.1 `show mac` (base command)
@@ -21514,9 +34512,11 @@ Ethernet152  ARISTA16FT2                   Ethernet1       BR
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 69 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -21546,6 +34546,34 @@ print(result)
 No.    Vlan    MacAddress    Port    Type
 -----  ------  ------------  ------  ------
 Total number of entries 0
+```
+
+**Actual Converter Output:**
+```
+No.    Vlan    MacAddress    Port    Type
+-----  ------  ------------  ------  ------
+Total number of entries 0
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "entries": [],
+  "total": 0
+}
+```
+
+**Expected CLI Output:**
+```
+No.    Vlan    MacAddress    Port    Type
+-----  ------  ------------  ------  ------
+Total number of entries 0
+
 ```
 
 **Actual Converter Output:**
@@ -21691,6 +34719,34 @@ Total number of entries 0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "entries": [],
+  "total": 0
+}
+```
+
+**Expected CLI Output:**
+```
+No.    Vlan    MacAddress    Port    Type
+-----  ------  ------------  ------  ------
+Total number of entries 0
+
+```
+
+**Actual Converter Output:**
+```
+No.    Vlan    MacAddress    Port    Type
+-----  ------  ------------  ------  ------
+Total number of entries 0
+```
+
+</details>
+
 ---
 
 <a id="47-show-mac-aging-time"></a>
@@ -21698,16 +34754,18 @@ Total number of entries 0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="47.1-show-mac-aging-time"></a>
 #### 47.1 `show mac aging_time` (base command)
@@ -21715,9 +34773,11 @@ Total number of entries 0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -21744,6 +34804,29 @@ print(result)
 **Expected CLI Output:**
 ```
 Aging time for switch is 600 seconds
+```
+
+**Actual Converter Output:**
+```
+Aging time for switch is 600 seconds
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fdb_aging_time": "600s"
+}
+```
+
+**Expected CLI Output:**
+```
+Aging time for switch is 600 seconds
+
 ```
 
 **Actual Converter Output:**
@@ -21819,6 +34902,29 @@ Aging time for switch is 600 seconds
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "fdb_aging_time": "600s"
+}
+```
+
+**Expected CLI Output:**
+```
+Aging time for switch is 600 seconds
+
+```
+
+**Actual Converter Output:**
+```
+Aging time for switch is 600 seconds
+```
+
+</details>
+
 ---
 
 <a id="48-show-mmu"></a>
@@ -21826,16 +34932,18 @@ Aging time for switch is 600 seconds
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="48.1-show-mmu"></a>
 #### 48.1 `show mmu` (base command)
@@ -21843,9 +34951,11 @@ Aging time for switch is 600 seconds
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -21927,6 +35037,86 @@ mode  dynamic
 size  41943040
 type  ingress
 xoff  12582912
+----  --------
+
+Profile: egress_lossless_profile
+----------  -----------------
+dynamic_th  7
+pool        egress_lossy_pool
+size        0
+... (33 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "pools": {
+    "egress_lossy_pool": {
+      "mode": "dynamic",
+      "size": "50331648",
+      "type": "egress"
+    },
+    "ingress_lossless_pool": {
+      "mode": "dynamic",
+      "size": "67108864",
+      "type": "ingress",
+      "xoff": "25165824"
+    }
+  },
+  "profiles": {
+    "egress_lossless_profile": {
+      "dynamic_th": "7",
+      "pool": "egress_lossy_pool",
+      "size": "0"
+    },
+... (26 more lines)
+```
+
+**Expected CLI Output:**
+```
+Pool: egress_lossy_pool
+----  --------
+mode  dynamic
+size  50331648
+type  egress
+----  --------
+
+Pool: ingress_lossless_pool
+----  --------
+mode  dynamic
+size  67108864
+type  ingress
+xoff  25165824
+----  --------
+
+Profile: egress_lossless_profile
+----------  -----------------
+dynamic_th  7
+pool        egress_lossy_pool
+size        0
+... (35 more lines)
+```
+
+**Actual Converter Output:**
+```
+Pool: egress_lossy_pool
+----  --------
+mode  dynamic
+size  50331648
+type  egress
+----  --------
+
+Pool: ingress_lossless_pool
+----  --------
+mode  dynamic
+size  67108864
+type  ingress
+xoff  25165824
 ----  --------
 
 Profile: egress_lossless_profile
@@ -22179,6 +35369,86 @@ static_th  165364160
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "pools": {
+    "egress_lossless_pool": {
+      "mode": "dynamic",
+      "size": "136209408",
+      "type": "egress"
+    },
+    "egress_lossy_pool": {
+      "mode": "dynamic",
+      "size": "105419776",
+      "type": "egress"
+    },
+    "ingress_lossless_pool": {
+      "mode": "dynamic",
+      "size": "105419776",
+      "type": "ingress"
+    },
+    "ingress_zero_pool": {
+      "mode": "static",
+      "size": "0",
+... (107 more lines)
+```
+
+**Expected CLI Output:**
+```
+Pool: egress_lossless_pool
+----  ---------
+mode  dynamic
+size  136209408
+type  egress
+----  ---------
+
+Pool: egress_lossy_pool
+----  ---------
+mode  dynamic
+size  105419776
+type  egress
+----  ---------
+
+Pool: ingress_lossless_pool
+----  ---------
+mode  dynamic
+size  105419776
+type  ingress
+----  ---------
+... (148 more lines)
+```
+
+**Actual Converter Output:**
+```
+Pool: egress_lossless_pool
+----  ---------
+mode  dynamic
+size  136209408
+type  egress
+----  ---------
+
+Pool: egress_lossy_pool
+----  ---------
+mode  dynamic
+size  105419776
+type  egress
+----  ---------
+
+Pool: ingress_lossless_pool
+----  ---------
+mode  dynamic
+size  105419776
+type  ingress
+----  ---------
+... (146 more lines)
+```
+
+</details>
+
 ---
 
 <a id="49-show-ndp"></a>
@@ -22186,16 +35456,18 @@ static_th  165364160
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 10/24 test cases passed (across 4 devices)
+**Status:** ✅ All 18/60 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 4 | 0 | 0 | 0 |
+| `str3-8101-02` | 4 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 4 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 4 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -22205,6 +35477,10 @@ static_th  165364160
 - [49.4 --iface Ethernet64 fc00::8a](#49.4-show-ndp---iface-ethernet64-fc00--8a)
 - [49.5 fc00::1a2](#49.5-show-ndp-fc00--1a2)
 - [49.6 fc00::8a](#49.6-show-ndp-fc00--8a)
+- [49.7 fc00 2](#49.7-show-ndp-fc00-2)
+- [49.8 --iface Ethernet64 fc00 2](#49.8-show-ndp---iface-ethernet64-fc00-2)
+- [49.9 fc00 222](#49.9-show-ndp-fc00-222)
+- [49.10 --iface Ethernet64 fc00 222](#49.10-show-ndp---iface-ethernet64-fc00-222)
 
 <a id="49.1-show-ndp"></a>
 #### 49.1 `show ndp` (base command)
@@ -22212,9 +35488,11 @@ static_th  165364160
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 169 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 152 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 311 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | All 516 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 378 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -22304,6 +35582,86 @@ fc00::46                    06:3c:2b:40:fd:79  PortChannel103  -       REACHABLE
 fc00::52                    5a:a4:b2:28:8a:15  PortChannel107  -       REACHABLE
 fc00::56                    2e:f7:4b:c3:1a:98  PortChannel109  -       REACHABLE
 ... (87 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 88,
+  "entries": [
+    {
+      "address": "fe80::10b0:9bff:feeb:b02e",
+      "mac_address": "12:B0:9B:EB:B0:2E",
+      "iface": "PortChannel118",
+      "vlan": "-",
+      "status": "STALE"
+    },
+    {
+      "address": "fe80::9a03:9bff:fe03:22d9",
+      "mac_address": "98:03:9B:03:22:D9",
+      "iface": "PortChannel119",
+      "vlan": "-",
+      "status": "STALE"
+    },
+    {
+      "address": "fc00::6a",
+      "mac_address": "0A:33:D3:5C:A0:72",
+... (601 more lines)
+```
+
+**Expected CLI Output:**
+```
+Address                     MacAddress         Iface           Vlan    Status
+--------------------------  -----------------  --------------  ------  ---------
+2a01:111:e210:3000::1       00:00:5e:00:02:02  eth0            -       STALE
+2a01:111:e210:3000::2       5c:45:27:6b:0a:f0  eth0            -       STALE
+fc00::2                     12:2c:ce:7e:a6:83  PortChannel102  -       REACHABLE
+fc00::4a                    0e:2d:ab:0f:a8:ef  PortChannel104  -       REACHABLE
+fc00::4e                    46:b5:54:d7:8f:1f  PortChannel106  -       REACHABLE
+fc00::5a                    22:c5:6b:07:88:84  PortChannel110  -       REACHABLE
+fc00::5e                    0e:77:68:4b:d6:f1  PortChannel112  -       REACHABLE
+fc00::6                     22:8b:07:28:20:47  PortChannel105  -       REACHABLE
+fc00::6a                    0a:33:d3:5c:a0:72  PortChannel115  -       REACHABLE
+fc00::6e                    0a:ab:e0:c1:a9:d9  PortChannel116  -       REACHABLE
+fc00::7a                    2e:d3:2f:9d:eb:73  PortChannel119  -       REACHABLE
+fc00::7e                    1a:ef:7f:b6:80:df  PortChannel120  -       REACHABLE
+fc00::8a                    16:9c:5c:de:d8:c2  PortChannel123  -       REACHABLE
+fc00::8e                    12:77:2d:ba:c6:64  PortChannel124  -       REACHABLE
+fc00::42                    1a:ce:9f:57:d6:d6  PortChannel101  -       REACHABLE
+fc00::46                    12:79:ec:68:40:77  PortChannel103  -       REACHABLE
+fc00::52                    0a:4d:e2:f9:70:57  PortChannel107  -       REACHABLE
+fc00::56                    02:b1:65:cc:3f:3c  PortChannel109  -       REACHABLE
+... (72 more lines)
+```
+
+**Actual Converter Output:**
+```
+Address                     MacAddress         Iface           Vlan    Status
+--------------------------  -----------------  --------------  ------  ---------
+2a01:111:e210:3000::1       00:00:5e:00:02:02  eth0            -       STALE
+2a01:111:e210:3000::2       5c:45:27:6b:0a:f0  eth0            -       STALE
+fc00::2                     12:2c:ce:7e:a6:83  PortChannel102  -       REACHABLE
+fc00::4a                    0e:2d:ab:0f:a8:ef  PortChannel104  -       REACHABLE
+fc00::4e                    46:b5:54:d7:8f:1f  PortChannel106  -       REACHABLE
+fc00::5a                    22:c5:6b:07:88:84  PortChannel110  -       REACHABLE
+fc00::5e                    0e:77:68:4b:d6:f1  PortChannel112  -       REACHABLE
+fc00::6                     22:8b:07:28:20:47  PortChannel105  -       REACHABLE
+fc00::6a                    0a:33:d3:5c:a0:72  PortChannel115  -       REACHABLE
+fc00::6e                    0a:ab:e0:c1:a9:d9  PortChannel116  -       REACHABLE
+fc00::7a                    2e:d3:2f:9d:eb:73  PortChannel119  -       REACHABLE
+fc00::7e                    1a:ef:7f:b6:80:df  PortChannel120  -       REACHABLE
+fc00::8a                    16:9c:5c:de:d8:c2  PortChannel123  -       REACHABLE
+fc00::8e                    12:77:2d:ba:c6:64  PortChannel124  -       REACHABLE
+fc00::42                    1a:ce:9f:57:d6:d6  PortChannel101  -       REACHABLE
+fc00::46                    12:79:ec:68:40:77  PortChannel103  -       REACHABLE
+fc00::52                    0a:4d:e2:f9:70:57  PortChannel107  -       REACHABLE
+fc00::56                    02:b1:65:cc:3f:3c  PortChannel109  -       REACHABLE
+... (71 more lines)
 ```
 
 </details>
@@ -22548,13 +35906,95 @@ fc00::10a                     96:e2:dc:6d:49:13  Ethernet392     -       REACHAB
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 234,
+  "entries": [
+    {
+      "address": "fe80::e80b:a8ff:fe83:d3a5",
+      "mac_address": "EA:0B:A8:83:D3:A5",
+      "iface": "Ethernet520",
+      "vlan": "-",
+      "status": "STALE"
+    },
+    {
+      "address": "fe80::1c00:e0ff:fe0a:61b0",
+      "mac_address": "1E:00:E0:0A:61:B0",
+      "iface": "Ethernet432",
+      "vlan": "-",
+      "status": "STALE"
+    },
+    {
+      "address": "fc00::662",
+      "mac_address": "7A:3E:CE:01:14:B9",
+... (1623 more lines)
+```
+
+**Expected CLI Output:**
+```
+Address                    MacAddress         Iface        Vlan    Status
+-------------------------  -----------------  -----------  ------  ---------
+fc00::1a2                  7a:60:67:b2:99:12  Ethernet104  -       REACHABLE
+fc00::1c2                  f6:e6:3f:d7:15:4f  Ethernet112  -       REACHABLE
+fc00::1e2                  8a:72:61:7d:eb:39  Ethernet120  -       REACHABLE
+fc00::2a2                  5a:20:4b:21:85:03  Ethernet168  -       REACHABLE
+fc00::2c2                  de:9a:9b:40:88:f6  Ethernet176  -       REACHABLE
+fc00::2e2                  86:7e:bb:54:8e:c3  Ethernet184  -       REACHABLE
+fc00::5a2                  72:25:92:ba:e9:d5  Ethernet360  -       REACHABLE
+fc00::5c2                  1e:b4:b7:df:68:fb  Ethernet368  -       REACHABLE
+fc00::5e2                  2e:e6:c0:59:89:44  Ethernet376  -       REACHABLE
+fc00::6a2                  5e:4c:96:81:e9:ff  Ethernet424  -       REACHABLE
+fc00::6c2                  02:2d:fd:f0:38:a8  Ethernet432  -       REACHABLE
+fc00::6e2                  a6:71:96:b2:cd:42  Ethernet440  -       REACHABLE
+fc00::102                  ce:2f:11:9d:88:68  Ethernet64   -       REACHABLE
+fc00::122                  62:72:8a:2d:c8:24  Ethernet72   -       REACHABLE
+fc00::142                  ce:d8:b8:bb:83:b9  Ethernet80   -       REACHABLE
+fc00::162                  ee:b8:95:7c:0f:0e  Ethernet88   -       REACHABLE
+fc00::182                  66:24:18:e9:d4:f6  Ethernet96   -       REACHABLE
+fc00::202                  62:11:48:1e:99:ca  Ethernet128  -       REACHABLE
+... (218 more lines)
+```
+
+**Actual Converter Output:**
+```
+Address                    MacAddress         Iface        Vlan    Status
+-------------------------  -----------------  -----------  ------  ---------
+fc00::1a2                  7a:60:67:b2:99:12  Ethernet104  -       REACHABLE
+fc00::1c2                  f6:e6:3f:d7:15:4f  Ethernet112  -       REACHABLE
+fc00::1e2                  8a:72:61:7d:eb:39  Ethernet120  -       REACHABLE
+fc00::2a2                  5a:20:4b:21:85:03  Ethernet168  -       REACHABLE
+fc00::2c2                  de:9a:9b:40:88:f6  Ethernet176  -       REACHABLE
+fc00::2e2                  86:7e:bb:54:8e:c3  Ethernet184  -       REACHABLE
+fc00::5a2                  72:25:92:ba:e9:d5  Ethernet360  -       REACHABLE
+fc00::5c2                  1e:b4:b7:df:68:fb  Ethernet368  -       REACHABLE
+fc00::5e2                  2e:e6:c0:59:89:44  Ethernet376  -       REACHABLE
+fc00::6a2                  5e:4c:96:81:e9:ff  Ethernet424  -       REACHABLE
+fc00::6c2                  02:2d:fd:f0:38:a8  Ethernet432  -       REACHABLE
+fc00::6e2                  a6:71:96:b2:cd:42  Ethernet440  -       REACHABLE
+fc00::102                  ce:2f:11:9d:88:68  Ethernet64   -       REACHABLE
+fc00::122                  62:72:8a:2d:c8:24  Ethernet72   -       REACHABLE
+fc00::142                  ce:d8:b8:bb:83:b9  Ethernet80   -       REACHABLE
+fc00::162                  ee:b8:95:7c:0f:0e  Ethernet88   -       REACHABLE
+fc00::182                  66:24:18:e9:d4:f6  Ethernet96   -       REACHABLE
+fc00::202                  62:11:48:1e:99:ca  Ethernet128  -       REACHABLE
+... (217 more lines)
+```
+
+</details>
+
 <a id="49.2-show-ndp---iface-ethernet64"></a>
 #### 49.2 `show ndp --iface Ethernet64`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -22584,6 +36024,34 @@ print(result)
 Address    MacAddress    Iface    Vlan    Status
 ---------  ------------  -------  ------  --------
 Total number of entries 0 
+```
+
+**Actual Converter Output:**
+```
+Address    MacAddress    Iface    Vlan    Status
+---------  ------------  -------  ------  --------
+Total number of entries 0
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 0,
+  "entries": []
+}
+```
+
+**Expected CLI Output:**
+```
+Address    MacAddress    Iface    Vlan    Status
+---------  ------------  -------  ------  --------
+Total number of entries 0 
+
 ```
 
 **Actual Converter Output:**
@@ -22641,6 +36109,59 @@ fc00::102                  16:bd:9b:30:56:e7  Ethernet64  -       REACHABLE
 fe80::14bd:9bff:fe30:56e7  16:bd:9b:30:56:e7  Ethernet64  -       STALE
 fe80::e0cd:aff:fe6f:b040   e2:cd:0a:6f:b0:40  Ethernet64  -       REACHABLE
 Total number of entries 3
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 4,
+  "entries": [
+    {
+      "address": "fe80::bace:f6ff:fee5:537b",
+      "mac_address": "B8:CE:F6:E5:53:7B",
+      "iface": "Ethernet64",
+      "vlan": "-",
+      "status": "STALE"
+    },
+    {
+      "address": "fc00::102",
+      "mac_address": "CE:2F:11:9D:88:68",
+      "iface": "Ethernet64",
+      "vlan": "-",
+      "status": "REACHABLE"
+    },
+    {
+      "address": "fe80::7838:1cff:fe59:7040",
+      "mac_address": "7A:38:1C:59:70:40",
+... (13 more lines)
+```
+
+**Expected CLI Output:**
+```
+Address                    MacAddress         Iface       Vlan    Status
+-------------------------  -----------------  ----------  ------  ---------
+fc00::102                  ce:2f:11:9d:88:68  Ethernet64  -       REACHABLE
+fe80::7838:1cff:fe59:7040  7a:38:1c:59:70:40  Ethernet64  -       REACHABLE
+fe80::bace:f6ff:fee5:537b  b8:ce:f6:e5:53:7b  Ethernet64  -       STALE
+fe80::cc2f:11ff:fe9d:8868  ce:2f:11:9d:88:68  Ethernet64  -       STALE
+Total number of entries 4 
+
+```
+
+**Actual Converter Output:**
+```
+Address                    MacAddress         Iface       Vlan    Status
+-------------------------  -----------------  ----------  ------  ---------
+fc00::102                  ce:2f:11:9d:88:68  Ethernet64  -       REACHABLE
+fe80::7838:1cff:fe59:7040  7a:38:1c:59:70:40  Ethernet64  -       REACHABLE
+fe80::bace:f6ff:fee5:537b  b8:ce:f6:e5:53:7b  Ethernet64  -       STALE
+fe80::cc2f:11ff:fe9d:8868  ce:2f:11:9d:88:68  Ethernet64  -       STALE
+Total number of entries 4
 ```
 
 </details>
@@ -22859,6 +36380,214 @@ Total number of entries 1
 
 </details>
 
+<a id="49.7-show-ndp-fc00-2"></a>
+#### 49.7 `show ndp fc00 2`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ndp fc00 2"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 1,
+  "entries": [
+    {
+      "address": "fc00::2",
+      "mac_address": "12:2C:CE:7E:A6:83",
+      "iface": "PortChannel102",
+      "vlan": "-",
+      "status": "REACHABLE"
+    }
+  ]
+}
+```
+
+**Expected CLI Output:**
+```
+Address    MacAddress         Iface           Vlan    Status
+---------  -----------------  --------------  ------  ---------
+fc00::2    12:2c:ce:7e:a6:83  PortChannel102  -       REACHABLE
+Total number of entries 1 
+
+```
+
+**Actual Converter Output:**
+```
+Address    MacAddress         Iface           Vlan    Status
+---------  -----------------  --------------  ------  ---------
+fc00::2    12:2c:ce:7e:a6:83  PortChannel102  -       REACHABLE
+Total number of entries 1
+```
+
+</details>
+
+<a id="49.8-show-ndp---iface-ethernet64-fc00-2"></a>
+#### 49.8 `show ndp --iface Ethernet64 fc00 2`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ndp --iface Ethernet64 fc00 2"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 0,
+  "entries": []
+}
+```
+
+**Expected CLI Output:**
+```
+Address    MacAddress    Iface    Vlan    Status
+---------  ------------  -------  ------  --------
+Total number of entries 0 
+
+```
+
+**Actual Converter Output:**
+```
+Address    MacAddress    Iface    Vlan    Status
+---------  ------------  -------  ------  --------
+Total number of entries 0
+```
+
+</details>
+
+<a id="49.9-show-ndp-fc00-222"></a>
+#### 49.9 `show ndp fc00 222`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ndp fc00 222"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 1,
+  "entries": [
+    {
+      "address": "fc00::222",
+      "mac_address": "12:73:73:35:83:8E",
+      "iface": "Ethernet136",
+      "vlan": "-",
+      "status": "REACHABLE"
+    }
+  ]
+}
+```
+
+**Expected CLI Output:**
+```
+Address    MacAddress         Iface        Vlan    Status
+---------  -----------------  -----------  ------  ---------
+fc00::222  12:73:73:35:83:8e  Ethernet136  -       REACHABLE
+Total number of entries 1 
+
+```
+
+**Actual Converter Output:**
+```
+Address    MacAddress         Iface        Vlan    Status
+---------  -----------------  -----------  ------  ---------
+fc00::222  12:73:73:35:83:8e  Ethernet136  -       REACHABLE
+Total number of entries 1
+```
+
+</details>
+
+<a id="49.10-show-ndp---iface-ethernet64-fc00-222"></a>
+#### 49.10 `show ndp --iface Ethernet64 fc00 222`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show ndp --iface Ethernet64 fc00 222"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "total_entries": 0,
+  "entries": []
+}
+```
+
+**Expected CLI Output:**
+```
+Address    MacAddress    Iface    Vlan    Status
+---------  ------------  -------  ------  --------
+Total number of entries 0 
+
+```
+
+**Actual Converter Output:**
+```
+Address    MacAddress    Iface    Vlan    Status
+---------  ------------  -------  ------  --------
+Total number of entries 0
+```
+
+</details>
+
 ---
 
 <a id="50-show-processes-summary"></a>
@@ -22866,16 +36595,18 @@ Total number of entries 1
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="50.1-show-processes-summary"></a>
 #### 50.1 `show processes summary` (base command)
@@ -22883,9 +36614,11 @@ Total number of entries 1
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 652 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 713 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 625 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 666 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 775 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 688 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -22975,6 +36708,86 @@ print(result)
      20        2                                                           0       0  Jan28    0:00:00  None            0
      21        2                                                           0       0  Jan28    0:00:11  None            0
 ... (352 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "PID": "1",
+    "PPID": "0",
+    "CMD": "/sbin/init",
+    "%MEM": "0.0",
+    "%CPU": "0.0",
+    "STIME": "Jan30",
+    "TIME": "0:13:53",
+    "TT": "None",
+    "UID": "0"
+  },
+  {
+    "PID": "2",
+    "PPID": "0",
+    "CMD": "",
+    "%MEM": "0.0",
+    "%CPU": "0.0",
+    "STIME": "Jan30",
+    "TIME": "0:00:00",
+... (4327 more lines)
+```
+
+**Expected CLI Output:**
+```
+    PID    PPID CMD                         %MEM %CPU
+      1       0 /sbin/init                   0.0  0.0
+      2       0 [kthreadd]                   0.0  0.0
+      3       2 [rcu_gp]                     0.0  0.0
+      4       2 [rcu_par_gp]                 0.0  0.0
+      5       2 [slub_flushwq]               0.0  0.0
+      6       2 [netns]                      0.0  0.0
+      8       2 [kworker/0:0H-events_highpr  0.0  0.0
+     10       2 [mm_percpu_wq]               0.0  0.0
+     11       2 [rcu_tasks_kthread]          0.0  0.0
+     12       2 [rcu_tasks_rude_kthread]     0.0  0.0
+     13       2 [rcu_tasks_trace_kthread]    0.0  0.0
+     14       2 [ksoftirqd/0]                0.0  0.0
+     15       2 [rcu_preempt]                0.0  0.0
+     16       2 [migration/0]                0.0  0.0
+     18       2 [cpuhp/0]                    0.0  0.0
+     19       2 [cpuhp/1]                    0.0  0.0
+     20       2 [migration/1]                0.0  0.0
+     21       2 [ksoftirqd/1]                0.0  0.0
+     23       2 [kworker/1:0H-events_highpr  0.0  0.0
+... (385 more lines)
+```
+
+**Actual Converter Output:**
+```
+    PID     PPID  CMD                                                   %MEM    %CPU  STIME    TIME             TT            UID
+-------  -------  --------------------------------------------------  ------  ------  -------  ---------------  ----------  -----
+      1        0  /sbin/init                                               0       0  Jan30    0:13:53          None            0
+      2        0                                                           0       0  Jan30    0:00:00          None            0
+      3        2                                                           0       0  Jan30    0:00:00          None            0
+      4        2                                                           0       0  Jan30    0:00:00          None            0
+      5        2                                                           0       0  Jan30    0:00:00          None            0
+      6        2                                                           0       0  Jan30    0:00:00          None            0
+      8        2                                                           0       0  Jan30    0:00:00          None            0
+     10        2                                                           0       0  Jan30    0:00:00          None            0
+     11        2                                                           0       0  Jan30    0:00:00          None            0
+     12        2                                                           0       0  Jan30    0:00:00          None            0
+     13        2                                                           0       0  Jan30    0:00:00          None            0
+     14        2                                                           0       0  Jan30    0:06:14          None            0
+     15        2                                                           0       0  Jan30    0:10:47          None            0
+     16        2                                                           0       0  Jan30    0:00:03          None            0
+     18        2                                                           0       0  Jan30    0:00:00          None            0
+     19        2                                                           0       0  Jan30    0:00:00          None            0
+     20        2                                                           0       0  Jan30    0:00:04          None            0
+     21        2                                                           0       0  Jan30    0:04:57          None            0
+... (377 more lines)
 ```
 
 </details>
@@ -23219,6 +37032,86 @@ print(result)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "PID": "1",
+    "PPID": "0",
+    "CMD": "/sbin/init",
+    "%MEM": "0.1",
+    "%CPU": "0.0",
+    "STIME": "Jan29",
+    "TIME": "0:27:18",
+    "TT": "None",
+    "UID": "0"
+  },
+  {
+    "PID": "2",
+    "PPID": "0",
+    "CMD": "",
+    "%MEM": "0.0",
+    "%CPU": "0.0",
+    "STIME": "Jan29",
+    "TIME": "0:00:01",
+... (4481 more lines)
+```
+
+**Expected CLI Output:**
+```
+    PID    PPID CMD                         %MEM %CPU
+      1       0 /sbin/init                   0.0  0.1
+      2       0 [kthreadd]                   0.0  0.0
+      3       2 [rcu_gp]                     0.0  0.0
+      4       2 [rcu_par_gp]                 0.0  0.0
+      5       2 [slub_flushwq]               0.0  0.0
+      6       2 [netns]                      0.0  0.0
+      8       2 [kworker/0:0H-events_highpr  0.0  0.0
+     10       2 [mm_percpu_wq]               0.0  0.0
+     11       2 [rcu_tasks_kthread]          0.0  0.0
+     12       2 [rcu_tasks_rude_kthread]     0.0  0.0
+     13       2 [rcu_tasks_trace_kthread]    0.0  0.0
+     14       2 [ksoftirqd/0]                0.0  0.0
+     15       2 [rcu_preempt]                0.0  0.0
+     16       2 [migration/0]                0.0  0.0
+     18       2 [cpuhp/0]                    0.0  0.0
+     19       2 [cpuhp/1]                    0.0  0.0
+     20       2 [migration/1]                0.0  0.0
+     21       2 [ksoftirqd/1]                0.0  0.0
+     23       2 [kworker/1:0H-events_highpr  0.0  0.0
+... (396 more lines)
+```
+
+**Actual Converter Output:**
+```
+    PID     PPID  CMD                                                   %MEM    %CPU  STIME    TIME             TT            UID
+-------  -------  --------------------------------------------------  ------  ------  -------  ---------------  ----------  -----
+      1        0  /sbin/init                                             0.1       0  Jan29    0:27:18          None            0
+      2        0                                                           0       0  Jan29    0:00:01          None            0
+      3        2                                                           0       0  Jan29    0:00:00          None            0
+      4        2                                                           0       0  Jan29    0:00:00          None            0
+      5        2                                                           0       0  Jan29    0:00:00          None            0
+      6        2                                                           0       0  Jan29    0:00:00          None            0
+      8        2                                                           0       0  Jan29    0:00:00          None            0
+     10        2                                                           0       0  Jan29    0:00:00          None            0
+     11        2                                                           0       0  Jan29    0:00:00          None            0
+     12        2                                                           0       0  Jan29    0:00:00          None            0
+     13        2                                                           0       0  Jan29    0:00:00          None            0
+     14        2                                                           0       0  Jan29    0:00:33          None            0
+     15        2                                                           0       0  Jan29    0:09:06          None            0
+     16        2                                                           0       0  Jan29    0:00:02          None            0
+     18        2                                                           0       0  Jan29    0:00:00          None            0
+     19        2                                                           0       0  Jan29    0:00:00          None            0
+     20        2                                                           0       0  Jan29    0:00:02          None            0
+     21        2                                                           0       0  Jan29    0:00:27          None            0
+... (391 more lines)
+```
+
+</details>
+
 ---
 
 <a id="51-show-processes-cpu"></a>
@@ -23226,16 +37119,18 @@ print(result)
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="51.1-show-processes-cpu"></a>
 #### 51.1 `show processes cpu` (base command)
@@ -23243,9 +37138,11 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 1321 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 1418 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 1265 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 1359 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 1511 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 1375 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -23335,6 +37232,86 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  10690.6 avail Mem
      10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_perc+
      11 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
 ... (370 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "uptime": "06:10:25 up 9 days, 23:15,  1 user,  load average: 3.06, 3.18, 2.47",
+  "tasks": "406 total,   2 running, 397 sleeping,   0 stopped,   7 zombie",
+  "cpu_usage": "11.1 us, 11.1 sy,  0.0 ni, 77.8 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st",
+  "memory_usage": "31254.9 total,  21786.8 free,   4543.7 used,   5432.1 buff/cache",
+  "swap_usage": "0.0 total,      0.0 free,      0.0 used.  26711.2 avail Mem",
+  "processes": [
+    {
+      "pid": "1731906",
+      "user": "root",
+      "pr": "20",
+      "ni": "0",
+      "virt": "5482968",
+      "res": "1.2g",
+      "shr": "223648",
+      "s": "S",
+      "cpu": "87.5",
+      "mem": "3.9",
+      "time": "57,40",
+      "command": "syncd"
+... (5673 more lines)
+```
+
+**Expected CLI Output:**
+```
+top - 06:07:46 up 9 days, 23:13,  2 users,  load average: 3.75, 3.11, 2.31
+Tasks: 403 total,   1 running, 395 sleeping,   0 stopped,   7 zombie
+%Cpu(s):  0.0 us, 20.0 sy,  0.0 ni, 80.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :  31254.9 total,  21796.7 free,   4537.7 used,   5428.3 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.  26717.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+1731906 root      20   0 5482968   1.2g 223648 S  12.5   3.9     57,39 syncd
+   1572 uuidd     20   0  124428  42608  10508 S   6.2   0.1     23,38 redis-s+
+ 846629 root      20   0       0      0      0 I   6.2   0.0   0:04.05 kworker+
+ 892989 admin     20   0   16920   6868   4396 R   6.2   0.0   0:00.01 top
+1735310 root      20   0   84128  58312  21352 D   6.2   0.2  99:55.15 python3
+      1 root      20   0  169480  14232   9444 S   0.0   0.0  13:53.24 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.16 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 slub_fl+
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_perc+
+... (391 more lines)
+```
+
+**Actual Converter Output:**
+```
+top - 06:10:25 up 9 days, 23:15,  1 user,  load average: 3.06, 3.18, 2.47
+Tasks: 406 total,   2 running, 397 sleeping,   0 stopped,   7 zombie
+%Cpu(s): 11.1 us, 11.1 sy,  0.0 ni, 77.8 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem : 31254.9 total,  21786.8 free,   4543.7 used,   5432.1 buff/cache
+MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26711.2 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+1731906 root      20   0 5482968   1.2g 223648 S  87.5   3.9     57,40 syncd
+ 914157 root      20   0   32480  26260  11064 R  75.0   0.1   0:00.12 sonic-c+
+1735583 root      20   0   62148  45852  19608 S  12.5   0.1 286:51.53 python3
+   1572 uuidd     20   0  124428  41536  10508 S   6.2   0.1     23,38 redis-s+
+ 914156 root      20   0   17292   6792   4324 R   6.2   0.0   0:00.01 top
+      1 root      20   0  169480  14232   9444 S   0.0   0.0  13:53.62 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.16 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 slub_fl+
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_perc+
+... (393 more lines)
 ```
 
 </details>
@@ -23579,6 +37556,86 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26405.2 avail Mem
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "uptime": "05:45:22 up 10 days, 11:18,  1 user,  load average: 2.32, 2.60, 1.79",
+  "tasks": "425 total,   3 running, 410 sleeping,   0 stopped,  12 zombie",
+  "cpu_usage": "7.1 us,  7.1 sy,  0.0 ni, 85.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st",
+  "memory_usage": "31955.2 total,  19124.5 free,   7406.1 used,   6178.5 buff/cache",
+  "swap_usage": "0.0 total,      0.0 free,      0.0 used.  24549.1 avail Mem",
+  "processes": [
+    {
+      "pid": "2118720",
+      "user": "root",
+      "pr": "20",
+      "ni": "0",
+      "virt": "410288",
+      "res": "381836",
+      "shr": "22920",
+      "s": "R",
+      "cpu": "100.0",
+      "mem": "1.2",
+      "time": "0:03.05",
+      "command": "show"
+... (5939 more lines)
+```
+
+**Expected CLI Output:**
+```
+top - 05:42:33 up 10 days, 11:15,  2 users,  load average: 4.26, 2.88, 1.70
+Tasks: 415 total,   2 running, 407 sleeping,   0 stopped,   6 zombie
+%Cpu(s):  0.0 us,  4.0 sy,  0.0 ni, 96.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :  31955.2 total,  19760.9 free,   6773.6 used,   6174.6 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.  25181.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+2110724 admin     20   0   16920   6900   4424 R  12.5   0.0   0:00.03 top
+ 901872 root      20   0       0      0      0 S   6.2   0.0 204:02.53 cq_cpu_+
+      1 root      20   0  172100  16896   9432 S   0.0   0.1  27:18.24 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:01.10 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 slub_fl+
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_perc+
+     11 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     12 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tas+
+... (403 more lines)
+```
+
+**Actual Converter Output:**
+```
+top - 05:45:22 up 10 days, 11:18,  1 user,  load average: 2.32, 2.60, 1.79
+Tasks: 425 total,   3 running, 410 sleeping,   0 stopped,  12 zombie
+%Cpu(s): 7.1 us,  7.1 sy,  0.0 ni, 85.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem : 31955.2 total,  19124.5 free,   7406.1 used,   6178.5 buff/cache
+MiB Swap: 0.0 total,      0.0 free,      0.0 used.  24549.1 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+2118720 root      20   0  410288 381836  22920 R 100.0   1.2   0:03.05 show
+   7844 uuidd     20   0  155148  66756  10200 R  37.5   0.2     38,43 redis-s+
+ 903160 root      20   0 2595576 280688 238984 S  18.8   0.9 271:26.32 syncd
+2119240 root      20   0   17292   6676   4200 R  12.5   0.0   0:00.03 top
+  22122 root      20   0  257256  26156   8020 S   6.2   0.1  51:19.15 hw_mana+
+ 903200 root      20   0 2344204 959488  62120 S   6.2   2.9      7,37 sx_sdk
+      1 root      20   0  172100  16896   9432 S   0.0   0.1  27:18.85 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:01.10 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par+
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 slub_fl+
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker+
+... (412 more lines)
+```
+
+</details>
+
 ---
 
 <a id="52-show-processes-memory"></a>
@@ -23586,16 +37643,18 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26405.2 avail Mem
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="52.1-show-processes-memory"></a>
 #### 52.1 `show processes memory` (base command)
@@ -23603,9 +37662,11 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26405.2 avail Mem
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 1320 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 1417 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 1264 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 1365 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 1512 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 1365 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -23695,6 +37756,86 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  10680.6 avail Mem
   33953 root      20   0  205968  70892  11684 S   0.0   0.5   0:00.26 healthd
   33929 root      20   0  412368  69712   9616 S   0.0   0.4   0:06.99 healthd
 ... (369 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "uptime": "06:10:25 up 9 days, 23:15,  1 user,  load average: 3.14, 3.19, 2.48",
+  "tasks": "406 total,   2 running, 397 sleeping,   0 stopped,   7 zombie",
+  "cpu_usage": "20.0 us, 10.0 sy,  0.0 ni, 70.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st",
+  "memory_usage": "31254.9 total,  21805.5 free,   4525.0 used,   5432.1 buff/cache",
+  "swap_usage": "0.0 total,      0.0 free,      0.0 used.  26729.9 avail Mem",
+  "processes": [
+    {
+      "pid": "1731906",
+      "user": "root",
+      "pr": "20",
+      "ni": "0",
+      "virt": "5482968",
+      "res": "1.2g",
+      "shr": "223648",
+      "s": "S",
+      "cpu": "12.5",
+      "mem": "3.9",
+      "time": "57,40",
+      "command": "syncd"
+... (5673 more lines)
+```
+
+**Expected CLI Output:**
+```
+top - 06:07:48 up 9 days, 23:13,  2 users,  load average: 3.75, 3.11, 2.31
+Tasks: 403 total,   1 running, 395 sleeping,   0 stopped,   7 zombie
+%Cpu(s):  8.3 us,  8.3 sy,  0.0 ni, 83.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :  31254.9 total,  21797.3 free,   4537.0 used,   5428.3 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.  26717.9 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+1731906 root      20   0 5482968   1.2g 223648 S  50.0   3.9     57,39 syncd
+1731898 root      20   0  507704 290328  22124 S   0.0   0.9   8:08.26 orchage+
+1733035 300       20   0  354740 124072   8848 S   0.0   0.4   4:26.16 bgpd
+   1016 root      20   0 2357976 120336  56696 S   0.0   0.4  61:09.63 dockerd
+1735033 root      20   0 1875872  90440  33624 S   0.0   0.3  38:41.44 telemet+
+   1840 root      20   0  262512  86448  26524 S   0.0   0.3   9:04.26 healthd
+ 892397 root      20   0  122916  83076  28308 S   0.0   0.3   0:01.36 show
+ 847126 root      20   0 1802116  80516  33388 S   0.0   0.3   0:01.45 telemet+
+ 892991 admin     20   0  120524  80456  27820 S   0.0   0.3   0:01.19 show
+1735309 root      20   0 2748896  73572  22384 S   0.0   0.2      6,05 python3
+   2557 root      20   0  201828  72116  11400 S   0.0   0.2   0:44.60 healthd
+1730529 root      20   0  385144  71572  22232 S   0.0   0.2   1:29.83 vnet_mo+
+   2566 root      20   0  206940  71356  11500 S   0.0   0.2   0:01.14 healthd
+... (391 more lines)
+```
+
+**Actual Converter Output:**
+```
+top - 06:10:25 up 9 days, 23:15,  1 user,  load average: 3.14, 3.19, 2.48
+Tasks: 406 total,   2 running, 397 sleeping,   0 stopped,   7 zombie
+%Cpu(s): 20.0 us, 10.0 sy,  0.0 ni, 70.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem : 31254.9 total,  21805.5 free,   4525.0 used,   5432.1 buff/cache
+MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26729.9 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+1731906 root      20   0 5482968   1.2g 223648 S  12.5   3.9     57,40 syncd
+1731898 root      20   0  507704 290244  22124 S   0.0   0.9   8:08.38 orchage+
+1733035 300       20   0  356660 125908   8848 S   0.0   0.4   4:26.31 bgpd
+   1016 root      20   0 2357976 125652  56696 S   0.0   0.4  61:11.69 dockerd
+ 847126 root      20   0 2013040 102568  34092 S   0.0   0.3   0:07.85 telemet+
+1735033 root      20   0 1875872  90328  33624 S   0.0   0.3  38:41.90 telemet+
+   1840 root      20   0  262512  86448  26524 S   0.0   0.3   9:04.38 healthd
+1735309 root      20   0 2748896  73572  22384 S   6.2   0.2      6,05 python3
+   2557 root      20   0  201828  72116  11400 S   0.0   0.2   0:44.63 healthd
+1730529 root      20   0  385144  71572  22232 S   0.0   0.2   1:29.84 vnet_mo+
+   2566 root      20   0  206940  71356  11500 S   0.0   0.2   0:01.14 healthd
+   2551 root      20   0  413516  68180   9184 S   0.0   0.2   0:51.75 healthd
+    957 root      20   0 1801440  67288  33828 S   0.0   0.2  42:16.27 contain+
+... (393 more lines)
 ```
 
 </details>
@@ -23939,6 +38080,86 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26394.6 avail Mem
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "uptime": "05:45:22 up 10 days, 11:18,  1 user,  load average: 2.32, 2.60, 1.79",
+  "tasks": "424 total,   4 running, 408 sleeping,   0 stopped,  12 zombie",
+  "cpu_usage": "7.1 us, 10.7 sy,  0.0 ni, 82.1 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st",
+  "memory_usage": "31955.2 total,  19499.8 free,   7030.8 used,   6178.6 buff/cache",
+  "swap_usage": "0.0 total,      0.0 free,      0.0 used.  24924.3 avail Mem",
+  "processes": [
+    {
+      "pid": "903200",
+      "user": "root",
+      "pr": "20",
+      "ni": "0",
+      "virt": "2344204",
+      "res": "959488",
+      "shr": "62120",
+      "s": "S",
+      "cpu": "0.0",
+      "mem": "2.9",
+      "time": "7,37",
+      "command": "sx_sdk"
+... (5925 more lines)
+```
+
+**Expected CLI Output:**
+```
+top - 05:42:34 up 10 days, 11:15,  2 users,  load average: 4.26, 2.88, 1.70
+Tasks: 415 total,   1 running, 408 sleeping,   0 stopped,   6 zombie
+%Cpu(s):  0.0 us,  4.0 sy,  0.0 ni, 96.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :  31955.2 total,  19770.6 free,   6763.9 used,   6174.6 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.  25191.2 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+ 903200 root      20   0 2344204 959488  62120 S   5.9   2.9      7,37 sx_sdk
+ 903160 root      20   0 2595576 280688 238984 S  11.8   0.9 271:22.94 syncd
+ 901688 300       20   0  398484 173908   8476 S   0.0   0.5   4:23.88 bgpd
+ 901709 root      20   0  249320 157696  21956 S   0.0   0.5  33:41.32 orchage+
+   1749 root      20   0 2934556 130984  60624 S   0.0   0.4 333:09.44 dockerd
+2098074 root      20   0 2467460 116444  33868 S   5.9   0.4   0:01.84 telemet+
+ 910115 root      20   0 2467600 108508  32524 S   5.9   0.3  49:23.13 telemet+
+ 901674 300       20   0  678180  84248   7372 S   0.0   0.3 178:23.55 zebra
+ 903408 root      20   0  383720  79816  19264 S   0.0   0.2 193:06.36 python3
+   1666 root      20   0 2467332  69280  33744 S   0.0   0.2  59:45.59 contain+
+ 910585 root      20   0  161836  68608  19700 S   0.0   0.2     24,12 python3
+ 903413 root      20   0  156408  67360  18960 S   0.0   0.2  44:36.93 python3
+   7844 uuidd     20   0  155148  64964  10200 S  11.8   0.2     38,42 redis-s+
+... (403 more lines)
+```
+
+**Actual Converter Output:**
+```
+top - 05:45:22 up 10 days, 11:18,  1 user,  load average: 2.32, 2.60, 1.79
+Tasks: 424 total,   4 running, 408 sleeping,   0 stopped,  12 zombie
+%Cpu(s): 7.1 us, 10.7 sy,  0.0 ni, 82.1 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem : 31955.2 total,  19499.8 free,   7030.8 used,   6178.6 buff/cache
+MiB Swap: 0.0 total,      0.0 free,      0.0 used.  24924.3 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+ 903200 root      20   0 2344204 959488  62120 S   0.0   2.9      7,37 sx_sdk
+ 903160 root      20   0 2595576 280688 238984 S   0.0   0.9 271:26.32 syncd
+2098074 root      20   0 2886944 207176  34700 S   0.0   0.6   1:19.98 telemet+
+2118278 root      20   0  207452 187432  19516 R  94.1   0.6   0:01.44 route_c+
+ 901688 300       20   0  399248 174944   8476 S   0.0   0.5   4:24.40 bgpd
+ 901709 root      20   0  249320 157644  21956 S   0.0   0.5  33:41.78 orchage+
+   1749 root      20   0 2934556 140052  60624 S   0.0   0.4 333:15.84 dockerd
+ 910115 root      20   0 2467600 106688  32524 S   0.0   0.3  49:23.76 telemet+
+ 901674 300       20   0  678180  84248   7372 S   0.0   0.3 178:27.84 zebra
+ 903408 root      20   0  383720  79816  19264 S   0.0   0.2 193:08.73 python3
+   1666 root      20   0 2467332  69276  33744 S   0.0   0.2  59:47.11 contain+
+ 910585 root      20   0  161836  68608  19700 R  17.6   0.2     24,12 python3
+ 903413 root      20   0  156408  67360  18960 S   0.0   0.2  44:37.48 python3
+... (411 more lines)
+```
+
+</details>
+
 ---
 
 <a id="53-show-queue-counters"></a>
@@ -23946,16 +38167,18 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26394.6 avail Mem
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 25/60 test cases passed (across 4 devices)
+**Status:** ✅ All 57/192 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 8 | 0 | 0 | 0 |
+| `str3-8101-02` | 16 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 15 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 16 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
@@ -23974,6 +38197,23 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26394.6 avail Mem
 - [53.13 Ethernet0 --nonzero --all](#53.13-show-queue-counters-ethernet0---nonzero---all)
 - [53.14 Ethernet0 --nonzero --all --trim](#53.14-show-queue-counters-ethernet0---nonzero---all---trim)
 - [53.15 Ethernet0 --trim](#53.15-show-queue-counters-ethernet0---trim)
+- [53.16 Ethernet8 --all --trim](#53.16-show-queue-counters-ethernet8---all---trim)
+- [53.17 Ethernet8 --all](#53.17-show-queue-counters-ethernet8---all)
+- [53.18 Ethernet8 --nonzero --all --trim](#53.18-show-queue-counters-ethernet8---nonzero---all---trim)
+- [53.19 Ethernet8 --nonzero --all](#53.19-show-queue-counters-ethernet8---nonzero---all)
+- [53.20 Ethernet8 --nonzero --trim](#53.20-show-queue-counters-ethernet8---nonzero---trim)
+- [53.21 Ethernet8 --nonzero](#53.21-show-queue-counters-ethernet8---nonzero)
+- [53.22 Ethernet8 --trim](#53.22-show-queue-counters-ethernet8---trim)
+- [53.23 Ethernet8](#53.23-show-queue-counters-ethernet8)
+- [53.24 --nonzero --trim](#53.24-show-queue-counters---nonzero---trim)
+- [53.25 Ethernet505 --all --trim](#53.25-show-queue-counters-ethernet505---all---trim)
+- [53.26 Ethernet505 --all](#53.26-show-queue-counters-ethernet505---all)
+- [53.27 Ethernet505 --nonzero --all --trim](#53.27-show-queue-counters-ethernet505---nonzero---all---trim)
+- [53.28 Ethernet505 --nonzero --all](#53.28-show-queue-counters-ethernet505---nonzero---all)
+- [53.29 Ethernet505 --nonzero --trim](#53.29-show-queue-counters-ethernet505---nonzero---trim)
+- [53.30 Ethernet505 --nonzero](#53.30-show-queue-counters-ethernet505---nonzero)
+- [53.31 Ethernet505 --trim](#53.31-show-queue-counters-ethernet505---trim)
+- [53.32 Ethernet505](#53.32-show-queue-counters-ethernet505)
 
 <a id="53.1-show-queue-counters"></a>
 #### 53.1 `show queue counters` (base command)
@@ -23981,9 +38221,11 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  26394.6 avail Mem
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 107 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -23999,6 +38241,26 @@ print(result)
 
 <details>
 <summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -24257,13 +38519,95 @@ Ethernet8    UC0               0                0            0             0    
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {
+    "Counter/pkts": "0",
+    "Counter/bytes": "0",
+    "Drop/pkts": "0",
+    "Drop/bytes": "N/A",
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A",
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  },
+  "Ethernet0:1": {
+    "Counter/pkts": "0",
+    "Counter/bytes": "0",
+    "Drop/pkts": "0",
+    "Drop/bytes": "N/A",
+    "Trim/pkts": "0",
+... (12670 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet0    UC0               0                0            0           N/A
+Ethernet0    UC1               0                0            0           N/A
+Ethernet0    UC2               0                0            0           N/A
+Ethernet0    UC3               0                0            0           N/A
+Ethernet0    UC4               0                0            0           N/A
+Ethernet0    UC5               0                0            0           N/A
+Ethernet0    UC6               0                0            0           N/A
+Ethernet0    UC7           35770          7769581            0           N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet1    UC7               0                0            0           N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet0    UC0               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC1               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC2               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC3               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC4               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC5               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC6               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC7           35777          7771005            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet1    UC7               0                0            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+... (3011 more lines)
+```
+
+</details>
+
 <a id="53.2-show-queue-counters---all"></a>
 #### 53.2 `show queue counters --all`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 107 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -24279,6 +38623,26 @@ print(result)
 
 <details>
 <summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -24377,13 +38741,95 @@ Ethernet1    UC0               0                0            0             0    
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {
+    "Counter/pkts": "0",
+    "Counter/bytes": "0",
+    "Drop/pkts": "0",
+    "Drop/bytes": "N/A",
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A",
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  },
+  "Ethernet0:1": {
+    "Counter/pkts": "0",
+    "Counter/bytes": "0",
+    "Drop/pkts": "0",
+    "Drop/bytes": "N/A",
+    "Trim/pkts": "0",
+... (12670 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet0    UC0               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC1               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC2               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC3               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC4               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC5               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC6               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC7           35770          7769581            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet1    UC7               0                0            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet0    UC0               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC1               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC2               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC3               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC4               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC5               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC6               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC7           35777          7771005            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet1    UC7               0                0            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+... (3011 more lines)
+```
+
+</details>
+
 <a id="53.3-show-queue-counters---all---trim"></a>
 #### 53.3 `show queue counters --all --trim`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -24399,6 +38845,26 @@ print(result)
 
 <details>
 <summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -24497,13 +38963,95 @@ Ethernet1    UC0            0                0                0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  },
+  "Ethernet0:1": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  },
+  "Ethernet0:2": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  },
+  "Ethernet0:3": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+... (4862 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet0    UC0               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC1               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC2               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC3               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC4               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC5               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC6               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC7           35772          7769785            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet1    UC7               0                0            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet0    UC0            0              N/A              N/A
+Ethernet0    UC1            0              N/A              N/A
+Ethernet0    UC2            0              N/A              N/A
+Ethernet0    UC3            0              N/A              N/A
+Ethernet0    UC4            0              N/A              N/A
+Ethernet0    UC5            0              N/A              N/A
+Ethernet0    UC6            0              N/A              N/A
+Ethernet0    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet1    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+... (3011 more lines)
+```
+
+</details>
+
 <a id="53.4-show-queue-counters---nonzero"></a>
 #### 53.4 `show queue counters --nonzero`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | All 106 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -24519,6 +39067,26 @@ print(result)
 
 <details>
 <summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -24617,13 +39185,95 @@ Ethernet24   MC10           12337          1169570            0             0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {},
+  "Ethernet0:1": {},
+  "Ethernet0:2": {},
+  "Ethernet0:3": {},
+  "Ethernet0:4": {},
+  "Ethernet0:5": {},
+  "Ethernet0:6": {},
+  "Ethernet0:7": {
+    "Counter/pkts": "35777",
+    "Counter/bytes": "7771005"
+  },
+  "Ethernet100:7": {},
+  "Ethernet101:7": {},
+  "Ethernet102:7": {},
+  "Ethernet103:7": {},
+  "Ethernet104:0": {},
+  "Ethernet104:1": {},
+  "Ethernet104:2": {},
+  "Ethernet104:3": {},
+... (1156 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet0    UC0               0                0            0           N/A
+Ethernet0    UC1               0                0            0           N/A
+Ethernet0    UC2               0                0            0           N/A
+Ethernet0    UC3               0                0            0           N/A
+Ethernet0    UC4               0                0            0           N/A
+Ethernet0    UC5               0                0            0           N/A
+Ethernet0    UC6               0                0            0           N/A
+Ethernet0    UC7           35770          7769581            0           N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet1    UC7               0                0            0           N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet0    UC7           35777          7771005            0             0
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet8    UC7           35218          7715951            0             0
+
+For namespace :
+      Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+----------  -----  --------------  ---------------  -----------  ------------
+Ethernet16    UC7           35220          7716133            0             0
+
+For namespace :
+      Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+----------  -----  --------------  ---------------  -----------  ------------
+Ethernet24    UC7           35225          7716583            0             0
+
+... (309 more lines)
+```
+
+</details>
+
 <a id="53.5-show-queue-counters---nonzero---all"></a>
 #### 53.5 `show queue counters --nonzero --all`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 8 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 106 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -24639,6 +39289,26 @@ print(result)
 
 <details>
 <summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -24737,13 +39407,95 @@ Ethernet24   MC10           12337          1169570            0             0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {},
+  "Ethernet0:1": {},
+  "Ethernet0:2": {},
+  "Ethernet0:3": {},
+  "Ethernet0:4": {},
+  "Ethernet0:5": {},
+  "Ethernet0:6": {},
+  "Ethernet0:7": {
+    "Counter/pkts": "35777",
+    "Counter/bytes": "7771005"
+  },
+  "Ethernet100:7": {},
+  "Ethernet101:7": {},
+  "Ethernet102:7": {},
+  "Ethernet103:7": {},
+  "Ethernet104:0": {},
+  "Ethernet104:1": {},
+  "Ethernet104:2": {},
+  "Ethernet104:3": {},
+... (1156 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet0    UC0               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC1               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC2               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC3               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC4               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC5               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC6               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC7           35772          7769785            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet1    UC7               0                0            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet0    UC7           35777          7771005            0             0
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+---------  -----  --------------  ---------------  -----------  ------------
+Ethernet8    UC7           35218          7715951            0             0
+
+For namespace :
+      Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+----------  -----  --------------  ---------------  -----------  ------------
+Ethernet16    UC7           35220          7716133            0             0
+
+For namespace :
+      Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+----------  -----  --------------  ---------------  -----------  ------------
+Ethernet24    UC7           35225          7716583            0             0
+
+... (309 more lines)
+```
+
+</details>
+
 <a id="53.6-show-queue-counters---nonzero---all---trim"></a>
 #### 53.6 `show queue counters --nonzero --all --trim`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
+| `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
 **Sample Python Invocation:**
 ```python
@@ -24759,6 +39511,26 @@ print(result)
 
 <details>
 <summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -24837,13 +39609,75 @@ Ethernet24   MC10           12337          1169570            0             0   
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {},
+  "Ethernet0:1": {},
+  "Ethernet0:2": {},
+  "Ethernet0:3": {},
+  "Ethernet0:4": {},
+  "Ethernet0:5": {},
+  "Ethernet0:6": {},
+  "Ethernet0:7": {},
+  "Ethernet100:7": {},
+  "Ethernet101:7": {},
+  "Ethernet102:7": {},
+  "Ethernet103:7": {},
+  "Ethernet104:0": {},
+  "Ethernet104:1": {},
+  "Ethernet104:2": {},
+  "Ethernet104:3": {},
+  "Ethernet104:4": {},
+  "Ethernet104:5": {},
+  "Ethernet104:6": {},
+... (958 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet0    UC0               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC1               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC2               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC3               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC4               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC5               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC6               0                0            0           N/A            0              N/A              N/A
+Ethernet0    UC7           35772          7769785            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet1    UC7               0                0            0           N/A            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
 <a id="53.7-show-queue-counters---trim"></a>
 #### 53.7 `show queue counters --trim`
 
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -24859,6 +39693,26 @@ print(result)
 
 <details>
 <summary><b>✅ Device: str2-8102-01</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
 
 **Input JSON:**
 ```json
@@ -24953,6 +39807,86 @@ For namespace :
 ---------  -----  -----------  ---------------  ---------------
 Ethernet1    UC0            0                0                0
 ... (8203 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  },
+  "Ethernet0:1": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  },
+  "Ethernet0:2": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  },
+  "Ethernet0:3": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+... (4862 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet0    UC0            0              N/A              N/A
+Ethernet0    UC1            0              N/A              N/A
+Ethernet0    UC2            0              N/A              N/A
+Ethernet0    UC3            0              N/A              N/A
+Ethernet0    UC4            0              N/A              N/A
+Ethernet0    UC5            0              N/A              N/A
+Ethernet0    UC6            0              N/A              N/A
+Ethernet0    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet1    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet0    UC0            0              N/A              N/A
+Ethernet0    UC1            0              N/A              N/A
+Ethernet0    UC2            0              N/A              N/A
+Ethernet0    UC3            0              N/A              N/A
+Ethernet0    UC4            0              N/A              N/A
+Ethernet0    UC5            0              N/A              N/A
+Ethernet0    UC6            0              N/A              N/A
+Ethernet0    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet1    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+... (3011 more lines)
 ```
 
 </details>
@@ -25602,6 +40536,830 @@ Ethernet0   MC11            0                0                0
 
 </details>
 
+<a id="53.16-show-queue-counters-ethernet8---all---trim"></a>
+#### 53.16 `show queue counters Ethernet8 --all --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8 --all --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.17-show-queue-counters-ethernet8---all"></a>
+#### 53.17 `show queue counters Ethernet8 --all`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8 --all"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.18-show-queue-counters-ethernet8---nonzero---all---trim"></a>
+#### 53.18 `show queue counters Ethernet8 --nonzero --all --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8 --nonzero --all --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.19-show-queue-counters-ethernet8---nonzero---all"></a>
+#### 53.19 `show queue counters Ethernet8 --nonzero --all`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8 --nonzero --all"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.20-show-queue-counters-ethernet8---nonzero---trim"></a>
+#### 53.20 `show queue counters Ethernet8 --nonzero --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8 --nonzero --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.21-show-queue-counters-ethernet8---nonzero"></a>
+#### 53.21 `show queue counters Ethernet8 --nonzero`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8 --nonzero"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.22-show-queue-counters-ethernet8---trim"></a>
+#### 53.22 `show queue counters Ethernet8 --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8 --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.23-show-queue-counters-ethernet8"></a>
+#### 53.23 `show queue counters Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.24-show-queue-counters---nonzero---trim"></a>
+#### 53.24 `show queue counters --nonzero --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters --nonzero --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+(no data)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {},
+  "Ethernet0:1": {},
+  "Ethernet0:2": {},
+  "Ethernet0:3": {},
+  "Ethernet0:4": {},
+  "Ethernet0:5": {},
+  "Ethernet0:6": {},
+  "Ethernet0:7": {},
+  "Ethernet100:7": {},
+  "Ethernet101:7": {},
+  "Ethernet102:7": {},
+  "Ethernet103:7": {},
+  "Ethernet104:0": {},
+  "Ethernet104:1": {},
+  "Ethernet104:2": {},
+  "Ethernet104:3": {},
+  "Ethernet104:4": {},
+  "Ethernet104:5": {},
+  "Ethernet104:6": {},
+... (958 more lines)
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet0    UC0            0              N/A              N/A
+Ethernet0    UC1            0              N/A              N/A
+Ethernet0    UC2            0              N/A              N/A
+Ethernet0    UC3            0              N/A              N/A
+Ethernet0    UC4            0              N/A              N/A
+Ethernet0    UC5            0              N/A              N/A
+Ethernet0    UC6            0              N/A              N/A
+Ethernet0    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+Ethernet1    UC7            0              N/A              N/A
+
+For namespace :
+     Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+---------  -----  -----------  ---------------  ---------------
+... (3013 more lines)
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.25-show-queue-counters-ethernet505---all---trim"></a>
+#### 53.25 `show queue counters Ethernet505 --all --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505 --all --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet505    UC7               0                0            0           N/A            0              N/A              N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+       Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  -----------  ---------------  ---------------
+Ethernet505    UC7            0              N/A              N/A
+```
+
+</details>
+
+<a id="53.26-show-queue-counters-ethernet505---all"></a>
+#### 53.26 `show queue counters Ethernet505 --all`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505 --all"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {
+    "Counter/pkts": "0",
+    "Counter/bytes": "0",
+    "Drop/pkts": "0",
+    "Drop/bytes": "N/A",
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A",
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet505    UC7               0                0            0           N/A            0              N/A              N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet505    UC7               0                0            0           N/A            0              N/A              N/A
+```
+
+</details>
+
+<a id="53.27-show-queue-counters-ethernet505---nonzero---all---trim"></a>
+#### 53.27 `show queue counters Ethernet505 --nonzero --all --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505 --nonzero --all --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {}
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet505    UC7               0                0            0           N/A            0              N/A              N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.28-show-queue-counters-ethernet505---nonzero---all"></a>
+#### 53.28 `show queue counters Ethernet505 --nonzero --all`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505 --nonzero --all"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {}
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet505    UC7               0                0            0           N/A            0              N/A              N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.29-show-queue-counters-ethernet505---nonzero---trim"></a>
+#### 53.29 `show queue counters Ethernet505 --nonzero --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505 --nonzero --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {}
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  -----------  ---------------  ---------------
+Ethernet505    UC7            0              N/A              N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.30-show-queue-counters-ethernet505---nonzero"></a>
+#### 53.30 `show queue counters Ethernet505 --nonzero`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505 --nonzero"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {}
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+-----------  -----  --------------  ---------------  -----------  ------------
+Ethernet505    UC7               0                0            0           N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+(no output)
+```
+
+</details>
+
+<a id="53.31-show-queue-counters-ethernet505---trim"></a>
+#### 53.31 `show queue counters Ethernet505 --trim`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505 --trim"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  -----------  ---------------  ---------------
+Ethernet505    UC7            0              N/A              N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+       Port    TxQ    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  -----------  ---------------  ---------------
+Ethernet505    UC7            0              N/A              N/A
+```
+
+</details>
+
+<a id="53.32-show-queue-counters-ethernet505"></a>
+#### 53.32 `show queue counters Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue counters Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {
+    "Counter/pkts": "0",
+    "Counter/bytes": "0",
+    "Drop/pkts": "0",
+    "Drop/bytes": "N/A",
+    "Trim/pkts": "0",
+    "TrimSent/pkts": "N/A",
+    "TrimDrop/pkts": "N/A",
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes
+-----------  -----  --------------  ---------------  -----------  ------------
+Ethernet505    UC7               0                0            0           N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+For namespace :
+       Port    TxQ    Counter/pkts    Counter/bytes    Drop/pkts    Drop/bytes    Trim/pkts    TrimSent/pkts    TrimDrop/pkts
+-----------  -----  --------------  ---------------  -----------  ------------  -----------  ---------------  ---------------
+Ethernet505    UC7               0                0            0           N/A            0              N/A              N/A
+```
+
+</details>
+
 ---
 
 <a id="54-show-queue-persistent-watermark"></a>
@@ -25609,16 +41367,18 @@ Ethernet0   MC11            0                0                0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="54.1-show-queue-persistent-watermark"></a>
 #### 54.1 `show queue persistent-watermark` (base command)
@@ -25626,9 +41386,11 @@ Ethernet0   MC11            0                0                0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match after normalizing help option order |
+| `str3-8101-02` | ✅ PASS | Match after normalizing help option order |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Match after normalizing help option order |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Match after normalizing help option order |
 
 **Sample Python Invocation:**
 ```python
@@ -25689,6 +41451,53 @@ Commands:
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "subcommands": {
+    "all": "show/queue/persistent-watermark/all",
+    "multicast": "show/queue/persistent-watermark/multicast",
+    "unicast": "show/queue/persistent-watermark/unicast"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Usage: show queue persistent-watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show persistent WM for queues
+
+Options:
+  -h, -?, --help  Show this message and exit.
+
+Commands:
+  all        Show persistent WM for all queues
+  multicast  Show persistent WM for multicast queues
+  unicast    Show persistent WM for unicast queues
+
+```
+
+**Actual Converter Output:**
+```
+Usage: show queue persistent-watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show persistent WM for queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  all        Show persistent WM for all queues
+  multicast  Show persistent WM for multicast queues
+  unicast    Show persistent WM for unicast queues
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -25826,6 +41635,53 @@ Commands:
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "subcommands": {
+    "all": "show/queue/persistent-watermark/all",
+    "multicast": "show/queue/persistent-watermark/multicast",
+    "unicast": "show/queue/persistent-watermark/unicast"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Usage: show queue persistent-watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show persistent WM for queues
+
+Options:
+  -h, -?, --help  Show this message and exit.
+
+Commands:
+  all        Show persistent WM for all queues
+  multicast  Show persistent WM for multicast queues
+  unicast    Show persistent WM for unicast queues
+
+```
+
+**Actual Converter Output:**
+```
+Usage: show queue persistent-watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show persistent WM for queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  all        Show persistent WM for all queues
+  multicast  Show persistent WM for multicast queues
+  unicast    Show persistent WM for unicast queues
+```
+
+</details>
+
 ---
 
 <a id="55-show-queue-persistent-watermark-all"></a>
@@ -25833,16 +41689,18 @@ Commands:
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="55.1-show-queue-persistent-watermark-all"></a>
 #### 55.1 `show queue persistent-watermark all` (base command)
@@ -25850,9 +41708,11 @@ Commands:
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -25877,6 +41737,27 @@ print(result)
 **Expected CLI Output:**
 ```
 Object map is empty!
+```
+
+**Actual Converter Output:**
+```
+Object map is empty!
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+Object map is empty!
+
 ```
 
 **Actual Converter Output:**
@@ -26066,6 +41947,67 @@ Ethernet128      0      0       0       0      0      0      0      0      0    
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "UC0": "0",
+    "UC1": "0",
+    "UC2": "0",
+    "UC3": "0",
+    "UC4": "0",
+    "UC5": "0",
+    "UC6": "0",
+    "UC7": "0"
+  },
+  "Ethernet1": {
+    "UC7": "0"
+  },
+  "Ethernet10": {
+    "UC7": "0"
+  },
+  "Ethernet100": {
+    "UC7": "0"
+  },
+... (1986 more lines)
+```
+
+**Expected CLI Output:**
+```
+Object map is empty!
+
+```
+
+**Actual Converter Output:**
+```
+Egress shared pool occupancy per all queues:
+Port         UC0    UC1    UC2    UC3    UC4    UC5    UC6      UC7
+-----------  -----  -----  -----  -----  -----  -----  -----  -----
+Ethernet0    0      0      0      0      0      0      0          0
+Ethernet1    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet2    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet3    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet4    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet5    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet6    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet7    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet8    0      0      0      0      0      0      0          0
+Ethernet9    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet10   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet11   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet12   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet13   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet14   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet15   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet16   0      0      0      0      0      0      0          0
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="56-show-queue-persistent-watermark-multicast"></a>
@@ -26073,16 +42015,18 @@ Ethernet128      0      0       0       0      0      0      0      0      0    
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="56.1-show-queue-persistent-watermark-multicast"></a>
 #### 56.1 `show queue persistent-watermark multicast` (base command)
@@ -26090,9 +42034,11 @@ Ethernet128      0      0       0       0      0      0      0      0      0    
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Empty JSON data with converter output (PASS) |
+| `str3-8101-02` | ✅ PASS | Empty JSON data with converter output (PASS) |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
+| `str4-sn5640-7` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
 **Sample Python Invocation:**
 ```python
@@ -26117,6 +42063,27 @@ print(result)
 **Expected CLI Output:**
 ```
 Object map from the COUNTERS_DB is empty because the multicast queues are not configured in the CONFIG_DB!
+```
+
+**Actual Converter Output:**
+```
+Object map is empty!
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+Object map from the COUNTERS_DB is empty because the multicast queues are not configured in the CONFIG_DB!
+
 ```
 
 **Actual Converter Output:**
@@ -26366,6 +42333,67 @@ Ethernet128      0      0       0       0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {},
+  "Ethernet1": {},
+  "Ethernet10": {},
+  "Ethernet100": {},
+  "Ethernet101": {},
+  "Ethernet102": {},
+  "Ethernet103": {},
+  "Ethernet104": {},
+  "Ethernet105": {},
+  "Ethernet106": {},
+  "Ethernet107": {},
+  "Ethernet108": {},
+  "Ethernet109": {},
+  "Ethernet11": {},
+  "Ethernet110": {},
+  "Ethernet111": {},
+  "Ethernet112": {},
+  "Ethernet113": {},
+  "Ethernet114": {},
+... (496 more lines)
+```
+
+**Expected CLI Output:**
+```
+Object map from the COUNTERS_DB is empty because the multicast queues are not configured in the CONFIG_DB!
+
+```
+
+**Actual Converter Output:**
+```
+Egress shared pool occupancy per multicast queue:
+Port
+-----------
+Ethernet0
+Ethernet1
+Ethernet2
+Ethernet3
+Ethernet4
+Ethernet5
+Ethernet6
+Ethernet7
+Ethernet8
+Ethernet9
+Ethernet10
+Ethernet11
+Ethernet12
+Ethernet13
+Ethernet14
+Ethernet15
+Ethernet16
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="57-show-queue-persistent-watermark-unicast"></a>
@@ -26373,16 +42401,18 @@ Ethernet128      0      0       0       0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="57.1-show-queue-persistent-watermark-unicast"></a>
 #### 57.1 `show queue persistent-watermark unicast` (base command)
@@ -26390,9 +42420,11 @@ Ethernet128      0      0       0       0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -26417,6 +42449,27 @@ print(result)
 **Expected CLI Output:**
 ```
 Object map is empty!
+```
+
+**Actual Converter Output:**
+```
+Object map is empty!
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+Object map is empty!
+
 ```
 
 **Actual Converter Output:**
@@ -26666,6 +42719,86 @@ Ethernet128      0      0      0      0      0      0      0   7620
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "UC0": "0",
+    "UC1": "0",
+    "UC2": "0",
+    "UC3": "0",
+    "UC4": "0",
+    "UC5": "0",
+    "UC6": "0",
+    "UC7": "0"
+  },
+  "Ethernet1": {
+    "UC7": "0"
+  },
+  "Ethernet10": {
+    "UC7": "0"
+  },
+  "Ethernet100": {
+    "UC7": "0"
+  },
+... (1986 more lines)
+```
+
+**Expected CLI Output:**
+```
+Egress shared pool occupancy per unicast queue:
+       Port    UC0    UC1    UC2    UC3    UC4    UC5    UC6    UC7
+-----------  -----  -----  -----  -----  -----  -----  -----  -----
+  Ethernet0      0      0      0      0      0      0      0      0
+  Ethernet1      0      0      0      0      0      0      0      0
+  Ethernet2      0      0      0      0      0      0      0      0
+  Ethernet3      0      0      0      0      0      0      0      0
+  Ethernet4      0      0      0      0      0      0      0      0
+  Ethernet5      0      0      0      0      0      0      0      0
+  Ethernet6      0      0      0      0      0      0      0      0
+  Ethernet7      0      0      0      0      0      0      0      0
+  Ethernet8      0      0      0      0      0      0      0      0
+  Ethernet9      0      0      0      0      0      0      0      0
+ Ethernet10      0      0      0      0      0      0      0      0
+ Ethernet11      0      0      0      0      0      0      0      0
+ Ethernet12      0      0      0      0      0      0      0      0
+ Ethernet13      0      0      0      0      0      0      0      0
+ Ethernet14      0      0      0      0      0      0      0      0
+ Ethernet15      0      0      0      0      0      0      0      0
+ Ethernet16      0      0      0      0      0      0      0      0
+... (498 more lines)
+```
+
+**Actual Converter Output:**
+```
+Egress shared pool occupancy per unicast queue:
+Port         UC0    UC1    UC2    UC3    UC4    UC5    UC6      UC7
+-----------  -----  -----  -----  -----  -----  -----  -----  -----
+Ethernet0    0      0      0      0      0      0      0          0
+Ethernet1    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet2    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet3    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet4    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet5    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet6    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet7    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet8    0      0      0      0      0      0      0          0
+Ethernet9    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet10   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet11   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet12   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet13   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet14   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet15   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet16   0      0      0      0      0      0      0          0
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="58-show-queue-watermark"></a>
@@ -26673,16 +42806,18 @@ Ethernet128      0      0      0      0      0      0      0   7620
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="58.1-show-queue-watermark"></a>
 #### 58.1 `show queue watermark` (base command)
@@ -26690,9 +42825,11 @@ Ethernet128      0      0      0      0      0      0      0   7620
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match after normalizing help option order |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Match after normalizing help option order |
 
 **Sample Python Invocation:**
 ```python
@@ -26753,6 +42890,53 @@ Commands:
 </details>
 
 <details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "subcommands": {
+    "all": "show/queue/watermark/all",
+    "multicast": "show/queue/watermark/multicast",
+    "unicast": "show/queue/watermark/unicast"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Usage: show queue watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show user WM for queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  all        Show user WM for all queues
+  multicast  Show user WM for multicast queues
+  unicast    Show user WM for unicast queues
+
+```
+
+**Actual Converter Output:**
+```
+Usage: show queue watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show user WM for queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  all        Show user WM for all queues
+  multicast  Show user WM for multicast queues
+  unicast    Show user WM for unicast queues
+```
+
+</details>
+
+<details>
 <summary><b>✅ Device: str4-7060x6-512-1</b> (click to expand)</summary>
 
 **Input JSON:**
@@ -26890,6 +43074,53 @@ Commands:
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "subcommands": {
+    "all": "show/queue/watermark/all",
+    "multicast": "show/queue/watermark/multicast",
+    "unicast": "show/queue/watermark/unicast"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+Usage: show queue watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show user WM for queues
+
+Options:
+  -h, -?, --help  Show this message and exit.
+
+Commands:
+  all        Show user WM for all queues
+  multicast  Show user WM for multicast queues
+  unicast    Show user WM for unicast queues
+
+```
+
+**Actual Converter Output:**
+```
+Usage: show queue watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show user WM for queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  all        Show user WM for all queues
+  multicast  Show user WM for multicast queues
+  unicast    Show user WM for unicast queues
+```
+
+</details>
+
 ---
 
 <a id="59-show-queue-watermark-all"></a>
@@ -26897,16 +43128,18 @@ Commands:
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="59.1-show-queue-watermark-all"></a>
 #### 59.1 `show queue watermark all` (base command)
@@ -26914,9 +43147,11 @@ Commands:
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -26941,6 +43176,27 @@ print(result)
 **Expected CLI Output:**
 ```
 Object map is empty!
+```
+
+**Actual Converter Output:**
+```
+Object map is empty!
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+Object map is empty!
+
 ```
 
 **Actual Converter Output:**
@@ -27130,6 +43386,67 @@ Ethernet128      0      0       0       0      0      0      0      0      0    
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "UC0": "0",
+    "UC1": "0",
+    "UC2": "0",
+    "UC3": "0",
+    "UC4": "0",
+    "UC5": "0",
+    "UC6": "0",
+    "UC7": "0"
+  },
+  "Ethernet1": {
+    "UC7": "0"
+  },
+  "Ethernet10": {
+    "UC7": "0"
+  },
+  "Ethernet100": {
+    "UC7": "0"
+  },
+... (1986 more lines)
+```
+
+**Expected CLI Output:**
+```
+Object map is empty!
+
+```
+
+**Actual Converter Output:**
+```
+Egress shared pool occupancy per all queues:
+Port         UC0    UC1    UC2    UC3    UC4    UC5    UC6      UC7
+-----------  -----  -----  -----  -----  -----  -----  -----  -----
+Ethernet0    0      0      0      0      0      0      0          0
+Ethernet1    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet2    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet3    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet4    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet5    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet6    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet7    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet8    0      0      0      0      0      0      0          0
+Ethernet9    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet10   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet11   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet12   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet13   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet14   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet15   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet16   0      0      0      0      0      0      0          0
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="60-show-queue-watermark-multicast"></a>
@@ -27137,16 +43454,18 @@ Ethernet128      0      0       0       0      0      0      0      0      0    
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="60.1-show-queue-watermark-multicast"></a>
 #### 60.1 `show queue watermark multicast` (base command)
@@ -27154,9 +43473,11 @@ Ethernet128      0      0       0       0      0      0      0      0      0    
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Empty JSON data with converter output (PASS) |
+| `str3-8101-02` | ✅ PASS | Empty JSON data with converter output (PASS) |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
+| `str4-sn5640-7` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
 **Sample Python Invocation:**
 ```python
@@ -27181,6 +43502,27 @@ print(result)
 **Expected CLI Output:**
 ```
 Object map from the COUNTERS_DB is empty because the multicast queues are not configured in the CONFIG_DB!
+```
+
+**Actual Converter Output:**
+```
+Object map is empty!
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+Object map from the COUNTERS_DB is empty because the multicast queues are not configured in the CONFIG_DB!
+
 ```
 
 **Actual Converter Output:**
@@ -27430,6 +43772,67 @@ Ethernet128      0      0       0       0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {},
+  "Ethernet1": {},
+  "Ethernet10": {},
+  "Ethernet100": {},
+  "Ethernet101": {},
+  "Ethernet102": {},
+  "Ethernet103": {},
+  "Ethernet104": {},
+  "Ethernet105": {},
+  "Ethernet106": {},
+  "Ethernet107": {},
+  "Ethernet108": {},
+  "Ethernet109": {},
+  "Ethernet11": {},
+  "Ethernet110": {},
+  "Ethernet111": {},
+  "Ethernet112": {},
+  "Ethernet113": {},
+  "Ethernet114": {},
+... (496 more lines)
+```
+
+**Expected CLI Output:**
+```
+Object map from the COUNTERS_DB is empty because the multicast queues are not configured in the CONFIG_DB!
+
+```
+
+**Actual Converter Output:**
+```
+Egress shared pool occupancy per multicast queue:
+Port
+-----------
+Ethernet0
+Ethernet1
+Ethernet2
+Ethernet3
+Ethernet4
+Ethernet5
+Ethernet6
+Ethernet7
+Ethernet8
+Ethernet9
+Ethernet10
+Ethernet11
+Ethernet12
+Ethernet13
+Ethernet14
+Ethernet15
+Ethernet16
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="61-show-queue-watermark-unicast"></a>
@@ -27437,16 +43840,18 @@ Ethernet128      0      0       0       0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="61.1-show-queue-watermark-unicast"></a>
 #### 61.1 `show queue watermark unicast` (base command)
@@ -27454,9 +43859,11 @@ Ethernet128      0      0       0       0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -27481,6 +43888,27 @@ print(result)
 **Expected CLI Output:**
 ```
 Object map is empty!
+```
+
+**Actual Converter Output:**
+```
+Object map is empty!
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+Object map is empty!
+
 ```
 
 **Actual Converter Output:**
@@ -27730,6 +44158,86 @@ Ethernet128      0      0      0      0      0      0      0   7620
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0": {
+    "UC0": "0",
+    "UC1": "0",
+    "UC2": "0",
+    "UC3": "0",
+    "UC4": "0",
+    "UC5": "0",
+    "UC6": "0",
+    "UC7": "0"
+  },
+  "Ethernet1": {
+    "UC7": "0"
+  },
+  "Ethernet10": {
+    "UC7": "0"
+  },
+  "Ethernet100": {
+    "UC7": "0"
+  },
+... (1986 more lines)
+```
+
+**Expected CLI Output:**
+```
+Egress shared pool occupancy per unicast queue:
+       Port    UC0    UC1    UC2    UC3    UC4    UC5    UC6    UC7
+-----------  -----  -----  -----  -----  -----  -----  -----  -----
+  Ethernet0      0      0      0      0      0      0      0      0
+  Ethernet1      0      0      0      0      0      0      0      0
+  Ethernet2      0      0      0      0      0      0      0      0
+  Ethernet3      0      0      0      0      0      0      0      0
+  Ethernet4      0      0      0      0      0      0      0      0
+  Ethernet5      0      0      0      0      0      0      0      0
+  Ethernet6      0      0      0      0      0      0      0      0
+  Ethernet7      0      0      0      0      0      0      0      0
+  Ethernet8      0      0      0      0      0      0      0      0
+  Ethernet9      0      0      0      0      0      0      0      0
+ Ethernet10      0      0      0      0      0      0      0      0
+ Ethernet11      0      0      0      0      0      0      0      0
+ Ethernet12      0      0      0      0      0      0      0      0
+ Ethernet13      0      0      0      0      0      0      0      0
+ Ethernet14      0      0      0      0      0      0      0      0
+ Ethernet15      0      0      0      0      0      0      0      0
+ Ethernet16      0      0      0      0      0      0      0      0
+... (498 more lines)
+```
+
+**Actual Converter Output:**
+```
+Egress shared pool occupancy per unicast queue:
+Port         UC0    UC1    UC2    UC3    UC4    UC5    UC6      UC7
+-----------  -----  -----  -----  -----  -----  -----  -----  -----
+Ethernet0    0      0      0      0      0      0      0          0
+Ethernet1    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet2    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet3    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet4    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet5    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet6    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet7    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet8    0      0      0      0      0      0      0          0
+Ethernet9    N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet10   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet11   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet12   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet13   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet14   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet15   N/A    N/A    N/A    N/A    N/A    N/A    N/A        0
+Ethernet16   0      0      0      0      0      0      0          0
+... (497 more lines)
+```
+
+</details>
+
 ---
 
 <a id="62-show-queue-wredcounters"></a>
@@ -27737,22 +44245,26 @@ Ethernet128      0      0      0      0      0      0      0   7620
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 6/12 test cases passed (across 4 devices)
+**Status:** ✅ All 10/30 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 2 | 0 | 0 | 0 |
+| `str3-8101-02` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 2 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 2 | 0 | 0 | 0 |
 
 **Test Case Variants:**
 
 - [62.1 (base command)](#62.1-show-queue-wredcounters)
 - [62.2 Ethernet0](#62.2-show-queue-wredcounters-ethernet0)
 - [62.3 Ethernet252](#62.3-show-queue-wredcounters-ethernet252)
+- [62.4 Ethernet8](#62.4-show-queue-wredcounters-ethernet8)
+- [62.5 Ethernet505](#62.5-show-queue-wredcounters-ethernet505)
 
 <a id="62.1-show-queue-wredcounters"></a>
 #### 62.1 `show queue wredcounters` (base command)
@@ -27760,9 +44272,11 @@ Ethernet128      0      0      0      0      0      0      0   7620
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Empty JSON data with converter output (PASS) |
+| `str3-8101-02` | ✅ PASS | Empty JSON data with converter output (PASS) |
 | `str4-7060x6-512-1` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -27807,6 +44321,47 @@ print(result)
   Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
 ------  -----  --------------  ---------------  ----------------  -----------------
 ... (171 more lines)
+```
+
+**Actual Converter Output:**
+```
+Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+... (149 more lines)
 ```
 
 **Actual Converter Output:**
@@ -28057,6 +44612,86 @@ Ethernet8    UC2             N/A              N/A               N/A             
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet0:0": {
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  },
+  "Ethernet0:1": {
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  },
+  "Ethernet0:2": {
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  },
+  "Ethernet0:3": {
+... (5838 more lines)
+```
+
+**Expected CLI Output:**
+```
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+---------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet0    UC0             N/A              N/A               N/A                N/A
+Ethernet0    UC1             N/A              N/A               N/A                N/A
+Ethernet0    UC2             N/A              N/A               N/A                N/A
+Ethernet0    UC3             N/A              N/A               N/A                N/A
+Ethernet0    UC4             N/A              N/A               N/A                N/A
+Ethernet0    UC5             N/A              N/A               N/A                N/A
+Ethernet0    UC6             N/A              N/A               N/A                N/A
+Ethernet0    UC7             N/A              N/A               N/A                N/A
+
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+---------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet1    UC7             N/A              N/A               N/A                N/A
+
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+---------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet2    UC7             N/A              N/A               N/A                N/A
+
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+... (2499 more lines)
+```
+
+**Actual Converter Output:**
+```
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+---------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet0    UC0             N/A              N/A               N/A                N/A
+Ethernet0    UC1             N/A              N/A               N/A                N/A
+Ethernet0    UC2             N/A              N/A               N/A                N/A
+Ethernet0    UC3             N/A              N/A               N/A                N/A
+Ethernet0    UC4             N/A              N/A               N/A                N/A
+Ethernet0    UC5             N/A              N/A               N/A                N/A
+Ethernet0    UC6             N/A              N/A               N/A                N/A
+Ethernet0    UC7             N/A              N/A               N/A                N/A
+
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+---------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet1    UC7             N/A              N/A               N/A                N/A
+
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+---------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet2    UC7             N/A              N/A               N/A                N/A
+
+     Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+... (2497 more lines)
+```
+
+</details>
+
 <a id="62.2-show-queue-wredcounters-ethernet0"></a>
 #### 62.2 `show queue wredcounters Ethernet0`
 
@@ -28183,6 +44818,101 @@ Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/byte
 
 </details>
 
+<a id="62.4-show-queue-wredcounters-ethernet8"></a>
+#### 62.4 `show queue wredcounters Ethernet8`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue wredcounters Ethernet8"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
+  Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+
+
+```
+
+**Actual Converter Output:**
+```
+Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+------  -----  --------------  ---------------  ----------------  -----------------
+```
+
+</details>
+
+<a id="62.5-show-queue-wredcounters-ethernet505"></a>
+#### 62.5 `show queue wredcounters Ethernet505`
+
+| Device | Status | Details |
+|--------|--------|---------|
+| `str4-sn5640-7` | ✅ PASS | Exact match |
+
+**Sample Python Invocation:**
+```python
+from gnmi_cli_lib.parser import CommandParser
+
+cli_command = "show queue wredcounters Ethernet505"
+json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
+
+parser = CommandParser()
+result = parser.convert(cli_command, json_data)
+print(result)
+```
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Ethernet505:7": {
+    "WredDrp/pkts": "N/A",
+    "WredDrp/bytes": "N/A",
+    "EcnMarked/pkts": "N/A",
+    "EcnMarked/bytes": "N/A"
+  }
+}
+```
+
+**Expected CLI Output:**
+```
+       Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+-----------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet505    UC7             N/A              N/A               N/A                N/A
+
+
+```
+
+**Actual Converter Output:**
+```
+       Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/bytes
+-----------  -----  --------------  ---------------  ----------------  -----------------
+Ethernet505    UC7             N/A              N/A               N/A                N/A
+```
+
+</details>
+
 ---
 
 <a id="63-show-reboot-cause-history"></a>
@@ -28190,16 +44920,18 @@ Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/byte
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="63.1-show-reboot-cause-history"></a>
 #### 63.1 `show reboot-cause history` (base command)
@@ -28207,9 +44939,11 @@ Port    TxQ    WredDrp/pkts    WredDrp/bytes    EcnMarked/pkts    EcnMarked/byte
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 11 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 11 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 12 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -28281,6 +45015,69 @@ Name                 Cause                                                      
 2026_01_27_20_34_15  reboot                                                                Tue Jan 27 08:30:45 PM UTC 2026  $USER$  N/A
 2026_01_27_15_39_18  reboot                                                                Tue Jan 27 03:35:55 PM UTC 2026  $USER$  N/A
 2026_01_27_13_44_57  Power Loss                                                            N/A                              $USER$  Unknown
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "2026_01_29_06_48_10": {
+    "cause": "reboot",
+    "comment": "N/A",
+    "time": "Thu Jan 29 06:43:59 AM UTC 2026",
+    "user": "$USER$"
+  },
+  "2026_01_29_08_33_23": {
+    "cause": "reboot",
+    "comment": "N/A",
+    "time": "Thu Jan 29 08:27:44 AM UTC 2026",
+    "user": "$USER$"
+  },
+  "2026_01_29_15_23_50": {
+    "cause": "reboot",
+    "comment": "N/A",
+    "time": "Thu Jan 29 03:19:37 PM UTC 2026",
+    "user": "$USER$"
+  },
+  "2026_01_29_16_52_32": {
+... (42 more lines)
+```
+
+**Expected CLI Output:**
+```
+Name                 Cause                                                                 Time                             User    Comment
+-------------------  --------------------------------------------------------------------  -------------------------------  ------  ---------
+2026_01_30_06_55_58  reboot                                                                Fri Jan 30 06:51:47 AM UTC 2026  admin   N/A
+2026_01_30_05_26_27  reboot                                                                Fri Jan 30 05:22:14 AM UTC 2026  admin   N/A
+2026_01_30_01_56_22  reboot                                                                Fri Jan 30 01:52:13 AM UTC 2026  admin   N/A
+2026_01_30_00_57_50  reboot                                                                Fri Jan 30 12:53:38 AM UTC 2026  admin   N/A
+2026_01_29_22_25_29  reboot                                                                Thu Jan 29 10:21:12 PM UTC 2026  admin   N/A
+2026_01_29_21_19_18  Kernel Panic - Out of memory [Time: Thu Jan 29 09:15:43 PM UTC 2026]  N/A                              N/A     N/A
+2026_01_29_16_52_32  Kernel Panic                                                          Thu Jan 29 04:48:56 PM UTC 2026  N/A     N/A
+2026_01_29_15_23_50  reboot                                                                Thu Jan 29 03:19:37 PM UTC 2026  admin   N/A
+2026_01_29_08_33_23  reboot                                                                Thu Jan 29 08:27:44 AM UTC 2026  admin   N/A
+2026_01_29_06_48_10  reboot                                                                Thu Jan 29 06:43:59 AM UTC 2026  admin   N/A
+
+```
+
+**Actual Converter Output:**
+```
+Name                 Cause                                                                 Time                             User    Comment
+-------------------  --------------------------------------------------------------------  -------------------------------  ------  ---------
+2026_01_30_06_55_58  reboot                                                                Fri Jan 30 06:51:47 AM UTC 2026  $USER$  N/A
+2026_01_30_05_26_27  reboot                                                                Fri Jan 30 05:22:14 AM UTC 2026  $USER$  N/A
+2026_01_30_01_56_22  reboot                                                                Fri Jan 30 01:52:13 AM UTC 2026  $USER$  N/A
+2026_01_30_00_57_50  reboot                                                                Fri Jan 30 12:53:38 AM UTC 2026  $USER$  N/A
+2026_01_29_22_25_29  reboot                                                                Thu Jan 29 10:21:12 PM UTC 2026  $USER$  N/A
+2026_01_29_21_19_18  Kernel Panic - Out of memory [Time: Thu Jan 29 09:15:43 PM UTC 2026]  N/A                              $USER$  N/A
+2026_01_29_16_52_32  Kernel Panic                                                          Thu Jan 29 04:48:56 PM UTC 2026  $USER$  N/A
+2026_01_29_15_23_50  reboot                                                                Thu Jan 29 03:19:37 PM UTC 2026  $USER$  N/A
+2026_01_29_08_33_23  reboot                                                                Thu Jan 29 08:27:44 AM UTC 2026  $USER$  N/A
+2026_01_29_06_48_10  reboot                                                                Thu Jan 29 06:43:59 AM UTC 2026  $USER$  N/A
 ```
 
 </details>
@@ -28471,6 +45268,69 @@ Name                 Cause    Time                             User    Comment
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "2026_01_28_20_29_28": {
+    "cause": "reboot",
+    "comment": "N/A",
+    "time": "Wed Jan 28 08:27:02 PM UTC 2026",
+    "user": "$USER$"
+  },
+  "2026_01_28_21_38_00": {
+    "cause": "reboot",
+    "comment": "N/A",
+    "time": "Wed Jan 28 09:35:49 PM UTC 2026",
+    "user": "$USER$"
+  },
+  "2026_01_29_04_51_29": {
+    "cause": "reboot",
+    "comment": "N/A",
+    "time": "Thu Jan 29 04:49:09 AM UTC 2026",
+    "user": "$USER$"
+  },
+  "2026_01_29_07_07_58": {
+... (42 more lines)
+```
+
+**Expected CLI Output:**
+```
+Name                 Cause        Time                             User    Comment
+-------------------  -----------  -------------------------------  ------  ---------
+2026_01_29_18_27_37  Unknown      N/A                              N/A     N/A
+2026_01_29_15_46_38  reboot       Thu Jan 29 03:44:18 PM UTC 2026  admin   N/A
+2026_01_29_13_53_50  Unknown      N/A                              N/A     N/A
+2026_01_29_13_13_42  reboot       Thu Jan 29 01:11:27 PM UTC 2026  admin   N/A
+2026_01_29_13_00_07  reboot       Thu Jan 29 12:57:41 PM UTC 2026  admin   N/A
+2026_01_29_09_26_53  fast-reboot  Thu Jan 29 09:24:14 AM UTC 2026  admin   N/A
+2026_01_29_07_07_58  reboot       Thu Jan 29 07:05:43 AM UTC 2026  admin   N/A
+2026_01_29_04_51_29  reboot       Thu Jan 29 04:49:09 AM UTC 2026  admin   N/A
+2026_01_28_21_38_00  reboot       Wed Jan 28 09:35:49 PM UTC 2026  admin   N/A
+2026_01_28_20_29_28  reboot       Wed Jan 28 08:27:02 PM UTC 2026  admin   N/A
+
+```
+
+**Actual Converter Output:**
+```
+Name                 Cause        Time                             User    Comment
+-------------------  -----------  -------------------------------  ------  ---------
+2026_01_29_18_27_37  Unknown      N/A                              $USER$  N/A
+2026_01_29_15_46_38  reboot       Thu Jan 29 03:44:18 PM UTC 2026  $USER$  N/A
+2026_01_29_13_53_50  Unknown      N/A                              $USER$  N/A
+2026_01_29_13_13_42  reboot       Thu Jan 29 01:11:27 PM UTC 2026  $USER$  N/A
+2026_01_29_13_00_07  reboot       Thu Jan 29 12:57:41 PM UTC 2026  $USER$  N/A
+2026_01_29_09_26_53  fast-reboot  Thu Jan 29 09:24:14 AM UTC 2026  $USER$  N/A
+2026_01_29_07_07_58  reboot       Thu Jan 29 07:05:43 AM UTC 2026  $USER$  N/A
+2026_01_29_04_51_29  reboot       Thu Jan 29 04:49:09 AM UTC 2026  $USER$  N/A
+2026_01_28_21_38_00  reboot       Wed Jan 28 09:35:49 PM UTC 2026  $USER$  N/A
+2026_01_28_20_29_28  reboot       Wed Jan 28 08:27:02 PM UTC 2026  $USER$  N/A
+```
+
+</details>
+
 ---
 
 <a id="64-show-services"></a>
@@ -28478,16 +45338,18 @@ Name                 Cause    Time                             User    Comment
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="64.1-show-services"></a>
 #### 64.1 `show services` (base command)
@@ -28495,9 +45357,11 @@ Name                 Cause    Time                             User    Comment
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 1306 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 1417 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 1245 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 1331 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 1501 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 1347 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -28587,6 +45451,86 @@ root          18  0.0  0.0      0     0 ?        S    Jan28   0:00 [cpuhp/0]
 root          19  0.0  0.0      0     0 ?        S    Jan28   0:00 [cpuhp/1]
 root          20  0.0  0.0      0     0 ?        S    Jan28   0:00 [migration/1]
 ... (915 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "dockerProcessName": "telemetry",
+    "processes": [
+      {
+        "user": "root",
+        "pid": "1",
+        "cpuPercentage": "0.0",
+        "memPercentage": "0.0",
+        "vsz": "169480",
+        "rss": "14232",
+        "tty": "?",
+        "stat": "Ss",
+        "start": "Jan30",
+        "time": "13:53",
+        "command": "/sbin/init"
+      },
+      {
+        "user": "root",
+        "pid": "2",
+... (12269 more lines)
+```
+
+**Expected CLI Output:**
+```
+telemetry	docker
+---------------------------
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0 169480 14232 ?        Ss   Jan30  13:53 /sbin/init
+root           2  0.0  0.0      0     0 ?        S    Jan30   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Jan30   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Jan30   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   Jan30   0:00 [slub_flushwq]
+root           6  0.0  0.0      0     0 ?        I<   Jan30   0:00 [netns]
+root           8  0.0  0.0      0     0 ?        I<   Jan30   0:00 [kworker/0:0H-events_highpri]
+root          10  0.0  0.0      0     0 ?        I<   Jan30   0:00 [mm_percpu_wq]
+root          11  0.0  0.0      0     0 ?        I    Jan30   0:00 [rcu_tasks_kthread]
+root          12  0.0  0.0      0     0 ?        I    Jan30   0:00 [rcu_tasks_rude_kthread]
+root          13  0.0  0.0      0     0 ?        I    Jan30   0:00 [rcu_tasks_trace_kthread]
+root          14  0.0  0.0      0     0 ?        S    Jan30   6:14 [ksoftirqd/0]
+root          15  0.0  0.0      0     0 ?        I    Jan30  10:47 [rcu_preempt]
+root          16  0.0  0.0      0     0 ?        S    Jan30   0:03 [migration/0]
+root          18  0.0  0.0      0     0 ?        S    Jan30   0:00 [cpuhp/0]
+root          19  0.0  0.0      0     0 ?        S    Jan30   0:00 [cpuhp/1]
+root          20  0.0  0.0      0     0 ?        S    Jan30   0:04 [migration/1]
+... (977 more lines)
+```
+
+**Actual Converter Output:**
+```
+telemetry	docker
+---------------------------
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0 169480 14232 ?        Ss   Jan30   13:53 /sbin/init
+root           2  0.0  0.0      0     0 ?        S    Jan30   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Jan30   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Jan30   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   Jan30   0:00 [slub_flushwq]
+root           6  0.0  0.0      0     0 ?        I<   Jan30   0:00 [netns]
+root           8  0.0  0.0      0     0 ?        I<   Jan30   0:00 [kworker/0:0H-events_highpri]
+root          10  0.0  0.0      0     0 ?        I<   Jan30   0:00 [mm_percpu_wq]
+root          11  0.0  0.0      0     0 ?        I    Jan30   0:00 [rcu_tasks_kthread]
+root          12  0.0  0.0      0     0 ?        I    Jan30   0:00 [rcu_tasks_rude_kthread]
+root          13  0.0  0.0      0     0 ?        I    Jan30   0:00 [rcu_tasks_trace_kthread]
+root          14  0.0  0.0      0     0 ?        S    Jan30   6:14 [ksoftirqd/0]
+root          15  0.0  0.0      0     0 ?        I    Jan30   10:47 [rcu_preempt]
+root          16  0.0  0.0      0     0 ?        S    Jan30   0:03 [migration/0]
+root          18  0.0  0.0      0     0 ?        S    Jan30   0:00 [cpuhp/0]
+root          19  0.0  0.0      0     0 ?        S    Jan30   0:00 [cpuhp/1]
+root          20  0.0  0.0      0     0 ?        S    Jan30   0:04 [migration/1]
+... (967 more lines)
 ```
 
 </details>
@@ -28831,6 +45775,86 @@ root          20  0.0  0.0      0     0 ?        S    Jan25   0:00 [migration/1]
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "dockerProcessName": "telemetry",
+    "processes": [
+      {
+        "user": "root",
+        "pid": "1",
+        "cpuPercentage": "0.1",
+        "memPercentage": "0.0",
+        "vsz": "172100",
+        "rss": "16896",
+        "tty": "?",
+        "stat": "Ss",
+        "start": "Jan29",
+        "time": "27:18",
+        "command": "/sbin/init"
+      },
+      {
+        "user": "root",
+        "pid": "2",
+... (6760 more lines)
+```
+
+**Expected CLI Output:**
+```
+telemetry	docker
+---------------------------
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.0 172100 16896 ?        Ss   Jan29  27:18 /sbin/init
+root           2  0.0  0.0      0     0 ?        S    Jan29   0:01 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Jan29   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Jan29   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   Jan29   0:00 [slub_flushwq]
+root           6  0.0  0.0      0     0 ?        I<   Jan29   0:00 [netns]
+root           8  0.0  0.0      0     0 ?        I<   Jan29   0:00 [kworker/0:0H-events_highpri]
+root          10  0.0  0.0      0     0 ?        I<   Jan29   0:00 [mm_percpu_wq]
+root          11  0.0  0.0      0     0 ?        I    Jan29   0:00 [rcu_tasks_kthread]
+root          12  0.0  0.0      0     0 ?        I    Jan29   0:00 [rcu_tasks_rude_kthread]
+root          13  0.0  0.0      0     0 ?        I    Jan29   0:00 [rcu_tasks_trace_kthread]
+root          14  0.0  0.0      0     0 ?        S    Jan29   0:33 [ksoftirqd/0]
+root          15  0.0  0.0      0     0 ?        I    Jan29   9:06 [rcu_preempt]
+root          16  0.0  0.0      0     0 ?        S    Jan29   0:02 [migration/0]
+root          18  0.0  0.0      0     0 ?        S    Jan29   0:00 [cpuhp/0]
+root          19  0.0  0.0      0     0 ?        S    Jan29   0:00 [cpuhp/1]
+root          20  0.0  0.0      0     0 ?        S    Jan29   0:02 [migration/1]
+... (533 more lines)
+```
+
+**Actual Converter Output:**
+```
+telemetry	docker
+---------------------------
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.0 172100 16896 ?        Ss   Jan29   27:18 /sbin/init
+root           2  0.0  0.0      0     0 ?        S    Jan29   0:01 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   Jan29   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   Jan29   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   Jan29   0:00 [slub_flushwq]
+root           6  0.0  0.0      0     0 ?        I<   Jan29   0:00 [netns]
+root           8  0.0  0.0      0     0 ?        I<   Jan29   0:00 [kworker/0:0H-events_highpri]
+root          10  0.0  0.0      0     0 ?        I<   Jan29   0:00 [mm_percpu_wq]
+root          11  0.0  0.0      0     0 ?        I    Jan29   0:00 [rcu_tasks_kthread]
+root          12  0.0  0.0      0     0 ?        I    Jan29   0:00 [rcu_tasks_rude_kthread]
+root          13  0.0  0.0      0     0 ?        I    Jan29   0:00 [rcu_tasks_trace_kthread]
+root          14  0.0  0.0      0     0 ?        S    Jan29   0:33 [ksoftirqd/0]
+root          15  0.0  0.0      0     0 ?        I    Jan29   9:06 [rcu_preempt]
+root          16  0.0  0.0      0     0 ?        S    Jan29   0:02 [migration/0]
+root          18  0.0  0.0      0     0 ?        S    Jan29   0:00 [cpuhp/0]
+root          19  0.0  0.0      0     0 ?        S    Jan29   0:00 [cpuhp/1]
+root          20  0.0  0.0      0     0 ?        S    Jan29   0:02 [migration/1]
+... (538 more lines)
+```
+
+</details>
+
 ---
 
 <a id="65-show-srv6-stats"></a>
@@ -28838,16 +45862,18 @@ root          20  0.0  0.0      0     0 ?        S    Jan25   0:00 [migration/1]
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="65.1-show-srv6-stats"></a>
 #### 65.1 `show srv6 stats` (base command)
@@ -28855,9 +45881,11 @@ root          20  0.0  0.0      0     0 ?        S    Jan25   0:00 [migration/1]
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -28883,6 +45911,29 @@ print(result)
 ```
 MySID    Packets    Bytes
 -------  ---------  -------
+```
+
+**Actual Converter Output:**
+```
+MySID    Packets    Bytes
+-------  ---------  -------
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[]
+```
+
+**Expected CLI Output:**
+```
+MySID    Packets    Bytes
+-------  ---------  -------
+
 ```
 
 **Actual Converter Output:**
@@ -28959,6 +46010,29 @@ MySID    Packets    Bytes
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[]
+```
+
+**Expected CLI Output:**
+```
+MySID    Packets    Bytes
+-------  ---------  -------
+
+```
+
+**Actual Converter Output:**
+```
+MySID    Packets    Bytes
+-------  ---------  -------
+```
+
+</details>
+
 ---
 
 <a id="66-show-system-memory"></a>
@@ -28966,16 +46040,18 @@ MySID    Packets    Bytes
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="66.1-show-system-memory"></a>
 #### 66.1 `show system-memory` (base command)
@@ -28983,9 +46059,11 @@ MySID    Packets    Bytes
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -29034,6 +46112,47 @@ Swap:              0           0           0
 ```
                total        used        free      shared  buff/cache   available
 Mem:           15150        4391        7373          51        3770       10759
+Swap:              0           0           0
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "available": "26741",
+    "buff/cache": "5432",
+    "free": "21817",
+    "shared": "52",
+    "total": "31254",
+    "type": "Mem",
+    "used": "4512"
+  },
+  {
+    "free": "0",
+    "total": "0",
+    "type": "Swap",
+    "used": "0"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+               total        used        free      shared  buff/cache   available
+Mem:           31254        4475       21856          52        5431       26779
+Swap:              0           0           0
+
+```
+
+**Actual Converter Output:**
+```
+               total        used        free      shared  buff/cache   available
+Mem:           31254        4512       21817          52        5432       26741
 Swap:              0           0           0
 ```
 
@@ -29159,6 +46278,47 @@ Swap:              0           0           0
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+[
+  {
+    "available": "25070",
+    "buff/cache": "6178",
+    "free": "19645",
+    "shared": "291",
+    "total": "31955",
+    "type": "Mem",
+    "used": "6885"
+  },
+  {
+    "free": "0",
+    "total": "0",
+    "type": "Swap",
+    "used": "0"
+  }
+]
+```
+
+**Expected CLI Output:**
+```
+               total        used        free      shared  buff/cache   available
+Mem:           31955        6767       19765         291        6175       25187
+Swap:              0           0           0
+
+```
+
+**Actual Converter Output:**
+```
+               total        used        free      shared  buff/cache   available
+Mem:           31955        6885       19645         291        6178       25070
+Swap:              0           0           0
+```
+
+</details>
+
 ---
 
 <a id="67-show-uptime"></a>
@@ -29166,16 +46326,18 @@ Swap:              0           0           0
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="67.1-show-uptime"></a>
 #### 67.1 `show uptime` (base command)
@@ -29183,9 +46345,11 @@ Swap:              0           0           0
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -29217,6 +46381,29 @@ up 1 day, 9 hours, 20 minutes
 **Actual Converter Output:**
 ```
 up 1 day, 9 hours, 21 minutes
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "uptime": "up 1 week, 2 days, 23 hours, 16 minutes"
+}
+```
+
+**Expected CLI Output:**
+```
+up 1 week, 2 days, 23 hours, 14 minutes
+
+```
+
+**Actual Converter Output:**
+```
+up 1 week, 2 days, 23 hours, 16 minutes
 ```
 
 </details>
@@ -29287,6 +46474,29 @@ up 1 day, 4 hours, 17 minutes
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "uptime": "up 1 week, 3 days, 11 hours, 18 minutes"
+}
+```
+
+**Expected CLI Output:**
+```
+up 1 week, 3 days, 11 hours, 15 minutes
+
+```
+
+**Actual Converter Output:**
+```
+up 1 week, 3 days, 11 hours, 18 minutes
+```
+
+</details>
+
 ---
 
 <a id="68-show-version"></a>
@@ -29294,16 +46504,18 @@ up 1 day, 4 hours, 17 minutes
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="68.1-show-version"></a>
 #### 68.1 `show version` (base command)
@@ -29311,9 +46523,11 @@ up 1 day, 4 hours, 17 minutes
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 112 values from gNMI JSON covered (100%) |
+| `str3-8101-02` | ✅ PASS | All 112 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 88 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-13` | ✅ PASS | All 86 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 83 values from gNMI JSON covered (100%) |
+| `str4-sn5640-7` | ✅ PASS | All 81 values from gNMI JSON covered (100%) |
 
 **Sample Python Invocation:**
 ```python
@@ -29400,6 +46614,86 @@ Model Number: 8102-64H-O
 Hardware Revision: 1.0
 Uptime: 08:13:37 up 1 day,  9:21,  0 user,  load average: 2.62, 2.65, 2.20
 Date: Fri 30 Jan 2026 08:13:37
+
+Docker images:
+... (66 more lines)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "sonic_software_version": "SONiC.20251105.03",
+  "sonic_os_version": "12",
+  "distribution": "Debian 12.12",
+  "kernel": "6.1.0-29-2-amd64",
+  "build_commit": "91be857f9c",
+  "build_date": "Wed Jan 21 06:31:06 UTC 2026",
+  "built_by": "azureuser@38ca20d2c000000",
+  "platform": "x86_64-8101_32fh_o-r0",
+  "hwsku": "Cisco-8101-O8V48",
+  "asic": "cisco-8000",
+  "asic_count": "1",
+  "serial_number": "FLM26400HE3",
+  "model_number": "8101-32FH-O",
+  "hardware_revision": "1.0",
+  "uptime": "06:10:34 up 9 days, 23:16,  1 user,  load average: 3.13, 3.19, 2.48",
+  "date": "Mon 09 Feb 2026 06:10:34",
+  "docker_images": [
+    {
+      "Repository": "docker-platform-monitor",
+... (390 more lines)
+```
+
+**Expected CLI Output:**
+```
+
+SONiC Software Version: SONiC.20251105.03
+SONiC OS Version: 12
+Distribution: Debian 12.12
+Kernel: 6.1.0-29-2-amd64
+Build commit: 91be857f9c
+Build date: Wed Jan 21 06:31:06 UTC 2026
+Built by: azureuser@38ca20d2c000000
+
+Platform: x86_64-8101_32fh_o-r0
+HwSKU: Cisco-8101-O8V48
+ASIC: cisco-8000
+ASIC Count: 1
+Serial Number: FLM26400HE3
+Model Number: 8101-32FH-O
+Hardware Revision: 1.0
+Uptime: 06:09:15 up 9 days, 23:14,  2 users,  load average: 3.66, 3.26, 2.45
+Date: Mon 09 Feb 2026 06:09:15
+
+Docker images:
+... (68 more lines)
+```
+
+**Actual Converter Output:**
+```
+
+SONiC Software Version: SONiC.20251105.03
+SONiC OS Version: 12
+Distribution: Debian 12.12
+Kernel: 6.1.0-29-2-amd64
+Build commit: 91be857f9c
+Build date: Wed Jan 21 06:31:06 UTC 2026
+Built by: azureuser@38ca20d2c000000
+
+Platform: x86_64-8101_32fh_o-r0
+HwSKU: Cisco-8101-O8V48
+ASIC: cisco-8000
+ASIC Count: 1
+Serial Number: FLM26400HE3
+Model Number: 8101-32FH-O
+Hardware Revision: 1.0
+Uptime: 06:10:34 up 9 days, 23:16,  1 user,  load average: 3.13, 3.19, 2.48
+Date: Mon 09 Feb 2026 06:10:34
 
 Docker images:
 ... (66 more lines)
@@ -29647,6 +46941,86 @@ Docker images:
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "sonic_software_version": "SONiC.20241212.49",
+  "sonic_os_version": "12",
+  "distribution": "Debian 12.12",
+  "kernel": "6.1.0-29-2-amd64",
+  "build_commit": "555da39918",
+  "build_date": "Wed Dec 17 20:24:07 UTC 2025",
+  "built_by": "azureuser@b0a57adac000001",
+  "platform": "x86_64-nvidia_sn5640-r0",
+  "hwsku": "Mellanox-SN5640-C512S2",
+  "asic": "mellanox",
+  "asic_count": "1",
+  "serial_number": "MT2516600JYQ",
+  "model_number": "MSN5640",
+  "hardware_revision": "A8",
+  "uptime": "05:45:33 up 10 days, 11:18,  1 user,  load average: 2.20, 2.56, 1.79",
+  "date": "Mon 09 Feb 2026 05:45:33",
+  "docker_images": [
+    {
+      "Repository": "docker-orchagent",
+... (246 more lines)
+```
+
+**Expected CLI Output:**
+```
+
+SONiC Software Version: SONiC.20241212.49
+SONiC OS Version: 12
+Distribution: Debian 12.12
+Kernel: 6.1.0-29-2-amd64
+Build commit: 555da39918
+Build date: Wed Dec 17 20:24:07 UTC 2025
+Built by: azureuser@b0a57adac000001
+
+Platform: x86_64-nvidia_sn5640-r0
+HwSKU: Mellanox-SN5640-C512S2
+ASIC: mellanox
+ASIC Count: 1
+Serial Number: MT2516600JYQ
+Model Number: MSN5640
+Hardware Revision: A8
+Uptime: 05:43:14 up 10 days, 11:15,  2 users,  load average: 3.18, 2.81, 1.72
+Date: Mon 09 Feb 2026 05:43:14
+
+Docker images:
+... (44 more lines)
+```
+
+**Actual Converter Output:**
+```
+
+SONiC Software Version: SONiC.20241212.49
+SONiC OS Version: 12
+Distribution: Debian 12.12
+Kernel: 6.1.0-29-2-amd64
+Build commit: 555da39918
+Build date: Wed Dec 17 20:24:07 UTC 2025
+Built by: azureuser@b0a57adac000001
+
+Platform: x86_64-nvidia_sn5640-r0
+HwSKU: Mellanox-SN5640-C512S2
+ASIC: mellanox
+ASIC Count: 1
+Serial Number: MT2516600JYQ
+Model Number: MSN5640
+Hardware Revision: A8
+Uptime: 05:45:33 up 10 days, 11:18,  1 user,  load average: 2.20, 2.56, 1.79
+Date: Mon 09 Feb 2026 05:45:33
+
+Docker images:
+... (42 more lines)
+```
+
+</details>
+
 ---
 
 <a id="69-show-vlan-brief"></a>
@@ -29654,16 +47028,18 @@ Docker images:
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="69.1-show-vlan-brief"></a>
 #### 69.1 `show vlan brief` (base command)
@@ -29671,9 +47047,11 @@ Docker images:
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
 **Sample Python Invocation:**
 ```python
@@ -29701,6 +47079,33 @@ print(result)
 | VLAN ID   | IP Address   | Ports   | Port Tagging   | Proxy ARP   | DHCP Helper Address   |
 +===========+==============+=========+================+=============+=======================+
 +-----------+--------------+---------+----------------+-------------+-----------------------+
+```
+
+**Actual Converter Output:**
+```
++-----------+--------------+---------+----------------+-------------+-----------------------+
+| VLAN ID   | IP Address   | Ports   | Port Tagging   | Proxy ARP   | DHCP Helper Address   |
++===========+==============+=========+================+=============+=======================+
++-----------+--------------+---------+----------------+-------------+-----------------------+
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{}
+```
+
+**Expected CLI Output:**
+```
++-----------+--------------+---------+----------------+-------------+-----------------------+
+| VLAN ID   | IP Address   | Ports   | Port Tagging   | Proxy ARP   | DHCP Helper Address   |
++===========+==============+=========+================+=============+=======================+
++-----------+--------------+---------+----------------+-------------+-----------------------+
+
 ```
 
 **Actual Converter Output:**
@@ -29845,6 +47250,86 @@ print(result)
 
 </details>
 
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "Vlan1000": {
+    "dhcp_helper_addresses": [
+      "192.0.0.1",
+      "192.0.0.2",
+      "192.0.0.3",
+      "192.0.0.4",
+      "192.0.0.5",
+      "192.0.0.6",
+      "192.0.0.7",
+      "192.0.0.8",
+      "192.0.0.9",
+      "192.0.0.10",
+      "192.0.0.11",
+      "192.0.0.12",
+      "192.0.0.13",
+      "192.0.0.14",
+      "192.0.0.15",
+      "192.0.0.16",
+      "192.0.0.17",
+... (40 more lines)
+```
+
+**Expected CLI Output:**
+```
++-----------+------------------+---------+----------------+-------------+-----------------------+
+|   VLAN ID | IP Address       | Ports   | Port Tagging   | Proxy ARP   | DHCP Helper Address   |
++===========+==================+=========+================+=============+=======================+
+|      1000 | fc02:1000::1/104 |         |                | disabled    | 192.0.0.1             |
+|           |                  |         |                |             | 192.0.0.2             |
+|           |                  |         |                |             | 192.0.0.3             |
+|           |                  |         |                |             | 192.0.0.4             |
+|           |                  |         |                |             | 192.0.0.5             |
+|           |                  |         |                |             | 192.0.0.6             |
+|           |                  |         |                |             | 192.0.0.7             |
+|           |                  |         |                |             | 192.0.0.8             |
+|           |                  |         |                |             | 192.0.0.9             |
+|           |                  |         |                |             | 192.0.0.10            |
+|           |                  |         |                |             | 192.0.0.11            |
+|           |                  |         |                |             | 192.0.0.12            |
+|           |                  |         |                |             | 192.0.0.13            |
+|           |                  |         |                |             | 192.0.0.14            |
+|           |                  |         |                |             | 192.0.0.15            |
+|           |                  |         |                |             | 192.0.0.16            |
+|           |                  |         |                |             | 192.0.0.17            |
+... (33 more lines)
+```
+
+**Actual Converter Output:**
+```
++-----------+------------------+---------+----------------+-------------+-----------------------+
+| VLAN ID   | IP Address       | Ports   | Port Tagging   | Proxy ARP   | DHCP Helper Address   |
++===========+==================+=========+================+=============+=======================+
+| 1000      | fc02:1000::1/104 |         |                | disabled    | 192.0.0.1             |
+|           |                  |         |                |             | 192.0.0.2             |
+|           |                  |         |                |             | 192.0.0.3             |
+|           |                  |         |                |             | 192.0.0.4             |
+|           |                  |         |                |             | 192.0.0.5             |
+|           |                  |         |                |             | 192.0.0.6             |
+|           |                  |         |                |             | 192.0.0.7             |
+|           |                  |         |                |             | 192.0.0.8             |
+|           |                  |         |                |             | 192.0.0.9             |
+|           |                  |         |                |             | 192.0.0.10            |
+|           |                  |         |                |             | 192.0.0.11            |
+|           |                  |         |                |             | 192.0.0.12            |
+|           |                  |         |                |             | 192.0.0.13            |
+|           |                  |         |                |             | 192.0.0.14            |
+|           |                  |         |                |             | 192.0.0.15            |
+|           |                  |         |                |             | 192.0.0.16            |
+|           |                  |         |                |             | 192.0.0.17            |
+... (32 more lines)
+```
+
+</details>
+
 ---
 
 <a id="70-show-watermark-telemetry-interval"></a>
@@ -29852,16 +47337,18 @@ print(result)
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
-**Status:** ✅ All 4/4 test cases passed (across 4 devices)
+**Status:** ✅ All 6/6 test cases passed (across 6 devices)
 
 **Per-Device Results:**
 
 | Device | Pass | Fail | Error | Skip |
 |--------|------|------|-------|------|
 | `str2-8102-01` | 1 | 0 | 0 | 0 |
+| `str3-8101-02` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-1` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-13` | 1 | 0 | 0 | 0 |
 | `str4-7060x6-512-9` | 1 | 0 | 0 | 0 |
+| `str4-sn5640-7` | 1 | 0 | 0 | 0 |
 
 <a id="70.1-show-watermark-telemetry-interval"></a>
 #### 70.1 `show watermark telemetry interval` (base command)
@@ -29869,9 +47356,11 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -29899,6 +47388,31 @@ print(result)
 ```
 
 Telemetry interval 120 second(s)
+```
+
+**Actual Converter Output:**
+```
+Telemetry interval 120 second(s)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str3-8101-02</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "interval": "120s"
+}
+```
+
+**Expected CLI Output:**
+```
+
+Telemetry interval 120 second(s)
+
+
 ```
 
 **Actual Converter Output:**
@@ -29968,6 +47482,31 @@ Telemetry interval 120 second(s)
 ```
 
 Telemetry interval 120 second(s)
+```
+
+**Actual Converter Output:**
+```
+Telemetry interval 120 second(s)
+```
+
+</details>
+
+<details>
+<summary><b>✅ Device: str4-sn5640-7</b> (click to expand)</summary>
+
+**Input JSON:**
+```json
+{
+  "interval": "120s"
+}
+```
+
+**Expected CLI Output:**
+```
+
+Telemetry interval 120 second(s)
+
+
 ```
 
 **Actual Converter Output:**
