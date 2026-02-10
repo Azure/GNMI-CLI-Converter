@@ -4,7 +4,7 @@ A modular, extensible Python library for converting gNMI JSON responses into hum
 
 ## Version
 
-- **Version**: 2.6.0
+- **Version**: 2.7.0
 - **Author**: SONiC Team
 - **License**: Apache-2.0 (See the SONiC project license)
 - **Last Updated**: February 2026
@@ -1817,7 +1817,18 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 
 ## Version History
 
-### v2.6.0 (February 2026) - Current Release
+### v2.7.0 (February 2026) - Current Release
+- **Test Architecture Refactor**: Migrated from `gnmi_cli_lib_verifying/` to `tests/` with proper pytest structure
+  - Created `tests/core/` module (data_loader, runner, test_case, compare) for reusable test infrastructure
+  - Created `tests/unit/` with parametrized tests, `tests/integration/` for real device verification
+  - Created `tests/reports/` with `generate_all_commands_analysis.py` report generator
+  - Created `tests/tools/` with consolidated `import_device_data.py` (merged `import_new_devices.py`)
+- **Test Optimization**: Merged duplicate classes, lifted shared imports, parametrized edge cases
+- **Coverage**: Configured pytest-cov with 94.70% coverage (threshold 80%)
+- **Test Expansion**: 2058 pytest cases (1388 unit + 23 integration suites), 704 integration test cases across 6 devices
+- **Report Update**: SKIP status renamed to NO_ACCEPTABLE_DATA; removed from summary tables
+
+### v2.6.0 (February 2026)
 - **New Devices**: Added str3-8101-02 and str4-sn5640-7 to test suite (now 6 devices total)
 - **Bug Fix**: Fixed `VlanBriefFormatter` null-handling for ports (`.get("ports") or []` instead of `.get("ports", [])`)
 - **Bug Fix**: Fixed `IPv6BgpNeighborsFormatter` week-format timestamp conversion for `bgpTimerUpMsec`
@@ -1829,7 +1840,7 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 - **Bug Fix**: Fixed `IPv6RouteFormatter` VRF line and weight output conditional logic
 - **Verification Enhancement**: Added internal metadata key filtering (internalFlags, interfaceIndex, etc.) in coverage checks
 - **Test Expansion**: 681 total test cases across 6 devices
-- **Production Ready**: Self-contained library with 100% pass rate verification (1258 unit tests, 681/681 integration tests)
+- **Production Ready**: Self-contained library with 100% pass rate verification
 
 ### v2.5.0 (February 2026)
 - **Bug Fix**: Fixed `show interfaces transceiver error-status <interface>` single-interface output formatting

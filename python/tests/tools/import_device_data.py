@@ -285,6 +285,51 @@ def find_test_data_file_for_command(command: str, options: str) -> Optional[Path
     return None
 
 
+def find_test_data_file_for_command_only(command: str) -> Optional[Path]:
+    """
+    Find the test data JSON file that contains this command (ignoring options).
+    """
+    for json_file in TEST_DATA_DIR.glob('data_*.json'):
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            if data.get('command') == command:
+                return json_file
+        except Exception:
+            continue
+    return None
+
+
+def build_test_data_index() -> Dict[str, Tuple[Path, int]]:
+    """
+    Build an index of gnmi_file -> (json_file_path, test_case_index)
+    by scanning all test data JSON files once.
+
+    This avoids repeatedly scanning all JSON files for each gNMI file
+    during import, providing O(1) lookup instead of O(N*M).
+    """
+    index: Dict[str, Tuple[Path, int]] = {}
+    for json_file in sorted(TEST_DATA_DIR.glob('data_*.json')):
+        try:
+            with open(json_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+
+            for tc_idx, test_case in enumerate(data.get('test_cases', [])):
+                # Check gnmi_file at test_case level
+                if 'gnmi_file' in test_case:
+                    index[test_case['gnmi_file']] = (json_file, tc_idx)
+                # Also check inside devices
+                for _dev_name, device_data in test_case.get('devices', {}).items():
+                    if isinstance(device_data, dict) and 'gnmi_file' in device_data:
+                        gnmi_file = device_data['gnmi_file']
+                        if gnmi_file not in index:
+                            index[gnmi_file] = (json_file, tc_idx)
+        except Exception as e:
+            print(f"  WARNING: Error reading {json_file.name}: {e}")
+
+    return index
+
+
 def parse_cli_command(cli_filename: str) -> Tuple[str, str]:
     """
     Parse CLI filename to extract base command and options.
@@ -323,69 +368,180 @@ def parse_cli_command(cli_filename: str) -> Tuple[str, str]:
     return command, options
 
 
-def update_test_data(device_name: str, gnmi_dir: Path, cli_dir: Path, mapping: Dict[str, str], dry_run: bool = False) -> Tuple[int, int, List[str], List[str]]:
+def extract_input_options_from_gnmi(gnmi_file: str, cli_file: str) -> str:
+    """
+    Extract input_options by comparing gNMI/CLI filenames against base command.
+
+    Uses CLI filename since it preserves the structure more clearly.
+    """
+    name = cli_file.replace('.txt', '').replace('show_', '', 1)
+
+    # Determine base command parts from the gnmi file
+    base_cmd = determine_base_command(gnmi_file)
+    base_parts = base_cmd.replace('show ', '').split(' ')
+
+    # The CLI filename parts
+    name_parts = name.split('_')
+
+    # Remove base command parts from the beginning
+    remaining = name_parts[len(base_parts):]
+
+    if not remaining:
+        return ""
+
+    # Reconstruct options
+    options = []
+    for part in remaining:
+        if part.startswith('--'):
+            options.append(part)
+        else:
+            options.append(part)
+
+    return ' '.join(options)
+
+
+def update_test_data(
+    device_name: str,
+    gnmi_dir: Path,
+    cli_dir: Path,
+    mapping: Dict[str, str],
+    index: Dict[str, Tuple[Path, int]],
+    dry_run: bool = False,
+) -> Tuple[int, int, int, List[str], List[str]]:
     """
     Update test data JSON files with new device data.
-    
+
+    Uses a pre-built index for O(1) gnmi_file lookup and batches file writes
+    for efficiency.  When a gnmi_file is not in the index but its base command
+    has an existing JSON file, a new test case is created inside that file.
+
     Returns:
-        - updated_count: number of test cases updated
-        - new_count: number of new test cases added
+        - updated_count: number of existing test cases updated
+        - created_count: number of new test cases created in existing files
+        - skipped_count: number of test cases skipped (device already present)
         - errors: list of error messages
-        - unmatched: list of gnmi files not matching existing test data
+        - unmatched: list of gnmi files with no matching test data file at all
     """
     updated_count = 0
-    new_count = 0
-    errors = []
-    unmatched = []
-    
+    created_count = 0
+    skipped_count = 0
+    errors: List[str] = []
+    unmatched: List[str] = []
+
+    # Track modified JSON files for batch write at the end
+    modified_files: Dict[str, dict] = {}  # filepath_str -> data
+
     for gnmi_file, cli_file in sorted(mapping.items()):
-        # Read source files
-        gnmi_content = read_file_content(gnmi_dir / gnmi_file)
-        cli_content = read_file_content(cli_dir / cli_file)
-        
-        # Extract data
-        json_str, json_err = extract_json_from_gnmi(gnmi_content)
-        cli_str = extract_cli_from_source(cli_content)
-        
-        # Find which test data file this belongs to
-        found = False
-        for json_file in TEST_DATA_DIR.glob('data_*.json'):
-            try:
-                with open(json_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                
-                # Check if this file has matching gnmi_file
-                updated = False
-                for test_case in data.get('test_cases', []):
-                    if test_case.get('gnmi_file') == gnmi_file:
-                        # Found matching test case - add device data
-                        if 'devices' not in test_case:
-                            test_case['devices'] = {}
-                        
-                        test_case['devices'][device_name] = {
-                            'json_string': json_str,
-                            'json_error': json_err,
-                            'cli_string': cli_str,
-                            'cli_error': None
-                        }
-                        updated = True
-                        found = True
-                        updated_count += 1
-                        break
-                
-                if updated:
-                    if not dry_run:
-                        with open(json_file, 'w', encoding='utf-8') as f:
-                            json.dump(data, f, indent=2, ensure_ascii=False)
+        if gnmi_file in index:
+            # ── Existing test case: append device data ──
+            json_file_path, tc_idx = index[gnmi_file]
+            json_key = str(json_file_path)
+
+            if json_key not in modified_files:
+                try:
+                    with open(json_file_path, 'r', encoding='utf-8') as f:
+                        modified_files[json_key] = json.load(f)
+                except Exception as e:
+                    errors.append(f"Error loading {json_file_path.name}: {e}")
+                    continue
+
+            data = modified_files[json_key]
+            test_case = data['test_cases'][tc_idx]
+
+            if device_name in test_case.get('devices', {}):
+                skipped_count += 1
+                continue
+
+            gnmi_content = read_file_content(gnmi_dir / gnmi_file)
+            cli_content = read_file_content(cli_dir / cli_file)
+            json_str, json_err = extract_json_from_gnmi(gnmi_content)
+            cli_str = extract_cli_from_source(cli_content)
+
+            if 'devices' not in test_case:
+                test_case['devices'] = {}
+
+            test_case['devices'][device_name] = {
+                'cli_file': cli_file,
+                'gnmi_file': gnmi_file,
+                'json_string': json_str,
+                'json_error': json_err,
+                'cli_string': cli_str,
+                'cli_error': None,
+            }
+            updated_count += 1
+
+        else:
+            # ── No existing test case: try to add to matching command file ──
+            base_cmd = determine_base_command(gnmi_file)
+            test_data_file = find_test_data_file_for_command_only(base_cmd)
+
+            if test_data_file is None:
+                unmatched.append(gnmi_file)
+                continue
+
+            json_key = str(test_data_file)
+            if json_key not in modified_files:
+                try:
+                    with open(test_data_file, 'r', encoding='utf-8') as f:
+                        modified_files[json_key] = json.load(f)
+                except Exception as e:
+                    errors.append(f"Error loading {test_data_file.name}: {e}")
+                    continue
+
+            data = modified_files[json_key]
+            input_opts = extract_input_options_from_gnmi(gnmi_file, cli_file)
+
+            # Check if a test_case with same input_options already exists
+            existing_tc = None
+            for tc in data['test_cases']:
+                if tc.get('input_options') == input_opts:
+                    existing_tc = tc
                     break
-                    
+
+            gnmi_content = read_file_content(gnmi_dir / gnmi_file)
+            cli_content = read_file_content(cli_dir / cli_file)
+            json_str, json_err = extract_json_from_gnmi(gnmi_content)
+            cli_str = extract_cli_from_source(cli_content)
+
+            device_entry = {
+                'cli_file': cli_file,
+                'gnmi_file': gnmi_file,
+                'json_string': json_str,
+                'json_error': json_err,
+                'cli_string': cli_str,
+                'cli_error': None,
+            }
+
+            if existing_tc is not None:
+                if device_name not in existing_tc.get('devices', {}):
+                    if 'devices' not in existing_tc:
+                        existing_tc['devices'] = {}
+                    existing_tc['devices'][device_name] = device_entry
+                    updated_count += 1
+                else:
+                    skipped_count += 1
+            else:
+                # Create new test case in the existing file
+                new_tc = {
+                    'input_options': input_opts,
+                    'devices': {device_name: device_entry},
+                }
+                data['test_cases'].append(new_tc)
+                # Update index so subsequent lookups can find it
+                index[gnmi_file] = (test_data_file, len(data['test_cases']) - 1)
+                created_count += 1
+
+    # ── Batch write all modified files ──
+    if not dry_run:
+        for json_key, data in modified_files.items():
+            try:
+                with open(json_key, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                    f.write('\n')
             except Exception as e:
-                errors.append(f"Error processing {json_file.name}: {e}")
-        
-        if not found:
-            unmatched.append(gnmi_file)
-    
-    return updated_count, new_count, errors, unmatched
+                errors.append(f"Error writing {json_key}: {e}")
+
+    return updated_count, created_count, skipped_count, errors, unmatched
 
 
 def determine_base_command(gnmi_file: str) -> str:
@@ -674,82 +830,63 @@ def main():
         print(f"\nDetailed report saved to: {report_file}")
         sys.exit(1)
     
-    # Check which test cases we can match
+    # Build index for efficient lookup
     print(f"\n{'=' * 40}")
-    print("STEP 2: Matching with existing test data...")
+    print("STEP 2: Building test data index...")
     print(f"{'=' * 40}")
-    
-    matched_tests = 0
-    unmatched_gnmi = []
-    
-    for gnmi_file in sorted(mapping.keys()):
-        found = False
-        for json_file in TEST_DATA_DIR.glob('data_*.json'):
-            try:
-                with open(json_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                
-                for test_case in data.get('test_cases', []):
-                    if test_case.get('gnmi_file') == gnmi_file:
-                        found = True
-                        matched_tests += 1
-                        break
-                
-                if found:
-                    break
-            except Exception:
-                continue
-        
-        if not found:
-            unmatched_gnmi.append(gnmi_file)
-    
-    print(f"\n  Matched to existing test cases: {matched_tests}")
-    print(f"  Not in existing test data: {len(unmatched_gnmi)}")
-    
-    if unmatched_gnmi:
-        print(f"\n  Files not in existing test data:")
-        for f in unmatched_gnmi[:15]:
-            print(f"    - {f}")
-        if len(unmatched_gnmi) > 15:
-            print(f"    ... and {len(unmatched_gnmi) - 15} more")
-    
-    # Perform import
-    if matched_tests > 0:
-        print(f"\n{'=' * 40}")
-        print("STEP 3: Updating existing test data...")
-        print(f"{'=' * 40}")
-        
-        updated, new, errors, unmatched = update_test_data(device_name, gnmi_dir, cli_dir, mapping, dry_run)
-        
-        print(f"\n  Updated test cases: {updated}")
-        print(f"  Errors: {len(errors)}")
-        
-        if errors:
-            for err in errors[:10]:
-                print(f"    - {err}")
-        
-        if dry_run:
-            print("\n  (DRY RUN - no files were modified)")
-    
-    # Create new test data files for unmatched commands
+
+    index = build_test_data_index()
+    matched = sum(1 for g in mapping if g in index)
+    print(f"\n  Indexed {len(index)} gNMI file entries across test data files")
+    print(f"  Matched to existing test cases: {matched}")
+    print(f"  Not yet in test data: {len(mapping) - matched}")
+
+    # Import data
+    print(f"\n{'=' * 40}")
+    print("STEP 3: Importing device data...")
+    print(f"{'=' * 40}")
+
+    updated, created, skipped, errors, unmatched_gnmi = update_test_data(
+        device_name, gnmi_dir, cli_dir, mapping, index, dry_run
+    )
+
+    print(f"\n  Updated existing test cases: {updated}")
+    print(f"  Created new test cases (in existing files): {created}")
+    print(f"  Skipped (device already present): {skipped}")
+    print(f"  Errors: {len(errors)}")
+
+    if errors:
+        for err in errors[:10]:
+            print(f"    - {err}")
+
+    if dry_run:
+        print("\n  (DRY RUN - no files were modified)")
+
+    # Create new test data files for completely unmatched commands
     if unmatched_gnmi:
         print(f"\n{'=' * 40}")
         print("STEP 4: Creating new test data files...")
         print(f"{'=' * 40}")
-        
-        created, create_errors = create_new_test_data_files(
+        print(f"\n  Unmatched gNMI files (no matching command file):")
+        for f in unmatched_gnmi[:15]:
+            base = determine_base_command(f)
+            print(f"    - {f}  (base cmd: {base})")
+        if len(unmatched_gnmi) > 15:
+            print(f"    ... and {len(unmatched_gnmi) - 15} more")
+
+        created_files, create_errors = create_new_test_data_files(
             device_name, gnmi_dir, cli_dir, unmatched_gnmi, mapping, dry_run
         )
-        
-        print(f"\n  New test data files created: {created}")
-        
+
+        print(f"\n  New test data files created: {created_files}")
+
         if create_errors:
             for err in create_errors[:10]:
                 print(f"    - {err}")
-        
+
         if dry_run:
             print("\n  (DRY RUN - no files were created)")
-    
+
     print(f"\n{'=' * 40}")
     print("IMPORT COMPLETE")
     print(f"{'=' * 40}")

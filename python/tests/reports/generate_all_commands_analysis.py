@@ -40,9 +40,11 @@ REPORT_PATH = Path(__file__).resolve().parent / "ALL_COMMANDS_ANALYSIS.md"
 
 DEVICES = [
     "str2-8102-01",
+    "str3-8101-02",
     "str4-7060x6-512-1",
     "str4-7060x6-512-13",
     "str4-7060x6-512-9",
+    "str4-sn5640-7",
 ]
 
 MAX_OUTPUT_LINES = 20  # truncate long blocks in report
@@ -72,14 +74,14 @@ _STATUS_ICON = {
     "PASS": "✅ PASS",
     "FAIL": "❌ FAIL",
     "ERROR": "⚠️ ERROR",
-    "SKIP": "⏭️ SKIP",
+    "SKIP": "⏭️ NO_ACCEPTABLE_DATA",
 }
 
 _STATUS_ICON_SHORT = {
     "PASS": "✅",
     "FAIL": "❌",
     "ERROR": "⚠️",
-    "SKIP": "⏭️",
+    "SKIP": "⏭️",  # NO_ACCEPTABLE_DATA
 }
 
 
@@ -112,7 +114,7 @@ def generate() -> str:  # noqa: C901 — intentionally monolithic for single-fil
 
     # ── global aggregates ──
     total = sum(len(r) for r in suite_results.values())
-    g_pass = g_fail = g_error = g_skip = 0
+    g_pass = g_fail = g_error = g_no_data = 0
     dev_stats: Dict[str, Dict[str, int]] = {d: defaultdict(int) for d in DEVICES}
 
     for results in suite_results.values():
@@ -124,7 +126,7 @@ def generate() -> str:  # noqa: C901 — intentionally monolithic for single-fil
             elif status == CaseStatus.ERROR:
                 g_error += 1
             elif status == CaseStatus.SKIP:
-                g_skip += 1
+                g_no_data += 1
             dname = tc.device.device_name
             if dname in dev_stats:
                 dev_stats[dname][status.value] += 1
@@ -174,37 +176,35 @@ def generate() -> str:  # noqa: C901 — intentionally monolithic for single-fil
     w(f"| ✅ PASS | {g_pass} |")
     w(f"| ❌ FAIL | {g_fail} |")
     w(f"| ⚠️ ERROR | {g_error} |")
-    w(f"| ⏭️ SKIP (data error) | {g_skip} |")
+    w(f"| ⏭️ NO_ACCEPTABLE_DATA | {g_no_data} |")
     w(f"| **Pass Rate** | **{pass_rate:.1f}%** |")
     w("")
 
     # ── Per-Device Summary ──
     w("## Per-Device Summary")
     w("")
-    w("| Device | Total | ✅ Pass | ❌ Fail | ⚠️ Error | ⏭️ Skip | Pass Rate |")
-    w("|--------|-------|---------|---------|----------|---------|-----------|")
+    w("| Device | Total | ✅ Pass | ❌ Fail | ⚠️ Error | Pass Rate |")
+    w("|--------|-------|---------|---------|----------|-----------|")
     for d in DEVICES:
         ds = dev_stats[d]
-        dt = sum(ds.values())
         dp = ds.get("PASS", 0)
         df = ds.get("FAIL", 0)
         de = ds.get("ERROR", 0)
-        dk = ds.get("SKIP", 0)
-        dr = dp + df + de
-        drate = (dp / dr * 100) if dr else 0
-        w(f"| `{d}` | {dt} | {dp} | {df} | {de} | {dk} | {drate:.1f}% |")
+        dt = dp + df + de
+        drate = (dp / dt * 100) if dt else 0
+        w(f"| `{d}` | {dt} | {dp} | {df} | {de} | {drate:.1f}% |")
     w("")
 
     # ── Quick Reference ──
     w("## Quick Reference by Command")
     w("")
-    w("| # | Command | Variants | Pass | Fail | Error | Skip |")
-    w("|---|---------|----------|------|------|-------|------|")
+    w("| # | Command | Variants | Pass | Fail | Error |")
+    w("|---|---------|----------|------|------|-------|")
 
     for si, suite in enumerate(suites):
         results = suite_results[si]
         variants = set()
-        sp = sf = se = sk = 0
+        sp = sf = se = 0
         for tc, status, _m, _a in results:
             variants.add(tc.input_options)
             if status == CaseStatus.PASS:
@@ -213,11 +213,10 @@ def generate() -> str:  # noqa: C901 — intentionally monolithic for single-fil
                 sf += 1
             elif status == CaseStatus.ERROR:
                 se += 1
-            elif status == CaseStatus.SKIP:
-                sk += 1
+            # NO_ACCEPTABLE_DATA (SKIP) not counted in quick reference
         anchor = _make_anchor(suite.command_index, suite.command)
         idx_str = f"{suite.command_index:02d}"
-        w(f"| {idx_str} | [`{suite.command}`](#{anchor}) | {len(variants)} | {sp} | {sf} | {se} | {sk} |")
+        w(f"| {idx_str} | [`{suite.command}`](#{anchor}) | {len(variants)} | {sp} | {sf} | {se} |")
 
     w("")
     w("---")
@@ -243,14 +242,12 @@ def generate() -> str:  # noqa: C901 — intentionally monolithic for single-fil
         sp = sum(1 for _, s, _, _ in results if s == CaseStatus.PASS)
         sf = sum(1 for _, s, _, _ in results if s == CaseStatus.FAIL)
         se = sum(1 for _, s, _, _ in results if s == CaseStatus.ERROR)
-        sk = sum(1 for _, s, _, _ in results if s == CaseStatus.SKIP)
-        total_cmd = sp + sf + se + sk
         run_cmd = sp + sf + se
 
         if sf + se == 0:
-            w(f"**Status:** ✅ All {run_cmd}/{total_cmd} test cases passed (across {len(DEVICES)} devices)")
+            w(f"**Status:** ✅ All {run_cmd} test cases passed (across {len(DEVICES)} devices)")
         else:
-            w(f"**Status:** ❌ {sf + se} failures out of {total_cmd} test cases")
+            w(f"**Status:** ❌ {sf + se} failures out of {run_cmd} test cases")
         w("")
 
         # Per-device results table
@@ -262,12 +259,13 @@ def generate() -> str:  # noqa: C901 — intentionally monolithic for single-fil
 
         w("**Per-Device Results:**")
         w("")
-        w("| Device | Pass | Fail | Error | Skip |")
-        w("|--------|------|------|-------|------|")
+        w("| Device | Pass | Fail | Error |")
+        w("|--------|------|------|-------|")
         for d in DEVICES:
             cd = cmd_dev[d]
-            if sum(cd.values()) > 0:
-                w(f"| `{d}` | {cd.get('PASS',0)} | {cd.get('FAIL',0)} | {cd.get('ERROR',0)} | {cd.get('SKIP',0)} |")
+            dt = cd.get('PASS', 0) + cd.get('FAIL', 0) + cd.get('ERROR', 0)
+            if dt > 0:
+                w(f"| `{d}` | {cd.get('PASS',0)} | {cd.get('FAIL',0)} | {cd.get('ERROR',0)} |")
         w("")
 
         # Group results by variant (input_options)
@@ -337,7 +335,7 @@ def generate() -> str:  # noqa: C901 — intentionally monolithic for single-fil
                 w("**Actual Converter Output:**")
                 w("```")
                 if status == CaseStatus.SKIP:
-                    w(f"(skipped: {method})")
+                    w(f"(no acceptable data: {method})")
                 else:
                     w(_truncate(actual or "(empty output)"))
                 w("```")
