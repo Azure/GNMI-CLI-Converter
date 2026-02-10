@@ -1,0 +1,42 @@
+{
+  "command": "show uptime",
+  "test_cases": [
+    {
+      "input_options": "",
+      "devices": {
+        "str4-7060x6-512-9": {
+          "cli_file": "show_uptime.txt",
+          "gnmi_file": "gnmi-get-uptime.txt",
+          "json_string": "{\"uptime\":\"up 1 day, 4 hours, 17 minutes\"}",
+          "json_error": null,
+          "cli_string": "up 1 day, 4 hours, 17 minutes",
+          "cli_error": null
+        },
+        "str4-7060x6-512-13": {
+          "cli_file": "show_uptime.txt",
+          "gnmi_file": "gnmi-get-uptime.txt",
+          "json_string": "{\"uptime\":\"up 1 day, 19 hours, 49 minutes\"}",
+          "json_error": null,
+          "cli_string": "up 1 day, 19 hours, 49 minutes",
+          "cli_error": null
+        },
+        "str2-8102-01": {
+          "cli_file": "show_uptime.txt",
+          "gnmi_file": "gnmi-get-uptime.txt",
+          "json_string": "{\"uptime\":\"up 1 day, 9 hours, 21 minutes\"}",
+          "json_error": null,
+          "cli_string": "up 1 day, 9 hours, 20 minutes",
+          "cli_error": null
+        },
+        "str4-7060x6-512-1": {
+          "cli_file": "show_uptime.txt",
+          "gnmi_file": "gnmi-get-uptime.txt",
+          "json_string": "{\"uptime\":\"up 5 days, 8 hours, 10 minutes\"}",
+          "json_error": null,
+          "cli_string": "up 5 days, 8 hours, 8 minutes",
+          "cli_error": null
+        }
+      }
+    }
+  ]
+}
