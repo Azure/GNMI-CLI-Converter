@@ -47,6 +47,25 @@ Homepage = "https://github.com/sonic-net/sonic-gnmi"
 Documentation = "https://github.com/sonic-net/sonic-gnmi"
 Repository = "https://github.com/sonic-net/sonic-gnmi"
 
+[tool.coverage.run]
+source = ["gnmi_cli_lib"]
+omit = [
+    "tests/*",
+    "gnmi_cli_lib_verifying/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.",
+    "if TYPE_CHECKING:",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
 [tool.setuptools]
 packages = [
     "gnmi_cli_lib",

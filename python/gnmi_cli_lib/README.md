@@ -1577,8 +1577,17 @@ Unit and integration tests live under `python/tests/`.
 cd ../
 python -m pytest tests/unit -v
 
-# With coverage
-python -m pytest tests/unit -v --cov=gnmi_cli_lib --cov-report=term-missing
+# With coverage (terminal report)
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-report=term-missing
+
+# With coverage (HTML interactive report)
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-report=html
+
+# With coverage (XML report for CI)
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-report=xml
+
+# Fail if coverage drops below 80%
+python -m pytest tests/unit --cov=gnmi_cli_lib --cov-fail-under=80
 ```
 
 ### Running Integration Tests
@@ -1597,79 +1606,36 @@ cd ../gnmi_cli_lib_verifying
 python generate_all_commands_analysis.py
 ```
 
-### Running Unit Tests
+### Coverage Overview
 
-```bash
-# From the gnmi_cli_lib directory
-cd gnmi_cli_lib
-python -m pytest tests.py -v
+**Overall: 94.70% (2983 statements, 158 missed) — Threshold: 80%** ✅
 
-# Run with coverage
-python -m pytest tests.py -v --cov=. --cov-report=html
+| Module | Stmts | Miss | Cover | Note |
+|--------|------:|-----:|------:|------|
+| `__init__.py` | 9 | 0 | 100% | |
+| `cli.py` | 93 | 2 | 98% | |
+| `commands.py` | 102 | 0 | 100% | |
+| `common/constants.py` | 15 | 0 | 100% | |
+| `common/types.py` | 33 | 0 | 100% | |
+| `convenience.py` | 124 | 0 | 100% | |
+| `converter.py` | 52 | 1 | 98% | |
+| `formatters/base.py` | 108 | 1 | 99% | |
+| `formatters/dropcounters.py` | 84 | 1 | 99% | |
+| `formatters/interface.py` | 333 | 12 | 96% | |
+| `formatters/ipv6.py` | 755 | 90 | 88% | ⚠️ Largest uncovered |
+| `formatters/network.py` | 275 | 11 | 96% | |
+| `formatters/queue.py` | 112 | 3 | 97% | |
+| `formatters/system.py` | 250 | 7 | 97% | |
+| `formatters/transceiver.py` | 258 | 13 | 95% | |
+| `formatters/watermark.py` | 56 | 1 | 98% | |
+| `mappings.py` | 3 | 0 | 100% | |
+| `parser.py` | 165 | 13 | 92% | |
+| `registry.py` | 68 | 0 | 100% | |
+| `utils/parsing.py` | 66 | 3 | 95% | |
+| `utils/sorting.py` | 8 | 0 | 100% | |
+| **TOTAL** | **2983** | **158** | **95%** | |
 
-# Run specific test class
-python -m pytest tests.py::TestCommandParser -v
-
-# Run tests matching a pattern
-python -m pytest tests.py -k "buffer_pool" -v
-
-# Run command coverage tests
-python -m pytest tests.py::TestCommandCoverage -v
-
-# Run all tests (unit + real device)
-python -m pytest . -v
-```
-
-### Test Organization
-
-| Test Suite | Tests | Description |
-|------------|-------|-------------|
-| **Unit Tests** (`tests.py`) | 1258 | Core library unit tests (97% coverage) |
-| **Real Device Tests** (`real_device_tests/`) | 406 | Production device verification |
-
-#### Unit Test Classes (`tests.py`)
-
-| Test Class | Tests | Description |
-|------------|-------|-------------|
-| `TestImports` | 13 | Import validation |
-| `TestCommandRegistry` | 18 | Registry operations |
-| `TestBaseFormatters` | 3 | Base formatter tests |
-| `TestDropcountersFormatters` | 6 | Drop counter formatters |
-| `TestSystemFormatters` | 4 | System formatters |
-| `TestInterfaceFormatters` | 3 | Interface formatters |
-| `TestNetworkFormatters` | 4 | Network formatters |
-| `TestQueueFormatters` | 2 | Queue formatters |
-| `TestGnmiToCliConverter` | 18 | Converter tests |
-| `TestConvertFromCliCommand` | 11 | CLI command conversion |
-| `TestConvenienceFunctions` | 22 | Convenience function tests |
-| `TestUtilityFunctions` | 7 | Utility function tests |
-| `TestCliToGnmiMapping` | 8 | CLI mapping tests |
-| `TestTestDataModule` | 4 | Test data tests |
-| `TestEdgeCases` | 14 | Edge case tests |
-| `TestIntegration` | 3 | Integration tests |
-| `TestTableFormats` | 3 | Table format tests |
-| `TestCliModule` | 7 | CLI module tests |
-| `TestParserModuleExtended` | 8 | Extended parser tests |
-| `TestConvenienceFunctionsExtended` | 6 | Extended convenience tests |
-| `TestFormatterExtended` | 14 | Extended formatter tests |
-| `TestUtilityFunctionsExtended` | 5 | Extended utility tests |
-| `TestCommonTypes` | 4 | Common type tests |
-| `TestConstants` | 4 | Constants tests |
-| `TestEnhancedCommands` | 29 | Enhanced command tests |
-| `TestAllCommandsAvailable` | 3 | Command availability tests |
-| `TestCommandParser` | 18 | Command parser tests |
-| `TestNewConvenienceFunctions` | 16 | New convenience functions |
-| `TestNewCliMappings` | 8 | New CLI mapping tests |
-| `TestSampleCliOutputs` | 11 | Sample CLI output tests |
-| `TestCommandCoverage` | 3 | **Full command coverage verification** |
-| `TestEveryCommandWithExpectedOutput` | 46 | **Individual command tests with JSON input/CLI output** |
-
-#### Real Device Test Classes (`real_device_tests/test_real_device.py`)
-
-| Test Class | Tests | Description |
-|------------|-------|-------------|
-| `TestRealDeviceConversion` | 406 | **Parametrized tests for each command/device/variant** |
-| `TestRealDeviceSummary` | 3 | Summary validation (file count, device coverage, test count) |
+Coverage configuration is defined in [`pyproject.toml`](pyproject.toml) under `[tool.coverage.*]` sections.
 
 ### Command Coverage Guarantees
 
