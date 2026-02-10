@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEST_DATA_DIR = BASE_DIR / "fixtures" / "commands"
+TEST_DATA_DIR = BASE_DIR / "fixtures" / "real_device_data"
 
 
 def read_file_content(filepath: Path) -> Optional[str]:
