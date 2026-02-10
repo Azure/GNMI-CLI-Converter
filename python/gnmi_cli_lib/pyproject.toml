@@ -53,15 +53,4 @@ packages = [
     "gnmi_cli_lib.common",
     "gnmi_cli_lib.formatters",
     "gnmi_cli_lib.utils",
-    "gnmi_cli_lib.real_device_tests",
 ]
-
-[tool.setuptools.package-data]
-"gnmi_cli_lib.real_device_tests" = ["test_data/*.json"]
-
-[tool.pytest.ini_options]
-testpaths = [".", "real_device_tests"]
-python_files = ["tests.py", "test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-addopts = "-v --tb=short"
