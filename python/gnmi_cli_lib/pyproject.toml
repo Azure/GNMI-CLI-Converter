@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gnmi_cli_lib"
-version = "2.5.0"
+version = "2.7.0"
 description = "A modular Python library for converting gNMI JSON responses into SONiC CLI output format"
 readme = "README.md"
 license = {text = "Apache-2.0"}
@@ -51,7 +51,6 @@ Repository = "https://github.com/sonic-net/sonic-gnmi"
 source = ["gnmi_cli_lib"]
 omit = [
     "tests/*",
-    "gnmi_cli_lib_verifying/*",
 ]
 
 [tool.coverage.report]
