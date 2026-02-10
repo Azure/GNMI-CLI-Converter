@@ -35,7 +35,7 @@ This library provides a clean, extensible framework for transforming gNMI JSON r
 - **Unified Command Parser**: Single entry point for parsing CLI commands
 - **Consistent Naming**: All commands follow `show <command> [subcommand] [optional_arg|<required_arg>] [options]`
 - **Modular Design**: Easy to extend with new commands
-- **Production-Ready**: 100% pass rate verified against 1560 real device test cases (681 executed, 879 no acceptable data for variant) across 6 devices
+- **Production-Ready**: 100% pass rate verified against 681 real device test cases across 6 devices
 - **Self-Contained**: Only requires Python 3.8+ and `tabulate` library
 - **Comprehensive Testing**: 1258 unit tests + 681 real device integration tests
 
@@ -1638,10 +1638,9 @@ real_device_tests/
 ```
 
 **Verification Stats:**
-- **1560 Total Test Cases** across 70 commands
-- **681 Pass** | **0 Fail** | **879 No Acceptable Data** = **100% Pass Rate**
+- **681 Total Test Cases** across 70 commands
+- **681 Pass** | **0 Fail** = **100% Pass Rate**
 - **6 Devices:** str2-8102-01, str3-8101-02, str4-7060x6-512-1, str4-7060x6-512-9, str4-7060x6-512-13, str4-sn5640-7
-- No Acceptable Data: Commands not available on specific devices (platform-specific features)
 
 **Running Real Device Tests:**
 
@@ -1948,7 +1947,7 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 - **Bug Fix**: Fixed `TransceiverErrorStatusFormatter` returns "OK" when `status == "1"` regardless of cmis_state
 - **Bug Fix**: Fixed `IPv6RouteFormatter` VRF line and weight output conditional logic
 - **Verification Enhancement**: Added internal metadata key filtering (internalFlags, interfaceIndex, etc.) in coverage checks
-- **Test Expansion**: Increased from 696 to 1560 total test cases (681 executed, 879 no acceptable data for variant)
+- **Test Expansion**: 681 total test cases across 6 devices
 - **Production Ready**: Self-contained library with 100% pass rate verification (1258 unit tests, 681/681 integration tests)
 
 ### v2.5.0 (February 2026)

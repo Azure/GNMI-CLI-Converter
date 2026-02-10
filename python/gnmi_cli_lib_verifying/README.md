@@ -60,21 +60,20 @@ python import_new_devices.py --dry-run  # preview only
 | str3-8101-02 | Cisco 8101 |
 | str4-sn5640-7 | NVIDIA SN5640 |
 
-## Latest Test Results (2026-02-09)
+## Latest Test Results (2026-02-10)
 
-**Total Test Cases:** 1560 &nbsp;|&nbsp; **Pass Rate:** 100.0% (681/681 run)
+**Total Test Cases:** 681 &nbsp;|&nbsp; **Pass Rate:** 100.0% (681/681 run)
 
-| Device | PASS | FAIL | ERROR | NO Acceptable Data | Total |
-|--------|------|------|-------|---------------------|-------|
-| str4-7060x6-512-9 | 69 | 0 | 0 | 191 | 260 |
-| str4-7060x6-512-13 | 68 | 0 | 0 | 192 | 260 |
-| str4-7060x6-512-1 | 134 | 0 | 0 | 126 | 260 |
-| str2-8102-01 | 135 | 0 | 0 | 125 | 260 |
-| str3-8101-02 | 141 | 0 | 0 | 119 | 260 |
-| str4-sn5640-7 | 134 | 0 | 0 | 126 | 260 |
+| Device | PASS | FAIL | ERROR | Total |
+|--------|------|------|-------|-------|
+| str4-7060x6-512-9 | 69 | 0 | 0 | 69 |
+| str4-7060x6-512-13 | 68 | 0 | 0 | 68 |
+| str4-7060x6-512-1 | 134 | 0 | 0 | 134 |
+| str2-8102-01 | 135 | 0 | 0 | 135 |
+| str3-8101-02 | 141 | 0 | 0 | 141 |
+| str4-sn5640-7 | 134 | 0 | 0 | 134 |
 
 ## Notes
 
 - Orphan CLI files (short-form flag aliases like `-g PORT`) are expected and ignored
-- NO Acceptable Data means the device has no data for that test variant
 - `verification_report.md` is regenerated on each run

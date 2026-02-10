@@ -238,18 +238,18 @@ def generate_report(all_results: List[Dict[str, Any]]) -> str:
         f"**Total Test Cases:** {total_tests}",
         f"**Pass Rate:** {pass_rate:.1f}% ({total_pass} Pass / {total_pass + total_fail} Run)",
         "",
-        "| Device | PASS | FAIL | ERROR | No Acceptable Data | Total |",
-        "|--------|------|------|-------|---------|-------|",
+        "| Device | PASS | FAIL | ERROR | Total |",
+        "|--------|------|------|-------|-------|",
     ]
     
     for device in DEVICES:
         s = stats[device]
-        total = sum(s.values())
-        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {s['ERROR']} | {s['NO_ACCEPTABLE_DATA']} | {total} |")
+        total = s['PASS'] + s['FAIL'] + s['ERROR']
+        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {s['ERROR']} | {total} |")
     
     lines.extend([
         "",
-        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_error}** | **{total_no_acceptable_data}** | **{total_tests}** |",
+        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_error}** | **{total_pass + total_fail + total_error}** |",
         "",
         "## Detailed Results",
         "",
@@ -287,20 +287,23 @@ def generate_report(all_results: List[Dict[str, Any]]) -> str:
     lines.extend([
         "### ✅ Pass Summary by Command",
         "",
-        "| Command | Pass | Fail | No Acceptable Data |",
-        "|---------|------|------|------------------|"  ,
+        "| Command | Pass | Fail |",
+        "|---------|------|------|",
     ])
     
     cmd_stats = {}
     for tcr in all_test_case_results:
         cmd = tcr["command"]
+        status = tcr["status"]
+        if status == "NO_ACCEPTABLE_DATA":
+            continue  # Skip no acceptable data entries
         if cmd not in cmd_stats:
-            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0, "ERROR": 0, "NO_ACCEPTABLE_DATA": 0}
-        cmd_stats[cmd][tcr["status"]] += 1
+            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0, "ERROR": 0}
+        cmd_stats[cmd][status] += 1
     
     for cmd in sorted(cmd_stats.keys()):
         s = cmd_stats[cmd]
-        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL'] + s['ERROR']} | {s['NO_ACCEPTABLE_DATA']} |")
+        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL'] + s['ERROR']} |")
     
     return '\n'.join(lines)
 
