@@ -37,7 +37,7 @@ This library provides a clean, extensible framework for transforming gNMI JSON r
 - **Modular Design**: Easy to extend with new commands
 - **Production-Ready**: 100% pass rate verified against 681 real device test cases across 6 devices
 - **Self-Contained**: Only requires Python 3.8+ and `tabulate` library
-- **Comprehensive Testing**: 1258 unit tests + 681 real device integration tests
+- **Comprehensive Testing**: Unit + integration tests under `python/tests/`
 
 ---
 
@@ -145,10 +145,10 @@ print(output)
 | | [formatters/queue.py](formatters/queue.py) | Queue counter formatters |
 | | [formatters/dropcounters.py](formatters/dropcounters.py) | Drop counter formatters |
 | | [formatters/watermark.py](formatters/watermark.py) | Watermark formatters |
-| **Testing** | [tests.py](tests.py) | Unit test suite (1258 tests, 97% coverage) |
-| | [test_data.py](test_data.py) | Test data fixtures |
-| | [real_device_tests/](real_device_tests/) | Real device verification suite (681 tests) |
-| | [real_device_tests/verification_report.md](real_device_tests/verification_report.md) | Latest test results report |
+| **Testing** | [../tests/unit/](../tests/unit/) | Unit test suite |
+| | [../tests/fixtures/sample_data.py](../tests/fixtures/sample_data.py) | Test data fixtures |
+| | [../tests/integration/](../tests/integration/) | Integration verification suite |
+| | [../tests/reports/ALL_COMMANDS_ANALYSIS.md](../tests/reports/ALL_COMMANDS_ANALYSIS.md) | Auto-generated analysis report |
 | **Config** | [pyproject.toml](pyproject.toml) | Package configuration |
 | | [requirements.txt](requirements.txt) | Dependencies |
 
@@ -164,8 +164,6 @@ gnmi_cli_lib/
 ├── convenience.py        # 35+ convenience functions
 ├── mappings.py           # CLI_TO_GNMI_MAPPING dictionary
 ├── cli.py                # Command-line interface
-├── test_data.py          # Test data fixtures (for unit tests)
-├── tests.py              # Unit test suite (1258 tests, 97% coverage)
 ├── pyproject.toml        # Package configuration
 ├── requirements.txt      # Dependencies
 ├── .gitignore            # Git ignore patterns
@@ -185,13 +183,7 @@ gnmi_cli_lib/
 │   ├── queue.py          # Queue counter formatters
 │   ├── dropcounters.py   # Drop counter formatters
 │   └── watermark.py      # Watermark formatters
-└── real_device_tests/    # Real device verification suite (681 tests)
-    ├── __init__.py
-    ├── verification.py   # Multi-step comparison logic
-    ├── test_runner.py    # Standalone test runner (regenerates report)
-    ├── test_real_device.py  # Pytest integration
-    ├── verification_report.md  # Auto-generated test results
-    └── test_data/        # 70 JSON files with device captures
+└── ../tests/             # Tests live under python/tests (unit + integration + reports)
 ```
 
 ---
@@ -1568,119 +1560,42 @@ except json.JSONDecodeError as e:
 
 ## Testing
 
-The library includes a comprehensive test suite with **1258 unit tests** ensuring **97% code coverage**, 
-plus an integrated **real device verification system** with **681 tests from 6 production SONiC switches**.
+Unit and integration tests live under `python/tests/`.
 
 ### Quick Links
 
 | Resource | Description |
 |----------|-------------|
-| [tests.py](tests.py) | Unit test suite (1258 tests) |
-| [real_device_tests/](real_device_tests/) | Integration test suite |
-| [real_device_tests/verification_report.md](real_device_tests/verification_report.md) | **Latest test results** (auto-generated) |
-| [real_device_tests/test_data/](real_device_tests/test_data/) | 70 JSON files with real device captures |
+| [../tests/unit/](../tests/unit/) | Unit test suite |
+| [../tests/integration/](../tests/integration/) | Integration verification suite |
+| [../tests/fixtures/sample_data.py](../tests/fixtures/sample_data.py) | Test data fixtures |
+| [../tests/reports/ALL_COMMANDS_ANALYSIS.md](../tests/reports/ALL_COMMANDS_ANALYSIS.md) | Auto-generated analysis report |
 
-### Test Summary
-
-| Test Suite | Tests | Status | Coverage |
-|------------|-------|--------|----------|
-| **Unit Tests** ([tests.py](tests.py)) | 1258 pass | ✅ 100% pass | 97% code coverage |
-| **Real Device Tests** ([real_device_tests/](real_device_tests/)) | 681 pass, 0 fail | ✅ 100% pass | N/A |
-| **Total** | **1664 tests** | ✅ All passing | |
-
-### Code Coverage Breakdown
-
-| Module | Coverage | Description |
-|--------|----------|-------------|
-| `__init__.py` | 100% | Package exports |
-| `commands.py` | 100% | Command registration |
-| `convenience.py` | 100% | Convenience functions |
-| `mappings.py` | 100% | CLI mappings |
-| `common/constants.py` | 100% | Constants |
-| `common/types.py` | 100% | Type definitions |
-| `common/__init__.py` | 100% | Common exports |
-| `formatters/__init__.py` | 100% | Formatter exports |
-| `utils/__init__.py` | 100% | Utility exports |
-| `utils/sorting.py` | 100% | Sorting utilities |
-| `formatters/base.py` | 99% | Base formatters |
-| `cli.py` | 98% | CLI interface |
-| `converter.py` | 98% | Main converter |
-| `formatters/dropcounters.py` | 98% | Dropcounter formatters |
-| `formatters/interface.py` | 97% | Interface formatters |
-| `formatters/ipv6.py` | 97% | IPv6 formatters |
-| `formatters/queue.py` | 97% | Queue formatters |
-| `formatters/watermark.py` | 97% | Watermark formatters |
-| `formatters/network.py` | 96% | Network formatters |
-| `formatters/transceiver.py` | 95% | Transceiver formatters |
-| `formatters/system.py` | 95% | System formatters |
-| `utils/parsing.py` | 94% | Parsing utilities |
-| `registry.py` | 94% | Command registry |
-| `parser.py` | 92% | Command parser |
-
-**Total Coverage: 97%** (2822 statements, 98 missed)
-
-### Real Device Verification (Integrated)
-
-The library includes a comprehensive real device testing framework in [real_device_tests/](real_device_tests/):
-
-```
-real_device_tests/
-├── __init__.py              # Package exports
-├── verification.py          # Multi-step comparison logic
-├── test_runner.py           # Master test runner (regenerates verification_report.md)
-├── test_real_device.py      # Pytest integration (681 parametrized tests)
-├── verification_report.md   # Auto-generated report with latest results
-└── test_data/               # 70 JSON files with real device data
-    ├── data_01_show_buffer_pool_watermark.json
-    ├── data_02_show_buffer_pool_persistent_watermark.json
-    ├── ... (70 files total)
-    └── data_70_show_watermark_telemetry_interval.json
-```
-
-**Verification Stats:**
-- **681 Total Test Cases** across 70 commands
-- **681 Pass** | **0 Fail** = **100% Pass Rate**
-- **6 Devices:** str2-8102-01, str3-8101-02, str4-7060x6-512-1, str4-7060x6-512-9, str4-7060x6-512-13, str4-sn5640-7
-
-**Running Real Device Tests:**
+### Running Unit Tests
 
 ```bash
-# Using the standalone test runner (REGENERATES verification_report.md)
-cd gnmi_cli_lib
-python real_device_tests/test_runner.py
+cd ../
+python -m pytest tests/unit -v
 
-# Using pytest (does NOT update verification_report.md)
-pytest real_device_tests/test_real_device.py -v
-
-# Run specific command tests
-pytest real_device_tests/test_real_device.py -v -k "buffer_pool"
-
-# Run tests for a specific device
-pytest real_device_tests/test_real_device.py -v -k "str2_8102_01"
+# With coverage
+python -m pytest tests/unit -v --cov=gnmi_cli_lib --cov-report=term-missing
 ```
 
-> **Note**: To refresh [verification_report.md](real_device_tests/verification_report.md) with the latest results, 
-> use `python real_device_tests/test_runner.py`. Running `pytest` alone does NOT update the report.
+### Running Integration Tests
 
-### Multi-Step Verification Logic
+```bash
+cd ../
+python -m pytest tests/integration -v
+```
 
-The real device verification uses a sophisticated 6-step comparison approach:
+### Generating the Command Analysis Report
 
-| Step | Check | Description |
-|------|-------|-------------|
-| 1 | Exact match | Output exactly matches expected CLI output |
-| 2 | Spacing match | Match after normalizing table column spacing |
-| 3 | Help match | Match after normalizing help option order (`-h, -?` vs `-?, -h`) |
-| 4 | Timestamp match | Match after normalizing timestamps/uptimes (CLI vs gNMI time drift) |
-| 5 | gNMI coverage | All values from gNMI JSON appear in output (100% data coverage) |
-| 6 | BGP nuances | Accept BGP-specific differences (e.g., "total paths" not in gNMI) |
+The report in `tests/reports/ALL_COMMANDS_ANALYSIS.md` is generated by the verification tools:
 
-This approach allows the verification to pass when:
-- The output exactly matches what SONiC CLI produces
-- The output is equivalent but with different table spacing
-- Timestamp/uptime values differ due to CLI vs gNMI collection time drift
-- All gNMI data values are present (format may differ slightly)
-- Known gNMI limitations are handled gracefully (e.g., BGP global counters)
+```bash
+cd ../gnmi_cli_lib_verifying
+python generate_all_commands_analysis.py
+```
 
 ### Running Unit Tests
 
@@ -1956,12 +1871,12 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 - **Bug Fix**: Fixed `show queue counters` empty JSON no longer outputs spurious "For namespace :" header
 - **Bug Fix**: Fixed `show ipv6 fib` now outputs header and "Total number of entries 0" when no routes match (instead of empty string)
 - **Verification Enhancement**: Added IPv6 link-local zone ID transformation recognition in verification logic
-- **Production Ready**: Self-contained library with 100% pass rate verification (1258 unit tests, 681/681 integration tests)
+- **Production Ready**: Self-contained library with automated unit and integration verification
 
 ### v2.4.0 (February 2026)
 - **Enhanced Test Data**: Fixed test data formats for processes/cpu, processes/memory, and lldp/neighbors
 - **Improved Test Comparison**: Added timestamp/uptime normalization to handle CLI vs gNMI time drift
-- **Production Ready**: Self-contained library with 100% pass rate verification (1258 unit tests, 406/406 integration tests)
+- **Production Ready**: Self-contained library with automated unit and integration verification
 
 ### v2.3.0 (February 2026)
 - **Integrated Real Device Tests**: Moved verification suite into `real_device_tests/` within the library

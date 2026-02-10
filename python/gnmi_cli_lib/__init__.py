@@ -138,9 +138,6 @@ from gnmi_cli_lib.convenience import (
 # CLI to gNMI mapping
 from gnmi_cli_lib.mappings import CLI_TO_GNMI_MAPPING
 
-# Test data
-from gnmi_cli_lib.test_data import GNMI_JSON_TEST_DATA, EXPECTED_CLI_OUTPUTS
-
 __all__ = [
     # Version
     "__version__",
@@ -213,8 +210,5 @@ __all__ = [
     "list_supported_commands",
     # Mappings
     "CLI_TO_GNMI_MAPPING",
-    # Test data
-    "GNMI_JSON_TEST_DATA",
-    "EXPECTED_CLI_OUTPUTS",
 ]
 
