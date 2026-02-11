@@ -1508,12 +1508,75 @@ impl OutputFormatter for Ipv6ProtocolFormatter {
 }
 
 /// Formatter for IPv6 routes output.
+///
+/// Two output formats are supported:
+/// 1. Single-line FRR format (for protocol filters like connected, static, bgp):
+///    ```text
+///    :
+///    Codes: K - kernel route, C - connected, ...
+///    C>* fc00::/126 is directly connected, PortChannel102 linkdown, weight 1, 01w1d03h
+///    ```
+/// 2. Detailed multi-line format (for specific prefix queries):
+///    ```text
+///    Routing entry for fe80::/64
+///      Known via "connected", distance 0, metric 0
+///      * directly connected, Ethernet496
+///    ```
 pub struct Ipv6RouteFormatter;
+
+/// Protocol filter arguments that use single-line format.
+const PROTOCOL_FILTERS: &[&str] = &[
+    "connected", "local", "static", "kernel", "bgp", "ospf",
+    "ospf6", "rip", "ripng", "isis", "nhrp", "table",
+];
 
 impl Ipv6RouteFormatter {
     /// Creates a new [`Ipv6RouteFormatter`].
     pub fn new() -> Self {
         Self
+    }
+
+    /// Get the single-character protocol code.
+    fn protocol_code(protocol: &str) -> &'static str {
+        match protocol.to_lowercase().as_str() {
+            "connected" => "C",
+            "local" => "L",
+            "static" => "S",
+            "kernel" => "K",
+            "bgp" => "B",
+            "ospf" | "ospf6" => "O",
+            "rip" | "ripng" => "R",
+            "isis" => "I",
+            "nhrp" => "N",
+            "table" => "T",
+            "vnc" => "v",
+            "vnc-direct" => "V",
+            "babel" => "A",
+            "pbr" => "F",
+            "openfabric" => "f",
+            "table-direct" => "t",
+            _ => "?",
+        }
+    }
+
+    /// Check if argument is an IPv6 address/prefix pattern (not a protocol filter).
+    fn is_ipv6_prefix_arg(argument: &str) -> bool {
+        if argument.is_empty() {
+            return false;
+        }
+        let lower = argument.to_lowercase();
+        if lower.starts_with("vrf") {
+            return false;
+        }
+        if PROTOCOL_FILTERS.contains(&lower.as_str()) {
+            return false;
+        }
+        if argument.contains("::") {
+            return true;
+        }
+        // Check for pattern like fe80: or fc00:
+        let re = regex::Regex::new(r"^[0-9a-fA-F:]+(/\d+)?$").unwrap();
+        re.is_match(argument)
     }
 
     fn prefix_sort_key(prefix: &str) -> (i32, Vec<u8>, u32) {
@@ -1600,6 +1663,203 @@ impl Ipv6RouteFormatter {
         }
         lines
     }
+
+    /// Format routes in single-line FRR-style format (used for protocol filter args like "connected", "static").
+    fn format_single_line(map: &serde_json::Map<String, Value>) -> String {
+        let mut lines = Vec::new();
+
+        // FRR header
+        lines.push(":".to_string());
+        lines.push(
+            "Codes: K - kernel route, C - connected, L - local, S - static,".to_string(),
+        );
+        lines.push(
+            "       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,".to_string(),
+        );
+        lines.push(
+            "       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,".to_string(),
+        );
+        lines.push("       f - OpenFabric, t - Table-Direct,".to_string());
+        lines.push(
+            "       > - selected route, * - FIB route, q - queued, r - rejected, b - backup"
+                .to_string(),
+        );
+        lines.push("       t - trapped, o - offload failure".to_string());
+        lines.push(String::new());
+
+        // Check if first route has vrfName and weight in nexthop
+        let mut has_vrf_name = false;
+        let mut vrf_name = "default".to_string();
+        let mut first_has_weight = false;
+
+        for (_prefix, routes_val) in map {
+            let route_list: Vec<&Value> = match routes_val {
+                Value::Array(arr) if !arr.is_empty() => arr.iter().collect(),
+                Value::Object(_) => vec![routes_val],
+                _ => continue,
+            };
+            if let Some(first_route) = route_list.first() {
+                if let Value::Object(r) = first_route {
+                    if r.contains_key("vrfName") {
+                        has_vrf_name = true;
+                        vrf_name = r
+                            .get("vrfName")
+                            .map(value_to_string)
+                            .unwrap_or_else(|| "default".to_string());
+                    }
+                    if let Some(Value::Array(nexthops)) = r.get("nexthops") {
+                        if let Some(Value::Object(nh)) = nexthops.first() {
+                            if nh.contains_key("weight") {
+                                first_has_weight = true;
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+        }
+
+        if has_vrf_name && first_has_weight {
+            lines.push(format!("IPv6 unicast VRF {}:", vrf_name));
+        }
+
+        // Sort prefixes
+        let mut prefixes: Vec<String> = map.keys().cloned().collect();
+        prefixes.sort_by_key(|p| Self::prefix_sort_key(p));
+
+        for prefix in &prefixes {
+            let routes_val = match map.get(prefix) {
+                Some(v) => v,
+                None => continue,
+            };
+            let route_list: Vec<&Value> = match routes_val {
+                Value::Array(arr) => arr.iter().collect(),
+                Value::Object(_) => vec![routes_val],
+                _ => continue,
+            };
+            for route_val in route_list {
+                if let Value::Object(route) = route_val {
+                    let line = Self::format_route_line(prefix, route);
+                    if !line.is_empty() {
+                        lines.push(line);
+                    }
+                }
+            }
+        }
+
+        lines.join("\n")
+    }
+
+    /// Format a single route as a one-line FRR-style entry.
+    fn format_route_line(prefix: &str, route: &serde_json::Map<String, Value>) -> String {
+        let protocol = route
+            .get("protocol")
+            .map(value_to_string)
+            .unwrap_or_else(|| "unknown".to_string());
+        let code = Self::protocol_code(&protocol);
+
+        let is_selected = route.get("selected").and_then(Value::as_bool).unwrap_or(false)
+            || route
+                .get("destSelected")
+                .and_then(Value::as_bool)
+                .unwrap_or(false);
+        let is_fib = route
+            .get("installed")
+            .and_then(Value::as_bool)
+            .unwrap_or(false);
+
+        let selected_flag = if is_selected { ">" } else { " " };
+        let fib_flag = if is_fib { "*" } else { " " };
+        let status = format!("{}{}{}", code, selected_flag, fib_flag);
+
+        // Get nexthop info from first nexthop
+        let nexthops = route
+            .get("nexthops")
+            .and_then(Value::as_array)
+            .cloned()
+            .unwrap_or_default();
+        let first_nh = nexthops.first().and_then(Value::as_object);
+
+        let is_directly_connected = first_nh
+            .and_then(|nh| nh.get("directlyConnected"))
+            .and_then(Value::as_bool)
+            .unwrap_or(false);
+        let interface = first_nh
+            .and_then(|nh| nh.get("interfaceName"))
+            .map(value_to_string)
+            .unwrap_or_default();
+        let nexthop_ip = first_nh
+            .and_then(|nh| {
+                nh.get("ip")
+                    .or_else(|| nh.get("nexthop"))
+                    .map(value_to_string)
+            })
+            .unwrap_or_default();
+        let link_down = first_nh
+            .and_then(|nh| nh.get("linkDown"))
+            .and_then(Value::as_bool)
+            .unwrap_or(false);
+        let weight = first_nh.and_then(|nh| nh.get("weight"));
+
+        let uptime = route
+            .get("uptime")
+            .map(value_to_string)
+            .unwrap_or_default();
+        let distance = route
+            .get("distance")
+            .map(value_to_string)
+            .unwrap_or_else(|| "0".to_string());
+        let metric = route
+            .get("metric")
+            .map(value_to_string)
+            .unwrap_or_else(|| "0".to_string());
+
+        let weight_str = if let Some(w) = weight {
+            format!(", weight {}", value_to_string(w))
+        } else {
+            String::new()
+        };
+
+        let uptime_str = if uptime.is_empty() {
+            String::new()
+        } else {
+            format!(", {}", uptime)
+        };
+
+        let route_desc = if is_directly_connected {
+            let link_status = if link_down { " linkdown" } else { "" };
+            if protocol.to_lowercase() == "connected" {
+                format!(
+                    "is directly connected, {}{}{}{}",
+                    interface, link_status, weight_str, uptime_str
+                )
+            } else {
+                format!(
+                    "[{}/{}] is directly connected, {}{}{}{}",
+                    distance, metric, interface, link_status, weight_str, uptime_str
+                )
+            }
+        } else if !nexthop_ip.is_empty() {
+            if !interface.is_empty() {
+                format!(
+                    "[{}/{}] via {}, {}{}{}",
+                    distance, metric, nexthop_ip, interface, weight_str, uptime_str
+                )
+            } else {
+                format!(
+                    "[{}/{}] via {}{}{}",
+                    distance, metric, nexthop_ip, weight_str, uptime_str
+                )
+            }
+        } else {
+            format!(
+                "[{}/{}]{}{}",
+                distance, metric, weight_str, uptime_str
+            )
+        };
+
+        format!("{} {} {}", status, prefix, route_desc)
+    }
 }
 
 impl Default for Ipv6RouteFormatter {
@@ -1614,7 +1874,7 @@ impl OutputFormatter for Ipv6RouteFormatter {
         data: &Value,
         _config: &CommandConfig,
         _table_format: &str,
-        _options: Option<&HashMap<String, String>>,
+        options: Option<&HashMap<String, String>>,
     ) -> Result<String, FormatError> {
         if let Value::Object(map) = data {
             if let Some(Value::String(output)) = map.get("output") {
@@ -1627,26 +1887,37 @@ impl OutputFormatter for Ipv6RouteFormatter {
             _ => return Ok(value_to_string(data)),
         };
 
-        let mut lines = Vec::new();
-        let mut prefixes = map.keys().cloned().collect::<Vec<_>>();
-        prefixes.sort_by_key(|prefix| Self::prefix_sort_key(prefix));
-        for prefix in prefixes {
-            let routes = map.get(&prefix).cloned().unwrap_or(Value::Null);
-            let routes = match routes {
-                Value::Object(map) => vec![Value::Object(map)],
-                Value::Array(list) => list,
-                _ => Vec::new(),
-            };
-            for route in routes {
-                if let Value::Object(route_map) = route {
-                    lines.extend(Self::format_route_entry(&prefix, &route_map));
-                    lines.push(String::new());
-                    lines.push(String::new());
+        // Determine format based on argument option
+        let argument = options
+            .and_then(|opts| opts.get("argument"))
+            .map(|s| s.as_str())
+            .unwrap_or("");
+
+        // Use detailed format only for specific IPv6 prefix arguments
+        if Self::is_ipv6_prefix_arg(argument) {
+            let mut lines = Vec::new();
+            let mut prefixes = map.keys().cloned().collect::<Vec<_>>();
+            prefixes.sort_by_key(|prefix| Self::prefix_sort_key(prefix));
+            for prefix in prefixes {
+                let routes = map.get(&prefix).cloned().unwrap_or(Value::Null);
+                let routes = match routes {
+                    Value::Object(map) => vec![Value::Object(map)],
+                    Value::Array(list) => list,
+                    _ => Vec::new(),
+                };
+                for route in routes {
+                    if let Value::Object(route_map) = route {
+                        lines.extend(Self::format_route_entry(&prefix, &route_map));
+                        lines.push(String::new());
+                        lines.push(String::new());
+                    }
                 }
             }
+            Ok(lines.join("\n").trim_end().to_string())
+        } else {
+            // Single-line FRR format for protocol filters or empty argument
+            Ok(Self::format_single_line(map).trim_end().to_string())
         }
-
-        Ok(lines.join("\n").trim_end().to_string())
     }
 
     fn name(&self) -> &'static str {
@@ -1701,7 +1972,6 @@ impl Ipv6BgpNeighborsFormatter {
 
     /// Convert camelCase string to space-separated lowercase.
     /// e.g., "sharedNetwork" -> "shared network"
-    #[allow(dead_code)]
     fn camel_to_space(s: &str) -> String {
         let mut result = String::new();
         for (i, ch) in s.chars().enumerate() {
@@ -2503,7 +2773,7 @@ impl Ipv6BgpNeighborsFormatter {
         // BGP connection (with 2-space indent, matching Python)
         if let Some(bgp_conn) = data.get("bgpConnection").map(value_to_string) {
             if !bgp_conn.is_empty() {
-                lines.push(format!("  BGP connection: {}", bgp_conn));
+                lines.push(format!("  BGP connection: {}", Self::camel_to_space(&bgp_conn)));
             }
         }
 
@@ -2665,6 +2935,14 @@ impl Ipv6BgpNeighborsFormatter {
             .or_else(|| map.get("receivedRoutes"))
             .or_else(|| map.get("routes"))
             .and_then(Value::as_object);
+
+        
+        // Early return for empty routes without totalPrefixCounter
+        let has_total = map.contains_key("totalPrefixCounter");
+        let routes_empty = routes.map(|r| r.is_empty()).unwrap_or(true);
+        if routes_empty && !has_total {
+            return "\n".to_string();
+        }
 
         if let Some(routes_map) = routes {
             let mut prefixes: Vec<&String> = routes_map.keys().collect();
@@ -3012,8 +3290,9 @@ mod tests {
             }
         });
         let config = CommandConfig::new();
-
-        let result = formatter.format(&data, &config, "simple", None).unwrap();
+        let mut opts = HashMap::new();
+        opts.insert("argument".to_string(), "::/0".to_string());
+        let result = formatter.format(&data, &config, "simple", Some(&opts)).unwrap();
         assert!(result.contains("Routing entry for ::/0"));
         assert!(result.contains("via 2001:db8::1"));
     }
@@ -3297,7 +3576,9 @@ mod tests {
             }
         });
         let config = CommandConfig::new();
-        let result = formatter.format(&data, &config, "simple", None).unwrap();
+        let mut opts = HashMap::new();
+        opts.insert("argument".to_string(), "2001:db8::/32".to_string());
+        let result = formatter.format(&data, &config, "simple", Some(&opts)).unwrap();
         // Check that routes are formatted with routing entry headers
         assert!(result.contains("Routing entry for 2001:db8::/32"));
         assert!(result.contains("kernel"));
@@ -4291,7 +4572,9 @@ mod tests {
             ]
         });
         let config = CommandConfig::new();
-        let result = formatter.format(&data, &config, "simple", None).unwrap();
+        let mut opts = HashMap::new();
+        opts.insert("argument".to_string(), "2001:db8:1::/48".to_string());
+        let result = formatter.format(&data, &config, "simple", Some(&opts)).unwrap();
         assert!(result.contains("Routing entry for 2001:db8:1::/48"));
         assert!(result.contains("bgp"));
         assert!(result.contains("ospf"));
@@ -4310,7 +4593,9 @@ mod tests {
             }
         });
         let config = CommandConfig::new();
-        let result = formatter.format(&data, &config, "simple", None).unwrap();
+        let mut opts = HashMap::new();
+        opts.insert("argument".to_string(), "2001:db8:2::/48".to_string());
+        let result = formatter.format(&data, &config, "simple", Some(&opts)).unwrap();
         assert!(result.contains("directly connected, Ethernet0"));
     }
 
@@ -4360,7 +4645,9 @@ mod tests {
             }
         });
         let config = CommandConfig::new();
-        let result = formatter.format(&data, &config, "simple", None).unwrap();
+        let mut opts = HashMap::new();
+        opts.insert("argument".to_string(), "2001:db8:5::/48".to_string());
+        let result = formatter.format(&data, &config, "simple", Some(&opts)).unwrap();
         assert!(result.contains("best"));
         assert!(result.contains("Last update 01:30:00 ago"));
     }
@@ -4380,7 +4667,9 @@ mod tests {
             }
         });
         let config = CommandConfig::new();
-        let result = formatter.format(&data, &config, "simple", None).unwrap();
+        let mut opts = HashMap::new();
+        opts.insert("argument".to_string(), "2001:db8:6::/48".to_string());
+        let result = formatter.format(&data, &config, "simple", Some(&opts)).unwrap();
         assert!(result.contains("* via 2001:db8::1"));
         assert!(result.contains("  via 2001:db8::2"));
     }
@@ -4397,7 +4686,9 @@ mod tests {
             }
         });
         let config = CommandConfig::new();
-        let result = formatter.format(&data, &config, "simple", None).unwrap();
+        let mut opts = HashMap::new();
+        opts.insert("argument".to_string(), "2001:db8:7::/48".to_string());
+        let result = formatter.format(&data, &config, "simple", Some(&opts)).unwrap();
         assert!(result.contains("Routing entry for 2001:db8:7::/48"));
     }
 

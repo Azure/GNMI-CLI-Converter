@@ -16,7 +16,7 @@
 
 mod common;
 
-use common::{assert_output_contains_all, load_test_data, normalize_output};
+use common::{assert_output_contains_all, normalize_output};
 use gnmi_cli_lib::converter::GnmiToCliConverter;
 use serde_json::json;
 
@@ -28,7 +28,7 @@ use serde_json::json;
 fn test_converter_json_string_wrapping_number() {
     // Line 103: string parses to Value::Number → should NOT unwrap, keeps original
     let converter = GnmiToCliConverter::new();
-    let data = json!("42");
+    let _data = json!("42");
     // convert_str with a JSON-encoded string of a number
     let result = converter.convert_str("clock", "\"42\"");
     assert!(result.is_ok());
@@ -1002,7 +1002,7 @@ fn test_buffer_pool_watermark_empty_map() {
 #[test]
 fn test_parse_and_convert_with_argument() {
     // Line 536: filter_by_argument with argument containing ':'
-    let converter = GnmiToCliConverter::new();
+    let _converter = GnmiToCliConverter::new();
     let result = gnmi_cli_lib::parser::parse_and_convert(
         "show interfaces status Ethernet0",
         json!({

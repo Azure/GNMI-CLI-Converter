@@ -208,14 +208,17 @@ lazy_static! {
         m
     };
 
-    /// Regex for extracting --period option.
-    static ref PERIOD_REGEX: Regex = Regex::new(r"--period\s+(\d+)").unwrap();
+    /// Regex for extracting --period / -p option.
+    static ref PERIOD_REGEX: Regex = Regex::new(r"(?:--period|-p)\s+(\d+)").unwrap();
 
     /// Regex for extracting --iface option.
     static ref IFACE_REGEX: Regex = Regex::new(r"--iface\s+(\S+)").unwrap();
 
-    /// Regex for extracting --counter_type option.
-    static ref COUNTER_TYPE_REGEX: Regex = Regex::new(r"--counter_type\s+(\S+)").unwrap();
+    /// Regex for extracting --counter_type / -t option.
+    static ref COUNTER_TYPE_REGEX: Regex = Regex::new(r"(?:--counter_type|-t)\s+(\S+)").unwrap();
+
+    /// Regex for extracting --group / -g option.
+    static ref GROUP_REGEX: Regex = Regex::new(r"(?:--group|-g)\s+(\S+)").unwrap();
 }
 
 /// Unified command parser and converter.
@@ -411,18 +414,25 @@ impl CommandParser {
             }
         }
 
-        // Extract --counter_type value
+        // Extract --counter_type / -t value
         if let Some(caps) = COUNTER_TYPE_REGEX.captures(cli_command) {
             if let Some(m) = caps.get(1) {
                 options.insert("counter_type".to_string(), m.as_str().to_string());
             }
         }
 
-        // Boolean flags
-        if cli_command.contains("--all") {
+        // Extract --group / -g value
+        if let Some(caps) = GROUP_REGEX.captures(cli_command) {
+            if let Some(m) = caps.get(1) {
+                options.insert("group".to_string(), m.as_str().to_string());
+            }
+        }
+
+        // Boolean flags (long and short forms)
+        if cli_command.contains("--all") || cli_command.contains(" -a") {
             options.insert("all".to_string(), "true".to_string());
         }
-        if cli_command.contains("--trim") {
+        if cli_command.contains("--trim") || cli_command.contains(" -T") {
             options.insert("trim".to_string(), "true".to_string());
         }
         if cli_command.contains("--nonzero") {
@@ -440,6 +450,9 @@ impl CommandParser {
         let result = PERIOD_REGEX.replace_all(cli_command, "");
         let result = IFACE_REGEX.replace_all(&result, "");
         let result = COUNTER_TYPE_REGEX.replace_all(&result, "");
+        let result = GROUP_REGEX.replace_all(&result, "");
+        // Remove short boolean flags: -a (--all), -T (--trim)
+        let result = regex::Regex::new(r"\s+-[aT]\b").unwrap().replace_all(&result, "");
         result.trim().to_string()
     }
 
@@ -528,13 +541,23 @@ impl CommandParser {
         if let Value::Object(map) = &data {
             let mut filtered = serde_json::Map::new();
             for (key, value) in map {
-                if key.contains(argument) || key.starts_with(argument) || key.ends_with(argument) {
-                    filtered.insert(key.clone(), value.clone());
+                // Precise matching: exact match or bounded prefix match
+                let matches = if key == argument {
+                    true
+                } else if key.starts_with(argument) {
+                    // Only match if character after argument is a separator or end
+                    let next_char = key[argument.len()..].chars().next();
+                    matches!(next_char, Some('|' | ':' | '/' | ' ') | None)
                 } else if key.contains(':') {
-                    let parts: Vec<&str> = key.split(':').collect();
-                    if !parts.is_empty() && parts[0].contains(argument) {
-                        filtered.insert(key.clone(), value.clone());
-                    }
+                    // For composite keys like "Ethernet8:value", check first part exactly
+                    let parts: Vec<&str> = key.splitn(2, ':').collect();
+                    !parts.is_empty() && parts[0] == argument
+                } else {
+                    false
+                };
+
+                if matches {
+                    filtered.insert(key.clone(), value.clone());
                 }
             }
 

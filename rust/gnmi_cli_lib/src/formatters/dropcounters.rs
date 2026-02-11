@@ -332,66 +332,57 @@ impl OutputFormatter for DropCounterCountsFormatter {
         _table_format: &str,
         _options: Option<&HashMap<String, String>>,
     ) -> Result<String, FormatError> {
-        // Determine column filter based on --counter_type option
-        let counter_type_filter = _options
-            .and_then(|opts| opts.get("counter_type"))
-            .map(|s| s.as_str());
+        // Standard port columns in preferred order
+        const STANDARD_COLUMNS: &[&str] = &["State", "RX_ERR", "RX_DROPS", "TX_ERR", "TX_DROPS"];
 
-        let show_rx = !matches!(counter_type_filter, Some("PORT_EGRESS_DROPS"));
-        let show_tx = !matches!(counter_type_filter, Some("PORT_INGRESS_DROPS"));
-
-        // Build header based on filter
-        let mut headers: Vec<&str> = vec!["IFACE", "STATE"];
-        if show_rx {
-            headers.push("RX_ERR");
-            headers.push("RX_DROPS");
+        // Collect all unique value-level keys from the data
+        let mut all_columns = std::collections::BTreeSet::new();
+        if let Value::Object(map) = data {
+            for (_iface, port_data) in map {
+                if let Value::Object(obj) = port_data {
+                    for key in obj.keys() {
+                        all_columns.insert(key.clone());
+                    }
+                }
+            }
+        } else if let Value::Array(arr) = data {
+            for item in arr {
+                if let Value::Object(obj) = item {
+                    for key in obj.keys() {
+                        if key != "iface" && key != "interface" {
+                            all_columns.insert(key.clone());
+                        }
+                    }
+                }
+            }
         }
-        if show_tx {
-            headers.push("TX_ERR");
-            headers.push("TX_DROPS");
+
+        // Order columns: standard first (in order), then remaining sorted
+        let mut ordered_columns: Vec<String> = Vec::new();
+        for &col in STANDARD_COLUMNS {
+            if all_columns.contains(col) {
+                ordered_columns.push(col.to_string());
+            }
+        }
+        let mut debug_columns: Vec<String> = all_columns
+            .iter()
+            .filter(|c| !STANDARD_COLUMNS.contains(&c.as_str()))
+            .cloned()
+            .collect();
+        debug_columns.sort();
+        ordered_columns.extend(debug_columns);
+
+        // Build header: "State" -> "STATE", others as-is
+        let mut headers: Vec<String> = vec!["IFACE".to_string()];
+        for col in &ordered_columns {
+            if col == "State" || col == "state" {
+                headers.push("STATE".to_string());
+            } else {
+                headers.push(col.clone());
+            }
         }
 
         let mut rows: Vec<Vec<String>> = Vec::new();
-
-        let extract_row = |obj: &serde_json::Map<String, Value>,
-                           iface: &str|
-         -> Vec<String> {
-            let state = obj
-                .get("State")
-                .or_else(|| obj.get("state"))
-                .map(value_to_string)
-                .unwrap_or_default();
-            let mut row = vec![iface.to_string(), state];
-            if show_rx {
-                row.push(
-                    obj.get("RX_ERR")
-                        .or_else(|| obj.get("rx_err"))
-                        .map(value_to_string)
-                        .unwrap_or_default(),
-                );
-                row.push(
-                    obj.get("RX_DROPS")
-                        .or_else(|| obj.get("rx_drops"))
-                        .map(value_to_string)
-                        .unwrap_or_default(),
-                );
-            }
-            if show_tx {
-                row.push(
-                    obj.get("TX_ERR")
-                        .or_else(|| obj.get("tx_err"))
-                        .map(value_to_string)
-                        .unwrap_or_default(),
-                );
-                row.push(
-                    obj.get("TX_DROPS")
-                        .or_else(|| obj.get("tx_drops"))
-                        .map(value_to_string)
-                        .unwrap_or_default(),
-                );
-            }
-            row
-        };
 
         if let Value::Object(map) = data {
             if map.is_empty() {
@@ -403,7 +394,16 @@ impl OutputFormatter for DropCounterCountsFormatter {
 
             for iface in keys {
                 if let Some(Value::Object(obj)) = map.get(iface) {
-                    rows.push(extract_row(obj, iface));
+                    let mut row = vec![iface.to_string()];
+                    for col in &ordered_columns {
+                        let val = obj
+                            .get(col)
+                            .or_else(|| obj.get(&col.to_lowercase()))
+                            .map(value_to_string)
+                            .unwrap_or_default();
+                        row.push(val);
+                    }
+                    rows.push(row);
                 }
             }
         } else if let Value::Array(arr) = data {
@@ -414,12 +414,22 @@ impl OutputFormatter for DropCounterCountsFormatter {
                         .or_else(|| obj.get("interface"))
                         .map(value_to_string)
                         .unwrap_or_default();
-                    rows.push(extract_row(obj, &iface));
+                    let mut row = vec![iface];
+                    for col in &ordered_columns {
+                        let val = obj
+                            .get(col)
+                            .or_else(|| obj.get(&col.to_lowercase()))
+                            .map(value_to_string)
+                            .unwrap_or_default();
+                        row.push(val);
+                    }
+                    rows.push(row);
                 }
             }
         }
 
-        Ok(tabulate_simple(&headers, &rows))
+        let header_refs: Vec<&str> = headers.iter().map(|s| s.as_str()).collect();
+        Ok(tabulate_simple(&header_refs, &rows))
     }
 
     fn name(&self) -> &'static str {
