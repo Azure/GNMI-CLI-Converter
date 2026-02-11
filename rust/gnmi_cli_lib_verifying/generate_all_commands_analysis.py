@@ -145,6 +145,7 @@ def normalize_string_value(val: str) -> list:
         'advertised': 'advertised',
         'received': 'received',
         'extendedAndStandard': 'extended and standard',
+        'sharedNetwork': 'shared network',
     }
     if val in transformations:
         representations.append(transformations[val])
@@ -540,14 +541,12 @@ def generate_analysis():
     output_lines.append("")
     
     # Per-device stats
-    device_stats = {device: {"pass": 0, "fail": 0, "error": 0, "skip": 0, "total": 0} for device in all_devices}
+    device_stats = {device: {"pass": 0, "fail": 0, "total": 0} for device in all_devices}
     
     # Summary stats
     total_tests = 0
     total_pass = 0
     total_fail = 0
-    total_error = 0
-    total_skip = 0
     
     command_results = []
     
@@ -566,9 +565,7 @@ def generate_analysis():
             "test_cases": [],
             "pass_count": 0,
             "fail_count": 0,
-            "error_count": 0,
-            "skip_count": 0,
-            "device_stats": {device: {"pass": 0, "fail": 0, "error": 0, "skip": 0} for device in all_devices},
+            "device_stats": {device: {"pass": 0, "fail": 0} for device in all_devices},
         }
         
         for case_idx, tc in enumerate(test_cases):
@@ -599,6 +596,10 @@ def generate_analysis():
                 
                 case_result["device_results"][device_name] = result
                 
+                # Skip cases where test data is not available
+                if result["status"] == "SKIP":
+                    continue
+                
                 total_tests += 1
                 device_stats[device_name]["total"] += 1
                 
@@ -607,75 +608,59 @@ def generate_analysis():
                     cmd_result["pass_count"] += 1
                     cmd_result["device_stats"][device_name]["pass"] += 1
                     device_stats[device_name]["pass"] += 1
-                elif result["status"] == "FAIL":
+                else:  # FAIL or ERROR
                     total_fail += 1
                     cmd_result["fail_count"] += 1
                     cmd_result["device_stats"][device_name]["fail"] += 1
                     device_stats[device_name]["fail"] += 1
-                elif result["status"] == "ERROR":
-                    total_error += 1
-                    cmd_result["error_count"] += 1
-                    cmd_result["device_stats"][device_name]["error"] += 1
-                    device_stats[device_name]["error"] += 1
-                else:
-                    total_skip += 1
-                    cmd_result["skip_count"] += 1
-                    cmd_result["device_stats"][device_name]["skip"] += 1
-                    device_stats[device_name]["skip"] += 1
             
             cmd_result["test_cases"].append(case_result)
         
         command_results.append(cmd_result)
-        print(f"  [{idx}] {command}: P={cmd_result['pass_count']} F={cmd_result['fail_count']} E={cmd_result['error_count']} S={cmd_result['skip_count']}")
+        print(f"  [{idx}] {command}: P={cmd_result['pass_count']} F={cmd_result['fail_count']}")
     
     # Overall Summary
-    tests_with_result = total_pass + total_fail + total_error
-    pass_rate = total_pass / tests_with_result * 100 if tests_with_result > 0 else 0
+    pass_rate = total_pass / total_tests * 100 if total_tests > 0 else 0
     
     output_lines.append("## Overall Summary")
     output_lines.append("")
     output_lines.append(f"| Metric | Count |")
     output_lines.append(f"|--------|-------|")
-    output_lines.append(f"| Total Test Cases (with data) | {total_tests} |")
+    output_lines.append(f"| Total Test Cases | {total_tests} |")
     output_lines.append(f"| ✅ PASS | {total_pass} |")
     output_lines.append(f"| ❌ FAIL | {total_fail} |")
-    output_lines.append(f"| ⚠️ ERROR | {total_error} |")
-    output_lines.append(f"| ⏭️ SKIP (data error) | {total_skip} |")
     output_lines.append(f"| **Pass Rate** | **{pass_rate:.1f}%** |")
     output_lines.append("")
     
     # Per-Device Summary
     output_lines.append("## Per-Device Summary")
     output_lines.append("")
-    output_lines.append("| Device | Total | ✅ Pass | ❌ Fail | ⚠️ Error | ⏭️ Skip | Pass Rate |")
-    output_lines.append("|--------|-------|---------|---------|----------|---------|-----------|")
+    output_lines.append("| Device | Total | ✅ Pass | ❌ Fail | Pass Rate |")
+    output_lines.append("|--------|-------|---------|---------|-----------|")
     
     for device in all_devices:
         stats = device_stats[device]
         dev_total = stats["total"]
         dev_pass = stats["pass"]
         dev_fail = stats["fail"]
-        dev_error = stats["error"]
-        dev_skip = stats["skip"]
-        dev_tests_with_result = dev_pass + dev_fail + dev_error
-        dev_pass_rate = dev_pass / dev_tests_with_result * 100 if dev_tests_with_result > 0 else 0
+        dev_pass_rate = dev_pass / dev_total * 100 if dev_total > 0 else 0
         output_lines.append(
-            f"| `{device}` | {dev_total} | {dev_pass} | {dev_fail} | {dev_error} | {dev_skip} | {dev_pass_rate:.1f}% |"
+            f"| `{device}` | {dev_total} | {dev_pass} | {dev_fail} | {dev_pass_rate:.1f}% |"
         )
     output_lines.append("")
     
     # Quick reference table
     output_lines.append("## Quick Reference by Command")
     output_lines.append("")
-    output_lines.append("| # | Command | Variants | Pass | Fail | Error | Skip |")
-    output_lines.append("|---|---------|----------|------|------|-------|------|")
+    output_lines.append("| # | Command | Variants | Pass | Fail |")
+    output_lines.append("|---|---------|----------|------|------|")
     
     for cmd in command_results:
-        status_emoji = "✅" if cmd["fail_count"] == 0 and cmd["error_count"] == 0 else "❌"
+        status_emoji = "✅" if cmd["fail_count"] == 0 else "❌"
         cmd_anchor = cmd['command'].replace(' ', '-').replace('_', '-').lower()
         output_lines.append(
             f"| {cmd['index']} | [`{cmd['command']}`](#{cmd['index']}-{cmd_anchor}) | {len(cmd['test_cases'])} | "
-            f"{cmd['pass_count']} | {cmd['fail_count']} | {cmd['error_count']} | {cmd['skip_count']} |"
+            f"{cmd['pass_count']} | {cmd['fail_count']} |"
         )
     
     output_lines.append("")
@@ -694,22 +679,23 @@ def generate_analysis():
         output_lines.append("[↑ Back to Quick Reference](#quick-reference-by-command)")
         output_lines.append("")
         
-        all_pass = cmd["fail_count"] == 0 and cmd["error_count"] == 0
+        all_pass = cmd["fail_count"] == 0
         if all_pass:
-            total_variant_tests = len(cmd["test_cases"]) * len(all_devices)
-            output_lines.append(f"**Status:** ✅ All {cmd['pass_count']}/{total_variant_tests} test cases passed (across {len(all_devices)} devices)")
+            cmd_total = cmd['pass_count'] + cmd['fail_count']
+            output_lines.append(f"**Status:** ✅ All {cmd['pass_count']}/{cmd_total} test cases passed (across {len(all_devices)} devices)")
         else:
-            output_lines.append(f"**Status:** ❌ {cmd['fail_count']} failures, {cmd['error_count']} errors")
+            cmd_total = cmd['pass_count'] + cmd['fail_count']
+            output_lines.append(f"**Status:** ❌ {cmd['fail_count']} failures out of {cmd_total} test cases")
         output_lines.append("")
         
         # Per-device summary for this command
         output_lines.append("**Per-Device Results:**")
         output_lines.append("")
-        output_lines.append("| Device | Pass | Fail | Error | Skip |")
-        output_lines.append("|--------|------|------|-------|------|")
+        output_lines.append("| Device | Pass | Fail |")
+        output_lines.append("|--------|------|------|")
         for device in all_devices:
             ds = cmd["device_stats"][device]
-            output_lines.append(f"| `{device}` | {ds['pass']} | {ds['fail']} | {ds['error']} | {ds['skip']} |")
+            output_lines.append(f"| `{device}` | {ds['pass']} | {ds['fail']} |")
         output_lines.append("")
         
         # Quick links for variants
@@ -748,19 +734,21 @@ def generate_analysis():
                 if status == "N/A":
                     continue
                 
-                status_emoji = {"PASS": "✅", "FAIL": "❌", "ERROR": "⚠️", "SKIP": "⏭️"}.get(status, "❓")
+                if status == "SKIP":
+                    continue
+                
+                display_status = "FAIL" if status == "ERROR" else status
+                status_emoji = {"PASS": "✅", "FAIL": "❌"}.get(display_status, "❓")
                 
                 details = ""
                 if status == "PASS":
                     details = result.get("coverage_info", "Passed")
                 elif status == "FAIL":
                     details = "See diff below"
-                elif status == "SKIP":
-                    details = result.get("error", "Skipped")
                 elif status == "ERROR":
                     details = result.get("error", "Error")
                 
-                output_lines.append(f"| `{device_name}` | {status_emoji} {status} | {details} |")
+                output_lines.append(f"| `{device_name}` | {status_emoji} {display_status} | {details} |")
             
             output_lines.append("")
             
@@ -778,18 +766,19 @@ def generate_analysis():
             output_lines.append("```")
             output_lines.append("")
             
-            # Show detailed output for EVERY device with data
+            # Show detailed output for EVERY device with data (exclude SKIP/N/A)
             devices_with_data = []
             for device_name in all_devices:
                 result = tc["device_results"].get(device_name, {})
-                if result.get("json_string") and result.get("status") != "N/A":
+                if result.get("json_string") and result.get("status") not in ("N/A", "SKIP"):
                     devices_with_data.append(device_name)
             
             if devices_with_data:
                 for device_name in devices_with_data:
                     result = tc["device_results"][device_name]
                     status = result.get("status", "UNKNOWN")
-                    status_emoji = {"PASS": "✅", "FAIL": "❌", "ERROR": "⚠️", "SKIP": "⏭️"}.get(status, "❓")
+                    display_status = "FAIL" if status == "ERROR" else status
+                    status_emoji = {"PASS": "✅", "FAIL": "❌"}.get(display_status, "❓")
                     
                     output_lines.append(f"<details>")
                     output_lines.append(f"<summary><b>{status_emoji} Device: {device_name}</b> (click to expand)</summary>")
@@ -828,10 +817,6 @@ def generate_analysis():
                         output_lines.append("```")
                         output_lines.append("")
                     
-                    if status == "SKIP" and result.get("error"):
-                        output_lines.append(f"**Skip Reason:** {result.get('error')}")
-                        output_lines.append("")
-                    
                     output_lines.append("</details>")
                     output_lines.append("")
             else:
@@ -847,8 +832,8 @@ def generate_analysis():
     
     print(f"\nGenerated: {OUTPUT_FILE}")
     print(f"Total commands: {len(command_results)}")
-    print(f"Total test cases (with data): {total_tests}")
-    print(f"Pass: {total_pass}, Fail: {total_fail}, Error: {total_error}, Skip: {total_skip}")
+    print(f"Total test cases: {total_tests}")
+    print(f"Pass: {total_pass}, Fail: {total_fail}")
     print(f"Pass rate: {pass_rate:.1f}%")
 
 

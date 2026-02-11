@@ -35,6 +35,22 @@
           "json_error": null,
           "cli_string": "Shared pool maximum occupancy:\n              Pool    Bytes\n------------------  -------\n egress_lossy_pool    28448\ningress_lossy_pool        0",
           "cli_error": null
+        },
+        "str3-8101-02": {
+          "cli_file": "show_buffer_pool_watermark.txt",
+          "gnmi_file": "gnmi-get-buffer_pool-watermark.txt",
+          "json_string": "{\"egress_lossy_pool\":{\"Bytes\":\"41856\"},\"ingress_lossless_pool\":{\"Bytes\":\"22272\"}}",
+          "json_error": null,
+          "cli_string": "Shared pool maximum occupancy:\n                 Pool    Bytes\n---------------------  -------\n    egress_lossy_pool    41856\ningress_lossless_pool    22272\n",
+          "cli_error": null
+        },
+        "str4-sn5640-7": {
+          "cli_file": "show_buffer_pool_watermark.txt",
+          "gnmi_file": "gnmi-get-buffer_pool-watermark.txt",
+          "json_string": "{\"egress_lossless_pool\":{\"Bytes\":\"0\"},\"egress_lossy_pool\":{\"Bytes\":\"0\"},\"ingress_lossless_pool\":{\"Bytes\":\"59520\"},\"ingress_zero_pool\":{\"Bytes\":\"0\"}}",
+          "json_error": null,
+          "cli_string": "Shared pool maximum occupancy:\n                 Pool    Bytes\n---------------------  -------\n egress_lossless_pool        0\n    egress_lossy_pool        0\ningress_lossless_pool    59520\n    ingress_zero_pool        0\n",
+          "cli_error": null
         }
       }
     }

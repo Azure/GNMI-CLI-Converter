@@ -635,7 +635,7 @@ impl TransceiverErrorStatusFormatter {
             .get("status")
             .map(value_to_string)
             .unwrap_or_else(|| "0".to_string());
-        let cmis_state = port_data
+        let _cmis_state = port_data
             .get("cmis_state")
             .map(value_to_string)
             .unwrap_or_default();
@@ -644,15 +644,10 @@ impl TransceiverErrorStatusFormatter {
             .map(value_to_string)
             .unwrap_or_else(|| "N/A".to_string());
 
-        // When status is "1" and either no cmis_state or cmis_state is READY, it's OK
+        // When status is "1", the transceiver is operational - always report OK.
+        // The status field is the definitive indicator; cmis_state may lag behind.
         if status == "1" {
-            if cmis_state.is_empty() || cmis_state == "N/A" || cmis_state == "READY" {
-                "OK".to_string()
-            } else if !error.is_empty() && error != "N/A" {
-                error
-            } else {
-                cmis_state
-            }
+            return "OK".to_string();
         } else {
             // status is "0" - unplugged or error
             if !error.is_empty() && error != "N/A" {
@@ -2032,7 +2027,8 @@ mod tests {
         });
         let config = CommandConfig::new();
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        assert!(result.contains("DP_INIT"), "result: {}", result);
+        // After fix: status=="1" always returns "OK" matching Python behavior
+        assert!(result.contains("OK"), "status=1 should always be OK: {}", result);
     }
 
     #[test]
@@ -2047,11 +2043,8 @@ mod tests {
         });
         let config = CommandConfig::new();
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        assert!(
-            result.contains("Power budget exceeded"),
-            "result: {}",
-            result
-        );
+        // After fix: status=="1" always returns "OK" matching Python behavior
+        assert!(result.contains("OK"), "status=1 should always be OK: {}", result);
     }
 
     #[test]

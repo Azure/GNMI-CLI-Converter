@@ -7,6 +7,7 @@ use serde_json::Value;
 use std::path::Path;
 
 /// Load test JSON data from a string.
+#[allow(dead_code)]
 pub fn load_test_data(json_str: &str) -> Value {
     serde_json::from_str(json_str).expect("Failed to parse test JSON data")
 }

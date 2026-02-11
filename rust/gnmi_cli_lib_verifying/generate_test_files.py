@@ -73,17 +73,17 @@ def run_single_test(command: str, input_options: str, json_string: str,
         
         # Run converter
         parser = CommandParser()
-        actual_output = parser.parse(full_command, json_data)
+        actual_output = parser.parse_and_convert(full_command, json_data)
         
-        # Compare outputs
-        is_match, match_type, details = compare_outputs(expected_cli, actual_output, json_data)
+        # Compare outputs (signature: actual, expected, json_data, cli_command)
+        is_match, diff_info, match_reason = compare_outputs(actual_output, expected_cli, json_data, full_command)
         
         if is_match:
             result["status"] = "PASS"
-            result["message"] = match_type
+            result["message"] = match_reason or "Passed"
         else:
             result["status"] = "FAIL"
-            result["message"] = details
+            result["message"] = diff_info or "Mismatch"
             result["expected"] = expected_cli
             result["actual"] = actual_output
             
@@ -137,21 +137,22 @@ def run_all_tests():
 
 def print_results(results):
     """Print test results summary."""
-    pass_count = sum(1 for r in results if r["status"] == "PASS")
-    fail_count = sum(1 for r in results if r["status"] == "FAIL")
-    skip_count = sum(1 for r in results if r["status"] == "SKIP")
-    error_count = sum(1 for r in results if r["status"] == "ERROR")
+    # Exclude SKIP (no test data available), count ERROR as FAIL
+    actionable = [r for r in results if r["status"] not in ("SKIP",)]
+    pass_count = sum(1 for r in actionable if r["status"] == "PASS")
+    fail_count = sum(1 for r in actionable if r["status"] in ("FAIL", "ERROR"))
+    total = pass_count + fail_count
     
-    print(f"\\nResults: Pass={{pass_count}}, Fail={{fail_count}}, Skip={{skip_count}}, Error={{error_count}}")
+    print(f"\\nResults: Pass={{pass_count}}, Fail={{fail_count}}, Total={{total}}")
     
     # Show failures
-    failures = [r for r in results if r["status"] == "FAIL"]
+    failures = [r for r in actionable if r["status"] in ("FAIL", "ERROR")]
     if failures:
         print("\\nFailures:")
         for f in failures[:5]:
-            print(f"  - {{f['device']}} [{{f['input_options'] or 'no args'}}]: {{f['message'][:80]}}")
+            print(f"  - {{f['device']}} [{{f['input_options'] or 'no args'}}]: {{(f.get('message') or 'Unknown')[:80]}}")
     
-    return fail_count == 0 and error_count == 0
+    return fail_count == 0
 
 
 if __name__ == "__main__":

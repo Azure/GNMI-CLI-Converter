@@ -29,7 +29,7 @@ TEST_DATA_DIR = SCRIPT_DIR / "test_data"
 REPORT_FILE = SCRIPT_DIR / "verification_report.md"
 
 # Devices
-DEVICES = ["str4-7060x6-512-9", "str4-7060x6-512-13", "str4-7060x6-512-1", "str2-8102-01"]
+DEVICES = ["str4-7060x6-512-9", "str4-7060x6-512-13", "str4-7060x6-512-1", "str2-8102-01", "str3-8101-02", "str4-sn5640-7"]
 
 
 # ============================================================================
@@ -288,6 +288,7 @@ def normalize_string_value(val: str) -> list:
         'advertised': 'advertised',
         'received': 'received',
         'extendedAndStandard': 'extended and standard',
+        'sharedNetwork': 'shared network',
     }
     if val in transformations:
         representations.append(transformations[val])
@@ -641,18 +642,21 @@ def generate_report(all_results):
                         "message": tc["results"][device]["message"]
                     })
     
-    # Count stats per device
-    stats = {device: {"PASS": 0, "FAIL": 0, "ERROR": 0, "SKIP": 0} for device in DEVICES}
+    # Count stats per device (exclude SKIP, merge ERROR into FAIL)
+    stats = {device: {"PASS": 0, "FAIL": 0} for device in DEVICES}
     for tcr in all_test_case_results:
-        stats[tcr["device"]][tcr["status"]] += 1
+        if tcr["status"] == "SKIP":
+            continue
+        if tcr["status"] in ("FAIL", "ERROR"):
+            stats[tcr["device"]]["FAIL"] += 1
+        else:
+            stats[tcr["device"]][tcr["status"]] += 1
     
     # Calculate totals
     total_pass = sum(s["PASS"] for s in stats.values())
     total_fail = sum(s["FAIL"] for s in stats.values())
-    total_error = sum(s["ERROR"] for s in stats.values())
-    total_skip = sum(s["SKIP"] for s in stats.values())
-    total_tests = total_pass + total_fail + total_error + total_skip
-    pass_rate = (total_pass / (total_pass + total_fail)) * 100 if (total_pass + total_fail) > 0 else 0
+    total_tests = total_pass + total_fail
+    pass_rate = (total_pass / total_tests) * 100 if total_tests > 0 else 0
     
     lines = [
         "# gNMI CLI Library Verification Report",
@@ -662,71 +666,63 @@ def generate_report(all_results):
         "## Summary",
         "",
         f"**Total Test Cases:** {total_tests}",
-        f"**Pass Rate:** {pass_rate:.1f}% ({total_pass} Pass / {total_pass + total_fail} Run)",
+        f"**Pass Rate:** {pass_rate:.1f}% ({total_pass} Pass / {total_tests} Total)",
         "",
-        "| Device | PASS | FAIL | ERROR | SKIP | Total |",
-        "|--------|------|------|-------|------|-------|",
+        "| Device | PASS | FAIL | Total |",
+        "|--------|------|------|-------|",
     ]
     
     for device in DEVICES:
         s = stats[device]
         total = sum(s.values())
-        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {s['ERROR']} | {s['SKIP']} | {total} |")
+        lines.append(f"| {device} | {s['PASS']} | {s['FAIL']} | {total} |")
     
     lines.extend([
         "",
-        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_error}** | **{total_skip}** | **{total_tests}** |",
+        f"| **Total** | **{total_pass}** | **{total_fail}** | **{total_tests}** |",
         "",
         "## Detailed Results",
         "",
     ])
     
-    # Group failures by command
-    failures = [tcr for tcr in all_test_case_results if tcr["status"] == "FAIL"]
-    errors = [tcr for tcr in all_test_case_results if tcr["status"] == "ERROR"]
+    # Group failures by command (ERROR is also FAIL)
+    failures = [tcr for tcr in all_test_case_results if tcr["status"] in ("FAIL", "ERROR")]
     
     if failures:
         lines.extend([
             "### ❌ Failures",
             "",
-            "| Command | Options | Device | Coverage Info |",
-            "|---------|---------|--------|---------------|",
+            "| Command | Options | Device | Details |",
+            "|---------|---------|--------|----------|",
         ])
         for f in failures:
             opts = f["input_options"] if f["input_options"] else "(default)"
             lines.append(f"| `{f['command']}` | {opts} | {f['device']} | {f['message']} |")
         lines.append("")
     
-    if errors:
-        lines.extend([
-            "### ⚠️ Errors",
-            "",
-            "| Command | Options | Device | Error |",
-            "|---------|---------|--------|-------|",
-        ])
-        for e in errors:
-            opts = e["input_options"] if e["input_options"] else "(default)"
-            lines.append(f"| `{e['command']}` | {opts} | {e['device']} | {e['message']} |")
-        lines.append("")
-    
-    # Summary by command
+    # Summary by command (exclude SKIP, merge ERROR into FAIL)
     lines.extend([
         "### ✅ Pass Summary by Command",
         "",
-        "| Command | Pass | Fail | Skip |",
-        "|---------|------|------|------|",
+        "| Command | Pass | Fail |",
+        "|---------|------|------|",
     ])
     
     cmd_stats = {}
     for tcr in all_test_case_results:
+        if tcr["status"] == "SKIP":
+            continue
         cmd = tcr["command"]
         if cmd not in cmd_stats:
-            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0, "ERROR": 0, "SKIP": 0}
-        cmd_stats[cmd][tcr["status"]] += 1
+            cmd_stats[cmd] = {"PASS": 0, "FAIL": 0}
+        if tcr["status"] in ("FAIL", "ERROR"):
+            cmd_stats[cmd]["FAIL"] += 1
+        else:
+            cmd_stats[cmd][tcr["status"]] += 1
     
     for cmd in sorted(cmd_stats.keys()):
         s = cmd_stats[cmd]
-        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL'] + s['ERROR']} | {s['SKIP']} |")
+        lines.append(f"| `{cmd}` | {s['PASS']} | {s['FAIL']} |")
     
     return '\n'.join(lines)
 
@@ -752,8 +748,6 @@ def main():
     total_tests = 0
     total_pass = 0
     total_fail = 0
-    total_error = 0
-    total_skip = 0
     
     for i, test_data in enumerate(all_test_data, 1):
         command = test_data.get("command", "unknown")
@@ -763,20 +757,18 @@ def main():
         result = run_single_test(test_data, parser)
         all_results.append(result)
         
-        # Count results for this command
+        # Count results for this command (exclude SKIP, merge ERROR into FAIL)
         for tc in result["test_cases"]:
             for device in DEVICES:
                 if device in tc["results"]:
                     status = tc["results"][device]["status"]
+                    if status == "SKIP":
+                        continue
                     total_tests += 1
                     if status == "PASS":
                         total_pass += 1
-                    elif status == "FAIL":
+                    else:  # FAIL or ERROR
                         total_fail += 1
-                    elif status == "ERROR":
-                        total_error += 1
-                    else:
-                        total_skip += 1
     
     print()
     print("=" * 60)
@@ -785,12 +777,10 @@ def main():
     print(f"Total Test Cases: {total_tests}")
     print(f"  PASS:  {total_pass}")
     print(f"  FAIL:  {total_fail}")
-    print(f"  ERROR: {total_error}")
-    print(f"  SKIP:  {total_skip}")
     
-    if total_pass + total_fail > 0:
-        pass_rate = total_pass / (total_pass + total_fail) * 100
-        print(f"\nPass Rate: {pass_rate:.1f}% ({total_pass}/{total_pass + total_fail})")
+    if total_tests > 0:
+        pass_rate = total_pass / total_tests * 100
+        print(f"\nPass Rate: {pass_rate:.1f}% ({total_pass}/{total_tests})")
     
     # Generate report
     print()
@@ -801,7 +791,7 @@ def main():
     print("Done!")
     
     # Return exit code based on failures
-    return 0 if total_fail == 0 and total_error == 0 else 1
+    return 0 if total_fail == 0 else 1
 
 
 if __name__ == "__main__":
