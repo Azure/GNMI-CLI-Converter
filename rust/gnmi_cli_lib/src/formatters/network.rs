@@ -59,7 +59,7 @@ impl OutputFormatter for LldpTableFormatter {
             )
         };
 
-        // Always add capability codes header (matching Python behavior)
+        // Always add capability codes header (matching expected behavior)
         output.push_str(&cap_codes_helper);
         output.push('\n');
 
@@ -170,7 +170,7 @@ impl OutputFormatter for LldpTableFormatter {
 
         output.push_str(&tabulate_simple_auto(headers, &all_rows));
 
-        // Always add separator and total footer (matching Python behavior)
+        // Always add separator and total footer (matching expected behavior)
         let total_count = total.unwrap_or_else(|| {
             // Count rows from data if total not explicitly provided
             if let Some(Value::Array(arr)) = neighbors {
@@ -504,7 +504,7 @@ impl OutputFormatter for VlanBriefFormatter {
         _options: Option<&HashMap<String, String>>,
     ) -> Result<String, FormatError> {
         let headers = ["VLAN ID", "IP Address", "Ports", "Port Tagging", "Proxy ARP", "DHCP Helper Address"];
-        // All columns left-aligned (matching Python tabulate behavior for this table)
+        // All columns left-aligned (matching tabulate behavior for this table)
         let alignments = [false, false, false, false, false, false];
         let mut rows: Vec<Vec<String>> = Vec::new();
 
@@ -625,7 +625,7 @@ fn collect_vlan_rows(rows: &mut Vec<Vec<String>>, obj: &serde_json::Map<String, 
 
     // Build a single row per VLAN with \n-joined multi-valued fields.
     // tabulate_grid handles multi-line cells by rendering each line as a
-    // visual row without separators between them (matching Python tabulate).
+    // visual row without separators between them (matching tabulate).
     let ip_str = ip_addresses.join("\n");
     let ports_str = ports.iter().map(|(n, _)| n.as_str()).collect::<Vec<_>>().join("\n");
     let tagging_str = ports.iter().map(|(_, t)| t.as_str()).collect::<Vec<_>>().join("\n");

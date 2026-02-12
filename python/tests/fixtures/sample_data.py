@@ -99,7 +99,7 @@ Ethernet0               2              512              0               0
 """,
     },
     "clock": {
-        "date": "Mon Mar 25 20:25:16 UTC 2019\n",
+        "date": "Mon Mar 25 08:25:16 PM UTC 2019\n",
         "timezones": """\
 America/Anchorage
 America/Anguilla

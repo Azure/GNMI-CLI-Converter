@@ -618,7 +618,7 @@ impl OutputFormatter for NdpTableFormatter {
             }
         }
 
-        // Sort entries by address using natural sort (matches Python's natural_sort_key)
+        // Sort entries by address using natural sort (matches natural_sort_key)
         sorted_entries.sort_by(|a, b| natural_cmp(&a.0, &b.0));
 
         let rows: Vec<Vec<String>> = sorted_entries
@@ -877,7 +877,7 @@ impl OutputFormatter for Bgpv6SummaryFormatter {
                     }
                 }
             } else if let Some(Value::Object(peers)) = map.get("peers") {
-                // Sort by key using plain alphabetical sort (matching Python's sorted())
+                // Sort by key using plain alphabetical sort (matching sorted())
                 let mut peer_keys: Vec<&String> = peers.keys().collect();
                 peer_keys.sort();
                 for key in peer_keys {
@@ -938,7 +938,7 @@ impl OutputFormatter for Bgpv6SummaryFormatter {
                 ));
             }
 
-            // No footer - matches Python behavior (Python doesn't output "Total number of neighbors")
+            // No footer - matches expected behavior (the formatter doesn't output "Total number of neighbors")
         }
 
         if lines.is_empty() {
@@ -1019,7 +1019,7 @@ fn extract_bgp_peer_data(addr: &str, obj: &serde_json::Map<String, Value>) -> Bg
         .map(value_to_string)
         .unwrap_or_default();
 
-    // Handle state/pfxRcd — match Python: peer.get("pfxRcd", peer.get("state", ""))
+    // Handle state/pfxRcd — expected: peer.get("pfxRcd", peer.get("state", ""))
     // If pfxRcd is present (even if "0"), use it. Otherwise fall back to state.
     let pfx_rcd = obj.get("pfxRcd").map(value_to_string);
     let raw_state = obj.get("state").map(value_to_string);
@@ -2133,7 +2133,7 @@ impl Ipv6BgpNeighborsFormatter {
             }
         }
 
-        // Software version capability — only emit if value is a non-empty object (matches Python)
+        // Software version capability — only emit if value is a non-empty object (matches expected output)
         if let Some(Value::Object(sw_ver)) = caps.get("softwareVersion") {
             if !sw_ver.is_empty() {
                 lines.push("    Version Capability: not advertised not received".to_string());
@@ -2573,11 +2573,11 @@ impl Ipv6BgpNeighborsFormatter {
                 .get("bgpTimerUpString")
                 .map(value_to_string)
                 .unwrap_or_default();
-            // Python suppresses the raw epoch timestamp — only show "up for <duration>"
+            // Suppress the raw epoch timestamp — only show "up for <duration>"
             lines.push(format!("  BGP state = {}, up for {}", bgp_state, up_time));
         }
 
-        // bgpInUpdateElapsedTimeMsecs — must come BEFORE "Last read" (matching Python order)
+        // bgpInUpdateElapsedTimeMsecs — must come BEFORE "Last read" (matching expected order)
         if let Some(update_elapsed) = data
             .get("bgpInUpdateElapsedTimeMsecs")
             .and_then(Value::as_i64)
@@ -2659,7 +2659,7 @@ impl Ipv6BgpNeighborsFormatter {
             cond_adv
         ));
 
-        // Connect retry timer (matching Python label: "Connect retry timer: N seconds")
+        // Connect retry timer (label: "Connect retry timer: N seconds")
         if let Some(connect_retry) = data.get("connectRetryTimer").and_then(Value::as_i64) {
             if connect_retry > 0 {
                 lines.push(format!(
@@ -2669,7 +2669,7 @@ impl Ipv6BgpNeighborsFormatter {
             }
         }
 
-        // Peer established epoch (BUG 1 fix — Python outputs this)
+        // Peer established epoch (BUG 1 fix — the formatter outputs this)
         if let Some(up_epoch) = data
             .get("bgpTimerUpEstablishedEpoch")
             .and_then(Value::as_i64)
@@ -2708,7 +2708,7 @@ impl Ipv6BgpNeighborsFormatter {
             }
         }
 
-        // Host local/foreign (with 2-space indent, matching Python)
+        // Host local/foreign (with 2-space indent, matching expected format)
         let host_local = data
             .get("hostLocal")
             .map(value_to_string)
@@ -2730,7 +2730,7 @@ impl Ipv6BgpNeighborsFormatter {
             ));
         }
 
-        // Nexthop info (with 2-space indent, matching Python)
+        // Nexthop info (with 2-space indent, matching expected format)
         if let Some(nexthop) = data.get("nexthop").map(value_to_string) {
             if !nexthop.is_empty() {
                 lines.push(format!("  Nexthop: {}", nexthop));
@@ -2747,7 +2747,7 @@ impl Ipv6BgpNeighborsFormatter {
             }
         }
 
-        // Read/write thread (with 2-space indent, comma-separated, no FD — matching Python)
+        // Read/write thread (with 2-space indent, comma-separated, no FD — matching expected format)
         let read_thread = data
             .get("readThread")
             .map(value_to_string)
@@ -2763,14 +2763,14 @@ impl Ipv6BgpNeighborsFormatter {
             ));
         }
 
-        // Estimated RTT (with 2-space indent, matching Python)
+        // Estimated RTT (with 2-space indent, matching expected format)
         if let Some(rtt) = data.get("estimatedRttInMsecs").and_then(Value::as_i64) {
             if rtt > 0 {
                 lines.push(format!("  Estimated round trip time: {} ms", rtt));
             }
         }
 
-        // BGP connection (with 2-space indent, matching Python)
+        // BGP connection (with 2-space indent, matching expected format)
         if let Some(bgp_conn) = data.get("bgpConnection").map(value_to_string) {
             if !bgp_conn.is_empty() {
                 lines.push(format!("  BGP connection: {}", Self::camel_to_space(&bgp_conn)));
@@ -4991,7 +4991,7 @@ mod tests {
     #[test]
     fn test_bgpv6_summary_formatter_non_established_state() {
         let formatter = Bgpv6SummaryFormatter::new();
-        // When pfxRcd is present, it takes priority over state (matching Python behavior)
+        // When pfxRcd is present, it takes priority over state (matching expected behavior)
         let data = json!({
             "router_id": "10.0.0.7",
             "local_as": "65700",
@@ -5254,10 +5254,10 @@ mod tests {
         assert!(result.contains("Hostname: leaf01"));
         assert!(result.contains("Software Version: FRR-8.0"));
         assert!(result.contains("BGP state = Established"));
-        // Peer established epoch now shown (matching Python)
+        // Peer established epoch now shown (matching expected output)
         assert!(result.contains("Peer established epoch: 1700000000"), "Epoch should be present: {}", result);
         assert!(result.contains("up for 1d02h03m"));
-        // "Last update from" should come before "Last read" (matching Python order)
+        // "Last update from" should come before "Last read" (matching expected order)
         assert!(result.contains("Last update from fc00::2"), "result: {}", result);
         assert!(result.contains("Hold time is 180 seconds"));
         assert!(result.contains("keepalive interval is 60 seconds"));
@@ -5310,7 +5310,7 @@ mod tests {
         assert!(result.contains("confed-external link"));
         assert!(result.contains("Neighbor under common administration"));
         assert!(result.contains("  Read thread: on, Write thread: off"));
-        // No FD output (matching Python)
+        // No FD output (matching expected output)
         assert!(!result.contains("FD used:"));
     }
 

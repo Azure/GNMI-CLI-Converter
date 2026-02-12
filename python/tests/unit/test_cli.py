@@ -83,7 +83,7 @@ class TestConvertFromCliCommand:
         output = self.converter.convert_from_cli_command(
             "show clock", TestData.CLOCK_DATE
         )
-        assert output == "Mon Mar 25 20:25:16 UTC 2019"
+        assert output == "Mon Mar 25 08:25:16 PM UTC 2019"
     
     def test_show_clock_timezones(self):
         """Test 'show clock timezones'."""

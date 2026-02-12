@@ -6,6 +6,69 @@ use comfy_table::{Cell, CellAlignment, ContentArrangement, Table};
 use serde_json::Value;
 use std::collections::{BTreeMap, HashMap};
 
+/// Insert AM/PM designator into a 24-hour clock date string.
+///
+/// Converts  `"Mon Jan 26 09:56:41 UTC 2026"`
+/// to        `"Mon Jan 26 09:56:41 AM UTC 2026"`
+///
+/// If the string already contains AM/PM or doesn't match the expected pattern,
+/// it is returned unchanged.
+fn add_ampm(date_str: &str) -> String {
+    let s = date_str.trim();
+
+    // Already has AM/PM
+    if s.contains(" AM ") || s.contains(" PM ") {
+        return s.to_string();
+    }
+
+    // Pattern: "Day Mon DD HH:MM:SS TZ YYYY"
+    // We use a regex-free approach: split by whitespace, find the time token,
+    // parse the hour, and insert AM/PM.
+    //
+    // Tokens example: ["Mon", "Jan", "26", "09:56:41", "UTC", "2026"]
+    //            or:  ["Mon", "Feb", "", "9", "06:09:20", "UTC", "2026"]  (double-space day)
+    //
+    // The time token is the one containing two colons.
+    let tokens: Vec<&str> = s.split_whitespace().collect();
+    if tokens.len() < 5 {
+        return s.to_string();
+    }
+
+    // Find the index of the time token (contains ":")
+    let time_idx = match tokens.iter().position(|t| t.matches(':').count() == 2) {
+        Some(i) => i,
+        None => return s.to_string(),
+    };
+
+    let time_token = tokens[time_idx];
+    // Parse hour from "HH:MM:SS"
+    let hour: u32 = match time_token.split(':').next().and_then(|h| h.parse().ok()) {
+        Some(h) => h,
+        None => return s.to_string(),
+    };
+
+    let (display_hour, period) = match hour {
+        0 => (12u32, "AM"),
+        1..=11 => (hour, "AM"),
+        12 => (12, "PM"),
+        _ => (hour - 12, "PM"),
+    };
+
+    // Rebuild the time token with the 12-hour display
+    let new_time = format!("{:02}{}", display_hour, &time_token[time_token.find(':').unwrap()..]);
+
+    // Reconstruct: we need to preserve the original spacing (e.g. double-space
+    // before single-digit day). Walk the original string, replace the time
+    // token occurrence, and insert " AM"/" PM" after it.
+    if let Some(pos) = s.find(time_token) {
+        let before = &s[..pos];
+        let after = &s[pos + time_token.len()..];
+        format!("{}{} {}{}", before, new_time, period, after)
+    } else {
+        s.to_string()
+    }
+}
+
 /// Formatter for clock/date output.
 pub struct ClockFormatter;
 
@@ -34,13 +97,13 @@ impl OutputFormatter for ClockFormatter {
             // Try various date/time fields
             for key in &["date", "Date", "datetime", "time", "Time"] {
                 if let Some(value) = map.get(*key) {
-                    return Ok(value_to_string(value));
+                    return Ok(add_ampm(&value_to_string(value)));
                 }
             }
         }
 
         if let Value::String(s) = data {
-            return Ok(s.clone());
+            return Ok(add_ampm(s));
         }
 
         Ok(String::new())
@@ -138,7 +201,7 @@ impl OutputFormatter for VersionFormatter {
         _options: Option<&HashMap<String, String>>,
     ) -> Result<String, FormatError> {
         if let Value::Object(map) = data {
-            // Start with a leading blank line (matches Python output)
+            // Start with a leading blank line (matches expected output)
             let mut lines = vec![String::new()];
 
             // Standard version fields in order
@@ -225,10 +288,16 @@ impl OutputFormatter for VersionFormatter {
                                 .get("Tag")
                                 .map(value_to_string)
                                 .unwrap_or_else(|| "N/A".to_string());
-                            let img_id = obj
+                            let raw_id = obj
                                 .get("ID")
                                 .map(value_to_string)
                                 .unwrap_or_else(|| "N/A".to_string());
+                            // Strip "sha256:" prefix and truncate to 12 chars (like Docker CLI)
+                            let img_id = if let Some(hex) = raw_id.strip_prefix("sha256:") {
+                                hex.chars().take(12).collect::<String>()
+                            } else {
+                                raw_id
+                            };
                             let size = obj
                                 .get("Size")
                                 .map(value_to_string)
@@ -549,7 +618,7 @@ impl OutputFormatter for ServicesFormatter {
                                     .map(value_to_string)
                                     .unwrap_or_default();
 
-                                // ps aux style formatting matching Python's column positions:
+                                // ps aux style formatting matching column positions:
                                 // USER+PID combined 16 chars (user left, pid right-aligned in remaining)
                                 let user_pid_width = 16usize;
                                 let pid_field_width = user_pid_width.saturating_sub(user.len());
@@ -657,7 +726,7 @@ impl OutputFormatter for ProcessesFormatter {
             return Ok(String::new());
         }
 
-        // Column definitions matching Python: headers, JSON keys, alignment
+        // Column definitions: headers, JSON keys, alignment
         // Right-aligned: PID(0), PPID(1), %MEM(3), %CPU(4), UID(8)
         // Left-aligned: CMD(2), STIME(5), TIME(6), TT(7)
         let headers = ["PID", "PPID", "CMD", "%MEM", "%CPU", "STIME", "TIME", "TT", "UID"];
@@ -667,7 +736,7 @@ impl OutputFormatter for ProcessesFormatter {
         for item in &items {
             if let Value::Object(proc) = item {
                 let raw_cmd = proc.get("CMD").map(value_to_string).unwrap_or_default();
-                // Truncate CMD with ellipsis if exceeds max width (matches Python CMD_MAX_WIDTH=50)
+                // Truncate CMD with ellipsis if exceeds max width (matches CMD_MAX_WIDTH=50)
                 let cmd = if raw_cmd.len() > 50 {
                     format!("{}...", &raw_cmd[..47])
                 } else {
@@ -943,7 +1012,7 @@ impl OutputFormatter for RebootCauseFormatter {
                     }
                 }
 
-                // Calculate column widths: minimum widths matching Python [19, 7, 31, 6, 9]
+                // Calculate column widths: minimum widths [19, 7, 31, 6, 9]
                 let min_widths: Vec<usize> = vec![19, 7, 31, 6, 9];
                 let mut widths: Vec<usize> = min_widths.clone();
                 for row in &rows {
@@ -1051,7 +1120,7 @@ impl MmuFormatter {
             let sep = format!("{}  {}", "-".repeat(key_width), "-".repeat(val_width));
             lines.push(sep.clone());
 
-            // Data rows (value NOT padded, matching Python tabulate behavior)
+            // Data rows (value NOT padded, matching tabulate behavior)
             for (k, v) in &rows {
                 lines.push(format!("{:<kw$}  {}", k, v, kw = key_width));
             }
@@ -1143,7 +1212,7 @@ mod tests {
         let config = CommandConfig::new();
 
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        assert_eq!(result, "Mon Jan 1 12:00:00 UTC 2024");
+        assert_eq!(result, "Mon Jan 1 12:00:00 PM UTC 2024");
     }
 
     #[test]
@@ -1153,7 +1222,7 @@ mod tests {
         let config = CommandConfig::new();
 
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        assert_eq!(result, "Mon Jan 1 12:00:00 UTC 2024");
+        assert_eq!(result, "Mon Jan 1 12:00:00 PM UTC 2024");
     }
 
     #[test]
@@ -1541,13 +1610,13 @@ mod tests {
                 {
                     "Repository": "docker-platform-monitor",
                     "Tag": "20251105.03",
-                    "ID": "sha256:9c59644d82d4",
+                    "ID": "sha256:9c59644d82d44a79b2e496011b3ee9ae1c0424aebf485c174aef8159f31fd9df",
                     "Size": "405MB"
                 },
                 {
                     "Repository": "docker-sonic-telemetry",
                     "Tag": "latest",
-                    "ID": "sha256:0dde5b32ba65",
+                    "ID": "sha256:0dde5b32ba6506464498b8492031d2b6189043e7e53dfd5b815abe3a928eff07",
                     "Size": "367MB"
                 }
             ]
@@ -2127,7 +2196,7 @@ mod tests {
         // String input
         let data = json!("Thu Jan 1 00:00:00 UTC 2025");
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        assert_eq!(result, "Thu Jan 1 00:00:00 UTC 2025");
+        assert_eq!(result, "Thu Jan 1 12:00:00 AM UTC 2025");
     }
 
     #[test]

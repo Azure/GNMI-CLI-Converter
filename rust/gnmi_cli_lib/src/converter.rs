@@ -234,7 +234,7 @@ impl GnmiToCliConverter {
             &self.table_format.to_string(),
             options.as_ref(),
         )?;
-        // Strip trailing blank lines (matches Python's .strip() at end)
+        // Strip trailing blank lines (matches .strip() at end)
         let output = output.trim_end().to_string();
         Ok(output)
     }

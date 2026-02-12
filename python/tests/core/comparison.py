@@ -15,7 +15,7 @@ The engine uses a 7-step cascade:
 6. Empty JSON + ``--nonzero`` filter (no output is correct)
 7. BGP routes acceptable nuances (``total paths`` not in gNMI)
 
-Design notes for Rust portability:
+Design notes:
 - Each comparison step is a standalone function returning a simple tuple.
 - The cascade order and step list are data-driven and can be serialized.
 - No class hierarchy required — plain functions composed in ``compare_outputs``.

@@ -25,7 +25,7 @@ impl TransceiverPresenceFormatter {
             return String::new();
         }
 
-        // Calculate column widths using Python tabulate formula: max(header_len + 2, max_data_len)
+        // Calculate column widths using tabulate formula: max(header_len + 2, max_data_len)
         let mut widths: Vec<usize> = headers.iter().map(|h| h.len() + 2).collect();
 
         for (port, presence) in rows {
@@ -495,7 +495,7 @@ fn format_eeprom_output(data: &Value) -> Result<String, FormatError> {
 
                     lines.push(format!("{}: SFP EEPROM detected", iface));
 
-                    // Sort keys alphabetically (case-sensitive to match Python sorted())
+                    // Sort keys alphabetically (case-sensitive for consistent sorted())
                     let mut sorted_keys: Vec<&String> = obj.keys().collect();
                     sorted_keys.sort();
 
@@ -541,7 +541,7 @@ fn format_eeprom_output(data: &Value) -> Result<String, FormatError> {
 }
 
 /// Sort key for Application Advertisement entries by speed.
-/// Matches Python's _get_app_adv_sort_key: start-anchored patterns, returns (order, entry) tuple.
+/// matches _get_app_adv_sort_key: start-anchored patterns, returns (order, entry) tuple.
 fn app_adv_sort_key(entry: &str) -> (i64, String) {
     let upper = entry.to_uppercase();
     let order = if upper.starts_with("800G-ETC") {
@@ -668,7 +668,7 @@ impl TransceiverErrorStatusFormatter {
 
     /// Format table using tabulate "simple" format (left-aligned, no trailing padding)
     fn format_error_status_table(headers: &[&str], rows: &[Vec<String>]) -> String {
-        // Calculate column widths using Python tabulate formula: max(header_len + 2, max_data_len)
+        // Calculate column widths using tabulate formula: max(header_len + 2, max_data_len)
         let mut widths: Vec<usize> = headers.iter().map(|h| h.len() + 2).collect();
 
         for row in rows {
@@ -1957,7 +1957,7 @@ mod tests {
 
     #[test]
     fn test_app_adv_sort_key_ordering() {
-        // Matches Python's _get_app_adv_sort_key patterns (start-anchored)
+        // matches _get_app_adv_sort_key patterns (start-anchored)
         assert_eq!(app_adv_sort_key("800G-ETC-CR8").0, 0);
         assert_eq!(app_adv_sort_key("400GBASE-CR4").0, 1);
         assert_eq!(app_adv_sort_key("400G CR8").0, 2);
@@ -1968,7 +1968,7 @@ mod tests {
         // Entries that DON'T match start-anchored patterns should get 99
         assert_eq!(app_adv_sort_key("800G S C2M (placeholder)").0, 99); // no "800G-ETC" prefix
         assert_eq!(app_adv_sort_key("100GAUI-1-L C2M").0, 99); // no "100GBASE" prefix
-        assert_eq!(app_adv_sort_key("50GBASE-CR").0, 99); // not in Python's pattern list
+        assert_eq!(app_adv_sort_key("50GBASE-CR").0, 99); // not in the pattern list
         assert_eq!(app_adv_sort_key("25GBASE-CR").0, 99);
         assert_eq!(app_adv_sort_key("10GBASE-SR").0, 99);
         // Ordering: 800G-ETC < 400GBASE < 400G CR < 200GBASE < 100GBASE < 40GBASE < unknown
@@ -2027,7 +2027,7 @@ mod tests {
         });
         let config = CommandConfig::new();
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        // After fix: status=="1" always returns "OK" matching Python behavior
+        // After fix: status=="1" always returns "OK" matching expected behavior
         assert!(result.contains("OK"), "status=1 should always be OK: {}", result);
     }
 
@@ -2043,7 +2043,7 @@ mod tests {
         });
         let config = CommandConfig::new();
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        // After fix: status=="1" always returns "OK" matching Python behavior
+        // After fix: status=="1" always returns "OK" matching expected behavior
         assert!(result.contains("OK"), "status=1 should always be OK: {}", result);
     }
 

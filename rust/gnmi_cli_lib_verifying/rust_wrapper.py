@@ -18,7 +18,7 @@ BINARY_PATH_DEBUG = _binary_path(
 )
 
 class RustCommandParser:
-    """Wrapper to call the Rust binary instead of Python parser."""
+    """Wrapper to call the Rust gnmi-cli-convert binary."""
 
     def __init__(self):
         self.binary = self._resolve_binary()
@@ -81,13 +81,13 @@ class RustCommandParser:
                 print(f"Rust binary Error: {result.stderr}")
                 return ""
                 
-            # Preserve stdout formatting to match Python converter output.
+            # Preserve stdout formatting to match converter output.
             return result.stdout
         except Exception as e:
             print(f"Execution failed: {e}")
             return ""
 
     def parse_and_convert(self, command: str, json_data: dict) -> str:
-        """Alias for parse to match Python API expected by test runner."""
+        """Alias for parse to match API expected by test runner."""
         return self.parse(command, json_data)
 

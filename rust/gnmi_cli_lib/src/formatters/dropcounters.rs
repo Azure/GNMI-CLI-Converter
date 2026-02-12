@@ -104,7 +104,7 @@ impl OutputFormatter for DropCounterCapabilitiesFormatter {
             .unwrap_or(0)
             .max(counter_type_header.len());
 
-        // Add 2 padding for right-aligned column (matching Python tabulate numalign="right" behavior)
+        // Add 2 padding for right-aligned column (matching tabulate numalign="right" behavior)
         let max_count_len = entries
             .iter()
             .map(|(_, c, _)| c.len())
@@ -802,7 +802,7 @@ mod tests {
         let config = CommandConfig::new();
 
         let result = formatter.format(&data, &config, "simple", None).unwrap();
-        // Should return empty output for empty data (matching Python behavior)
+        // Should return empty output for empty data (matching expected behavior)
         assert!(result.is_empty());
     }
 

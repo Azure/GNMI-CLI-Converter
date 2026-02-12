@@ -473,10 +473,10 @@ pub fn build_table(headers: &[String], rows: &[Vec<String>], right_align: bool) 
     }
 }
 
-/// Format data as a simple table matching Python's `tabulate(tablefmt="simple")`.
+/// Format data as a simple table matching `tabulate(tablefmt="simple")`.
 ///
 /// All columns are right-aligned (matching SONiC CLI convention). This function
-/// bypasses comfy_table entirely for predictable, Python-compatible output.
+/// bypasses comfy_table entirely for predictable, compatible output.
 ///
 /// Column width = `max(header_len + 2, max_data_len_in_column)`.
 /// Columns separated by 2 spaces. Trailing whitespace trimmed from each line.
@@ -486,7 +486,7 @@ pub fn tabulate_simple(headers: &[&str], rows: &[Vec<String>]) -> String {
 
 /// Format data as a simple table with auto-detected column alignment.
 ///
-/// Matches Python's `tabulate(tablefmt="simple")` default behavior:
+/// Matches `tabulate(tablefmt="simple")` default behavior:
 /// - Columns where ALL non-empty data values are numeric → right-aligned
 /// - Columns with any non-numeric text data → left-aligned
 ///
@@ -520,8 +520,8 @@ pub fn tabulate_simple_auto(headers: &[&str], rows: &[Vec<String>]) -> String {
         is_numeric_col[col] = numeric;
     }
 
-    // Reformat float values in numeric columns using Python's "g" format (6 significant digits).
-    // Python tabulate auto-detects numeric columns and applies floatfmt="g", which converts
+    // Reformat float values in numeric columns using "g" format (6 significant digits).
+    // tabulate auto-detects numeric columns and applies floatfmt="g", which converts
     // e.g. "0.0" -> "0", "1.0" -> "1", while preserving "0.1" -> "0.1".
     let reformatted_rows: Vec<Vec<String>> = rows
         .iter()
@@ -554,8 +554,8 @@ pub fn tabulate_simple_auto(headers: &[&str], rows: &[Vec<String>]) -> String {
     tabulate_simple_aligned(headers, &reformatted_rows, &alignments)
 }
 
-/// Format a float using Python's "g" format with 6 significant digits.
-/// This matches Python's `format(val, "g")` behavior:
+/// Format a float using "g" format with 6 significant digits.
+/// This matches `format(val, "g")` behavior:
 /// - Trailing zeros after decimal point are removed
 /// - Values that are integers are shown without decimal point
 /// - Scientific notation used for very large/small values
@@ -563,10 +563,10 @@ pub fn format_g(val: f64) -> String {
     if val == 0.0 {
         return "0".to_string();
     }
-    // Use Rust's default {:.*e} and {:.*} to mimic Python's "g" with 6 sig digits
+    // Use Rust's default {:.*e} and {:.*} to match "g" with 6 sig digits
     let abs_val = val.abs();
     let exp = abs_val.log10().floor() as i32;
-    // Python "g": use fixed notation if -4 <= exp < 6, else scientific
+    // "g" format: use fixed notation if -4 <= exp < 6, else scientific
     if (-4..6).contains(&exp) {
         // Fixed-point notation with enough precision
         let decimal_places = if exp >= 0 {
@@ -598,16 +598,16 @@ pub fn format_g(val: f64) -> String {
     }
 }
 
-/// Format data as a grid table matching Python's `tabulate(tablefmt="grid")`.
+/// Format data as a grid table matching `tabulate(tablefmt="grid")`.
 ///
-/// Matches Python tabulate grid format with MIN_PADDING=2:
+/// Matches tabulate grid format with MIN_PADDING=2:
 /// - content_width = max(header_len + 2, max_data_len) per column
 /// - Cell: `| ` + content padded to content_width + ` |`
 /// - Separator dashes = content_width + 2
 ///
 /// Supports multi-line cells: if a cell value contains `\n`, each line is
 /// rendered as a separate visual row but without a `+---+` separator between
-/// them — matching Python tabulate's multi-line cell behavior.
+/// them — matching tabulate's multi-line cell behavior.
 ///
 /// `alignments` specifies per-column alignment: `true` = right, `false` = left.
 pub fn tabulate_grid(
@@ -619,7 +619,7 @@ pub fn tabulate_grid(
         return String::new();
     }
 
-    // Python tabulate grid: content_width = max(header_len + MIN_PADDING, max_data_len)
+    // tabulate grid: content_width = max(header_len + MIN_PADDING, max_data_len)
     // MIN_PADDING = 2 applies to headers, not to data
     // For multi-line cells, use max width of any single line within the cell.
     let mut content_widths: Vec<usize> = headers.iter().map(|h| h.len() + 2).collect();
@@ -767,10 +767,10 @@ pub fn tabulate_simple_aligned(
 
 /// Insert a dashed separator line after the header row of a table string.
 ///
-/// Matches Python's `tabulate(tablefmt='simple')` behavior:
+/// Matches `tabulate(tablefmt='simple')` behavior:
 /// 1. Parses the comfy_table output to detect column boundaries
 /// 2. Extracts cell content from each column
-/// 3. Computes column widths using Python's formula: max(header_len + 2, max_data_len)
+/// 3. Computes column widths using the formula: max(header_len + 2, max_data_len)
 /// 4. Re-renders with proper column widths, 2-space column gaps, and full-width separators
 ///
 /// For multi-word column headers (containing spaces within a column), use
@@ -842,7 +842,7 @@ pub fn add_header_separator(table_output: &str) -> String {
     // Look for a row where content is shorter than the column width to
     // determine if content is left-aligned (starts at column start) or
     // right-aligned (starts later). Default to left-aligned if ambiguous
-    // (matches Python tabulate's default stralign="left").
+    // (matches tabulate's default stralign="left").
     let mut col_right_aligned: Vec<bool> = Vec::with_capacity(num_cols);
     for &(start, end) in columns.iter() {
         let col_width = end - start;
@@ -875,7 +875,7 @@ pub fn add_header_separator(table_output: &str) -> String {
         }
     }
 
-    // Step 4: Compute column widths using Python's tabulate formula
+    // Step 4: Compute column widths using tabulate formula
     // column_width = max(header_len + 2, max_data_len)
     let mut col_widths: Vec<usize> = Vec::with_capacity(num_cols);
     for col in col_contents.iter().take(num_cols) {

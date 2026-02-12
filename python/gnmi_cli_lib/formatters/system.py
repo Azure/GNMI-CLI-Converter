@@ -20,25 +20,74 @@ from gnmi_cli_lib.formatters.base import OutputFormatter
 from gnmi_cli_lib.common.types import CommandConfig
 from gnmi_cli_lib.common.constants import VERSION_FIELD_ORDER
 
+# Regex to match date strings like "Mon Jan 26 09:56:41 UTC 2026"
+# Captures: (prefix) (HH) (:MM:SS) (rest including timezone and year)
+_CLOCK_RE = re.compile(
+    r'^(\S+\s+\S+\s+\d+\s+)'   # day-of-week, month, day, trailing space
+    r'(\d{1,2})'                 # hour (24-hour)
+    r'(:\d{2}:\d{2})\s+'        # :MM:SS and whitespace
+    r'(\S+\s+\d{4})\s*$'        # timezone and year
+)
+
+
+def _add_ampm(date_str: str) -> str:
+    """Insert AM/PM designator into a 24-hour clock date string.
+
+    Converts  ``Mon Jan 26 09:56:41 UTC 2026``
+    to        ``Mon Jan 26 09:56:41 AM UTC 2026``
+
+    If the string already contains AM/PM or doesn't match the expected
+    pattern, it is returned unchanged.
+    """
+    # Already has AM/PM
+    if ' AM ' in date_str or ' PM ' in date_str:
+        return date_str
+
+    m = _CLOCK_RE.match(date_str.strip())
+    if not m:
+        return date_str
+
+    prefix, hour_str, min_sec, rest = m.groups()
+    hour = int(hour_str)
+
+    # Determine AM/PM and convert to 12-hour
+    if hour == 0:
+        display_hour = 12
+        period = 'AM'
+    elif hour < 12:
+        display_hour = hour
+        period = 'AM'
+    elif hour == 12:
+        display_hour = 12
+        period = 'PM'
+    else:
+        display_hour = hour - 12
+        period = 'PM'
+
+    return f"{prefix}{display_hour:02d}{min_sec} {period} {rest}"
+
 
 class ClockFormatter(OutputFormatter):
     """
-    Formats clock output - returns the date string as-is.
-    
-    Example input: {"date": "Mon Jan 26 09:56:41 UTC 2026"}
-    Example output: Mon Jan 26 09:56:41 UTC 2026
+    Formats clock output with 12-hour time and AM/PM designator.
+
+    The gNMI data provides 24-hour time without AM/PM, but the real
+    CLI includes it.
+
+    Example input:  {"date": "Mon Jan 26 09:56:41 UTC 2026"}
+    Example output: Mon Jan 26 09:56:41 AM UTC 2026
     """
-    
+
     def format(self, data: Dict, config: CommandConfig,
                table_format: str = "simple",
                options: Optional[Dict] = None) -> str:
-        """Format clock date."""
+        """Format clock date with AM/PM designator."""
         date_str = str(data.get("date", ""))
-        
+
         if not date_str:
             return ""
-        
-        return date_str
+
+        return _add_ampm(date_str)
 
 
 class UptimeFormatter(OutputFormatter):
@@ -112,10 +161,13 @@ class VersionFormatter(OutputFormatter):
                     if isinstance(img, dict):
                         repo = img.get("Repository", "N/A")
                         tag = img.get("Tag", "N/A")
-                        # Use the full Image ID as provided in JSON
-                        img_id = img.get("ID", "N/A")
+                        raw_id = img.get("ID", "N/A")
+                        # Strip "sha256:" prefix and truncate to 12 chars (like Docker CLI)
+                        if raw_id.startswith("sha256:"):
+                            img_id = raw_id[7:19]  # 12 hex chars after "sha256:"
+                        else:
+                            img_id = raw_id
                         size = img.get("Size", "N/A")
-                        # Format with fixed column widths (wider for full sha256)
                         lines.append(f"{repo:26} {tag:13} {img_id} {size}")
         
         return "\n".join(lines)

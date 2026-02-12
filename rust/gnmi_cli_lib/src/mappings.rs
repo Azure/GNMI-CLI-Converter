@@ -2,7 +2,6 @@
 //!
 //! This module exports the `CLI_TO_GNMI_MAPPING` which maps CLI command
 //! strings to their internal command names and gNMI paths.
-//! This is the Rust equivalent of Python's `mappings.py`.
 
 use crate::convenience::list_supported_commands;
 use lazy_static::lazy_static;
@@ -11,7 +10,6 @@ use std::collections::HashMap;
 lazy_static! {
     /// Mapping of CLI command strings to their gNMI path details.
     ///
-    /// This is the Rust equivalent of Python's `CLI_TO_GNMI_MAPPING`.
     /// Keys are CLI command strings (e.g., "show interfaces status"),
     /// values are HashMaps with: gnmi_path, command, subcommand, description, out_of_process_cmd.
     pub static ref CLI_TO_GNMI_MAPPING: HashMap<String, HashMap<String, String>> = {

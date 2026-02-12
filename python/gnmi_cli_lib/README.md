@@ -1738,7 +1738,7 @@ from gnmi_cli_lib import (
     convert_interface_alias,
     convert_interface_flap,
     convert_interface_naming_mode,
-    convert_interface_neighbor,
+    convert_interface_neighbor_expected,
     convert_interface_transceiver,
     convert_interface_fec_status,
     convert_interface_switchport,

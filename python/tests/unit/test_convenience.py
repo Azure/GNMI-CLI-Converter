@@ -163,7 +163,7 @@ class TestConvenienceFunctions_Original:
     def test_convert_clock(self):
         """Test convert_clock."""
         output = convert_clock(TestData.CLOCK_DATE)
-        assert output == "Mon Mar 25 20:25:16 UTC 2019"
+        assert output == "Mon Mar 25 08:25:16 PM UTC 2019"
     
     def test_convert_clock_timezones(self):
         """Test convert_clock_timezones."""
@@ -757,14 +757,6 @@ class TestConvenienceFunctionsComprehensive_Original:
         
         data = {"naming_mode": "default"}
         output = convert_interface_naming_mode(data)
-        assert output is not None
-    
-    @pytest.mark.xfail(reason="convert_interface_neighbor was removed from convenience module")
-    def test_convert_interface_neighbor(self):
-        """Test convert_interface_neighbor."""
-        
-        data = {"Ethernet0": {"neighbor": "switch1"}}
-        output = convert_interface_neighbor(data)
         assert output is not None
     
     def test_convert_interface_transceiver_info(self):

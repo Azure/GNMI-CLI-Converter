@@ -35,7 +35,7 @@ impl OutputFormatter for WatermarkTelemetryFormatter {
         if let Value::Object(map) = data {
             if let Some(interval) = map.get("interval").or_else(|| map.get("Interval")) {
                 let mut val = value_to_string(interval);
-                // Strip trailing "s" suffix (JSON has "120s", Python strips it)
+                // Strip trailing "s" suffix (JSON has "120s", the formatter strips it)
                 if val.ends_with('s') {
                     val.pop();
                 }
@@ -187,7 +187,7 @@ impl OutputFormatter for HeadroomPoolFormatter {
             let headers: &[&str] = &["Pool", "Bytes"];
 
             if map.is_empty() {
-                output.push(tabulate_simple_auto(headers, &[]));
+                output.push(tabulate_simple(headers, &[]));
                 return Ok(output.join("\n"));
             }
 
@@ -211,7 +211,8 @@ impl OutputFormatter for HeadroomPoolFormatter {
                 }
             }
 
-            output.push(tabulate_simple_auto(headers, &rows));
+            // Use tabulate_simple (all-right alignment) to match real CLI output
+            output.push(tabulate_simple(headers, &rows));
         }
 
         Ok(output.join("\n"))
@@ -222,7 +223,7 @@ impl OutputFormatter for HeadroomPoolFormatter {
     }
 }
 
-/// Formatter for buffer pool watermarks (uses all-right alignment to match Python TableFormatter).
+/// Formatter for buffer pool watermarks (uses all-right alignment for consistent TableFormatter).
 pub struct BufferPoolFormatter;
 
 impl BufferPoolFormatter {

@@ -121,7 +121,7 @@ class TestGnmiToCliConverter:
         """Test clock date conversion."""
         output = self.converter.convert("clock", "date", TestData.CLOCK_DATE)
         
-        assert output == "Mon Mar 25 20:25:16 UTC 2019"
+        assert output == "Mon Mar 25 08:25:16 PM UTC 2019"
     
     def test_convert_clock_timezones(self):
         """Test clock timezones conversion."""
@@ -839,4 +839,5 @@ class TestMergedConverter_798:
             {"date": "Mon Mar 25 20:25:16 UTC 2019"}
         )
         assert result is not None
+        assert result == "Mon Mar 25 08:25:16 PM UTC 2019"
 

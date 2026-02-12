@@ -61,7 +61,7 @@ impl OutputFormatter for QueueCountersFormatter {
                     "Drop/pkts",
                     "Drop/bytes",
                 ];
-                // Use h.len() + 2 minimum width to match Python tabulate padding
+                // Use h.len() + 2 minimum width to match tabulate padding
                 let widths: Vec<usize> = headers.iter().map(|h| h.len() + 2).collect();
                 let header_line: String = headers
                     .iter()
@@ -134,7 +134,7 @@ impl OutputFormatter for QueueCountersFormatter {
                 headers.extend_from_slice(&counter_columns);
             }
 
-            // Calculate widths: max(header_len + 2, max_data_len) to match Python tabulate
+            // Calculate widths: max(header_len + 2, max_data_len) to match tabulate
             let mut widths: Vec<usize> = headers.iter().map(|h| h.len() + 2).collect();
             for row in &rows {
                 for (i, val) in row.iter().enumerate() {
@@ -276,7 +276,7 @@ impl OutputFormatter for QueueCountersFormatter {
             }
 
             // Build tabulate "simple" format table with right-aligned columns
-            // Use h.len() + 2 minimum width to match Python tabulate padding
+            // Use h.len() + 2 minimum width to match tabulate padding
             let mut widths: Vec<usize> = headers.iter().map(|h| h.len() + 2).collect();
             for row in &table_rows {
                 for (i, val) in row.iter().enumerate() {
@@ -810,7 +810,7 @@ impl OutputFormatter for WredCountersFormatter {
             }
         });
 
-        // Group rows by port (column 0) — matching Python's per-interface grouping
+        // Group rows by port (column 0) — matching per-interface grouping
         let all_right = vec![true; headers.len()]; // all columns right-aligned
         let mut paragraphs: Vec<String> = Vec::new();
         let mut current_port: Option<&str> = None;

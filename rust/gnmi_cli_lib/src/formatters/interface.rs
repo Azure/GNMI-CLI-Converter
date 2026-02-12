@@ -97,7 +97,7 @@ impl OutputFormatter for InterfaceStatusFormatter {
         .into_iter()
         .collect();
 
-        // Python colalign: ["right"]*10 + ["left"] + ["right"]
+        // colalign: ["right"]*10 + ["left"] + ["right"]
         // "Type" column (index 9) is left-aligned
         let alignments: Vec<bool> = columns.iter().enumerate()
             .map(|(i, _)| i != 9) // all right except index 9 (Type)
@@ -184,7 +184,7 @@ impl OutputFormatter for InterfaceCountersFormatter {
             .map(|(k, v)| (k.to_string(), *v))
             .collect();
 
-        // Dynamically determine columns from data (like Python does)
+        // Dynamically determine columns from data (dynamically)
         let columns = detect_columns_from_data(data, &field_map);
 
         format_counters_table(data, &columns, &field_map, config, table_format, options)
@@ -239,7 +239,7 @@ impl OutputFormatter for InterfaceCountersDetailedFormatter {
                 }
             }
 
-            // Use dot-fill format matching Python's InterfaceCountersDetailedFormatter
+            // Use dot-fill format matching InterfaceCountersDetailedFormatter
             let result = self.format_dot_fill_style(map, &iface_keys);
             if !result.is_empty() {
                 lines.push(result);
@@ -461,7 +461,7 @@ impl OutputFormatter for InterfaceCountersRifFormatter {
         options: Option<&HashMap<String, String>>,
     ) -> Result<String, FormatError> {
         // Use table format for all variants (including per-interface)
-        // Python always uses table format, just with one row for single interface
+        // Always uses table format, just with one row for single interface
         let field_map: HashMap<String, &str> = INTERFACE_COUNTERS_FIELD_MAP
             .iter()
             .map(|(k, v)| (k.to_string(), *v))
@@ -808,10 +808,10 @@ impl OutputFormatter for InterfaceFlapFormatter {
         .into_iter()
         .collect();
 
-        // Python colalign: ["left", "right", "left", "left", "left", "left"]
+        // colalign: ["left", "right", "left", "left", "left", "left"]
         let alignments = [false, true, false, false, false, false];
 
-        // Extract rows, then filter out non-interface entries (matching Python's valid_prefixes)
+        // Extract rows, then filter out non-interface entries (matching valid_prefixes)
         let valid_prefixes = ["Ethernet", "PortChannel", "Vlan", "Loopback", "eth"];
         let rows = extract_rows(data, &columns, &field_map);
         let filtered: Vec<Vec<String>> = rows
@@ -1302,7 +1302,7 @@ impl OutputFormatter for NeighborExpectedFormatter {
         table_format: &str,
         options: Option<&HashMap<String, String>>,
     ) -> Result<String, FormatError> {
-        // Columns match Python InterfaceNeighborFormatter
+        // Columns match InterfaceNeighborFormatter
         let columns = vec![
             "LocalPort",
             "Neighbor",
@@ -1333,7 +1333,7 @@ impl OutputFormatter for NeighborExpectedFormatter {
         .into_iter()
         .collect();
 
-        // Use left-aligned format (Python InterfaceNeighborFormatter uses default alignment)
+        // Use left-aligned format (InterfaceNeighborFormatter uses default alignment)
         format_interface_table_left(data, &columns, &field_map, config, table_format, options)
     }
 
@@ -1389,7 +1389,7 @@ impl OutputFormatter for CountersTrimFormatter {
 
 // Helper functions
 
-/// Left-aligned table format (matches Python tabulate default simple format)
+/// Left-aligned table format (matches tabulate default simple format)
 /// Column widths are max(header_len + 2, max_data_len) - same as right-aligned
 fn format_interface_table_left(
     data: &Value,
@@ -1402,7 +1402,7 @@ fn format_interface_table_left(
     let rows = extract_rows(data, columns, field_map);
 
     // Calculate column widths: width = max(header.len() + 2, max_data_len)
-    // This matches Python tabulate behavior
+    // This matches tabulate behavior
     let mut widths: Vec<usize> = columns.iter().map(|c| c.len() + 2).collect();
     for row in &rows {
         for (i, val) in row.iter().enumerate() {
@@ -1460,7 +1460,7 @@ fn format_interface_table_left(
     Ok(output_lines.join("\n"))
 }
 
-/// Right-aligned table format (matches Python tabulate simple format with colalign)
+/// Right-aligned table format (matches tabulate simple format with colalign)
 /// Column widths are max(header.len() + 2, max_data_len), 2-space padding
 /// `alignments` specifies per-column alignment: true=right, false=left.
 /// If empty, all columns default to right-aligned.
@@ -1478,7 +1478,7 @@ fn format_interface_table(
 }
 
 /// Detect which columns are present in data, ordered by INTERFACE_COLUMN_ORDER, with "IFACE" first.
-/// Matches Python's dynamic column detection:
+/// matches dynamic column detection:
 ///   all_columns = {mapped CLI column names present in data}
 ///   ordered = [c for c in INTERFACE_COLUMN_ORDER if c in all_columns]
 ///   headers = ["IFACE"] + ordered
@@ -1523,7 +1523,7 @@ fn detect_columns_from_data(data: &Value, field_map: &HashMap<String, &str>) -> 
     }
 
     // Column group expansion: if any TRIM column is present, include all 3.
-    // Python always shows TRIM_PKTS, TRIM_TX_PKTS, TRIM_DRP_PKTS together.
+    // Always shows TRIM_PKTS, TRIM_TX_PKTS, TRIM_DRP_PKTS together.
     let has_any_trim = columns.iter().any(|c| c.starts_with("TRIM_"));
     if has_any_trim {
         for trim_col in &["TRIM_PKTS", "TRIM_TX_PKTS", "TRIM_DRP_PKTS"] {
@@ -1549,7 +1549,7 @@ fn detect_columns_from_data(data: &Value, field_map: &HashMap<String, &str>) -> 
     columns
 }
 
-/// Columns that should have comma-formatted numbers (matching Python behavior).
+/// Columns that should have comma-formatted numbers (matching expected behavior).
 const COMMA_FORMAT_COLUMNS: &[&str] = &[
     "RX_OK", "TX_OK", "RX_ERR", "RX_DRP", "RX_OVR", "TX_ERR", "TX_DRP", "TX_OVR",
 ];
@@ -1557,14 +1557,14 @@ const COMMA_FORMAT_COLUMNS: &[&str] = &[
 /// Columns that contain float values and should be formatted to max 6 decimal places.
 const FLOAT_PRECISION_COLUMNS: &[&str] = &["RX_BPS", "RX_PPS", "TX_BPS", "TX_PPS"];
 
-/// Columns whose values should be formatted with Python's "g" format (strip trailing zeros).
+/// Columns whose values should be formatted with "g" format (strip trailing zeros).
 const G_FORMAT_COLUMNS: &[&str] = &["FEC_PRE_BER", "FEC_POST_BER"];
 
 /// Format a float value with max 6 decimal places, stripping trailing zeros.
 fn format_float_precision(val: &str) -> String {
     if let Ok(f) = val.parse::<f64>() {
-        // Match Python tabulate's default floatfmt="g" (6 significant digits)
-        // Python: format(float_val, "g") → 6 significant digits, trailing zeros stripped
+        // Match tabulate's default floatfmt="g" (6 significant digits)
+        // format(float_val, "g") → 6 significant digits, trailing zeros stripped
         let _formatted = format!("{:.6}", f);  // Rust's {:.6} for f64 = 6 sig digits in Display mode
         // Use the 'g' equivalent: significant digits with trailing zero stripping
         // Rust doesn't have a direct 'g' format, so compute manually
@@ -1574,7 +1574,7 @@ fn format_float_precision(val: &str) -> String {
         // Format with 6 significant digits
         let digits = 6usize;
         let magnitude = f.abs().log10().floor() as i32;
-        // If magnitude allows fixed-point notation (Python's g behavior)
+        // If magnitude allows fixed-point notation ("g" format behavior)
         if magnitude >= -4 && magnitude < (digits as i32) {
             // Fixed-point: need (digits - 1 - magnitude) decimal places
             let decimal_places = if magnitude >= 0 {
@@ -1639,7 +1639,7 @@ fn format_counters_table(
                         // Apply float precision formatting (Fix 3.3)
                         format_float_precision(v)
                     } else if i > 0 && G_FORMAT_COLUMNS.contains(&columns[i]) {
-                        // Apply Python "g" format to BER columns (strip trailing zeros)
+                        // Apply "g" format format to BER columns (strip trailing zeros)
                         let cleaned = v.replace(',', "");
                         if let Ok(f) = cleaned.parse::<f64>() {
                             super::base::format_g(f)
@@ -1685,7 +1685,7 @@ fn extract_rows(
             }
         }
         // Fallback: try the column name itself as the JSON key
-        // Default to "N/A" for missing values (matches Python's intf_data.get(col, "N/A"))
+        // Default to "N/A" for missing values (matches intf_data.get(col, "N/A"))
         obj.get(col)
             .map(value_to_string)
             .unwrap_or_else(|| "N/A".to_string())
@@ -2469,7 +2469,7 @@ mod tests {
         let rows = extract_rows(&data, &columns, &field_map);
         assert_eq!(rows.len(), 1);
         assert_eq!(rows[0][0], "Ethernet0");
-        assert_eq!(rows[0][1], "N/A"); // Missing field defaults to "N/A" (matches Python)
+        assert_eq!(rows[0][1], "N/A"); // Missing field defaults to "N/A" (matches expected output)
         assert_eq!(rows[0][2], "N/A");
     }
 
@@ -2792,7 +2792,7 @@ mod tests {
             "result: {}",
             result
         );
-        // Now uses table format for per-interface (matching Python)
+        // Now uses table format for per-interface (matching expected output)
         assert!(result.contains("Ethernet0"), "result: {}", result);
         assert!(result.contains("IFACE"), "result: {}", result);
         assert!(result.contains("8,729"), "result: {}", result);
@@ -2815,7 +2815,7 @@ mod tests {
         let result = formatter
             .format(&data, &config, "simple", Some(&opts))
             .unwrap();
-        // Now uses table format for per-interface (matching Python)
+        // Now uses table format for per-interface (matching expected output)
         assert!(result.contains("Ethernet0"), "result: {}", result);
         assert!(result.contains("IFACE"), "result: {}", result);
         assert!(result.contains("1000"), "result: {}", result);
