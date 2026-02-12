@@ -6,8 +6,7 @@ It is the single source of truth for output normalization — previously this
 logic was duplicated in run_all_tests.py, generate_all_commands_analysis.py,
 and each individual test_*.py file.
 
-These functions are intentionally kept pure (no side effects, no state) so they
-can be easily ported to Rust or any other language.
+These functions are intentionally kept pure (no side effects, no state).
 """
 
 import re
@@ -61,9 +60,25 @@ def normalize_timestamp_values(line: str) -> str:
     - '04:43:27' -> '<UPTIME>'
     - 'Last update 1d08h57m ago' -> 'Last update <UPTIME> ago'
     - '1d09h00m' -> '<UPTIME>'
+    - 'Uptime: 08:12:25 up 1 day, 9:20, 2 users, load average: 2.99, 2.74, 2.20'
+      -> 'Uptime: <VERSION_UPTIME>'
+    - 'Date: Mon 26 Jan 2026 09:56:39' -> 'Date: <VERSION_DATE>'
 
     This allows comparison when CLI and gNMI were captured at different times.
     """
+    # Full 'show version' Uptime line — everything after "Uptime:" is dynamic
+    # (time, days, user count, load averages all change between captures)
+    line = re.sub(
+        r'^(Uptime:\s+).*$',
+        r'\1<VERSION_UPTIME>',
+        line,
+    )
+    # Full 'show version' Date line — timestamp differs between captures
+    line = re.sub(
+        r'^(Date:\s+).*$',
+        r'\1<VERSION_DATE>',
+        line,
+    )
     # Pattern for day/hour/minute format: 1d08h57m, 2d12h30m, etc.
     line = re.sub(r'\b\d+d\d{2}h\d{2}m\b', '<UPTIME>', line)
     # Pattern for HH:MM:SS format: 04:43:27, 12:30:00, etc.

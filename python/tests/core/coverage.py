@@ -5,10 +5,10 @@ This module checks whether the converter output covers all data values from the
 gNMI JSON response.  It is the single source of truth for coverage logic —
 previously duplicated in run_all_tests.py and generate_all_commands_analysis.py.
 
-Design notes for Rust portability:
+Design notes:
 - All helper functions are pure and stateless.
 - Configuration data (INTENTIONALLY_FILTERED_VALUES, transformations dict)
-  are plain sets / dicts that can be serialized to JSON for sharing with Rust.
+  are plain sets / dicts that can be serialized to JSON if needed.
 """
 
 from __future__ import annotations
@@ -18,23 +18,43 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 
 # ---------------------------------------------------------------------------
-# Configuration — extract to JSON for Rust sharing if needed
+# Configuration
 # ---------------------------------------------------------------------------
 
 # Values that are intentionally filtered/skipped by the formatter.
 # These count as "covered" because the decision to not output them is intentional
-# OR because they are transformed to other representations.
+# and they carry no operational significance.
+# IMPORTANT: Do NOT add operationally critical values here (e.g. session states,
+# admin states, boolean flags).  Those belong in CRITICAL_VALUE_TRANSFORMATIONS
+# so that their presence (literal or transformed) is actually verified.
 INTENTIONALLY_FILTERED_VALUES: Set[str] = {
     "Unknown",       # Unknown hostname – not useful to display
-    "none",          # No address families by peer
-    "None",
-    "Established",   # BGP state – when Established, CLI shows prefix count instead
-    # Boolean values — often transformed to flags or status indicators
-    "True", "true",
-    "False", "false",
-    # Status values — often encoded in flags rather than shown literally
-    "enabled", "disabled",
-    "up", "down",
+}
+
+# Operationally critical values that were previously blanket-skipped.
+# Each value maps to a list of *known alternative representations* that the
+# formatter may use.  The coverage check will verify that either the literal
+# value OR one of its alternatives appears in the output.  If neither is
+# found the value is counted as MISSING — exactly the behaviour we want for
+# BGP session states, interface admin states, and boolean flags.
+CRITICAL_VALUE_TRANSFORMATIONS: Dict[str, List[str]] = {
+    # BGP session state — CLI may show prefix count instead of the word, but
+    # if the formatter is working correctly some representation must be present.
+    # "State/PfxRcd" column header = Established sessions show prefix counts.
+    "Established": ["established", "ESTABLISHED", "Estab", "State/PfxRcd", "PfxRcd"],
+    # Boolean values — formatters often transform to yes/no, active/inactive, etc.
+    "True":  ["true",  "Yes", "yes", "YES", "active",  "Active",  "selected",  "Selected"],
+    "true":  ["True",  "Yes", "yes", "YES", "active",  "Active",  "selected",  "Selected"],
+    "False": ["false", "No",  "no",  "NO",  "inactive", "Inactive", "deselected", "Deselected"],
+    "false": ["False", "No",  "no",  "NO",  "inactive", "Inactive", "deselected", "Deselected"],
+    # Status values — may appear literally or as transformed representations
+    "enabled":  ["Enabled",  "ENABLED",  "Yes", "yes", "true",  "True",  "active",  "Active"],
+    "disabled": ["Disabled", "DISABLED", "No",  "no",  "false", "False", "inactive", "Inactive"],
+    "up":   ["Up", "UP"],
+    "down": ["Down", "DOWN", "Dw"],
+    # "none"/"None" — low-value but not zero-value; check they appear if present
+    "none": ["None", "NONE"],
+    "None": ["none", "NONE"],
 }
 
 # Common camelCase → spaced-word transformations (BGP capabilities)
@@ -197,6 +217,23 @@ def check_truncated_value_coverage(
     return False
 
 
+def check_docker_image_id_coverage(val: str, output: str) -> bool:
+    """Check Docker image sha256 digest truncated to 12 hex chars.
+
+    Docker CLI (and our formatter) strips the ``sha256:`` prefix and shows
+    only the first 12 hex characters of the digest.  The gNMI JSON stores
+    the full ``sha256:<64-hex-chars>`` string.  This function bridges that
+    gap so the coverage checker considers the value covered.
+    """
+    if not val.startswith("sha256:"):
+        return False
+    hex_part = val[7:]  # strip "sha256:" prefix
+    if len(hex_part) < 12:
+        return False
+    truncated_id = hex_part[:12]
+    return truncated_id in output
+
+
 def check_ipv6_link_local_coverage(val: str, output: str) -> bool:
     """Check IPv6 link-local addresses with zone identifier.
 
@@ -278,7 +315,7 @@ def check_gnmi_coverage(
 
 def _is_value_covered(val: str, output: str) -> bool:
     """Return True if a single JSON value is covered in the output."""
-    # Intentionally filtered values
+    # Intentionally filtered values (only truly non-operational ones)
     if val in INTENTIONALLY_FILTERED_VALUES:
         return True
     # Exact match
@@ -302,7 +339,15 @@ def _is_value_covered(val: str, output: str) -> bool:
     # Truncated value
     if check_truncated_value_coverage(val, output):
         return True
+    # Docker image sha256 digest (truncated to 12 hex chars by formatter)
+    if check_docker_image_id_coverage(val, output):
+        return True
     # IPv6 link-local
     if check_ipv6_link_local_coverage(val, output):
         return True
+    # Critical value transformations — check known alternative representations
+    if val in CRITICAL_VALUE_TRANSFORMATIONS:
+        for alt in CRITICAL_VALUE_TRANSFORMATIONS[val]:
+            if alt in output:
+                return True
     return False

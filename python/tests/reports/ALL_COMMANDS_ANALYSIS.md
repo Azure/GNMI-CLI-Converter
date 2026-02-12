@@ -1,6 +1,6 @@
 # ALL COMMANDS ANALYSIS
 
-**Generated:** 2026-02-10 09:20:23
+**Generated:** 2026-02-12 16:44:49
 **Total Commands:** 70
 **Devices Tested:** 6
 
@@ -743,12 +743,12 @@ ingress_lossless_pool    59520
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-9` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
-| `str4-7060x6-512-13` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
-| `str2-8102-01` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
-| `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
-| `str3-8101-02` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
-| `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
+| `str4-7060x6-512-9` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str4-7060x6-512-13` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str2-8102-01` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str4-7060x6-512-1` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str3-8101-02` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
+| `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
 **Sample Python Invocation:**
 ```python
@@ -779,7 +779,7 @@ Mon Jan 26 09:55:41 AM UTC 2026
 
 **Actual Converter Output:**
 ```
-Mon Jan 26 09:56:41 UTC 2026
+Mon Jan 26 09:56:41 AM UTC 2026
 ```
 
 </details>
@@ -801,7 +801,7 @@ Mon Jan 26 09:15:47 AM UTC 2026
 
 **Actual Converter Output:**
 ```
-Mon Jan 26 09:16:42 UTC 2026
+Mon Jan 26 09:16:42 AM UTC 2026
 ```
 
 </details>
@@ -823,7 +823,7 @@ Fri Jan 30 08:07:54 AM UTC 2026
 
 **Actual Converter Output:**
 ```
-Fri Jan 30 08:12:30 UTC 2026
+Fri Jan 30 08:12:30 AM UTC 2026
 ```
 
 </details>
@@ -845,7 +845,7 @@ Thu Jan 29 09:35:37 AM UTC 2026
 
 **Actual Converter Output:**
 ```
-Thu Jan 29 09:39:19 UTC 2026
+Thu Jan 29 09:39:19 AM UTC 2026
 ```
 
 </details>
@@ -868,7 +868,7 @@ Mon Feb  9 06:02:59 AM UTC 2026
 
 **Actual Converter Output:**
 ```
-Mon Feb  9 06:09:20 UTC 2026
+Mon Feb  9 06:09:20 AM UTC 2026
 ```
 
 </details>
@@ -891,7 +891,7 @@ Mon Feb  9 05:37:59 AM UTC 2026
 
 **Actual Converter Output:**
 ```
-Mon Feb  9 05:43:17 UTC 2026
+Mon Feb  9 05:43:17 AM UTC 2026
 ```
 
 </details>
@@ -3316,12 +3316,12 @@ Ethernet132        U           907
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
-| `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
-| `str2-8102-01` | ✅ PASS | Match (spacing differences only) |
-| `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
-| `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
-| `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
+| `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-7060x6-512-13` | ✅ PASS | Exact match |
+| `str2-8102-01` | ✅ PASS | Exact match |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -3358,7 +3358,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3388,7 +3388,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3418,7 +3418,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3443,7 +3443,7 @@ Headroom pool maximum occupancy:
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool    Bytes
+  Pool    Bytes
 ------  -------
 ```
 
@@ -3473,7 +3473,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3504,9 +3504,9 @@ ingress_lossless_pool      N/A
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                   Bytes
+                 Pool    Bytes
 ---------------------  -------
-ingress_lossless_pool  N/A
+ingress_lossless_pool      N/A
 ```
 
 </details>
@@ -3535,12 +3535,12 @@ ingress_lossless_pool  N/A
 
 | Device | Status | Details |
 |--------|--------|---------|
-| `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
-| `str4-7060x6-512-13` | ✅ PASS | Match (spacing differences only) |
-| `str2-8102-01` | ✅ PASS | Match (spacing differences only) |
-| `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
-| `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
-| `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
+| `str4-7060x6-512-9` | ✅ PASS | Exact match |
+| `str4-7060x6-512-13` | ✅ PASS | Exact match |
+| `str2-8102-01` | ✅ PASS | Exact match |
+| `str4-7060x6-512-1` | ✅ PASS | Exact match |
+| `str3-8101-02` | ✅ PASS | Exact match |
+| `str4-sn5640-7` | ✅ PASS | Exact match |
 
 **Sample Python Invocation:**
 ```python
@@ -3577,7 +3577,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3607,7 +3607,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3637,7 +3637,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3662,7 +3662,7 @@ Headroom pool maximum occupancy:
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool    Bytes
+  Pool    Bytes
 ------  -------
 ```
 
@@ -3692,7 +3692,7 @@ ingress_lossless_pool        0
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                     Bytes
+                 Pool    Bytes
 ---------------------  -------
 ingress_lossless_pool        0
 ```
@@ -3723,9 +3723,9 @@ ingress_lossless_pool      N/A
 **Actual Converter Output:**
 ```
 Headroom pool maximum occupancy:
-Pool                   Bytes
+                 Pool    Bytes
 ---------------------  -------
-ingress_lossless_pool  N/A
+ingress_lossless_pool      N/A
 ```
 
 </details>

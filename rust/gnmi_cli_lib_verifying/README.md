@@ -1,10 +1,10 @@
 # gNMI CLI Lib Verification Suite
 
-This directory contains Python-based end-to-end verification tests that compare the Rust `gnmi-cli-convert` binary output against known-good reference outputs from the original Python implementation.
+This directory contains end-to-end verification tests that compare the Rust `gnmi-cli-convert` binary output against known-good reference outputs.
 
 ## Purpose
 
-The verification suite ensures that the Rust port (`gnmi_cli_lib`) produces output that matches the original Python `gnmi_cli_lib` for all supported SONiC CLI commands (73+ commands, 398 test cases).
+The verification suite ensures that `gnmi_cli_lib` produces correct CLI output for all supported SONiC CLI commands (73+ commands, 398 test cases).
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ The verification suite ensures that the Rust port (`gnmi_cli_lib`) produces outp
 ```
 gnmi_cli_lib_verifying/
 ├── run_all_tests.py              # Main test runner (runs all test_*.py files)
-├── rust_wrapper.py               # Wrapper matching Python gnmi_cli_lib API
+├── rust_wrapper.py               # Wrapper matching gnmi_cli_lib API
 ├── generate_all_commands_analysis.py  # Generate ALL_COMMANDS_ANALYSIS.md report
 ├── generate_test_files.py        # Auto-generate test files from command table
 ├── test_01_show_buffer_pool_watermark.py
@@ -58,7 +58,7 @@ python generate_all_commands_analysis.py
 
 This generates `ALL_COMMANDS_ANALYSIS.md` with:
 - Command-by-command verification results
-- Output comparison (Rust vs Python)
+- Output comparison (actual vs expected)
 - Pass/fail summary statistics
 
 ## Test Data Format

@@ -150,7 +150,7 @@ fn test_formatter_clock_output() {
     let converter = GnmiToCliConverter::new();
     let data = load_test_data(r#"{"date": "Mon Feb 6 12:00:00 UTC 2026"}"#);
     let result = converter.convert("clock", data).unwrap();
-    assert_output_contains_all(&result, &["Mon Feb 6 12:00:00 UTC 2026"]);
+    assert_output_contains_all(&result, &["Mon Feb 6 12:00:00 PM UTC 2026"]);
 }
 
 #[test]

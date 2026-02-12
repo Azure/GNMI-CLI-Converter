@@ -592,16 +592,6 @@ class TestIPv6FibFormatter_Original:
         assert "2001:db8::/32" in result
         assert "2001:db9::/32" in result
         assert "fc00::1" in result
-    
-    @pytest.mark.xfail(reason="Formatter now returns header row even for empty entries")
-    def test_fib_formatter_empty_entries(self):
-        """Test FIB formatter with empty entries."""
-        
-        formatter = IPv6FibFormatter()
-        config = CommandConfig()
-        
-        assert formatter.format({"entries": []}, config) == ""
-        assert formatter.format({}, config) == ""
 
 class TestIPv6LinkLocalModeFormatter_Original:
     """Tests for IPv6 link-local mode formatter."""

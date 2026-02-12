@@ -624,7 +624,7 @@ class TestEveryCommandWithExpectedOutput:
         input_data = GNMI_JSON_TEST_DATA["clock"]["date"]
         output = self.converter.convert("clock", "date", input_data)
         
-        assert "Mon Mar 25 20:25:16 UTC 2019" in output
+        assert "Mon Mar 25 08:25:16 PM UTC 2019" in output
     
     def test_clock_timezones_full(self):
         """Test clock timezones with full verification."""

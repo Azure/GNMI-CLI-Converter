@@ -1,6 +1,6 @@
 # ALL COMMANDS ANALYSIS
 
-**Generated:** 2026-02-11 16:44:36
+**Generated:** 2026-02-12 16:32:15
 **Total Commands:** 70
 **Devices Tested:** 6
 
@@ -149,7 +149,7 @@
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -415,7 +415,7 @@ ingress_lossless_pool    59520
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -681,7 +681,7 @@ ingress_lossless_pool    59520
 | `str4-7060x6-512-9` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -859,7 +859,7 @@ Mon Feb  9 05:43:17 UTC 2026
 | `str4-7060x6-512-9` | ✅ PASS | All 597 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 597 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -1383,7 +1383,7 @@ Africa/Djibouti
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -1809,7 +1809,7 @@ SWITCH_INGRESS_DROPS
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -2311,7 +2311,7 @@ Ethernet136        U         0         323         0           0
 | `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -2653,7 +2653,7 @@ print(result)
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -2757,7 +2757,7 @@ print(result)
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -2859,7 +2859,7 @@ print(result)
 | `str2-8102-01` | ✅ PASS | All 25 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -3039,7 +3039,7 @@ print(result)
 | `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -3120,7 +3120,7 @@ Ethernet132        U           907
 | `str2-8102-01` | ✅ PASS | All 4 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -3225,7 +3225,7 @@ Ethernet132        U           907
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
 | `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -3445,7 +3445,7 @@ ingress_lossless_pool  N/A
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
 | `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -3673,7 +3673,7 @@ ingress_lossless_pool  N/A
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -4172,7 +4172,7 @@ Ethernet17   etp3b
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -4219,7 +4219,7 @@ Ethernet0  etp1a
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -4266,7 +4266,7 @@ Ethernet252  etp63
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -4314,7 +4314,7 @@ Ethernet8  etp1a
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -4399,7 +4399,7 @@ Ethernet505  etp64b
 | `str4-7060x6-512-9` | ✅ PASS | All 336 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 175 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -4901,7 +4901,7 @@ Ethernet136        U   12,458  16.98 B/s      0.00%         0       323         
 | `str4-7060x6-512-1` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -5085,7 +5085,7 @@ Ethernet0        U    6,707  0.18 B/s      0.00%         0         0         0  
 | `str4-7060x6-512-1` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -5277,7 +5277,7 @@ Ethernet0        U        0  0.10 B/s      0.00%         0         0         0  
 | `str4-7060x6-512-1` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -5477,7 +5477,7 @@ Ethernet0        U    6,707  0.15 B/s    0.00/s      0.00%         0         0  
 | `str4-7060x6-512-1` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -5685,7 +5685,7 @@ Ethernet0        U        0  0.07 B/s    0.00/s      0.00%         0         0  
 | `str4-7060x6-512-1` | ✅ PASS | All 73 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 86 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -6027,7 +6027,7 @@ The rates are calculated within 2 seconds period
 | `str4-7060x6-512-1` | ✅ PASS | All 140 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 195 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -6369,7 +6369,7 @@ print(result)
 | `str4-7060x6-512-1` | ✅ PASS | All 90 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 100 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -6709,7 +6709,7 @@ The rates are calculated within 2 seconds period
 | `str2-8102-01` | ✅ PASS | All 81 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 90 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -6921,7 +6921,7 @@ The rates are calculated within 2 seconds period
 | `str4-7060x6-512-13` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 22 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7180,7 +7180,7 @@ Overruns Received.............................. 4,509
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7279,7 +7279,7 @@ Undersize Received............................. 0
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7378,7 +7378,7 @@ Overruns Received.............................. 0
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7477,7 +7477,7 @@ Undersize Received............................. 0
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7576,7 +7576,7 @@ Undersize Received............................. 0
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7675,7 +7675,7 @@ Overruns Received.............................. 0
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7774,7 +7774,7 @@ Undersize Received............................. 0
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -7903,7 +7903,7 @@ Overruns Received.............................. N/A
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -8405,7 +8405,7 @@ Ethernet136        U         0       323         0         0         0         0
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -8773,7 +8773,7 @@ The rates are calculated within 2 seconds period
 | `str4-7060x6-512-13` | ✅ PASS | All 21 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 21 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -9014,7 +9014,7 @@ BIN15                                      0
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 18 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -9107,7 +9107,7 @@ BIN15                                     0
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -9201,7 +9201,7 @@ BIN15                                   0
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -9325,7 +9325,7 @@ BIN15                                   0
 | `str4-7060x6-512-9` | ✅ PASS | All 94 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 161 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -9827,7 +9827,7 @@ Ethernet136        U           20             0                20              0
 | `str4-7060x6-512-1` | ✅ PASS | All 6 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 62 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -10196,7 +10196,7 @@ The rates are calculated within 2 seconds period
 | `str4-7060x6-512-9` | ✅ PASS | All 343 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 191 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -10698,7 +10698,7 @@ Ethernet136        U   12,458  11.42 B/s    0.05/s      0.00%   10,353  17.68 B/
 | `str4-7060x6-512-1` | ✅ PASS | All 83 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 96 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -11075,7 +11075,7 @@ The rates are calculated within 2 seconds period
 | `str4-7060x6-512-9` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 | `str4-sn5640-7` | ✅ PASS | All 192 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -11569,7 +11569,7 @@ Ethernet136         40,938      2.91188    0.0339138              11        0   
 | `str4-7060x6-512-1` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 | `str4-sn5640-7` | ✅ PASS | All 83 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -11908,7 +11908,7 @@ Ethernet128        0     0.279736   0.00378404         0        0         0     
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -11976,7 +11976,7 @@ Ethernet64      N/A       N/A       N/A       N/A      N/A       N/A       N/A  
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -12046,7 +12046,7 @@ Ethernet64      N/A       N/A       N/A       N/A      N/A       N/A       N/A  
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -12114,7 +12114,7 @@ PortChannel117    8,747   11.0771  0.114689         0        0         0        
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -12184,7 +12184,7 @@ PortChannel117        0   4.10673  0.0425199         0        0         0       
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -12255,7 +12255,7 @@ PortChannel116        0   11.4312  0.106815         0        0         0        
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -12324,7 +12324,7 @@ PortChannel116   61,337   1.65455  0.0204164         0        0         0       
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -12395,7 +12395,7 @@ Ethernet408        0   11.8194  0.132219         0        0         0         0 
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -12498,7 +12498,7 @@ Ethernet408   40,935   2.17276  0.0301761        12        0         0         0
 | `str4-7060x6-512-9` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -13000,7 +13000,7 @@ Ethernet136        U          N/A             N/A              N/A
 | `str4-7060x6-512-1` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -13339,7 +13339,7 @@ The rates are calculated within 2 seconds period
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -13389,7 +13389,7 @@ Ethernet0        U          N/A             N/A              N/A
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -13439,7 +13439,7 @@ Ethernet252        U          N/A             N/A              N/A
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -13490,7 +13490,7 @@ Ethernet8        X          N/A             N/A              N/A
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -13574,7 +13574,7 @@ Ethernet505        X          N/A             N/A              N/A
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14073,7 +14073,7 @@ Ethernet136      up       up    etp18  ARISTA14FT2:Ethernet1
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14136,7 +14136,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14199,7 +14199,7 @@ Ethernet252      up       up    etp63  ARISTA20T0:Ethernet1
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14263,7 +14263,7 @@ print(result)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14356,7 +14356,7 @@ Ethernet505    down     down   etp64b         etp64b
 | `str4-7060x6-512-13` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-9` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14585,7 +14585,7 @@ no rx reachability                  0  Never
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 18 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14674,7 +14674,7 @@ no rx reachability                  0  Never
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14764,7 +14764,7 @@ no rx reachability                  0  Never
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -14887,7 +14887,7 @@ no rx reachability                  0  Never
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -15386,7 +15386,7 @@ Ethernet136          rs           rs
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -15435,7 +15435,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -15484,7 +15484,7 @@ Ethernet252          rs           rs
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -15534,7 +15534,7 @@ print(result)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -15617,7 +15617,7 @@ Ethernet505         N/A           rs
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -16116,7 +16116,7 @@ Ethernet17              0  Down     Down    Never                       Never
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -16168,7 +16168,7 @@ Ethernet0               1  Up       Up      Never                       Thu Jan 
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -16220,7 +16220,7 @@ Ethernet252             3  Up       Up      Wed Jan 28 23:12:25 2026    Wed Jan 
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -16273,7 +16273,7 @@ Ethernet8               0  Down     Down    Never                       Never
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -16351,7 +16351,7 @@ Ethernet505             0  Down     Down    Never                       Never
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -16537,7 +16537,7 @@ default
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -17036,7 +17036,7 @@ Ethernet328  ARISTA137T1  Ethernet1       None                172.16.41.185   Ba
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -17087,7 +17087,7 @@ Ethernet64   ARISTA01T1  Ethernet1       None                172.16.38.105   Bac
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -17138,7 +17138,7 @@ Ethernet80   ARISTA07T2  Ethernet1       None                172.16.48.111   Spi
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -17190,7 +17190,7 @@ Ethernet220  ARISTA15T0  Ethernet1       None                172.16.40.156   ToR
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -17267,7 +17267,7 @@ Ethernet352  ARISTA161T1  Ethernet1       None                172.16.41.188   Ba
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -17692,7 +17692,7 @@ No.    Team Dev    Protocol    Ports
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
 | `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -18191,7 +18191,7 @@ print(result)
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -18248,7 +18248,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -18305,7 +18305,7 @@ Ethernet252  532,533,534,535     100G   9100     rs    etp63  PortChannel124    
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -18363,7 +18363,7 @@ print(result)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -18446,7 +18446,7 @@ Ethernet505      505     100G   9100     rs   etp64b  routed    down     down  O
 | `str4-7060x6-512-9` | ✅ PASS | All 97 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -18970,7 +18970,7 @@ Ethernet17   routed
 | `str4-7060x6-512-9` | ✅ PASS | All 97 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -19505,7 +19505,7 @@ Ethernet17   routed
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -19846,7 +19846,7 @@ Ethernet0: SFP EEPROM detected
 | `str3-8101-02` | ✅ PASS | All 66 values from gNMI JSON covered (100%) |
 | `str4-7060x6-512-1` | ✅ PASS | All 181 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20105,7 +20105,7 @@ Ethernet0: SFP EEPROM detected
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20186,7 +20186,7 @@ Ethernet0: SFP EEPROM detected
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 22 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20267,7 +20267,7 @@ Ethernet0: SFP EEPROM detected
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20343,7 +20343,7 @@ Ethernet252: SFP EEPROM detected
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20423,7 +20423,7 @@ Ethernet252: SFP EEPROM detected
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20503,7 +20503,7 @@ Ethernet8: SFP EEPROM detected
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 13 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20579,7 +20579,7 @@ Ethernet8: SFP EEPROM detected
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 22 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20660,7 +20660,7 @@ Ethernet505: SFP EEPROM detected
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -20774,7 +20774,7 @@ Ethernet505: SFP EEPROM detected
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -21273,7 +21273,7 @@ Ethernet17   OK
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -21320,7 +21320,7 @@ Ethernet0  OK
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -21366,7 +21366,7 @@ Ethernet252  OK
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -21414,7 +21414,7 @@ Ethernet8  OK
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -21485,7 +21485,7 @@ Ethernet505  OK
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -21857,7 +21857,7 @@ Ethernet0: SFP EEPROM detected
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -22356,7 +22356,7 @@ Ethernet17   Off
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -22404,7 +22404,7 @@ Ethernet0  Off
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -22452,7 +22452,7 @@ Ethernet252  Off
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -22501,7 +22501,7 @@ Ethernet8  Off
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -22582,7 +22582,7 @@ Ethernet505  Off
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23001,7 +23001,7 @@ Ethernet72: Transceiver performance monitoring not applicable
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23045,7 +23045,7 @@ Ethernet0: Transceiver performance monitoring not applicable
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23089,7 +23089,7 @@ Ethernet252: Transceiver performance monitoring not applicable
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23134,7 +23134,7 @@ Ethernet8: Transceiver performance monitoring not applicable
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23212,7 +23212,7 @@ Ethernet505: Transceiver performance monitoring not applicable
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23711,7 +23711,7 @@ Ethernet17   Present
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23756,7 +23756,7 @@ Ethernet0  Present
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23801,7 +23801,7 @@ Ethernet252  Present
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23847,7 +23847,7 @@ Ethernet8  Present
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -23924,7 +23924,7 @@ Ethernet505  Present
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -24263,7 +24263,7 @@ Ethernet8:
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -24332,7 +24332,7 @@ Ethernet0:
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -24399,7 +24399,7 @@ Ethernet252:
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -24469,7 +24469,7 @@ Ethernet8:
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -24569,7 +24569,7 @@ Ethernet505:
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | All 7 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -24979,7 +24979,7 @@ BGP: ipv6 prefix-list PL_LoopbackV6: 1 entries
 | `str4-7060x6-512-1` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 5 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -25209,7 +25209,7 @@ BGP: ipv6 prefix-list DEFAULT_IPV6: 1 entries
 | `str4-7060x6-512-9` | ✅ PASS | All 334 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 148 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -25737,7 +25737,7 @@ Ethernet40             fc02:1000::21/126                         up/up         N
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -25761,7 +25761,7 @@ print(result)
 | `str4-7060x6-512-1` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -26099,7 +26099,7 @@ Routing entry for fe80::/64
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -26119,7 +26119,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -26142,7 +26142,7 @@ print(result)
 | `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -26403,7 +26403,7 @@ C>* fc00::240/126 is directly connected, Ethernet144, 01w3d02h
 | `str3-8101-02` | ✅ PASS | Empty JSON data with converter output (PASS) |
 | `str4-sn5640-7` | ✅ PASS | Empty JSON data with converter output (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -26502,7 +26502,7 @@ Codes: K - kernel route, C - connected, L - local, S - static,
 | `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -26722,7 +26722,7 @@ S>* fc00:1::/64 [1/0] is directly connected, Loopback0, weight 1, 01w3d02h
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -27266,7 +27266,7 @@ table                     : none
 | `str4-7060x6-512-9` | ✅ PASS | All 796 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -27765,7 +27765,7 @@ BGP neighbor is fc00::102, remote AS 4200100000, local AS 4200000000, external l
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 60 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -27864,7 +27864,7 @@ BGP neighbor is fc00::182, remote AS 64600, local AS 65100, external link
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 16084 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -27963,7 +27963,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 16012 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28062,7 +28062,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | BGP routes acceptable nuances: Line 9609: total paths not in GNMI (acceptable) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28161,7 +28161,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 56 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28260,7 +28260,7 @@ BGP neighbor is fc00::42, remote AS 64001, local AS 65100, external link
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 16025 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28359,7 +28359,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 19 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28446,7 +28446,7 @@ Displayed 3 routes
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | BGP routes acceptable nuances: Line 9: spacing difference only (acceptable); Line 10: spacing difference only (acceptable); Line 11: spacing difference only (acceptable); Line 14: total paths not in GNMI (acceptable) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28531,7 +28531,7 @@ Displayed 2 routes
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28630,7 +28630,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28711,7 +28711,7 @@ Displayed 1 routes
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28759,7 +28759,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28858,7 +28858,7 @@ BGP neighbor is fc00::8a, remote AS 64019, local AS 65100, external link
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -28957,7 +28957,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29056,7 +29056,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29155,7 +29155,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29305,7 +29305,7 @@ BGP neighbor is fc00::6e2, remote AS 4200100000, local AS 4200000000, external l
 | `str3-8101-02` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29506,7 +29506,7 @@ RPKI validation codes: V valid, I invalid, N Not found
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29526,7 +29526,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29546,7 +29546,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29566,7 +29566,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29586,7 +29586,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29610,7 +29610,7 @@ print(result)
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -29878,7 +29878,7 @@ Paths: (32 available, best #1, table default)
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30046,7 +30046,7 @@ Paths: (32 available, best #1, table default)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30066,7 +30066,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30090,7 +30090,7 @@ print(result)
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30356,7 +30356,7 @@ Paths: (32 available, best #1, table default)
 | `str2-8102-01` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30460,7 +30460,7 @@ Paths: (4 available, best #1, table default)
 | `str2-8102-01` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30540,7 +30540,7 @@ Paths: (4 available, best #1, table default)
 | `str2-8102-01` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30634,7 +30634,7 @@ Displayed 1 routes and 25513 total paths
 | `str2-8102-01` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30737,7 +30737,7 @@ Paths: (4 available, best #1, table default)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30795,7 +30795,7 @@ Paths: (4 available, best #1, table default)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 32 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30874,7 +30874,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -30944,7 +30944,7 @@ Displayed 1 routes and 25513 total paths
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31025,7 +31025,7 @@ Paths: (4 available, best #1, table default)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31107,7 +31107,7 @@ Paths: (4 available, best #1, table default)
 | `str3-8101-02` | ✅ PASS | All 34 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 113 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31246,7 +31246,7 @@ print(result)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31302,7 +31302,7 @@ Paths: (1 available, best #1, table default)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 16 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31381,7 +31381,7 @@ print(result)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31447,7 +31447,7 @@ Displayed 1 routes and 192068 total paths
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31503,7 +31503,7 @@ Paths: (1 available, best #1, table default)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Match (timestamp/uptime differences only - CLI vs gNMI time drift) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -31584,7 +31584,7 @@ Paths: (1 available, best #1, table default)
 | `str4-7060x6-512-9` | ✅ PASS | All 168 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 104 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -32108,7 +32108,7 @@ fc00::202      4  4200100000      23479      21019    480183      0       0  5d0
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -32639,7 +32639,7 @@ print(result)
 | `str4-7060x6-512-13` | ✅ PASS | Exact match |
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -32977,7 +32977,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -32997,7 +32997,7 @@ print(result)
 | Device | Status | Details |
 |--------|--------|---------|
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33018,7 +33018,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33073,7 +33073,7 @@ Total number of entries 1
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33129,7 +33129,7 @@ Total number of entries 1
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33218,7 +33218,7 @@ Total number of entries 1
 | `str4-7060x6-512-9` | ✅ PASS | All 382 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 179 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33717,7 +33717,7 @@ Interface:    eth0, via: LLDP, RID: 1, Time: 10 days, 02:14:57
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33761,7 +33761,7 @@ LLDP neighbors:
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All 14 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33853,7 +33853,7 @@ Interface:    Ethernet252, via: LLDP, RID: 41, Time: 1 day, 09:00:53
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33898,7 +33898,7 @@ LLDP neighbors:
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -33968,7 +33968,7 @@ LLDP neighbors:
 | `str4-7060x6-512-9` | ✅ PASS | All 183 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 75 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -34492,7 +34492,7 @@ Ethernet184  ARISTA121T1                   Ethernet1       BR
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -34753,7 +34753,7 @@ Total number of entries 0
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -34931,7 +34931,7 @@ Aging time for switch is 600 seconds
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -35468,7 +35468,7 @@ type  ingress
 | `str4-7060x6-512-9` | ✅ PASS | All 516 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 378 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -35970,7 +35970,7 @@ fc00::202                  62:11:48:1e:99:ca  Ethernet128  -       REACHABLE
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36147,7 +36147,7 @@ Total number of entries 4
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36203,7 +36203,7 @@ Total number of entries 1
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36249,7 +36249,7 @@ Total number of entries 0
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36305,7 +36305,7 @@ Total number of entries 1
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36361,7 +36361,7 @@ Total number of entries 1
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36418,7 +36418,7 @@ Total number of entries 1
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36465,7 +36465,7 @@ Total number of entries 0
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36522,7 +36522,7 @@ Total number of entries 1
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -36594,7 +36594,7 @@ Total number of entries 0
 | `str4-7060x6-512-9` | ✅ PASS | All 775 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 688 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -37118,7 +37118,7 @@ print(result)
 | `str4-7060x6-512-9` | ✅ PASS | All 1511 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 1375 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -37642,7 +37642,7 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  24549.1 avail Mem
 | `str4-7060x6-512-9` | ✅ PASS | All 1512 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 1365 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -38210,7 +38210,7 @@ MiB Swap: 0.0 total,      0.0 free,      0.0 used.  24924.3 avail Mem
 | `str4-7060x6-512-9` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 107 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -38592,7 +38592,7 @@ For namespace :
 | `str4-7060x6-512-1` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 107 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -38814,7 +38814,7 @@ For namespace :
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -39036,7 +39036,7 @@ For namespace :
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | All 106 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -39258,7 +39258,7 @@ Ethernet24    UC7           35225          7716583            0             0
 | `str4-7060x6-512-1` | ✅ PASS | All 8 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 106 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -39480,7 +39480,7 @@ Ethernet24    UC7           35225          7716583            0             0
 | `str4-7060x6-512-1` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 | `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -39662,7 +39662,7 @@ For namespace :
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -39824,7 +39824,7 @@ For namespace :
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40043,7 +40043,7 @@ For namespace :
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40130,7 +40130,7 @@ Ethernet0   MC11               0                0            0             0    
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 3 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40217,7 +40217,7 @@ Ethernet0   MC11               0                0            0             0    
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40304,7 +40304,7 @@ Ethernet0   MC11            0                0                0
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40365,7 +40365,7 @@ Ethernet0   MC10           12337          1169570            0             0
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40426,7 +40426,7 @@ Ethernet0   MC10           12337          1169570            0             0
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40481,7 +40481,7 @@ Ethernet0   MC10           12337          1169570            0             0    
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40533,7 +40533,7 @@ print(result)
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40620,7 +40620,7 @@ Ethernet0   MC11            0                0                0
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40659,7 +40659,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40698,7 +40698,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40737,7 +40737,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40776,7 +40776,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40815,7 +40815,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40854,7 +40854,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40893,7 +40893,7 @@ print(result)
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -40933,7 +40933,7 @@ print(result)
 | `str2-8102-01` | ✅ PASS | Exact match |
 | `str4-7060x6-512-1` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41052,7 +41052,7 @@ Ethernet1    UC0            0                0                0
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41091,7 +41091,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41130,7 +41130,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41169,7 +41169,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41208,7 +41208,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41247,7 +41247,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41286,7 +41286,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41325,7 +41325,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41364,7 +41364,7 @@ print(result)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41417,7 +41417,7 @@ Ethernet505    UC7            0              N/A              N/A
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41478,7 +41478,7 @@ Ethernet505    UC7               0                0            0           N/A  
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41524,7 +41524,7 @@ Ethernet505    UC7               0                0            0           N/A  
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41570,7 +41570,7 @@ Ethernet505    UC7               0                0            0           N/A  
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41616,7 +41616,7 @@ Ethernet505    UC7            0              N/A              N/A
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All JSON entries empty with --nonzero filter, no output expected (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41662,7 +41662,7 @@ Ethernet505    UC7               0                0            0           N/A
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41715,7 +41715,7 @@ Ethernet505    UC7            0              N/A              N/A
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -41801,7 +41801,7 @@ Ethernet505    UC7               0                0            0           N/A  
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Match after normalizing help option order |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -42123,7 +42123,7 @@ Commands:
 | `str4-7060x6-512-9` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -42449,7 +42449,7 @@ Ethernet16       0      0      0      0      0      0      0      0
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
 | `str4-sn5640-7` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -42835,7 +42835,7 @@ Ethernet16
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -43240,7 +43240,7 @@ Ethernet16       0      0      0      0      0      0      0      0
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Match after normalizing help option order |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -43562,7 +43562,7 @@ Commands:
 | `str4-7060x6-512-9` | ✅ PASS | All 2 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -43888,7 +43888,7 @@ Ethernet16       0      0      0      0      0      0      0      0
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
 | `str4-sn5640-7` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -44274,7 +44274,7 @@ Ethernet16
 | `str4-7060x6-512-9` | ✅ PASS | Match (spacing differences only) |
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -44690,7 +44690,7 @@ Ethernet16       0      0      0      0      0      0      0      0
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45112,7 +45112,7 @@ Ethernet2    UC7             N/A              N/A               N/A             
 | `str2-8102-01` | ✅ PASS | All JSON entries empty with --nonzero filter (PASS) |
 | `str4-7060x6-512-1` | ✅ PASS | All JSON entries empty with --nonzero filter (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45218,7 +45218,7 @@ Ethernet1    UC2             N/A              N/A               N/A             
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | All JSON entries empty with --nonzero filter (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45286,7 +45286,7 @@ Ethernet0   MC11             N/A              N/A               N/A             
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | All JSON entries empty with --nonzero filter (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45329,7 +45329,7 @@ Error: no such option: --nonzero
 |--------|--------|---------|
 | `str4-7060x6-512-1` | ✅ PASS | No values in JSON data, converter produced output (PASS) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45414,7 +45414,7 @@ Ethernet0   MC11             N/A              N/A               N/A             
 |--------|--------|---------|
 | `str2-8102-01` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45455,7 +45455,7 @@ print(result)
 |--------|--------|---------|
 | `str3-8101-02` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45498,7 +45498,7 @@ print(result)
 |--------|--------|---------|
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45575,7 +45575,7 @@ Ethernet505    UC7             N/A              N/A               N/A           
 | `str4-7060x6-512-9` | ✅ PASS | All 11 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 12 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -45993,7 +45993,7 @@ Name                 Cause        Time                             User    Comme
 | `str4-7060x6-512-9` | ✅ PASS | All 1501 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 1347 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -46517,7 +46517,7 @@ root          20  0.0  0.0      0     0 ?        S    Jan29   0:02 [migration/1]
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -46695,7 +46695,7 @@ MySID    Packets    Bytes
 | `str4-7060x6-512-9` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 9 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -46981,7 +46981,7 @@ Swap:              0           0           0
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | All 1 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -47159,7 +47159,7 @@ up 1 week, 3 days, 11 hours, 18 minutes
 | `str4-7060x6-512-9` | ✅ PASS | All 83 values from gNMI JSON covered (100%) |
 | `str4-sn5640-7` | ✅ PASS | All 81 values from gNMI JSON covered (100%) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -47683,7 +47683,7 @@ Docker images:
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Match (spacing differences only) |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
@@ -47992,7 +47992,7 @@ print(result)
 | `str4-7060x6-512-9` | ✅ PASS | Exact match |
 | `str4-sn5640-7` | ✅ PASS | Exact match |
 
-**Sample Python Invocation:**
+**Sample Invocation:**
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 

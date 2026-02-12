@@ -48,7 +48,7 @@ class HeadroomPoolFormatter(OutputFormatter):
     
     Example output (with data):
         Headroom pool maximum occupancy:
-                     Pool    Bytes
+                         Pool    Bytes
         ---------------------  -------
         ingress_lossless_pool   432640
     
@@ -89,7 +89,8 @@ class HeadroomPoolFormatter(OutputFormatter):
             table_data,
             headers=headers,
             tablefmt=table_format,
-            numalign="right"
+            numalign="right",
+            stralign="right"
         )
         lines.append(table_str)
         

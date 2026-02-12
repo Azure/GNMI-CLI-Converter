@@ -1,8 +1,7 @@
 # gnmi_cli_lib
 
 A Rust library (and CLI binary) that converts SONiC gNMI telemetry JSON into
-human-readable CLI table output, mirroring the behaviour of the original Python
-`gnmi_cli_lib` package.
+human-readable CLI table output.
 
 **Version** 2.5.0 · **~29 100 lines of Rust** across 25 source files
 
@@ -32,7 +31,7 @@ human-readable CLI table output, mirroring the behaviour of the original Python
   `thiserror` integration.
 - Convenience functions (`convert`, `available_commands`, …) for one-liner
   access via a lazy-static shared converter.
-- CLI-to-gNMI mapping layer (mirrors Python `mappings.py`).
+- CLI-to-gNMI mapping layer.
 
 ## Quick start
 
@@ -145,7 +144,7 @@ src/                           (25 files, ~29 100 lines)
   registry.rs        – CommandRegistry + CommandBuilder
   convenience.rs     – one-liner helper functions (lazy-static converter)
   errors.rs          – GnmiCliError unified error type
-  mappings.rs        – CLI-to-gNMI mapping (mirrors Python mappings.py)
+  mappings.rs        – CLI-to-gNMI mapping
   common/
     mod.rs           – common module root
     types.rs         – shared types (CommandConfig, CliMapping, …)
