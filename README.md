@@ -13,7 +13,7 @@ This repository contains two independent implementations. Each is self-contained
 | Directory | Language | Documentation |
 | --------- | -------- | ------------- |
 | [`python/`](python/gnmi_cli_lib/README.md) | Python | [python/gnmi_cli_lib/README.md](python/gnmi_cli_lib/README.md) |
-| [`rust/`](rust/gnmi_cli_lib/README.md) | Rust | [rust/gnmi_cli_lib/README.md](rust/gnmi_cli_lib/README.md) |
+| [`rust/`](rust/README.md) | Rust | [rust/README.md](rust/README.md) |
 
 See each folder's README for installation, usage, API reference, and testing instructions.
 
