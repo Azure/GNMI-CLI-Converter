@@ -281,6 +281,25 @@ def check_truncated_value_coverage(val: str, output: str, min_prefix_len: int = 
     return False
 
 
+def check_docker_image_id_coverage(val: str, output: str) -> bool:
+    """Check if a Docker image SHA256 hash is covered by its truncated 12-char ID.
+
+    Docker CLI and 'show version' display IMAGE IDs as the first 12 hex characters
+    of the full SHA256 hash, without the 'sha256:' prefix.  For example:
+        JSON:   sha256:8dcb257d71191c2d28a22ca290c29e3b245faa86f2d176cbe3212b4463e1fe66
+        Output: 8dcb257d7119
+    """
+    if not val.startswith('sha256:'):
+        return False
+    hex_hash = val[len('sha256:'):]
+    # Standard Docker truncation: first 12 hex chars
+    if len(hex_hash) >= 12:
+        truncated_id = hex_hash[:12]
+        if truncated_id in output:
+            return True
+    return False
+
+
 def check_all_entries_empty(json_data: dict) -> bool:
     """Check if all entries in JSON data are empty dicts."""
     if not isinstance(json_data, dict):
@@ -353,6 +372,11 @@ def check_gnmi_coverage(actual_output: str, json_data: dict, cli_command: str = 
 
                 if not found:
                     if check_truncated_value_coverage(val, actual_output):
+                        found = True
+
+                # Check Docker image SHA256 hashes truncated to 12-char IDs
+                if not found:
+                    if check_docker_image_id_coverage(val, actual_output):
                         found = True
 
                 # Check IPv6 link-local addresses with zone identifier
