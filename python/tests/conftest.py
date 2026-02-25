@@ -57,13 +57,6 @@ def command_parser():
 
 
 @pytest.fixture(scope="session")
-def converter():
-    """Session-scoped GnmiToCliConverter instance."""
-    from gnmi_cli_lib.converter import GnmiToCliConverter
-    return GnmiToCliConverter()
-
-
-@pytest.fixture(scope="session")
 def registry():
     """Session-scoped CommandRegistry with all commands registered."""
     from gnmi_cli_lib.registry import get_default_registry

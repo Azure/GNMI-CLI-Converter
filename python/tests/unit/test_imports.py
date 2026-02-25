@@ -9,11 +9,10 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 from gnmi_cli_lib import (
-    CLI_TO_GNMI_MAPPING,
     CliMapping,
     CommandConfig,
+    CommandParser,
     CommandRegistry,
-    GnmiToCliConverter,
     get_default_registry,
 )
 from gnmi_cli_lib.common.constants import (
@@ -23,39 +22,6 @@ from gnmi_cli_lib.common.constants import (
     VERSION_FIELD_ORDER,
 )
 from gnmi_cli_lib.common.types import CliMapping, CommandConfig
-from gnmi_cli_lib.convenience import (
-    convert,
-    convert_buffer_pool_watermark,
-    convert_clock,
-    convert_clock_timezones,
-    convert_dropcounters_capabilities,
-    convert_dropcounters_configuration,
-    convert_dropcounters_counts,
-    convert_headroom_pool_watermark,
-    convert_interface_counters,
-    convert_interface_description,
-    convert_interface_errors,
-    convert_interface_status,
-    convert_lldp_neighbors,
-    convert_lldp_table,
-    convert_mac,
-    convert_mmu,
-    convert_ndp,
-    convert_portchannel,
-    convert_priority_group_watermark,
-    convert_processes,
-    convert_queue_counters,
-    convert_queue_watermark,
-    convert_queue_wredcounters,
-    convert_reboot_cause,
-    convert_services,
-    convert_srv6_stats,
-    convert_system_memory,
-    convert_uptime,
-    convert_version,
-    convert_vlan_brief,
-    convert_watermark_telemetry,
-)
 from gnmi_cli_lib.formatters.base import ListFormatter, TableFormatter, TextFormatter
 from gnmi_cli_lib.utils.parsing import parse_json_data, parse_reasons_string
 from gnmi_cli_lib.utils.sorting import natural_sort_key
@@ -73,7 +39,7 @@ class TestImports:
     
     def test_core_classes(self):
         """Test import of core classes."""
-        assert GnmiToCliConverter is not None
+        assert CommandParser is not None
         assert CommandRegistry is not None
     
     def test_types(self):
@@ -81,16 +47,13 @@ class TestImports:
         assert CommandConfig is not None
         assert CliMapping is not None
     
-    def test_convenience_functions(self):
-        """Test import of convenience functions."""
-        # All imports should succeed
-        assert convert is not None
-    
-    def test_mappings(self):
-        """Test import of CLI_TO_GNMI_MAPPING."""
-        assert isinstance(CLI_TO_GNMI_MAPPING, dict)
+    def test_mappings_via_registry(self):
+        """Test CLI mappings available via registry."""
+        registry = get_default_registry()
+        cli_mappings = registry.list_cli_mappings()
+        assert isinstance(cli_mappings, dict)
         # 70+ CLI mappings using show command format
-        assert len(CLI_TO_GNMI_MAPPING) >= 60
+        assert len(cli_mappings) >= 60
     
     def test_test_data(self):
         """Test import of test data."""

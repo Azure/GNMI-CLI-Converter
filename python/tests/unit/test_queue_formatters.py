@@ -10,7 +10,7 @@ from unittest.mock import patch, MagicMock
 
 from gnmi_cli_lib import CommandConfig
 from gnmi_cli_lib.common.types import CommandConfig
-from gnmi_cli_lib.converter import GnmiToCliConverter
+from gnmi_cli_lib.parser import CommandParser
 from gnmi_cli_lib.formatters import QueueCountersFormatter, WredCountersFormatter
 from gnmi_cli_lib.formatters.queue import QueueCountersFormatter, WredCountersFormatter
 from gnmi_cli_lib.formatters.watermark import QueueWatermarkFormatter
@@ -68,7 +68,7 @@ class TestQueueFormattersDirect:
     def test_queue_watermark_multicast_persistent(self):
         """Test queue watermark multicast persistent."""
         
-        converter = GnmiToCliConverter()
+        converter = CommandParser()
         data = {"Ethernet0": {"MC0": "512", "MC1": "256"}}
         output = converter.convert("queue", "persistent-watermark-multicast", data)
         assert output is not None

@@ -9,16 +9,7 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 from gnmi_cli_lib.common.types import CommandConfig
-from gnmi_cli_lib.convenience import (
-    convert_buffer_pool_watermark,
-    convert_headroom_pool_watermark,
-    convert_lldp_neighbors,
-    convert_lldp_table,
-    convert_priority_group_watermark,
-    convert_queue_watermark,
-    convert_reboot_cause,
-)
-from gnmi_cli_lib.converter import GnmiToCliConverter
+from gnmi_cli_lib.parser import CommandParser
 from gnmi_cli_lib.formatters.base import ListFormatter, TableFormatter
 from gnmi_cli_lib.formatters.interface import InterfaceStatusFormatter
 from gnmi_cli_lib.formatters.ipv6 import IPv6BgpRoutesTableFormatter, IPv6InterfacesFormatter, IPv6ProtocolFormatter
@@ -34,20 +25,23 @@ from gnmi_cli_lib.formatters.watermark import HeadroomPoolFormatter
 class TestFormatterExtended:
     """Extended formatter tests to improve coverage via converter APIs."""
     
+    def setup_method(self):
+        self.parser = CommandParser()
+    
     def test_buffer_pool_persistent_watermark(self):
-        """Test buffer pool persistent watermark via convenience function."""
+        """Test buffer pool persistent watermark via CommandParser."""
         
         data = {"ingress_lossless_pool": {"Bytes": "5000"}}
-        output = convert_buffer_pool_watermark(data, persistent=True)
+        output = self.parser.convert("buffer_pool", "persistent-watermark", data)
         
         assert "5000" in output
         assert "Persistent" in output or "Pool" in output
     
     def test_headroom_pool_watermark(self):
-        """Test headroom pool watermark via convenience function."""
+        """Test headroom pool watermark via CommandParser."""
         
         data = {"ingress_lossless_pool": {"Bytes": "3000"}}
-        output = convert_headroom_pool_watermark(data, persistent=False)
+        output = self.parser.convert("headroom-pool", "watermark", data)
         
         assert "3000" in output
     
@@ -55,17 +49,17 @@ class TestFormatterExtended:
         """Test headroom pool persistent watermark."""
         
         data = {"ingress_lossless_pool": {"Bytes": "4500"}}
-        output = convert_headroom_pool_watermark(data, persistent=True)
+        output = self.parser.convert("headroom-pool", "persistent-watermark", data)
         
         assert "4500" in output
     
     def test_priority_group_watermark_shared(self):
-        """Test priority group watermark shared via convenience function."""
+        """Test priority group watermark shared via CommandParser."""
         
         data = {
             "Ethernet0": {"PG0": "100", "PG1": "200"}
         }
-        output = convert_priority_group_watermark(data, wm_type="shared")
+        output = self.parser.convert("priority-group", "watermark-shared", data)
         
         assert "Ethernet0" in output or "100" in output
     
@@ -75,17 +69,17 @@ class TestFormatterExtended:
         data = {
             "Ethernet0": {"PG0": "150", "PG1": "250"}
         }
-        output = convert_priority_group_watermark(data, wm_type="headroom")
+        output = self.parser.convert("priority-group", "watermark-headroom", data)
         
         assert output is not None
     
     def test_queue_watermark_unicast(self):
-        """Test queue watermark unicast via convenience function."""
+        """Test queue watermark unicast via CommandParser."""
         
         data = {
             "Ethernet0": {"UC0": "500", "UC1": "600"}
         }
-        output = convert_queue_watermark(data, queue_type="unicast")
+        output = self.parser.convert("queue", "watermark-unicast", data)
         
         assert "500" in output or "Ethernet0" in output
     
@@ -95,7 +89,7 @@ class TestFormatterExtended:
         data = {
             "Ethernet0": {"MC0": "700", "MC1": "800"}
         }
-        output = convert_queue_watermark(data, queue_type="multicast")
+        output = self.parser.convert("queue", "watermark-multicast", data)
         
         assert output is not None
     
@@ -105,12 +99,12 @@ class TestFormatterExtended:
         data = {
             "Ethernet0": {"UC0": "900", "UC1": "1000"}
         }
-        output = convert_queue_watermark(data, queue_type="unicast", persistent=True)
+        output = self.parser.convert("queue", "persistent-watermark-unicast", data)
         
         assert output is not None
     
     def test_lldp_table_formatter(self):
-        """Test LLDP table via convenience function."""
+        """Test LLDP table via CommandParser."""
         
         data = {
             "Ethernet0": {
@@ -118,12 +112,12 @@ class TestFormatterExtended:
                 "rem_port_id": "eth0"
             }
         }
-        output = convert_lldp_table(data)
+        output = self.parser.convert("lldp", "table", data)
         
         assert output is not None
     
     def test_lldp_neighbors_formatter(self):
-        """Test LLDP neighbors via convenience function."""
+        """Test LLDP neighbors via CommandParser."""
         
         data = {
             "Ethernet0": {
@@ -131,14 +125,13 @@ class TestFormatterExtended:
                 "neighbor_port": "eth0"
             }
         }
-        output = convert_lldp_neighbors(data)
+        output = self.parser.convert("lldp", "neighbors", data)
         
         assert output is not None
     
     def test_vlan_brief_formatter(self):
-        """Test VLAN brief via converter (checks formatter coverage)."""
+        """Test VLAN brief via CommandParser (checks formatter coverage)."""
         
-        converter = GnmiToCliConverter()
         data = {
             "Vlan100": {
                 "vlanid": "100",
@@ -146,33 +139,32 @@ class TestFormatterExtended:
                 "proxy_arp": "disabled"
             }
         }
-        output = converter.convert("vlan", "brief", data)
+        output = self.parser.convert("vlan", "brief", data)
         
         # The output contains table headers
         assert "VLAN ID" in output or "IP Address" in output
     
     def test_reboot_cause_current(self):
-        """Test reboot cause current via convenience function."""
+        """Test reboot cause current via CommandParser."""
         
         data = {
             "Cause": "User requested reboot",
             "Time": "2024-01-01 12:00:00"
         }
-        output = convert_reboot_cause(data, history=False)
+        output = self.parser.convert("reboot-cause", "current", data)
         
         assert output is not None
     
     def test_reboot_cause_history(self):
-        """Test reboot cause history via converter (list should be converted to dict)."""
+        """Test reboot cause history via CommandParser."""
         
-        converter = GnmiToCliConverter()
         # The history format expects a dict, not a list
         data = {
             "history": [
                 {"cause": "User requested reboot", "time": "2024-01-01"}
             ]
         }
-        output = converter.convert("reboot-cause", "history", data)
+        output = self.parser.convert("reboot-cause", "history", data)
         
         assert output is not None
 

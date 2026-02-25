@@ -8,7 +8,7 @@ import pytest
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
-from gnmi_cli_lib import convert
+from gnmi_cli_lib.parser import CommandParser
 from gnmi_cli_lib.common.types import CommandConfig
 from gnmi_cli_lib.formatters.base import TableFormatter, TextFormatter
 from gnmi_cli_lib.formatters.interface import (
@@ -50,7 +50,8 @@ class TestEdgeCases:
     )
     def test_convert_edge_cases(self, command, subcommand, data, expected):
         """Test edge-case conversion outputs."""
-        output = convert(command, subcommand, data)
+        parser = CommandParser()
+        output = parser.convert(command, subcommand, data)
         if expected == "":
             assert output == ""
         else:
@@ -63,7 +64,7 @@ class TestEdgeCases:
             "Ethernet2": {"PG0": "200"},
             "Ethernet1": {"PG0": "300"},
         }
-        output = convert("priority-group", "watermark-shared", data)
+        output = CommandParser().convert("priority-group", "watermark-shared", data)
         
         # Verify Ethernet1 appears before Ethernet2 before Ethernet10
         eth1_pos = output.find("Ethernet1")
@@ -77,7 +78,7 @@ class TestEdgeCases:
         data = {
             "Ethernet0": {"PG10": "100", "PG2": "200", "PG1": "300"},
         }
-        output = convert("priority-group", "watermark-shared", data)
+        output = CommandParser().convert("priority-group", "watermark-shared", data)
         
         # Verify PG1 appears before PG2 before PG10
         pg1_pos = output.find("PG1")

@@ -16,7 +16,7 @@ import json
 import sys
 from typing import Optional
 
-from .converter import GnmiToCliConverter
+from .parser import CommandParser
 from .commands import register_all_commands
 from .registry import CommandRegistry
 
@@ -180,10 +180,10 @@ def main() -> int:
     if not args.command and not args.key:
         parser.error("Either --command or --key is required")
     
-    # Create converter
+    # Create parser
     registry = CommandRegistry()
     register_all_commands(registry)
-    converter = GnmiToCliConverter(registry=registry)
+    parser = CommandParser(registry=registry)
     
     # Load input data
     json_data = load_json_data(args.input)
@@ -191,15 +191,20 @@ def main() -> int:
     # Perform conversion
     try:
         if args.command:
-            result = converter.convert_from_cli_command(
+            result = parser.parse_and_convert(
                 args.command, 
                 json_data
             )
         else:
-            result = converter.convert(
-                args.key, 
-                json_data
-            )
+            # --key expects "command/subcommand" format
+            parts = args.key.split('/', 1) if '/' in args.key else args.key.split('_', 1)
+            if len(parts) == 2:
+                result = parser.convert(parts[0], parts[1], json_data)
+            else:
+                result = parser.parse_and_convert(
+                    f"show {args.key}",
+                    json_data
+                )
         
         # Format output
         if args.format == "json":
