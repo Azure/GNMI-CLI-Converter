@@ -393,10 +393,6 @@ class CommandParser:
         # Parse JSON if needed
         data = parse_json_data(json_data)
         
-        # Apply argument filter if provided
-        if argument and isinstance(data, dict):
-            data = self._filter_by_argument(command, subcommand, data, argument)
-        
         # Get configuration and formatter
         # Map to registry's internal naming
         internal_command, internal_subcommand = self._map_to_internal(command, subcommand)
@@ -435,24 +431,6 @@ class CommandParser:
             return mapping[key]
         
         return (command, subcommand)
-    
-    def _filter_by_argument(self, command: str, subcommand: str,
-                            data: Dict, argument: str) -> Dict:
-        """Filter data based on argument (e.g., interface name)."""
-        if not data:
-            return data
-        
-        # Determine key pattern based on argument
-        filtered = {}
-        for key, value in data.items():
-            # Exact match first
-            if key == argument:
-                filtered[key] = value
-            # Check if key matches with a separator (e.g., 'Ethernet8|' but not 'Ethernet80')
-            elif ':' in key and argument == key.split(':')[0]:
-                filtered[key] = value
-        
-        return filtered if filtered else data
     
     def parse_and_convert(self, cli_command: str,
                           json_data: Union[Dict, List, str]) -> str:

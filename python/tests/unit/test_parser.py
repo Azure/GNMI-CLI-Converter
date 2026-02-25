@@ -757,20 +757,6 @@ class TestParserFilterAndConvert:
         commands = parser.list_commands()
         assert isinstance(commands, dict)
     
-    def test_filter_by_argument(self):
-        """Test _filter_by_argument method."""
-        
-        parser = CommandParser()
-        
-        data = {
-            "Ethernet0": {"status": "up"},
-            "Ethernet1": {"status": "down"},
-            "PortChannel10": {"status": "up"}
-        }
-        
-        filtered = parser._filter_by_argument("interfaces", "status", data, "Ethernet0")
-        assert "Ethernet0" in filtered
-
 class TestParserEdgeCasesNew:
     """Complete edge case tests for parser - new."""
     
@@ -1183,47 +1169,6 @@ class TestParserNormalizeSubcommand:
         parser = CommandParser()
         result = parser._normalize_subcommand("buffer_pool", ["watermark"])
         assert result is not None
-
-class TestParserFilterByArgument:
-    """Test parser filter by argument method."""
-    
-    def test_filter_by_argument_exact(self):
-        """Test filtering by exact argument match."""
-        
-        parser = CommandParser()
-        data = {
-            "Ethernet0": {"status": "up"},
-            "Ethernet8": {"status": "down"},
-            "PortChannel1": {"status": "up"}
-        }
-        
-        result = parser._filter_by_argument("interfaces", "status", data, "Ethernet0")
-        assert "Ethernet0" in result
-    
-    def test_filter_by_argument_prefix(self):
-        """Test filtering by argument prefix."""
-        
-        parser = CommandParser()
-        data = {
-            "Ethernet0": {"status": "up"},
-            "Ethernet8": {"status": "down"},
-            "PortChannel1": {"status": "up"}
-        }
-        
-        result = parser._filter_by_argument("interfaces", "status", data, "Ethernet")
-        assert len(result) >= 1
-    
-    def test_filter_by_argument_colon_key(self):
-        """Test filtering with colon in key."""
-        
-        parser = CommandParser()
-        data = {
-            "Ethernet0:Slice0": {"status": "up"},
-            "Ethernet8:Slice0": {"status": "down"}
-        }
-        
-        result = parser._filter_by_argument("interfaces", "status", data, "Ethernet0")
-        assert len(result) >= 1
 
 class TestParserUnderscoreSubcommand:
     """Test parser handling underscore in subcommands."""
