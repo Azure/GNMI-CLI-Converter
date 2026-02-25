@@ -10,13 +10,9 @@ from unittest.mock import patch, MagicMock
 
 from tests.unit.test_imports import TestData
 
-from gnmi_cli_lib import CliMapping, CommandConfig, CommandRegistry, GnmiToCliConverter
+from gnmi_cli_lib import CliMapping, CommandConfig, CommandRegistry
 from gnmi_cli_lib.commands import register_all_commands
-from gnmi_cli_lib.convenience import (
-    convert_buffer_pool_watermark,
-    get_gnmi_path,
-    list_supported_commands,
-)
+from gnmi_cli_lib.parser import CommandParser
 from tests.fixtures.sample_data import EXPECTED_CLI_OUTPUTS, GNMI_JSON_TEST_DATA
 
 
@@ -29,28 +25,25 @@ class TestIntegration:
     
     def test_full_workflow_buffer_pool(self):
         """Test full workflow for buffer pool conversion."""
-        # 1. Check command is supported
-        commands = list_supported_commands()
-        assert "show buffer_pool watermark" in commands
+        # 1. Check command is supported via CommandParser
+        parser = CommandParser()
+        commands = parser.list_commands()
+        assert "buffer_pool" in commands
         
         # 2. Get gNMI path
-        path = get_gnmi_path("show buffer_pool watermark")
+        path = parser.get_gnmi_path("show buffer_pool watermark")
         assert path == "SHOW/buffer_pool/watermark"
         
-        # 3. Convert using class
-        converter = GnmiToCliConverter()
-        output1 = converter.convert("buffer_pool", "watermark", TestData.BUFFER_POOL_SIMPLE)
+        # 3. Convert using parser.convert()
+        output1 = parser.convert("buffer_pool", "watermark", TestData.BUFFER_POOL_SIMPLE)
         
-        # 4. Convert using convenience function
-        output2 = convert_buffer_pool_watermark(TestData.BUFFER_POOL_SIMPLE)
-        
-        # 5. Convert using CLI command
-        output3 = converter.convert_from_cli_command(
+        # 4. Convert using parse_and_convert
+        output2 = parser.parse_and_convert(
             "show buffer_pool watermark", TestData.BUFFER_POOL_SIMPLE
         )
         
         # All outputs should contain expected data
-        for output in [output1, output2, output3]:
+        for output in [output1, output2]:
             assert "Shared pool maximum occupancy:" in output
             assert "egress_lossless_pool" in output
             assert "1000" in output
@@ -69,15 +62,15 @@ class TestIntegration:
         )
         registry.register_command("custom", "test", config)
         
-        # 3. Create converter with custom registry
-        converter = GnmiToCliConverter(registry=registry)
+        # 3. Create parser with custom registry
+        parser = CommandParser(registry=registry)
         
         # 4. Convert standard command
-        output1 = converter.convert("buffer_pool", "watermark", TestData.BUFFER_POOL_SIMPLE)
+        output1 = parser.convert("buffer_pool", "watermark", TestData.BUFFER_POOL_SIMPLE)
         assert "Shared pool maximum occupancy:" in output1
         
         # 5. Convert custom command
-        output2 = converter.convert("custom", "test", {"custom_value": "Hello!"})
+        output2 = parser.convert("custom", "test", {"custom_value": "Hello!"})
         assert "Hello!" in output2
 
 
@@ -90,7 +83,7 @@ class TestEnhancedCommands:
     
     @pytest.fixture(autouse=True)
     def setup(self):
-        self.converter = GnmiToCliConverter()
+        self.converter = CommandParser()
     
     # -------------------------------------------------------------------------
     # Interface Counters Tests
@@ -494,7 +487,7 @@ class TestEveryCommandWithExpectedOutput:
     
     def setup_method(self):
         """Set up converter."""
-        self.converter = GnmiToCliConverter()
+        self.converter = CommandParser()
     
     # -------------------------------------------------------------------------
     # Buffer Pool Commands

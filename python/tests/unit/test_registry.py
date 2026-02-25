@@ -9,11 +9,9 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 
 from gnmi_cli_lib import (
-    CLI_TO_GNMI_MAPPING,
     CliMapping,
     CommandConfig,
     CommandRegistry,
-    GnmiToCliConverter,
     get_default_registry,
 )
 from gnmi_cli_lib.commands import register_all_commands
@@ -187,7 +185,9 @@ class TestAllCommandsAvailable:
     def test_all_commands_count(self):
         """Verify we have 70+ commands in the mapping."""
         # The library has 70+ commands using show format
-        assert len(CLI_TO_GNMI_MAPPING) >= 60
+        registry = get_default_registry()
+        cli_mappings = registry.list_cli_mappings()
+        assert len(cli_mappings) >= 60
     
     def test_required_commands_present(self):
         """Test all required commands are present using show format."""
@@ -263,9 +263,12 @@ class TestAllCommandsAvailable:
             "show watermark telemetry interval",
         ]
         
+        registry = get_default_registry()
+        cli_mappings = registry.list_cli_mappings()
+        
         missing = []
         for cmd in required_commands:
-            if cmd not in CLI_TO_GNMI_MAPPING:
+            if cmd not in cli_mappings:
                 missing.append(cmd)
         
         assert len(missing) == 0, f"Missing commands: {missing}"
@@ -273,9 +276,11 @@ class TestAllCommandsAvailable:
     def test_all_gnmi_paths_unique(self):
         """Test that all gNMI paths are unique."""
         
-        # CLI_TO_GNMI_MAPPING values are dicts with 'gnmi_path' key
+        registry = get_default_registry()
+        cli_mappings = registry.list_cli_mappings()
+        
         paths = []
-        for mapping in CLI_TO_GNMI_MAPPING.values():
+        for mapping in cli_mappings.values():
             if isinstance(mapping, dict):
                 paths.append(mapping.get('gnmi_path', ''))
             elif hasattr(mapping, 'gnmi_path'):
@@ -298,19 +303,21 @@ class TestCommandCoverage:
     
     def setup_method(self):
         """Set up test fixtures."""
+        from gnmi_cli_lib.parser import CommandParser
         
-        self.cli_mapping = CLI_TO_GNMI_MAPPING
+        registry = get_default_registry()
+        self.cli_mapping = registry.list_cli_mappings()
         self.gnmi_data = GNMI_JSON_TEST_DATA
         self.expected_outputs = EXPECTED_CLI_OUTPUTS
-        self.converter = GnmiToCliConverter()
+        self.converter = CommandParser()
     
     def test_all_commands_have_test_data(self):
         """Verify every CLI command has corresponding gNMI test data."""
         missing_test_data = []
         
         for cli_cmd, info in self.cli_mapping.items():
-            command = info['command']
-            subcommand = info['subcommand']
+            command = info.command if hasattr(info, 'command') else info['command']
+            subcommand = info.subcommand if hasattr(info, 'subcommand') else info['subcommand']
             
             # Check if test data exists
             if command not in self.gnmi_data:
@@ -331,8 +338,8 @@ class TestCommandCoverage:
         missing_outputs = []
         
         for cli_cmd, info in self.cli_mapping.items():
-            command = info['command']
-            subcommand = info['subcommand']
+            command = info.command if hasattr(info, 'command') else info['command']
+            subcommand = info.subcommand if hasattr(info, 'subcommand') else info['subcommand']
             
             # Check if expected output exists
             if command not in self.expected_outputs:
@@ -353,8 +360,8 @@ class TestCommandCoverage:
         conversion_errors = []
         
         for cli_cmd, info in self.cli_mapping.items():
-            command = info['command']
-            subcommand = info['subcommand']
+            command = info.command if hasattr(info, 'command') else info['command']
+            subcommand = info.subcommand if hasattr(info, 'subcommand') else info['subcommand']
             
             # Get test data
             test_data = self.gnmi_data.get(command, {}).get(subcommand, {})

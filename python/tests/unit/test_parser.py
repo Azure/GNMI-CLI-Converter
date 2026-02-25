@@ -8,13 +8,7 @@ import pytest
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
-from gnmi_cli_lib import CommandParser, ParsedCommand, cli
-from gnmi_cli_lib.cli import (
-    create_parser,
-    list_supported_commands,
-    load_json_data,
-    write_output,
-)
+from gnmi_cli_lib import CommandParser, ParsedCommand
 from gnmi_cli_lib.commands import register_all_commands
 from gnmi_cli_lib.parser import CommandParser, ParsedCommand
 from gnmi_cli_lib.registry import CommandRegistry
@@ -248,56 +242,6 @@ class TestCommandParser:
 
 
 # =============================================================================
-# CLI Module Tests - Improve coverage for cli.py
-# =============================================================================
-
-class TestCliModule:
-    """Tests for the CLI module to improve coverage."""
-    
-    def test_create_parser(self):
-        """Test CLI argument parser creation."""
-        
-        parser = create_parser()
-        assert parser is not None
-        assert parser.prog is not None
-    
-    def test_parser_with_input_flag(self):
-        """Test parser handles input flag."""
-        
-        parser = create_parser()
-        args = parser.parse_args(["-i", "test.json", "-c", "show version"])
-        assert args.input == "test.json"
-        assert args.command == "show version"
-    
-    def test_parser_with_list_commands(self):
-        """Test parser handles list-commands flag."""
-        
-        parser = create_parser()
-        args = parser.parse_args(["--list-commands"])
-        assert args.list_commands is True
-    
-    def test_parser_with_pattern(self):
-        """Test parser handles pattern flag."""
-        
-        parser = create_parser()
-        args = parser.parse_args(["--list-commands", "--pattern", "interface"])
-        assert args.pattern == "interface"
-    
-    def test_parser_with_output_format(self):
-        """Test parser handles format flag."""
-        
-        parser = create_parser()
-        args = parser.parse_args(["-c", "show version", "--format", "json"])
-        assert args.format == "json"
-    
-    def test_list_supported_commands_cli(self):
-        """Test list_supported_commands function exists and is callable."""
-        
-        # The function exists and is callable
-        assert callable(list_supported_commands)
-
-
-# =============================================================================
 # Parser Module Tests - Improve coverage for parser.py
 # =============================================================================
 
@@ -368,50 +312,6 @@ class TestParserModuleExtended:
 # =============================================================================
 # ADDITIONAL COVERAGE BOOST TESTS - Target remaining low-coverage modules
 # =============================================================================
-
-class TestCliModuleCoverage_Original:
-    """Tests for cli.py module to boost coverage from 24%."""
-    
-    def test_load_json_data_from_file(self, tmp_path):
-        """Test load_json_data with file input."""
-        
-        # Create a temp JSON file
-        json_file = tmp_path / "test.json"
-        json_file.write_text('{"key": "value"}')
-        
-        result = load_json_data(str(json_file))
-        assert result == {"key": "value"}
-    
-    def test_load_json_data_invalid_json(self, tmp_path):
-        """Test load_json_data with invalid JSON."""
-        
-        # Create invalid JSON file
-        json_file = tmp_path / "invalid.json"
-        json_file.write_text('not valid json{')
-        
-        with pytest.raises(SystemExit):
-            load_json_data(str(json_file))
-    
-    def test_load_json_data_file_not_found(self):
-        """Test load_json_data with non-existent file."""
-        
-        with pytest.raises(SystemExit):
-            load_json_data("/nonexistent/path/file.json")
-    
-    def test_write_output_to_file(self, tmp_path):
-        """Test write_output to file."""
-        
-        output_file = tmp_path / "output.txt"
-        write_output("test content", str(output_file))
-        
-        assert output_file.read_text() == "test content"
-    
-    def test_write_output_to_stdout(self, capsys):
-        """Test write_output to stdout."""
-        
-        write_output("stdout content", None)
-        captured = capsys.readouterr()
-        assert "stdout content" in captured.out
 
 class TestParserCoverage:
     """Tests for parser.py to boost coverage from 64%."""
@@ -1445,11 +1345,4 @@ class TestParserGetGnmiPathVariations:
         # Should still parse but mark as invalid
         assert result is not None
 
-class TestCliModuleCoverage:
-    """Tests for cli module - lines 127-128."""
-    
-    def test_cli_parse_args_help(self, monkeypatch):
-        """Test CLI argument parsing."""
-        
-        # Test that parse_args exists and works
-        assert hasattr(cli, 'create_parser') or hasattr(cli, 'main')
+

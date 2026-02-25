@@ -10,9 +10,8 @@ from unittest.mock import patch, MagicMock
 
 from tests.unit.test_imports import TestData
 
-from gnmi_cli_lib import GnmiToCliConverter
+from gnmi_cli_lib.parser import CommandParser
 from gnmi_cli_lib.common.types import CommandConfig
-from gnmi_cli_lib.converter import GnmiToCliConverter
 from gnmi_cli_lib.formatters.base import CommandHelpFormatter
 from gnmi_cli_lib.formatters.dropcounters import DropcountersConfigurationFormatter
 from gnmi_cli_lib.formatters.interface import (
@@ -65,7 +64,7 @@ class TestTableFormats:
     def test_simple_format(self):
         """Test simple table format."""
         
-        converter = GnmiToCliConverter(table_format="simple")
+        converter = CommandParser(table_format="simple")
         output = converter.convert("buffer_pool", "watermark", TestData.BUFFER_POOL_SINGLE)
         
         assert "---" in output
@@ -73,7 +72,7 @@ class TestTableFormats:
     def test_grid_format(self):
         """Test grid table format."""
         
-        converter = GnmiToCliConverter(table_format="grid")
+        converter = CommandParser(table_format="grid")
         output = converter.convert("buffer_pool", "watermark", TestData.BUFFER_POOL_SINGLE)
         
         assert "+" in output or "|" in output
@@ -81,7 +80,7 @@ class TestTableFormats:
     def test_plain_format(self):
         """Test plain table format."""
         
-        converter = GnmiToCliConverter(table_format="plain")
+        converter = CommandParser(table_format="plain")
         output = converter.convert("buffer_pool", "watermark", TestData.BUFFER_POOL_SINGLE)
         
         assert "---" not in output
@@ -112,7 +111,7 @@ class TestClockCommands:
     """Test clock commands."""
     
     def setup_method(self):
-        self.converter = GnmiToCliConverter()
+        self.converter = CommandParser()
     
     def test_clock_date(self):
         """Test clock date."""
@@ -130,7 +129,7 @@ class TestPriorityGroupCommands:
     """Test priority group commands."""
     
     def setup_method(self):
-        self.converter = GnmiToCliConverter()
+        self.converter = CommandParser()
     
     def test_priority_group_watermark_shared(self):
         """Test priority group watermark shared."""
