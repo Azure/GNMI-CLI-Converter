@@ -290,9 +290,9 @@ class TestParserModuleExtended:
     def test_parser_valid_commands_attribute(self):
         """Test VALID_COMMANDS attribute exists."""
         
-        assert hasattr(CommandParser, "VALID_COMMANDS")
-        assert "interfaces" in CommandParser.VALID_COMMANDS
-        assert "buffer_pool" in CommandParser.VALID_COMMANDS
+        parser = CommandParser()
+        assert "interfaces" in parser.VALID_COMMANDS
+        assert "buffer_pool" in parser.VALID_COMMANDS
     
     def test_parsed_command_dataclass(self):
         """Test ParsedCommand dataclass."""

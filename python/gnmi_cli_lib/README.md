@@ -28,14 +28,14 @@ A modular, extensible Python library for converting gNMI JSON responses into hum
 
 ## Overview
 
-This library provides a clean, extensible framework for transforming gNMI JSON responses into the human-readable format used by SONiC CLI show commands. It supports **70 commands** across **20 command categories**.
+This library provides a clean, extensible framework for transforming gNMI JSON responses into the human-readable format used by SONiC CLI show commands. It supports **78 commands** across **21 command categories**.
 
 ### Key Features
 
 - **Unified Command Parser**: Single entry point for parsing CLI commands
 - **Consistent Naming**: All commands follow `show <command> [subcommand] [optional_arg|<required_arg>] [options]`
 - **Modular Design**: Easy to extend with new commands
-- **Production-Ready**: 100% pass rate verified against 681 real device test cases across 6 devices
+- **Production-Ready**: 100% pass rate verified against 704 real device test cases across 6 devices
 - **Self-Contained**: Only requires Python 3.8+ and `tabulate` library
 - **Comprehensive Testing**: Unit + integration tests under `python/tests/`
 
@@ -98,25 +98,6 @@ output = parse_and_convert("show interfaces status", json_data)
 print(output)
 ```
 
-### Using the Converter Class
-
-```python
-from gnmi_cli_lib import GnmiToCliConverter
-
-converter = GnmiToCliConverter()
-output = converter.convert("interfaces", "status", json_data)
-print(output)
-```
-
-### Using Convenience Functions
-
-```python
-from gnmi_cli_lib import convert_interface_status
-
-output = convert_interface_status(json_data)
-print(output)
-```
-
 ---
 
 ## Architecture
@@ -126,14 +107,11 @@ print(output)
 | Category | File | Description |
 |----------|------|-------------|
 | **Core** | [parser.py](parser.py) | Unified CommandParser (single entry point) |
-| | [converter.py](converter.py) | GnmiToCliConverter class |
 | | [registry.py](registry.py) | CommandRegistry (command configurations) |
-| | [commands.py](commands.py) | Command registrations (70 CLI mappings) |
-| | [convenience.py](convenience.py) | 35+ convenience functions |
-| | [mappings.py](mappings.py) | CLI_TO_GNMI_MAPPING dictionary |
+| | [commands.py](commands.py) | Command registrations (78 CLI mappings) |
 | | [cli.py](cli.py) | Command-line interface |
 | **Types** | [common/types.py](common/types.py) | CommandConfig, CliMapping dataclasses |
-| | [common/constants.py](common/constants.py) | Column orderings, SAI fields |
+| | [common/constants.py](common/constants.py) | Column orderings, field mappings |
 | **Utils** | [utils/sorting.py](utils/sorting.py) | Natural sorting (Ethernet0, Ethernet4, ...) |
 | | [utils/parsing.py](utils/parsing.py) | JSON and string parsing utilities |
 | **Formatters** | [formatters/base.py](formatters/base.py) | Abstract OutputFormatter, TableFormatter |
@@ -153,23 +131,19 @@ print(output)
 | | [requirements.txt](requirements.txt) | Dependencies |
 
 ### Directory Structure
-
 ```
 gnmi_cli_lib/
-├── __init__.py           # Public API exports (90+ functions/classes)
+├── __init__.py           # Public API exports
 ├── parser.py             # Unified CommandParser (single entry point)
-├── converter.py          # GnmiToCliConverter class
 ├── registry.py           # CommandRegistry (command configurations)
-├── commands.py           # Command registrations (70 CLI mappings)
-├── convenience.py        # 35+ convenience functions
-├── mappings.py           # CLI_TO_GNMI_MAPPING dictionary
+├── commands.py           # Command registrations (78 CLI mappings)
 ├── cli.py                # Command-line interface
 ├── pyproject.toml        # Package configuration
 ├── requirements.txt      # Dependencies
 ├── .gitignore            # Git ignore patterns
 ├── common/
 │   ├── types.py          # CommandConfig, CliMapping dataclasses
-│   └── constants.py      # Column orderings, SAI fields
+│   └── constants.py      # Column orderings, field mappings
 ├── utils/
 │   ├── sorting.py        # Natural sorting (Ethernet0, Ethernet4, ...)
 │   └── parsing.py        # JSON and string parsing utilities
@@ -263,9 +237,9 @@ egress_lossy_pool     2056704
 ingress_lossless_pool       0
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import CommandParser, parse_and_convert, convert_buffer_pool_watermark
+from gnmi_cli_lib import CommandParser, parse_and_convert
 
 # Method 1: CommandParser class (recommended)
 parser = CommandParser()
@@ -273,14 +247,6 @@ output = parser.parse_and_convert("show buffer_pool watermark", data)
 
 # Method 2: Convenience function
 output = parse_and_convert("show buffer_pool watermark", data)
-
-# Method 3: Direct convenience function
-output = convert_buffer_pool_watermark(data)
-
-# Method 4: Converter class
-from gnmi_cli_lib import GnmiToCliConverter
-converter = GnmiToCliConverter()
-output = converter.convert("buffer_pool", "watermark", data)
 ```
 
 ---
@@ -296,15 +262,12 @@ Shows persistent buffer pool watermarks.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_buffer_pool_watermark
+from gnmi_cli_lib import parse_and_convert
 
 # Using parse_and_convert
 output = parse_and_convert("show buffer_pool persistent-watermark", data)
-
-# Using convenience function
-output = convert_buffer_pool_watermark(data, persistent=True)
 ```
 
 ---
@@ -331,15 +294,12 @@ Pool                   Bytes
 ingress_lossless_pool 1024000
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_headroom_pool_watermark
+from gnmi_cli_lib import parse_and_convert
 
 # Using unified parser
 output = parse_and_convert("show headroom-pool watermark", data)
-
-# Using convenience function
-output = convert_headroom_pool_watermark(data)
 ```
 
 ---
@@ -347,10 +307,9 @@ output = convert_headroom_pool_watermark(data)
 #### 2.2 `show headroom-pool persistent-watermark`
 Shows persistent headroom pool watermarks.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
 output = parse_and_convert("show headroom-pool persistent-watermark", data)
-output = convert_headroom_pool_watermark(data, persistent=True)
 ```
 
 ---
@@ -372,12 +331,11 @@ Shows current date and time.
 Mon 20 Jan 2025 07:42:51 UTC
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_clock
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show clock", data)
-output = convert_clock(data)
 ```
 
 ---
@@ -392,12 +350,11 @@ Shows available timezones.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_clock_timezones
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show clock timezones", data)
-output = convert_clock_timezones(data)
 ```
 
 ---
@@ -415,12 +372,11 @@ Shows drop counter capabilities by type.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_dropcounters_capabilities
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show dropcounters capabilities", data)
-output = convert_dropcounters_capabilities(data)
 ```
 
 ---
@@ -441,12 +397,11 @@ Shows drop counter configuration.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_dropcounters_configuration
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show dropcounters configuration", data)
-output = convert_dropcounters_configuration(data)
 ```
 
 ---
@@ -462,12 +417,11 @@ Shows port drop counter values.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_dropcounters_counts
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show dropcounters counts", data)
-output = convert_dropcounters_counts(data)
 ```
 
 ---
@@ -487,13 +441,12 @@ Shows interface aliases.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_alias
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces alias", data)
 output = parse_and_convert("show interfaces alias Ethernet0", data)
-output = convert_interface_alias(data)
 ```
 
 ---
@@ -515,13 +468,12 @@ Shows interface counters.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_counters
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces counters", data)
 output = parse_and_convert("show interfaces counters Ethernet0", data)
-output = convert_interface_counters(data)
 ```
 
 ---
@@ -531,12 +483,11 @@ Shows detailed interface counters for a specific interface.
 
 **Required argument:** `interface_name`
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_counters_detailed
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces counters detailed Ethernet0", data)
-output = convert_interface_counters_detailed(data)
 ```
 
 ---
@@ -544,7 +495,7 @@ output = convert_interface_counters_detailed(data)
 #### 5.4 `show interfaces counters errors [interface_name]`
 Shows interface counter errors.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
 from gnmi_cli_lib import parse_and_convert
 
@@ -556,12 +507,11 @@ output = parse_and_convert("show interfaces counters errors", data)
 #### 5.5 `show interfaces counters fec-histogram [interface_name]`
 Shows FEC histogram counters.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_counters_fec_histogram
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces counters fec-histogram", data)
-output = convert_interface_counters_fec_histogram(data)
 ```
 
 ---
@@ -569,12 +519,11 @@ output = convert_interface_counters_fec_histogram(data)
 #### 5.6 `show interfaces counters fec-stats [interface_name]`
 Shows FEC statistics.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_counters_fec_stats
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces counters fec-stats", data)
-output = convert_interface_counters_fec_stats(data)
 ```
 
 ---
@@ -582,12 +531,11 @@ output = convert_interface_counters_fec_stats(data)
 #### 5.7 `show interfaces counters rates [interface_name]`
 Shows interface counter rates.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_counters_rates
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces counters rates", data)
-output = convert_interface_counters_rates(data)
 ```
 
 ---
@@ -595,12 +543,11 @@ output = convert_interface_counters_rates(data)
 #### 5.8 `show interfaces counters rif [interface_name]`
 Shows RIF (Router Interface) counters.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_counters_rif
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces counters rif", data)
-output = convert_interface_counters_rif(data)
 ```
 
 ---
@@ -608,12 +555,11 @@ output = convert_interface_counters_rif(data)
 #### 5.9 `show interfaces counters trim [interface_name]`
 Shows interface trim counters.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_counters_trim
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces counters trim", data)
-output = convert_interface_counters_trim(data)
 ```
 
 ---
@@ -637,12 +583,11 @@ Shows interface descriptions.
   Ethernet4    down       up              Server2
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_description
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces description", data)
-output = convert_interface_description(data)
 ```
 
 ---
@@ -650,12 +595,11 @@ output = convert_interface_description(data)
 #### 5.11 `show interfaces errors [interface_name]`
 Shows interface errors.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_errors
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces errors", data)
-output = convert_interface_errors(data)
 ```
 
 ---
@@ -663,12 +607,11 @@ output = convert_interface_errors(data)
 #### 5.12 `show interfaces fec-status [interface_name]`
 Shows FEC status.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_fec_status
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces fec-status", data)
-output = convert_interface_fec_status(data)
 ```
 
 ---
@@ -684,12 +627,11 @@ Shows interface flap counts.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_flap
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces flap", data)
-output = convert_interface_flap(data)
 ```
 
 ---
@@ -711,12 +653,11 @@ Shows interface naming mode.
 default
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_naming_mode
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces naming-mode", data)
-output = convert_interface_naming_mode(data)
 ```
 
 ---
@@ -724,12 +665,11 @@ output = convert_interface_naming_mode(data)
 #### 5.15 `show interfaces neighbor expected [interface_name]`
 Shows expected interface neighbors.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_neighbor_expected
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces neighbor expected", data)
-output = convert_interface_neighbor_expected(data)
 ```
 
 ---
@@ -750,12 +690,11 @@ Shows port channel information.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_portchannel
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces portchannel", data)
-output = convert_portchannel(data)
 ```
 
 ---
@@ -786,13 +725,12 @@ Shows interface status.
   Ethernet0  33,34,35,36  100G  9100     rs  fortyGigE0/0       up       up
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_status
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces status", data)
 output = parse_and_convert("show interfaces status Ethernet0", data)
-output = convert_interface_status(data)
 ```
 
 ---
@@ -800,12 +738,11 @@ output = convert_interface_status(data)
 #### 5.18 `show interfaces switchport-config [interface_name]`
 Shows switchport configuration.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_switchport
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces switchport-config", data)
-output = convert_interface_switchport(data, config_or_status="config")
 ```
 
 ---
@@ -813,12 +750,11 @@ output = convert_interface_switchport(data, config_or_status="config")
 #### 5.19 `show interfaces switchport-status [interface_name]`
 Shows switchport status.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_switchport
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces switchport-status", data)
-output = convert_interface_switchport(data, config_or_status="status")
 ```
 
 ---
@@ -837,13 +773,11 @@ All transceiver commands support optional `[interface_name]` argument.
 | `show interfaces transceiver-presence [interface_name]` | Transceiver presence |
 | `show interfaces transceiver-status [interface_name]` | Transceiver status |
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_interface_transceiver
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show interfaces transceiver-info", data)
-output = convert_interface_transceiver(data, subcmd="info")
-output = convert_interface_transceiver(data, subcmd="presence")
 ```
 
 ---
@@ -853,12 +787,11 @@ output = convert_interface_transceiver(data, subcmd="presence")
 #### 6.1 `show ipv6 bgp-neighbors`
 Shows IPv6 BGP neighbors.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_ipv6_bgp_neighbors
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show ipv6 bgp-neighbors", data)
-output = convert_ipv6_bgp_neighbors(data)
 ```
 
 ---
@@ -866,7 +799,7 @@ output = convert_ipv6_bgp_neighbors(data)
 #### 6.2 `show ipv6 bgp-network`
 Shows IPv6 BGP network.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
 output = parse_and_convert("show ipv6 bgp-network", data)
 ```
@@ -876,12 +809,11 @@ output = parse_and_convert("show ipv6 bgp-network", data)
 #### 6.3 `show ipv6 bgp-summary`
 Shows IPv6 BGP summary.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_ipv6_bgp_summary
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show ipv6 bgp-summary", data)
-output = convert_ipv6_bgp_summary(data)
 ```
 
 ---
@@ -889,7 +821,7 @@ output = convert_ipv6_bgp_summary(data)
 #### 6.4 `show ipv6 fib`
 Shows IPv6 FIB.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
 output = parse_and_convert("show ipv6 fib", data)
 ```
@@ -899,12 +831,11 @@ output = parse_and_convert("show ipv6 fib", data)
 #### 6.5 `show ipv6 interfaces`
 Shows IPv6 interfaces.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_ipv6_interfaces
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show ipv6 interfaces", data)
-output = convert_ipv6_interfaces(data)
 ```
 
 ---
@@ -921,12 +852,11 @@ Shows IPv6 link local mode.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_ipv6_link_local_mode
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show ipv6 link-local-mode", data)
-output = convert_ipv6_link_local_mode(data)
 ```
 
 ---
@@ -938,12 +868,11 @@ Shows IPv6 prefix list.
 
 **Optional argument:** `name` to show specific prefix list.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_ipv6_prefix_list
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show ipv6 prefix-list", data)
-output = convert_ipv6_prefix_list(data)
 ```
 
 ---
@@ -951,7 +880,7 @@ output = convert_ipv6_prefix_list(data)
 #### 6.8 `show ipv6 protocol`
 Shows IPv6 protocol.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
 output = parse_and_convert("show ipv6 protocol", data)
 ```
@@ -963,12 +892,11 @@ Shows IPv6 routes.
 
 **Optional argument:** `prefix` to show specific route.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_ipv6_route
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show ipv6 route", data)
-output = convert_ipv6_route(data)
 ```
 
 ---
@@ -980,12 +908,11 @@ Shows LLDP neighbors.
 
 **Optional argument:** `interface_name` to show specific interface.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_lldp_neighbors
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show lldp neighbors", data)
-output = convert_lldp_neighbors(data)
 ```
 
 ---
@@ -993,12 +920,11 @@ output = convert_lldp_neighbors(data)
 #### 7.2 `show lldp table [interface_name]`
 Shows LLDP table.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_lldp_table
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show lldp table", data)
-output = convert_lldp_table(data)
 ```
 
 ---
@@ -1020,12 +946,11 @@ Shows MAC address table.
 }
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_mac
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show mac", data)
-output = convert_mac(data)
 ```
 
 ---
@@ -1047,12 +972,11 @@ Shows MAC aging time.
 600
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_mac_aging_time
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show mac aging-time", data)
-output = convert_mac_aging_time(data)
 ```
 
 ---
@@ -1062,12 +986,11 @@ output = convert_mac_aging_time(data)
 #### 9.1 `show mmu`
 Shows MMU configuration.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_mmu
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show mmu", data)
-output = convert_mmu(data)
 ```
 
 ---
@@ -1096,12 +1019,11 @@ Address             MacAddress         Iface       Vlan    Status
 2001:db8::1        00:11:22:33:44:55  Ethernet0   1000    REACHABLE
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_ndp
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show ndp", data)
-output = convert_ndp(data)
 ```
 
 ---
@@ -1119,12 +1041,11 @@ Shows process summary.
 ]
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_processes
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show processes summary", data)
-output = convert_processes(data, sort_by="summary")
 ```
 
 ---
@@ -1132,10 +1053,9 @@ output = convert_processes(data, sort_by="summary")
 #### 11.2 `show processes cpu`
 Shows processes sorted by CPU usage.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
 output = parse_and_convert("show processes cpu", data)
-output = convert_processes(data, sort_by="cpu")
 ```
 
 ---
@@ -1143,10 +1063,9 @@ output = convert_processes(data, sort_by="cpu")
 #### 11.3 `show processes memory`
 Shows processes sorted by memory usage.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
 output = parse_and_convert("show processes memory", data)
-output = convert_processes(data, sort_by="memory")
 ```
 
 ---
@@ -1174,13 +1093,12 @@ Shows queue counters.
   Ethernet0    UC1            2000           256000            5             0
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_queue_counters
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show queue counters", data)
 output = parse_and_convert("show queue counters Ethernet0", data)
-output = convert_queue_counters(data)
 ```
 
 ---
@@ -1196,13 +1114,11 @@ output = convert_queue_counters(data)
 | `show queue persistent-watermark-multicast` | Persistent multicast watermarks |
 | `show queue persistent-watermark-all` | Persistent all watermarks |
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_queue_watermark
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show queue watermark-unicast", data)
-output = convert_queue_watermark(data, queue_type="unicast")
-output = convert_queue_watermark(data, queue_type="multicast", persistent=True)
 ```
 
 ---
@@ -1212,12 +1128,11 @@ Shows WRED drop counters.
 
 **Optional argument:** `interface_name` to show specific interface.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_queue_wredcounters
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show queue wredcounters", data)
-output = convert_queue_wredcounters(data)
 ```
 
 ---
@@ -1227,12 +1142,11 @@ output = convert_queue_wredcounters(data)
 #### 13.1 `show reboot-cause`
 Shows current reboot cause.
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_reboot_cause
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show reboot-cause", data)
-output = convert_reboot_cause(data)
 ```
 
 ---
@@ -1259,12 +1173,11 @@ Name                 Cause    Time                             User            C
 2025_07_10_20_06_34  reboot   Thu Jul 10 08:05:33 PM UTC 2025  admin           N/A
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_reboot_cause
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show reboot-cause history", data)
-output = convert_reboot_cause(data, history=True)
 ```
 
 ---
@@ -1287,12 +1200,11 @@ Shows running Docker services and their processes.
 ]
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_services
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show services", data)
-output = convert_services(data)
 ```
 
 ---
@@ -1320,12 +1232,11 @@ MySID             Packets          Bytes
 2001:db8:2::/48      23456          78901
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_srv6_stats
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show srv6 stats", data)
-output = convert_srv6_stats(data)
 ```
 
 ---
@@ -1351,12 +1262,11 @@ Mem:           64252       15017        7526         563       41708       46228
 Swap:              0           0           0
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_system_memory
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show system-memory", data)
-output = convert_system_memory(data)
 ```
 
 ---
@@ -1378,12 +1288,11 @@ Shows system uptime.
 up 3 weeks, 4 days, 10 hours, 15 minutes
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_uptime
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show uptime", data)
-output = convert_uptime(data)
 ```
 
 ---
@@ -1431,12 +1340,11 @@ Uptime: 07:42:51 up 16 days
 Date: Mon 20 Jan 2025 18:00:00
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_version
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show version", data)
-output = convert_version(data)
 ```
 
 ---
@@ -1472,12 +1380,11 @@ Shows VLAN brief information.
 +-----------+-----------------+---------------+-----------+----------------+
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_vlan_brief
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show vlan brief", data)
-output = convert_vlan_brief(data)
 ```
 
 ---
@@ -1499,12 +1406,11 @@ Shows watermark telemetry interval.
 Telemetry interval 120 second(s)
 ```
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_watermark_telemetry
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show watermark telemetry", data)
-output = convert_watermark_telemetry(data)
 ```
 
 ---
@@ -1520,13 +1426,11 @@ output = convert_watermark_telemetry(data)
 | `show priority-group persistent-watermark-headroom` | Persistent headroom watermark |
 | `show priority-group persistent-watermark-shared` | Persistent shared watermark |
 
-**Usage of the New Unified Entry Point:**
+**Usage:**
 ```python
-from gnmi_cli_lib import parse_and_convert, convert_priority_group_watermark
+from gnmi_cli_lib import parse_and_convert
 
 output = parse_and_convert("show priority-group watermark-headroom", data)
-output = convert_priority_group_watermark(data, pg_type="headroom")
-output = convert_priority_group_watermark(data, pg_type="shared", persistent=True)
 ```
 
 ---
@@ -1534,7 +1438,7 @@ output = convert_priority_group_watermark(data, pg_type="shared", persistent=Tru
 ## Error Handling
 
 ```python
-from gnmi_cli_lib import CommandParser, GnmiToCliConverter
+from gnmi_cli_lib import CommandParser
 
 parser = CommandParser()
 
@@ -1543,17 +1447,11 @@ parsed = parser.parse("show invalid_command something")
 if not parsed.is_valid:
     print(f"Error: {parsed.error_message}")
 
-# Using converter with error handling
-converter = GnmiToCliConverter()
+# Parse and convert with error handling
 try:
-    output = converter.convert("invalid", "command", {})
+    output = parser.parse_and_convert("show invalid_command something", {})
 except ValueError as e:
     print(f"Unknown command: {e}")
-
-try:
-    output = converter.convert("clock", "date", "invalid json{")
-except json.JSONDecodeError as e:
-    print(f"Invalid JSON: {e}")
 ```
 
 ---
@@ -1608,32 +1506,29 @@ python generate_all_commands_analysis.py
 
 ### Coverage Overview
 
-**Overall: 94.70% (2983 statements, 158 missed) — Threshold: 80%** ✅
+**Overall: 93% (2833 statements, 203 missed) — Threshold: 80%** ✅
 
 | Module | Stmts | Miss | Cover | Note |
 |--------|------:|-----:|------:|------|
-| `__init__.py` | 9 | 0 | 100% | |
-| `cli.py` | 93 | 2 | 98% | |
-| `commands.py` | 102 | 0 | 100% | |
-| `common/constants.py` | 15 | 0 | 100% | |
-| `common/types.py` | 33 | 0 | 100% | |
-| `convenience.py` | 124 | 0 | 100% | |
-| `converter.py` | 52 | 1 | 98% | |
+| `__init__.py` | 6 | 0 | 100% | |
+| `cli.py` | 98 | 30 | 69% | |
+| `commands.py` | 103 | 0 | 100% | |
+| `common/constants.py` | 10 | 0 | 100% | |
+| `common/types.py` | 34 | 0 | 100% | |
 | `formatters/base.py` | 108 | 1 | 99% | |
 | `formatters/dropcounters.py` | 84 | 1 | 99% | |
 | `formatters/interface.py` | 333 | 12 | 96% | |
-| `formatters/ipv6.py` | 755 | 90 | 88% | ⚠️ Largest uncovered |
+| `formatters/ipv6.py` | 780 | 99 | 87% | ⚠️ Largest uncovered |
 | `formatters/network.py` | 275 | 11 | 96% | |
 | `formatters/queue.py` | 112 | 3 | 97% | |
-| `formatters/system.py` | 250 | 7 | 97% | |
-| `formatters/transceiver.py` | 258 | 13 | 95% | |
+| `formatters/system.py` | 274 | 15 | 95% | |
+| `formatters/transceiver.py` | 254 | 12 | 95% | |
 | `formatters/watermark.py` | 56 | 1 | 98% | |
-| `mappings.py` | 3 | 0 | 100% | |
-| `parser.py` | 165 | 13 | 92% | |
+| `parser.py` | 160 | 15 | 91% | |
 | `registry.py` | 68 | 0 | 100% | |
-| `utils/parsing.py` | 66 | 3 | 95% | |
+| `utils/parsing.py` | 56 | 3 | 95% | |
 | `utils/sorting.py` | 8 | 0 | 100% | |
-| **TOTAL** | **2983** | **158** | **95%** | |
+| **TOTAL** | **2833** | **203** | **93%** | |
 
 Coverage configuration is defined in [`pyproject.toml`](pyproject.toml) under `[tool.coverage.*]` sections.
 
@@ -1678,21 +1573,6 @@ commands = parser.list_commands()
 help_text = parser.get_command_help("interfaces", "status")
 ```
 
-#### `GnmiToCliConverter`
-Main converter class for JSON to CLI conversion.
-
-```python
-from gnmi_cli_lib import GnmiToCliConverter
-
-converter = GnmiToCliConverter(table_format="simple")
-
-# Convert using command/subcommand
-output = converter.convert("interfaces", "status", json_data)
-
-# Convert using CLI command string
-output = converter.convert_from_cli_command("show interfaces status", json_data)
-```
-
 #### `CommandRegistry`
 Central registry for command configurations.
 
@@ -1709,90 +1589,6 @@ commands = registry.list_commands()
 
 # List all CLI mappings
 mappings = registry.list_cli_mappings()
-```
-
-### Convenience Functions
-
-All convenience functions are available directly from `gnmi_cli_lib`:
-
-```python
-from gnmi_cli_lib import (
-    # Universal
-    convert,
-    parse_and_convert,
-    
-    # Buffer/Headroom Pool
-    convert_buffer_pool_watermark,
-    convert_headroom_pool_watermark,
-    
-    # Queue
-    convert_queue_watermark,
-    convert_queue_counters,
-    convert_queue_wredcounters,
-    
-    # Interface
-    convert_interface_status,
-    convert_interface_counters,
-    convert_interface_description,
-    convert_interface_errors,
-    convert_interface_alias,
-    convert_interface_flap,
-    convert_interface_naming_mode,
-    convert_interface_neighbor_expected,
-    convert_interface_transceiver,
-    convert_interface_fec_status,
-    convert_interface_switchport,
-    convert_interface_counters_detailed,
-    convert_interface_counters_rates,
-    convert_interface_counters_rif,
-    convert_interface_counters_fec_stats,
-    convert_interface_counters_fec_histogram,
-    convert_interface_counters_trim,
-    
-    # System
-    convert_version,
-    convert_uptime,
-    convert_system_memory,
-    convert_services,
-    convert_processes,
-    convert_mmu,
-    convert_reboot_cause,
-    
-    # Network
-    convert_lldp_table,
-    convert_lldp_neighbors,
-    convert_vlan_brief,
-    convert_mac,
-    convert_mac_aging_time,
-    convert_ndp,
-    convert_srv6_stats,
-    
-    # IPv6
-    convert_ipv6_prefix_list,
-    convert_ipv6_link_local_mode,
-    convert_ipv6_route,
-    convert_ipv6_bgp_summary,
-    convert_ipv6_bgp_neighbors,
-    convert_ipv6_interfaces,
-    
-    # Drop Counters
-    convert_dropcounters_capabilities,
-    convert_dropcounters_configuration,
-    convert_dropcounters_counts,
-    
-    # Clock
-    convert_clock,
-    convert_clock_timezones,
-    
-    # Other
-    convert_watermark_telemetry,
-    convert_portchannel,
-    convert_priority_group_watermark,
-    
-    # Utilities
-    get_gnmi_path,
-    list_supported_commands,
-)
 ```
 
 ---
@@ -1824,8 +1620,8 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
   - Created `tests/reports/` with `generate_all_commands_analysis.py` report generator
   - Created `tests/tools/` with consolidated `import_device_data.py` (merged `import_new_devices.py`)
 - **Test Optimization**: Merged duplicate classes, lifted shared imports, parametrized edge cases
-- **Coverage**: Configured pytest-cov with 94.70% coverage (threshold 80%)
-- **Test Expansion**: 2058 pytest cases (1388 unit + 23 integration suites), 704 integration test cases across 6 devices
+- **Coverage**: Configured pytest-cov with 93% coverage (threshold 80%)
+- **Test Expansion**: 1014 unit tests, 704 integration test cases across 6 devices
 - **Report Update**: SKIP status renamed to NO_ACCEPTABLE_DATA; removed from summary tables
 
 ### v2.6.0 (February 2026)
@@ -1839,7 +1635,7 @@ python -m gnmi_cli_lib.cli --get-path "show interfaces status"
 - **Bug Fix**: Fixed `TransceiverErrorStatusFormatter` returns "OK" when `status == "1"` regardless of cmis_state
 - **Bug Fix**: Fixed `IPv6RouteFormatter` VRF line and weight output conditional logic
 - **Verification Enhancement**: Added internal metadata key filtering (internalFlags, interfaceIndex, etc.) in coverage checks
-- **Test Expansion**: 681 total test cases across 6 devices
+- **Test Expansion**: 704 total test cases across 6 devices
 - **Production Ready**: Self-contained library with 100% pass rate verification
 
 ### v2.5.0 (February 2026)

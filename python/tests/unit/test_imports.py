@@ -18,7 +18,6 @@ from gnmi_cli_lib import (
 from gnmi_cli_lib.common.constants import (
     INTERFACE_COLUMN_ORDER,
     QUEUE_COLUMN_ORDER,
-    SAI_STAT_FIELDS,
     VERSION_FIELD_ORDER,
 )
 from gnmi_cli_lib.common.types import CliMapping, CommandConfig
@@ -455,12 +454,6 @@ class TestConstants:
         assert isinstance(first_item, tuple)
         assert first_item[0] == "sonic_software_version"
     
-    def test_sai_stat_fields(self):
-        """Test SAI_STAT_FIELDS constant."""
-        
-        assert isinstance(SAI_STAT_FIELDS, dict)
-        assert "buffer_pool" in SAI_STAT_FIELDS
-
 class TestCommonTypesCoverage:
     """Tests for common/types.py to boost coverage from 85%."""
     
