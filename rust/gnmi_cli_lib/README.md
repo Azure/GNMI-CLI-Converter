@@ -239,7 +239,7 @@ tests/               (~2 100 lines)
 | 44 | `show lldp neighbors` | lldp |
 | 45 | `show lldp table` | lldp |
 | 46 | `show mac` | mac |
-| 47 | `show mac aging_time` | mac |
+| 47 | `show mac aging-time` | mac |
 | 48 | `show mmu` | mmu |
 | 49 | `show ndp` | ndp |
 | 50 | `show processes summary` | processes |

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Verification script for: show mac aging_time
+Verification script for: show mac aging-time
 Command index: 47
 
 This test loads explicit JSON and CLI strings from:
@@ -145,7 +145,7 @@ def print_results(results):
 
 
 if __name__ == "__main__":
-    print(f"Testing: show mac aging_time")
+    print(f"Testing: show mac aging-time")
     print(f"Data file: {DATA_FILE}")
     
     results = run_all_tests()
