@@ -104,51 +104,6 @@ def parse_json_data(json_data: Union[Dict, List, str]) -> Union[Dict, List]:
         raise TypeError(f"Expected dict, list, or str, got {type(json_data).__name__}")
 
 
-def extract_timestamp_from_reboot_key(key: str) -> str:
-    """
-    Extract timestamp from reboot cause key.
-    
-    Args:
-        key: Key like "REBOOT_CAUSE|2025_07_10_20_06_34"
-    
-    Returns:
-        Timestamp portion of the key
-    
-    Example:
-        >>> extract_timestamp_from_reboot_key("REBOOT_CAUSE|2025_07_10_20_06_34")
-        '2025_07_10_20_06_34'
-    """
-    if key.startswith("REBOOT_CAUSE|"):
-        return key.replace("REBOOT_CAUSE|", "")
-    return key
-
-
-def normalize_list_data(data: Union[Dict, List]) -> List:
-    """
-    Normalize data to a list format.
-    
-    Some commands return data as a list, others as a dict.
-    This function normalizes to a list.
-    
-    Args:
-        data: Data as dict or list
-    
-    Returns:
-        List of items
-    
-    Example:
-        >>> normalize_list_data([{"a": 1}])
-        [{'a': 1}]
-        >>> normalize_list_data({"key": {"a": 1}})
-        [{'a': 1}]
-    """
-    if isinstance(data, list):
-        return data
-    elif isinstance(data, dict):
-        return list(data.values()) if data else []
-    return []
-
-
 def array_to_dict(data: Union[Dict, List], key_field: str = "Interface") -> Dict:
     """
     Convert array data to dict format using a specified key field.
