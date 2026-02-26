@@ -65,7 +65,7 @@
   - [44. show lldp neighbors](#44-show-lldp-neighbors)
   - [45. show lldp table](#45-show-lldp-table)
   - [46. show mac](#46-show-mac)
-  - [47. show mac aging_time](#47-show-mac-aging-time)
+  - [47. show mac aging-time](#47-show-mac-aging-time)
   - [48. show mmu](#48-show-mmu)
   - [49. show ndp](#49-show-ndp)
   - [50. show processes summary](#50-show-processes-summary)
@@ -162,7 +162,7 @@
 | 44 | [`show lldp neighbors`](#44-show-lldp-neighbors) | 5 | 10 | 0 | 0 |
 | 45 | [`show lldp table`](#45-show-lldp-table) | 1 | 6 | 0 | 0 |
 | 46 | [`show mac`](#46-show-mac) | 1 | 6 | 0 | 0 |
-| 47 | [`show mac aging_time`](#47-show-mac-aging-time) | 1 | 6 | 0 | 0 |
+| 47 | [`show mac aging-time`](#47-show-mac-aging-time) | 1 | 6 | 0 | 0 |
 | 48 | [`show mmu`](#48-show-mmu) | 1 | 6 | 0 | 0 |
 | 49 | [`show ndp`](#49-show-ndp) | 10 | 18 | 0 | 0 |
 | 50 | [`show processes summary`](#50-show-processes-summary) | 1 | 6 | 0 | 0 |
@@ -35160,7 +35160,7 @@ Total number of entries 0
 ---
 
 <a id="47-show-mac-aging-time"></a>
-### 47. `show mac aging_time`
+### 47. `show mac aging-time`
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
@@ -35177,7 +35177,7 @@ Total number of entries 0
 | `str4-7060x6-512-9` | 1 | 0 | 0 |
 | `str4-sn5640-7` | 1 | 0 | 0 |
 
-#### 47.1 `show mac aging_time` (base command)
+#### 47.1 `show mac aging-time` (base command)
 
 | Device | Status | Details |
 |--------|--------|---------|
@@ -35192,7 +35192,7 @@ Total number of entries 0
 ```python
 from gnmi_cli_lib.parser import CommandParser
 
-cli_command = "show mac aging_time"
+cli_command = "show mac aging-time"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()

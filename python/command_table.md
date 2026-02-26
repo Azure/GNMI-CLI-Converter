@@ -41,12 +41,12 @@
 | 39 | ipv6 | 0 | bgp | neighbors | show ipv6 bgp neighbors | ipv6/bgp/neighbors | 0 | 2 | | FALSE |
 | 40 | ipv6 | 0 | bgp | network | show ipv6 bgp network | ipv6/bgp/network | 0 | 2 | | FALSE |
 | 41 | ipv6 | 0 | bgp | summary | show ipv6 bgp summary | ipv6/bgp/summary | 0 | 0 | | FALSE |
-| 42 | ipv6 | 0 | link_local_mode | | show ipv6 link-local-mode | ipv6/link-local-mode | 0 | 0 | | FALSE |
+| 42 | ipv6 | 0 | link-local-mode | | show ipv6 link-local-mode | ipv6/link-local-mode | 0 | 0 | | FALSE |
 | 43 | ipv6 | 0 | fib | | show ipv6 fib | ipv6/fib | 0 | 1 | | FALSE |
 | 44 | lldp | 0 | neighbors | | show lldp neighbors | lldp/neighbors | 0 | 1 | | FALSE |
 | 45 | lldp | 0 | table | | show lldp table | lldp/table | 0 | 0 | | FALSE |
 | 46 | mac | 0 | | | show mac | mac | 0 | 0 | | FALSE |
-| 47 | mac | 0 | aging_time | | show mac aging_time | mac/aging_time | 0 | 0 | | FALSE |
+| 47 | mac | 0 | aging-time | | show mac aging-time | mac/aging-time | 0 | 0 | | FALSE |
 | 48 | mmu | 0 | | | show mmu | mmu | 0 | 0 | | FALSE |
 | 49 | ndp | 0 | | | show ndp | ndp | 0 | 1 | | FALSE |
 | 50 | processes | 0 | summary | | show processes summary | processes/summary | 0 | 0 | | FALSE |

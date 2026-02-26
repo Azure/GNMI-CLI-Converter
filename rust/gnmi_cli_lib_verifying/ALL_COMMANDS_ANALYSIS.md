@@ -90,7 +90,7 @@
 | 44 | [`show lldp neighbors`](#44-show-lldp-neighbors) | 5 | 10 | 0 |
 | 45 | [`show lldp table`](#45-show-lldp-table) | 1 | 6 | 0 |
 | 46 | [`show mac`](#46-show-mac) | 1 | 6 | 0 |
-| 47 | [`show mac aging_time`](#47-show-mac-aging-time) | 1 | 6 | 0 |
+| 47 | [`show mac aging-time`](#47-show-mac-aging-time) | 1 | 6 | 0 |
 | 48 | [`show mmu`](#48-show-mmu) | 1 | 6 | 0 |
 | 49 | [`show ndp`](#49-show-ndp) | 10 | 18 | 0 |
 | 50 | [`show processes summary`](#50-show-processes-summary) | 1 | 6 | 0 |
@@ -34724,7 +34724,7 @@ Total number of entries 0
 ---
 
 <a id="47-show-mac-aging-time"></a>
-### 47. `show mac aging_time`
+### 47. `show mac aging-time`
 
 [↑ Back to Quick Reference](#quick-reference-by-command)
 
@@ -34742,7 +34742,7 @@ Total number of entries 0
 | `str4-sn5640-7` | 1 | 0 |
 
 <a id="47.1-show-mac-aging-time"></a>
-#### 47.1 `show mac aging_time` (base command)
+#### 47.1 `show mac aging-time` (base command)
 
 | Device | Status | Details |
 |--------|--------|---------|
@@ -34757,7 +34757,7 @@ Total number of entries 0
 ```python
 from rust_wrapper import RustCommandParser as CommandParser
 
-cli_command = "show mac aging_time"
+cli_command = "show mac aging-time"
 json_data = <load_json_from_gnmi_response>  # See device-specific JSON below
 
 parser = CommandParser()
