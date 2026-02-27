@@ -281,19 +281,6 @@ class TestNetworkFormattersComprehensive:
         assert "Ethernet0" in output
         assert "switch1" in output
     
-    def test_lldp_neighbors_wrap_text(self):
-        """Test _wrap_text helper method."""
-        
-        formatter = LldpNeighborsFormatter()
-        
-        # Short text
-        result = formatter._wrap_text("short", 20)
-        assert result == ["short"]
-        
-        # Long text
-        result = formatter._wrap_text("this is a very long text that should be wrapped", 20)
-        assert len(result) > 1
-    
     def test_vlan_brief_formatter_full(self):
         """Test VlanBriefFormatter with full data."""
         

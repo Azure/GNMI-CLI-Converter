@@ -78,9 +78,14 @@ class ClockFormatter(OutputFormatter):
     Example output: Mon Jan 26 09:56:41 AM UTC 2026
     """
 
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format clock date with AM/PM designator."""
         date_str = str(data.get("date", ""))
 
@@ -98,9 +103,14 @@ class UptimeFormatter(OutputFormatter):
     Example output: up 3 weeks, 4 days, 10 hours, 15 minutes
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format uptime as plain text."""
         return str(data.get("uptime", ""))
 
@@ -130,9 +140,14 @@ class VersionFormatter(OutputFormatter):
     # Fields that should have a blank line before them
     BLANK_LINE_BEFORE = {"platform", "docker_images"}
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format version info as key-value pairs with proper blank line separators."""
         lines = []
         
@@ -187,9 +202,14 @@ class SystemMemoryFormatter(OutputFormatter):
         Swap:          0           0           0
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format system memory in 'free' command style with fixed-width columns."""
         if isinstance(data, dict):
             items = [data] if data else []
@@ -252,9 +272,14 @@ class ServicesFormatter(OutputFormatter):
         root         123  0.1  0.5  12345  1234 ?        S    Jan25   0:00 python snmpd.py
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format services output in ps aux style grouped by docker container."""
         if isinstance(data, dict):
             items = [data] if data else []
@@ -325,9 +350,14 @@ class ProcessesFormatter(OutputFormatter):
         123     1  python   1.2   0.5  Jan25  0:00:01  None    0
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format processes as table with all 9 columns from JSON."""
         if isinstance(data, dict):
             items = list(data.values()) if data else []
@@ -392,9 +422,14 @@ class ProcessesCpuFormatter(OutputFormatter):
         1257533 root      20   0  132852  58360  19212 S  88.2   0.2   0:00.80 route_c+
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format processes cpu in top-like format."""
         if not data or not isinstance(data, dict):
             return ""
@@ -488,9 +523,14 @@ class RebootCauseFormatter(OutputFormatter):
         2025_07_10_20_12_49  reboot   Thu Jul 10 08:10:49 PM UTC...    admin   N/A
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format reboot cause."""
         history_entries = []
         current_entry = None
@@ -602,9 +642,14 @@ class MmuFormatter(OutputFormatter):
         ---------  --------------------
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format MMU config with Pool and Profile sections."""
         if not data:
             return ""

@@ -38,9 +38,14 @@ class DropcountersCapabilitiesFormatter(OutputFormatter):
                 REASON2
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format capabilities with summary table and reason lists."""
         # Build summary table
         table_data = []
@@ -95,9 +100,14 @@ class DropcountersCountsFormatter(OutputFormatter):
         Ethernet0        D        10         100         0           0
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format port drop counters as table."""
         if not data:
             return ""
@@ -163,9 +173,14 @@ class DropcountersConfigurationFormatter(OutputFormatter):
         DEBUG_0    DEBUG_0  N/A      PORT_INGRESS_DROPS   None       N/A
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format configuration data as table."""
         # Handle both list and dict formats
         if isinstance(data, list):

@@ -39,9 +39,14 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
     # View types that require route table format instead of neighbor details
     ROUTE_VIEW_TYPES = {"advertised-routes", "received-routes", "routes"}
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format BGP neighbors as detailed multi-line output.
         
         Detects view type from the data structure:
@@ -594,9 +599,14 @@ class IPv6BgpRoutesTableFormatter(OutputFormatter):
                              ::                                     0 64600 i
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format BGP routes table."""
         if not data:
             return ""
@@ -760,9 +770,14 @@ class IPv6BgpNetworkFormatter(OutputFormatter):
         ...
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format BGP network as passthrough text."""
         if not data:
             return ""
@@ -792,9 +807,14 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
         fc00::1a       4  4200300000       1852       1875    135211      0       0  1d00h33m                1  ARISTA07FT2
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format BGP summary with header and table."""
         if not data:
             return ""
@@ -875,9 +895,14 @@ class IPv6FibFormatter(OutputFormatter):
             1         2064:100:0:10::        fc00::3e          Ethernet120
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format FIB as table."""
         if not data:
             return ""
@@ -949,9 +974,14 @@ class IPv6InterfacesFormatter(OutputFormatter):
         
         return address
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format IPv6 interfaces as table with continuation lines."""
         if not data:
             return ""
@@ -1013,9 +1043,14 @@ class IPv6LinkLocalModeFormatter(OutputFormatter):
         +------------------+----------+
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format link-local mode as grid table."""
         if not data:
             return ""
@@ -1053,9 +1088,14 @@ class IPv6PrefixListFormatter(OutputFormatter):
            seq 10 permit ::/0
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format prefix-list."""
         if not data:
             return ""
@@ -1113,9 +1153,14 @@ class IPv6ProtocolFormatter(OutputFormatter):
         kernel                    : none
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format protocol info."""
         if not data:
             return ""
@@ -1191,9 +1236,14 @@ class IPv6RouteFormatter(OutputFormatter):
     PROTOCOL_FILTERS = {"connected", "local", "static", "kernel", "bgp", "ospf", 
                         "ospf6", "rip", "ripng", "isis", "nhrp", "table"}
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format IPv6 route entries."""
         if not data:
             return ""
@@ -1207,7 +1257,6 @@ class IPv6RouteFormatter(OutputFormatter):
             return str(data)
         
         # Determine output format based on argument
-        argument = options.get('argument', '') if options else ''
         
         # Use detailed format if argument looks like an IPv6 address/prefix
         # (contains :: or is a pure hex:colon pattern with optional /prefix)
