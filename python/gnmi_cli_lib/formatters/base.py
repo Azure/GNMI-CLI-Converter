@@ -34,9 +34,14 @@ class OutputFormatter(ABC):
     """
     
     @abstractmethod
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """
         Format data according to the command configuration.
         
@@ -72,9 +77,14 @@ class TableFormatter(OutputFormatter):
         Ethernet0  100    101    102    103
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format data as a table with headers."""
         if not data:
             return ""
@@ -225,9 +235,14 @@ class TextFormatter(OutputFormatter):
         Output: Mon Mar 25 20:25:16 UTC 2019
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Return the value of the specified key field."""
         key_field = config.key_field or "date"
         return str(data.get(key_field, ""))
@@ -248,9 +263,14 @@ class ListFormatter(OutputFormatter):
             Universal
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Return items as newline-separated list."""
         key_field = config.key_field or "timezones"
         items = data.get(key_field, [])
@@ -295,9 +315,14 @@ class CommandHelpFormatter(OutputFormatter):
         "Queue persistent watermark": "persistent WM for queues",
     }
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format command help output from subcommands data."""
         subcommands = data.get("subcommands", {})
         

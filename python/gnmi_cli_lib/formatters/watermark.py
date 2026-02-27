@@ -23,9 +23,14 @@ class WatermarkTelemetryFormatter(OutputFormatter):
     Example output: Telemetry interval 120 second(s)
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format watermark telemetry interval."""
         interval = data.get("interval", "N/A")
         
@@ -58,9 +63,14 @@ class HeadroomPoolFormatter(OutputFormatter):
         ------  -------
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format headroom pool data with title and headers always shown."""
         lines = []
         
@@ -112,9 +122,14 @@ class QueueWatermarkFormatter(OutputFormatter):
           Ethernet0      0      0      0      0      0      0      0   7620
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format queue watermark with title and dynamic columns."""
         if not data:
             return "Object map is empty!"

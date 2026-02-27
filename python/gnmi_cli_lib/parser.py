@@ -77,6 +77,7 @@ class CommandParser:
         self.registry = registry or get_default_registry()
         self._valid_commands_cache: Optional[Dict[str, List[str]]] = None
         self._optional_args_cache: Optional[Dict[tuple, str]] = None
+        self._optional_subcommand_cache: Optional[List[str]] = None
 
     @property
     def VALID_COMMANDS(self) -> Dict[str, List[str]]:
@@ -99,6 +100,20 @@ class CommandParser:
                         self._optional_args_cache[(cmd, subcmd)] = config.optional_arg
         return self._optional_args_cache
     
+    @property
+    def COMMANDS_WITH_OPTIONAL_SUBCOMMAND(self) -> List[str]:
+        """Commands that can work with or without a subcommand, derived from the registry.
+
+        A command has an optional subcommand when the command name itself
+        appears as one of its own subcommands (e.g., 'clock' has subcommand 'clock').
+        """
+        if self._optional_subcommand_cache is None:
+            self._optional_subcommand_cache = [
+                cmd for cmd, subcmds in self.VALID_COMMANDS.items()
+                if cmd in subcmds
+            ]
+        return self._optional_subcommand_cache
+
     def parse(self, cli_command: str) -> ParsedCommand:
         """
         Parse a CLI command string into its components.
@@ -156,15 +171,7 @@ class CommandParser:
         subcommand = ""
         argument = None
         
-        # Commands that can work with or without a subcommand
-        # e.g., "show clock" (command=subcommand) or "show clock timezones" (has real subcommand)
-        # Automatically detected: command name itself is a valid subcommand
-        commands_with_optional_subcommand = [
-            cmd for cmd, subcmds in self.VALID_COMMANDS.items()
-            if cmd in subcmds
-        ]
-        
-        if command in commands_with_optional_subcommand:
+        if command in self.COMMANDS_WITH_OPTIONAL_SUBCOMMAND:
             # First check if there's a valid subcommand in the remaining parts
             if len(parts) >= 2:
                 potential_sub = parts[1]
@@ -345,12 +352,11 @@ class CommandParser:
         config = self.registry.get_config(command, subcommand)
         formatter = self.registry.get_formatter(config.output_type)
         
-        # Pass argument to formatter via options (for single-interface formatting)
-        format_options = options.copy() if options else {}
-        if argument:
-            format_options['argument'] = argument
-        
-        return formatter.format(data, config, self.table_format, format_options if format_options else None)
+        return formatter.format(
+            data, config, self.table_format,
+            argument=argument or "",
+            options=options or {}
+        )
     
     def parse_and_convert(self, cli_command: str,
                           json_data: Union[Dict, List, str]) -> str:

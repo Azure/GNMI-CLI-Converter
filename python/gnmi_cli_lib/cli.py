@@ -17,8 +17,7 @@ import sys
 from typing import Optional
 
 from .parser import CommandParser
-from .commands import register_all_commands
-from .registry import CommandRegistry
+from .registry import get_default_registry
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -137,8 +136,7 @@ def write_output(content: str, output_path: Optional[str]) -> None:
 
 def list_supported_commands(pattern: str = "") -> str:
     """List all supported CLI commands."""
-    registry = CommandRegistry()
-    register_all_commands(registry)
+    registry = get_default_registry()
     
     lines = ["Supported CLI Commands:", "=" * 60, ""]
     
@@ -180,10 +178,8 @@ def main() -> int:
     if not args.command and not args.key:
         parser.error("Either --command or --key is required")
     
-    # Create parser
-    registry = CommandRegistry()
-    register_all_commands(registry)
-    parser = CommandParser(registry=registry)
+    # Create parser (uses default singleton registry)
+    parser = CommandParser()
     
     # Load input data
     json_data = load_json_data(args.input)

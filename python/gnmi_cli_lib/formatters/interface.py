@@ -50,9 +50,14 @@ class InterfaceStatusFormatter(OutputFormatter):
         Ethernet0  17,18,19,20,21...    800G  9100   rs   etp1  routed    up     up  OSFP 8X Pluggable Transceiver       off
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format interface status as table."""
         if not data:
             return ""
@@ -108,9 +113,14 @@ class InterfaceDescriptionFormatter(OutputFormatter):
         Ethernet0  up    up     etp0   Server1
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format interface description as table."""
         if not data:
             return ""
@@ -162,17 +172,24 @@ class InterfaceCountersFormatter(OutputFormatter):
         Ethernet0  1000   50.00 Kb  0.00%    0       ...
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format interface counters as table."""
         if not data:
             return ""
         
+        options = options or {}
+        
         lines = []
         
         # Add period header if period option is specified
-        if options and options.get("period"):
+        if options.get("period"):
             period_val = options.get("period")
             lines.append(f"The rates are calculated within {period_val} seconds period")
         
@@ -276,9 +293,14 @@ class InterfaceErrorsFormatter(OutputFormatter):
         oper error status      3  2024-01-15T10:30:45Z
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format interface errors as table."""
         if isinstance(data, dict):
             items = [data] if data else []
@@ -323,9 +345,14 @@ class InterfaceAliasFormatter(OutputFormatter):
         Ethernet0  etp1
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format interface alias as table."""
         if not data:
             return ""
@@ -368,9 +395,14 @@ class InterfaceFlapFormatter(OutputFormatter):
         Ethernet0               1  Up       Up      Never                       Sun Jan 25 07:44:50 2026
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format flap counts as table."""
         if not data:
             return ""
@@ -435,9 +467,14 @@ class NamingModeFormatter(OutputFormatter):
     Note: The actual CLI output is just the mode value, not "Naming mode: <value>".
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format naming mode as plain text (just the value)."""
         mode = data.get("naming_mode", data.get("mode", "default"))
         return mode
@@ -504,18 +541,25 @@ class InterfaceCountersDetailedFormatter(OutputFormatter):
         ("TimestampClearedCounters", "Time Since Counters Last Cleared"),
     ]
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format detailed interface counters as per-line output."""
         if not data:
             return ""
+        
+        options = options or {}
         
         # Get the first (and likely only) interface's data
         lines = []
         
         # Add period header if period option is specified
-        if options and options.get("period"):
+        if options.get("period"):
             period_val = options.get("period")
             lines.append(f"The rates are calculated within {period_val} seconds period")
         
@@ -581,9 +625,14 @@ class PortchannelFormatter(OutputFormatter):
     FLAGS_LEGEND = """Flags: A - active, I - inactive, Up - up, Dw - Down, N/A - not available,
        S - selected, D - deselected, * - not synced"""
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format portchannel as table with flags legend."""
         headers = ["No.", "Team Dev", "Protocol", "Ports"]
         
@@ -656,9 +705,14 @@ class InterfaceNeighborFormatter(OutputFormatter):
         Ethernet0    ARISTA01FT2  Ethernet1       None                172.16.41.234   FabricSpineRouter
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format interface neighbor as table with all columns."""
         if not data:
             return ""
@@ -702,9 +756,14 @@ class FecHistogramFormatter(OutputFormatter):
         BIN1                                   59282
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format FEC histogram as table with renamed columns."""
         if not data:
             return ""
@@ -746,9 +805,14 @@ class SwitchportStatusFormatter(OutputFormatter):
         Ethernet0       routed
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format switchport status as left-aligned table."""
         if not data:
             return ""
@@ -800,9 +864,14 @@ class SwitchportConfigFormatter(OutputFormatter):
         Ethernet0       routed
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format switchport config as left-aligned table."""
         if not data:
             return ""
