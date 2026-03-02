@@ -14,7 +14,7 @@ human-readable CLI table output.
 | Concrete formatters (`impl OutputFormatter`) | 78 |
 | Formatter modules | 9 |
 | Output table formats | 5 (Simple, Grid, Plain, Github, Pipe) |
-| Rust test files | 5 + shared helpers (~2 100 lines) |
+| Rust test files | 14 + shared helpers (~7 600 lines) |
 | Benchmark suite | Criterion (1 file) |
 
 - **70 verified commands** across **19 categories**:
@@ -166,14 +166,24 @@ src/                           (25 files, ~29 100 lines)
     watermark.rs     – watermark / buffer-pool / headroom-pool formatters (3 formatters)
 benches/
   benchmark.rs       – criterion benchmarks
-tests/               (~2 100 lines)
+tests/               (~7 600 lines)
   common/
     mod.rs           – shared test utilities
+    ipv6_expected.rs  – IPv6 expected output constants (from sonic-utilities)
   test_cli.rs        – CLI binary integration tests
   test_commands.rs   – command registration integration tests
   test_converter.rs  – converter integration tests
+  test_edge_cases.rs – edge-case unit tests
   test_formatters.rs – formatter unit tests
   test_parser.rs     – parser integration tests
+  test_show_dropcounters.rs – drop-counter formatter tests
+  test_show_interface.rs    – interface formatter tests
+  test_show_ipv6.rs         – IPv6 formatter tests (31 tests)
+  test_show_network.rs      – network formatter tests
+  test_show_queue.rs        – queue formatter tests
+  test_show_system.rs       – system formatter tests
+  test_show_transceiver.rs  – transceiver formatter tests
+  test_show_watermark.rs    – watermark formatter tests
 ```
 
 ## Public API surface
