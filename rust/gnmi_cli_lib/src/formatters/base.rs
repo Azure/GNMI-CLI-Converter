@@ -514,8 +514,9 @@ pub fn tabulate_simple_auto(headers: &[&str], rows: &[Vec<String>]) -> String {
                 }
             }
         }
-        // Right-align only if there are numeric values and ALL values are numeric
-        let numeric = has_any_value && all_numeric;
+        // Right-align if there are numeric values and ALL values are numeric,
+        // or if all values are empty/N/A (default to right-aligned like Python tabulate)
+        let numeric = !has_any_value || (has_any_value && all_numeric);
         alignments[col] = numeric;
         is_numeric_col[col] = numeric;
     }
@@ -552,6 +553,136 @@ pub fn tabulate_simple_auto(headers: &[&str], rows: &[Vec<String>]) -> String {
         .collect();
 
     tabulate_simple_aligned(headers, &reformatted_rows, &alignments)
+}
+
+/// Like [`tabulate_simple_auto`] but aligns header labels according to each
+/// column's detected alignment (right for numeric, left for text).
+///
+/// This matches the default Python `tabulate(tablefmt='simple')` behaviour
+/// where text column headers are left-aligned and numeric column headers
+/// are right-aligned.
+pub fn tabulate_simple_auto_hdr(headers: &[&str], rows: &[Vec<String>]) -> String {
+    let num_cols = headers.len();
+    let mut alignments = vec![false; num_cols]; // default: left
+    let mut is_numeric_col = vec![false; num_cols];
+
+    for col in 0..num_cols {
+        let mut has_any_value = false;
+        let mut all_numeric = true;
+        for row in rows {
+            if let Some(val) = row.get(col) {
+                let trimmed = val.trim();
+                if trimmed.is_empty() || trimmed == "N/A" {
+                    continue;
+                }
+                has_any_value = true;
+                let cleaned = trimmed.replace(',', "");
+                if cleaned.parse::<f64>().is_err() {
+                    all_numeric = false;
+                    break;
+                }
+            }
+        }
+        let numeric = !has_any_value || (has_any_value && all_numeric);
+        alignments[col] = numeric;
+        is_numeric_col[col] = numeric;
+    }
+
+    // Reformat float values in numeric columns using "g" format
+    let reformatted_rows: Vec<Vec<String>> = rows
+        .iter()
+        .map(|row| {
+            row.iter()
+                .enumerate()
+                .map(|(i, val)| {
+                    if i < num_cols && is_numeric_col[i] {
+                        let trimmed = val.trim();
+                        if trimmed.is_empty() || trimmed == "N/A" || trimmed == "-" {
+                            return val.clone();
+                        }
+                        let cleaned = trimmed.replace(',', "");
+                        if cleaned.contains('.') || cleaned.contains('e') || cleaned.contains('E')
+                        {
+                            if let Ok(f) = cleaned.parse::<f64>() {
+                                return format_g(f);
+                            }
+                        }
+                        val.clone()
+                    } else {
+                        val.clone()
+                    }
+                })
+                .collect()
+        })
+        .collect();
+
+    tabulate_simple_aligned_hdr(headers, &reformatted_rows, &alignments)
+}
+
+/// Like [`tabulate_simple_aligned`] but aligns header labels to match
+/// each column's data alignment instead of always right-aligning them.
+pub fn tabulate_simple_aligned_hdr(
+    headers: &[&str],
+    rows: &[Vec<String>],
+    alignments: &[bool],
+) -> String {
+    if headers.is_empty() {
+        return String::new();
+    }
+
+    let mut widths: Vec<usize> = headers.iter().map(|h| h.len() + 2).collect();
+    for row in rows {
+        for (i, val) in row.iter().enumerate() {
+            if i < widths.len() && val.len() > widths[i] {
+                widths[i] = val.len();
+            }
+        }
+    }
+
+    // Header — align each label the same way as its column data
+    let header: String = headers
+        .iter()
+        .enumerate()
+        .map(|(i, col)| {
+            let right = alignments.get(i).copied().unwrap_or(true);
+            if right {
+                format!("{:>width$}", col, width = widths[i])
+            } else {
+                format!("{:<width$}", col, width = widths[i])
+            }
+        })
+        .collect::<Vec<_>>()
+        .join("  ");
+
+    let separator: String = widths
+        .iter()
+        .map(|w| "-".repeat(*w))
+        .collect::<Vec<_>>()
+        .join("  ");
+
+    let mut lines = vec![
+        header.trim_end().to_string(),
+        separator.trim_end().to_string(),
+    ];
+    for row in rows {
+        let line: String = row
+            .iter()
+            .enumerate()
+            .map(|(i, val)| {
+                let w = if i < widths.len() { widths[i] } else { val.len() };
+                let right = alignments.get(i).copied().unwrap_or(true);
+                if right {
+                    format!("{:>width$}", val, width = w)
+                } else {
+                    format!("{:<width$}", val, width = w)
+                }
+            })
+            .collect::<Vec<_>>()
+            .join("  ");
+        lines.push(line.trim_end().to_string());
+    }
+
+    lines.join("\n")
 }
 
 /// Format a float using "g" format with 6 significant digits.
@@ -721,18 +852,11 @@ pub fn tabulate_simple_aligned(
         }
     }
 
-    // Header (right-aligned by default)
+    // Header (always right-aligned, matching Python tabulate "simple" format)
     let header: String = headers
         .iter()
         .enumerate()
-        .map(|(i, col)| {
-            let right = alignments.get(i).copied().unwrap_or(true);
-            if right {
-                format!("{:>width$}", col, width = widths[i])
-            } else {
-                format!("{:<width$}", col, width = widths[i])
-            }
-        })
+        .map(|(i, col)| format!("{:>width$}", col, width = widths[i]))
         .collect::<Vec<_>>()
         .join("  ");
 

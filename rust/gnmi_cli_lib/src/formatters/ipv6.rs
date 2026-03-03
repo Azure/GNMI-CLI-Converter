@@ -1664,27 +1664,53 @@ impl Ipv6RouteFormatter {
         lines
     }
 
-    /// Format routes in single-line FRR-style format (used for protocol filter args like "connected", "static").
-    fn format_single_line(map: &serde_json::Map<String, Value>) -> String {
+    /// Format routes in single-line FRR-style format.
+    /// When `argument` is a protocol filter (connected, static, etc.) or vrf,
+    /// uses the newer FRR IPv6 header; otherwise uses the legacy header.
+    fn format_single_line(map: &serde_json::Map<String, Value>, argument: &str) -> String {
         let mut lines = Vec::new();
 
-        // FRR header
-        lines.push(":".to_string());
-        lines.push(
-            "Codes: K - kernel route, C - connected, L - local, S - static,".to_string(),
-        );
-        lines.push(
-            "       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,".to_string(),
-        );
-        lines.push(
-            "       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,".to_string(),
-        );
-        lines.push("       f - OpenFabric, t - Table-Direct,".to_string());
-        lines.push(
-            "       > - selected route, * - FIB route, q - queued, r - rejected, b - backup"
-                .to_string(),
-        );
-        lines.push("       t - trapped, o - offload failure".to_string());
+        let lower_arg = argument.to_lowercase();
+        let is_filtered = PROTOCOL_FILTERS.contains(&lower_arg.as_str())
+            || lower_arg.starts_with("vrf");
+
+        if is_filtered {
+            // FRR IPv6 header for filtered route output
+            lines.push(":".to_string());
+            lines.push(
+                "Codes: K - kernel route, C - connected, L - local, S - static,".to_string(),
+            );
+            lines.push(
+                "       R - RIPng, O - OSPFv3, I - IS-IS, B - BGP, N - NHRP,".to_string(),
+            );
+            lines.push(
+                "       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,".to_string(),
+            );
+            lines.push("       f - OpenFabric, t - Table-Direct,".to_string());
+            lines.push(
+                "       > - selected route, * - FIB route, q - queued, r - rejected, b - backup"
+                    .to_string(),
+            );
+            lines.push(
+                "       t - trapped, o - offload failure".to_string(),
+            );
+        } else {
+            // Legacy FRR header for unfiltered route output
+            lines.push(
+                "Codes: K - kernel route, C - connected, S - static, R - RIP,".to_string(),
+            );
+            lines.push(
+                "       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,".to_string(),
+            );
+            lines.push(
+                "       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,".to_string(),
+            );
+            lines.push("       F - PBR, f - OpenFabric,".to_string());
+            lines.push(
+                "       > - selected route, * - FIB route, q - queued route, r - rejected route"
+                    .to_string(),
+            );
+        }
         lines.push(String::new());
 
         // Check if first route has vrfName and weight in nexthop
@@ -1739,10 +1765,8 @@ impl Ipv6RouteFormatter {
             };
             for route_val in route_list {
                 if let Value::Object(route) = route_val {
-                    let line = Self::format_route_line(prefix, route);
-                    if !line.is_empty() {
-                        lines.push(line);
-                    }
+                    let route_lines = Self::format_route_lines(prefix, route, is_filtered);
+                    lines.extend(route_lines);
                 }
             }
         }
@@ -1750,8 +1774,11 @@ impl Ipv6RouteFormatter {
         lines.join("\n")
     }
 
-    /// Format a single route as a one-line FRR-style entry.
-    fn format_route_line(prefix: &str, route: &serde_json::Map<String, Value>) -> String {
+    /// Format a route as FRR-style line(s), including continuation lines for
+    /// additional nexthops.  Returns one line per nexthop.
+    /// When `spaced_status` is true, adds a space between the status flags and the prefix
+    /// (matching FRR vtysh filtered output format).
+    fn format_route_lines(prefix: &str, route: &serde_json::Map<String, Value>, spaced_status: bool) -> Vec<String> {
         let protocol = route
             .get("protocol")
             .map(value_to_string)
@@ -1772,7 +1799,6 @@ impl Ipv6RouteFormatter {
         let fib_flag = if is_fib { "*" } else { " " };
         let status = format!("{}{}{}", code, selected_flag, fib_flag);
 
-        // Get nexthop info from first nexthop
         let nexthops = route
             .get("nexthops")
             .and_then(Value::as_array)
@@ -1858,7 +1884,62 @@ impl Ipv6RouteFormatter {
             )
         };
 
-        format!("{} {} {}", status, prefix, route_desc)
+        let first_line = if spaced_status {
+            format!("{} {} {}", status, prefix, route_desc)
+        } else {
+            format!("{}{} {}", status, prefix, route_desc)
+        };
+        let mut result = vec![first_line];
+
+        // Continuation lines for additional nexthops (ECMP / multipath)
+        if nexthops.len() > 1 && !is_directly_connected {
+            // Calculate the column where "via" starts in the first line
+            // First line: "{status}[space]{prefix} [{dist}/{met}] via ..."
+            //              3 chars + (1 if spaced) + prefix + " " + bracket + " "
+            let bracket_str = format!("[{}/{}]", distance, metric);
+            let status_len = if spaced_status { 4 } else { 3 };
+            let via_col = status_len + prefix.len() + 1 + bracket_str.len() + 1;
+
+            for nh_val in nexthops.iter().skip(1) {
+                if let Some(nh) = nh_val.as_object() {
+                    let nh_ip = nh
+                        .get("ip")
+                        .or_else(|| nh.get("nexthop"))
+                        .map(value_to_string)
+                        .unwrap_or_default();
+                    let nh_iface = nh
+                        .get("interfaceName")
+                        .map(value_to_string)
+                        .unwrap_or_default();
+                    let nh_fib = nh
+                        .get("fib")
+                        .and_then(Value::as_bool)
+                        .unwrap_or(false);
+
+                    let fib_char = if nh_fib { "*" } else { " " };
+                    // Pad so "via" aligns at the same column as the first line
+                    let padding = via_col.saturating_sub(3); // subtract "  *" prefix
+                    let cont = if !nh_ip.is_empty() && !nh_iface.is_empty() {
+                        format!(
+                            "  {}{:width$}via {}, {}{}",
+                            fib_char, "", nh_ip, nh_iface, uptime_str,
+                            width = padding
+                        )
+                    } else if !nh_ip.is_empty() {
+                        format!(
+                            "  {}{:width$}via {}{}",
+                            fib_char, "", nh_ip, uptime_str,
+                            width = padding
+                        )
+                    } else {
+                        continue;
+                    };
+                    result.push(cont);
+                }
+            }
+        }
+
+        result
     }
 }
 
@@ -1916,7 +1997,7 @@ impl OutputFormatter for Ipv6RouteFormatter {
             Ok(lines.join("\n").trim_end().to_string())
         } else {
             // Single-line FRR format for protocol filters or empty argument
-            Ok(Self::format_single_line(map).trim_end().to_string())
+            Ok(Self::format_single_line(map, argument).trim_end().to_string())
         }
     }
 

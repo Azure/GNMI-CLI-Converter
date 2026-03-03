@@ -2,6 +2,33 @@
 //!
 //! Provides helper functions for loading test data, normalizing output,
 //! and comparing results across integration test files.
+//!
+//! ## Module Organization
+//!
+//! ### Data modules (`sonic_utilities_*`)
+//! Each module contains both:
+//! - **Raw expected CLI output** extracted from sonic-utilities test vectors
+//! - **Mock JSON input** that simulates gNMI telemetry responses
+//!
+//! ### Categories
+//! - **watermark**: buffer_pool, headroom_pool, queue/PG watermark
+//! - **queue**: queue counters, WRED counters, priority group counters
+//! - **interfaces**: status, description, counters, errors, alias, flap, portchannel, switchport, FEC
+//! - **transceiver**: EEPROM, info, status, presence, lpmode, PM, firmware
+//! - **system**: clock, uptime, version, memory, services, processes, reboot cause, MMU
+//! - **network**: LLDP, VLAN, MAC, ARP, BGP summary, IP route, NTP, SRv6
+//! - **dropcounters**: capabilities, configuration, counts
+//! - **ipv6**: route, BGP summary, BGP neighbors, prefix list, protocol, interfaces
+
+// sonic-utilities test data (raw CLI output + mock JSON input)
+pub mod sonic_utilities_watermark;
+pub mod sonic_utilities_queue;
+pub mod sonic_utilities_interfaces;
+pub mod sonic_utilities_transceiver;
+pub mod sonic_utilities_system;
+pub mod sonic_utilities_network;
+pub mod sonic_utilities_dropcounters;
+pub mod sonic_utilities_ipv6;
 
 use serde_json::Value;
 use std::path::Path;
@@ -62,4 +89,16 @@ pub fn assert_output_excludes_all(output: &str, excluded_substrings: &[&str]) {
             output
         );
     }
+}
+
+/// Assert that converter output exactly matches expected raw string data
+/// after normalization (trim trailing whitespace per line and trailing blank lines).
+#[allow(dead_code)]
+pub fn assert_exact_match(actual: &str, expected: &str, context: &str) {
+    let norm_actual = normalize_output(actual);
+    let norm_expected = normalize_output(expected);
+    assert_eq!(
+        norm_actual, norm_expected,
+        "\n{context}: Output mismatch.\n\n--- Expected ---\n{norm_expected}\n\n--- Actual ---\n{norm_actual}\n"
+    );
 }
