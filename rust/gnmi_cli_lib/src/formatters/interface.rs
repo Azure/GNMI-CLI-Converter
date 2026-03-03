@@ -3,8 +3,8 @@
 use crate::common::constants::{INTERFACE_COLUMN_ORDER, INTERFACE_COUNTERS_FIELD_MAP};
 use crate::common::types::CommandConfig;
 use crate::formatters::base::{
-    tabulate_simple, tabulate_simple_aligned, tabulate_simple_auto, value_to_string, FormatError,
-    OutputFormatter,
+    tabulate_simple, tabulate_simple_aligned, tabulate_simple_auto, tabulate_simple_auto_hdr,
+    value_to_string, FormatError, OutputFormatter,
 };
 use crate::utils::sorting::natural_cmp;
 use serde_json::Value;
@@ -986,7 +986,7 @@ impl OutputFormatter for PortChannelFormatter {
             }
         }
 
-        let table = tabulate_simple_auto(&headers, &rows);
+        let table = tabulate_simple_auto_hdr(&headers, &rows);
 
         Ok(format!("{}\n{}", flags_legend, table))
     }

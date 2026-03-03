@@ -3,7 +3,7 @@
 A Rust library (and CLI binary) that converts SONiC gNMI telemetry JSON into
 human-readable CLI table output.
 
-**Version** 2.5.0 · **~29 100 lines of Rust** across 25 source files
+**Version** 2.5.0 · **~33 400 lines of Rust** across 25 source files
 
 ## Features
 
@@ -14,7 +14,8 @@ human-readable CLI table output.
 | Concrete formatters (`impl OutputFormatter`) | 78 |
 | Formatter modules | 9 |
 | Output table formats | 5 (Simple, Grid, Plain, Github, Pipe) |
-| Rust test files | 5 + shared helpers (~2 100 lines) |
+| Rust test files | 14 + shared helpers (~7 300 lines) |
+| Total tests (unit + integration) | 1 684 |
 | Benchmark suite | Criterion (1 file) |
 
 - **70 verified commands** across **19 categories**:
@@ -135,7 +136,7 @@ gnmi-cli-convert --version
 ## Project structure
 
 ```text
-src/                           (25 files, ~29 100 lines)
+src/                           (25 files, ~33 400 lines)
   lib.rs             – library root, re-exports public API
   main.rs            – CLI binary (clap)
   commands.rs        – registers all 70 commands (+ dash/underscore aliases)
@@ -166,14 +167,31 @@ src/                           (25 files, ~29 100 lines)
     watermark.rs     – watermark / buffer-pool / headroom-pool formatters (3 formatters)
 benches/
   benchmark.rs       – criterion benchmarks
-tests/               (~2 100 lines)
+tests/               (~7 300 lines)
   common/
-    mod.rs           – shared test utilities
-  test_cli.rs        – CLI binary integration tests
-  test_commands.rs   – command registration integration tests
-  test_converter.rs  – converter integration tests
-  test_formatters.rs – formatter unit tests
-  test_parser.rs     – parser integration tests
+    mod.rs                        – shared test utilities + assert_exact_match helper
+    sonic_utilities_watermark.rs  – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities wm_test_vectors.py)
+    sonic_utilities_queue.rs      – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities queuestat assert_show_output.py)
+    sonic_utilities_interfaces.rs – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities interfaces_test.py)
+    sonic_utilities_transceiver.rs – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities sfp_test.py)
+    sonic_utilities_system.rs     – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities mmuconfig_test_vectors.py)
+    sonic_utilities_network.rs    – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities vlan_test.py)
+    sonic_utilities_dropcounters.rs – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities single_asic_dropstat_test.py)
+    sonic_utilities_ipv6.rs       – SHOW_* outputs & MOCK_* JSON (source: from sonic-utilities show_ip_route_common.py)
+  test_cli.rs              – CLI binary integration tests
+  test_commands.rs         – command registration integration tests
+  test_converter.rs        – converter integration tests
+  test_formatters.rs       – formatter unit tests
+  test_parser.rs           – parser integration tests
+  test_probe.rs            – diagnostic probe tests for all 100 commands
+  test_show_watermark.rs   – watermark formatter tests (19 tests)
+  test_show_queue.rs       – queue formatter tests (8 tests)
+  test_show_interfaces.rs  – interface formatter tests (21 tests)
+  test_show_transceiver.rs – transceiver formatter tests (13 tests)
+  test_show_system.rs      – system formatter tests (19 tests)
+  test_show_network.rs     – network formatter tests (10 tests)
+  test_show_dropcounters.rs – drop counter formatter tests (6 tests)
+  test_show_ipv6.rs        – IPv6 formatter tests (12 tests)
 ```
 
 ## Public API surface
