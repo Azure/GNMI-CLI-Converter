@@ -108,10 +108,11 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         lines.append(f"BGP neighbor is {neighbor_ip}, remote AS {remote_as}, local AS {local_as}, {external_link}")
         
         # Local/Remote roles
-        local_role = data.get("localRole", "undefined")
-        remote_role = data.get("remoteRole", "undefined")
-        lines.append(f"  Local Role: {local_role}")
-        lines.append(f"  Remote Role: {remote_role}")
+        if "localRole" in data or "remoteRole" in data:
+            local_role = data.get("localRole", "undefined")
+            remote_role = data.get("remoteRole", "undefined")
+            lines.append(f"  Local Role: {local_role}")
+            lines.append(f"  Remote Role: {remote_role}")
         
         # Description
         desc = data.get("nbrDesc", "")
@@ -171,13 +172,15 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         lines.append(f"  Configured hold time is {cfg_hold} seconds, keepalive interval is {cfg_keepalive} seconds")
         
         # TCP MSS
-        tcp_mss_cfg = data.get("bgpTcpMssConfigured", 0)
-        tcp_mss_synced = data.get("bgpTcpMssSynced", 0)
-        lines.append(f"  Configured tcp-mss is {tcp_mss_cfg}, synced tcp-mss is {tcp_mss_synced}")
+        if "bgpTcpMssConfigured" in data or "bgpTcpMssSynced" in data:
+            tcp_mss_cfg = data.get("bgpTcpMssConfigured", 0)
+            tcp_mss_synced = data.get("bgpTcpMssSynced", 0)
+            lines.append(f"  Configured tcp-mss is {tcp_mss_cfg}, synced tcp-mss is {tcp_mss_synced}")
         
         # Conditional advertisements interval
-        cond_adv = data.get("bgpTimerConfiguredConditionalAdvertisementsSec", 60)
-        lines.append(f"  Configured conditional advertisements interval is {cond_adv} seconds")
+        if "bgpTimerConfiguredConditionalAdvertisementsSec" in data:
+            cond_adv = data.get("bgpTimerConfiguredConditionalAdvertisementsSec", 60)
+            lines.append(f"  Configured conditional advertisements interval is {cond_adv} seconds")
                 # Connect retry timer
         connect_retry = data.get("connectRetryTimer", 0)
         if connect_retry:
