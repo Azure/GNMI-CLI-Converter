@@ -393,8 +393,13 @@ class VlanBriefFormatter(OutputFormatter):
                 proxy_arp,
             ]
             if has_dhcp:
-                dhcp_helpers = sorted(dhcp_helpers, key=lambda ip: tuple(
-                    int(x) for x in ip.split('.')) if '.' in ip else (999,))
+                def dhcp_sort_key(ip):
+                    try:
+                        parts = ip.split('.')
+                        return tuple(int(p) for p in parts)
+                    except Exception:
+                        return (999, 999, 999, 999)
+                dhcp_helpers = sorted(dhcp_helpers, key=dhcp_sort_key)
                 row.append("\n".join(dhcp_helpers))
 
             body.append(row)

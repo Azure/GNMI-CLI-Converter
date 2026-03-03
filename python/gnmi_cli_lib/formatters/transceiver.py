@@ -34,33 +34,20 @@ def _get_app_adv_sort_key(item: str) -> tuple:
     """
     Returns a sort key for Application Advertisement items.
     
-    Sort order (by speed, descending):
-    1. 800G-ETC-CR8
-    2. 400GBASE-CR4 (Clause 162)
-    3. 400G CR8
-    4. 200GBASE-CR4 (Clause 136)
-    5. 100GBASE-CR4 (Clause 92)
-    6. 40GBASE-CR4 (Clause 85)
+    Sorts by speed descending: extracts the leading numeric speed
+    (e.g., 800 from '800G-ETC-CR8', 100 from '100GBASE-CR4',
+    200 from '200GAUI-2-L C2M').
     
-    The sort key is (speed_order, original_string) where speed_order
-    is a numeric value that reflects the desired order.
+    Falls back to alphabetical for items without a recognizable speed.
     """
-    # Define speed prefixes and their sort order (lower = earlier)
-    speed_patterns = [
-        (r'^800G-ETC', 0),      # 800G-ETC-CR8
-        (r'^400GBASE', 1),      # 400GBASE-CR4
-        (r'^400G\s*CR', 2),     # 400G CR8
-        (r'^200GBASE', 3),      # 200GBASE-CR4
-        (r'^100GBASE', 4),      # 100GBASE-CR4
-        (r'^40GBASE', 5),       # 40GBASE-CR4
-    ]
+    # Extract leading speed number (e.g. 800 from '800G-ETC-CR8')
+    m = re.match(r'^(\d+)G', item)
+    if m:
+        speed = int(m.group(1))
+        return (-speed, item)  # Negative for descending order
     
-    for pattern, order in speed_patterns:
-        if re.match(pattern, item):
-            return (order, item)
-    
-    # Unknown patterns go last
-    return (99, item)
+    # Unknown patterns go last, sorted alphabetically
+    return (0, item)
 
 
 def _normalize_to_port_dict(data: Union[List, Dict], port_key: str = "Port") -> Dict:
@@ -414,33 +401,65 @@ class TransceiverEepromFormatter(OutputFormatter):
             # Separate EEPROM info fields from DOM fields
             eeprom_keys = [k for k in port_data if k not in self._ALL_DOM_KEYS]
             
+            # Track which keys have been emitted
+            emitted_keys: set = set()
+            
             # 1) Output EEPROM info fields sorted alphabetically
             for key in sorted(eeprom_keys):
                 value = port_data[key]
                 self._format_key_value(output_lines, key, value)
+                emitted_keys.add(key)
             
             # 2) Output DOM groups in fixed order with natsorted sub-keys
             for group in self.DOM_GROUP_ORDER:
                 if group not in port_data:
                     continue
-                # Group header (value is empty string marker)
+                # Group header
                 output_lines.append(f"        {group}:")
-                # Collect sub-keys present in data for this group
-                sub_keys = [k for k in port_data
-                            if k in self.DOM_GROUP_KEYS.get(group, set())]
-                sorted_sub = natsorted(sub_keys)
-                # Threshold groups use aligned colons (matching sfputil
-                # format_dict_value_to_string alignment parameter)
-                if "Threshold" in group and sorted_sub:
-                    max_len = max(len(sk) for sk in sorted_sub)
-                    for sk in sorted_sub:
-                        padded = sk.ljust(max_len)
-                        output_lines.append(
-                            f"                {padded}: {port_data[sk]}")
+                emitted_keys.add(group)
+                
+                group_val = port_data[group]
+                
+                # Determine sub-keys source:
+                # If the group value is a non-empty dict, sub-keys are INSIDE it.
+                # Otherwise look for matching sub-keys at top level of port_data.
+                if isinstance(group_val, dict) and group_val:
+                    # Sub-keys are inside the dict value itself
+                    sub_data = group_val
+                    sorted_sub = natsorted(sub_data.keys())
+                    if "Threshold" in group and sorted_sub:
+                        max_len = max(len(sk) for sk in sorted_sub)
+                        for sk in sorted_sub:
+                            padded = sk.ljust(max_len)
+                            output_lines.append(
+                                f"                {padded}: {sub_data[sk]}")
+                    else:
+                        for sk in sorted_sub:
+                            output_lines.append(
+                                f"                {sk}: {sub_data[sk]}")
                 else:
-                    for sk in sorted_sub:
-                        output_lines.append(
-                            f"                {sk}: {port_data[sk]}")
+                    # Look for matching sub-keys at top level of port_data
+                    sub_keys = [k for k in port_data
+                                if k in self.DOM_GROUP_KEYS.get(group, set())]
+                    sorted_sub = natsorted(sub_keys)
+                    if "Threshold" in group and sorted_sub:
+                        max_len = max(len(sk) for sk in sorted_sub)
+                        for sk in sorted_sub:
+                            padded = sk.ljust(max_len)
+                            output_lines.append(
+                                f"                {padded}: {port_data[sk]}")
+                            emitted_keys.add(sk)
+                    else:
+                        for sk in sorted_sub:
+                            output_lines.append(
+                                f"                {sk}: {port_data[sk]}")
+                            emitted_keys.add(sk)
+            
+            # 3) Output any remaining keys not yet emitted (safety net)
+            remaining = [k for k in port_data if k not in emitted_keys]
+            for key in sorted(remaining):
+                value = port_data[key]
+                self._format_key_value(output_lines, key, value)
             
             output_lines.append("")
         
@@ -449,14 +468,14 @@ class TransceiverEepromFormatter(OutputFormatter):
     @staticmethod
     def _format_key_value(output_lines: list, key: str, value) -> None:
         """Format a single key-value pair, handling special types."""
-        # Application Advertisement array — preserve original order
-        # (matching sonic-utilities sfp_helper which iterates dict.values()
-        # without sorting)
+        # Application Advertisement array — sort by speed descending
+        # (matching sonic-utilities sfputil which sorts by speed)
         if key == "Application Advertisement" and isinstance(value, list):
             if value:
-                output_lines.append(f"        {key}: {value[0]}")
+                sorted_app_adv = sorted(value, key=_get_app_adv_sort_key)
+                output_lines.append(f"        {key}: {sorted_app_adv[0]}")
                 indent = " " * (8 + len(key) + 2)
-                for item in value[1:]:
+                for item in sorted_app_adv[1:]:
                     output_lines.append(f"{indent}{item}")
             else:
                 output_lines.append(f"        {key}:")
