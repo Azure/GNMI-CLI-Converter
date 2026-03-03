@@ -93,9 +93,9 @@ class InterfaceStatusFormatter(OutputFormatter):
         
         headers = ["Interface", "Lanes", "Speed", "MTU", "FEC", "Alias", 
                    "Vlan", "Oper", "Admin", "Type", "Asym PFC"]
-        # Right-align Interface and Lanes columns
+        # All columns right-aligned, matching sonic-utilities intfutil stralign='right'
         col_alignments = ["right", "right", "right", "right", "right", "right",
-                         "right", "right", "right", "left", "right"]
+                         "right", "right", "right", "right", "right"]
         return tabulate(table_data, headers=headers, tablefmt=table_format, colalign=col_alignments)
 
 
@@ -496,7 +496,9 @@ class InterfaceCountersDetailedFormatter(OutputFormatter):
         ...
     """
     
-    # Mapping from gNMI keys to display labels in order
+    # Mapping from gNMI keys to display labels in order.
+    # Matches the hardcoded field order in sonic-utilities portstat.py
+    # (cnstat_print / cnstat_diff_print detailed mode).
     FIELD_ORDER = [
         ("Rx64", "Packets Received 64 Octets"),
         ("Rx65_127", "Packets Received 65-127 Octets"),
@@ -534,6 +536,21 @@ class InterfaceCountersDetailedFormatter(OutputFormatter):
         ("TxUnicast", "Unicast Packets Transmitted"),
         ("TxMulticast", "Multicast Packets Transmitted"),
         ("TxBroadcast", "Broadcast Packets Transmitted"),
+    ]
+
+    # WRED fields — conditional: only output when present in JSON data.
+    # In sonic-utilities these are gated by PORT_COUNTER_CAPABILITIES
+    # (wred_*_pkt_stat_capable).  The converter mirrors this by checking
+    # whether the JSON data contains the corresponding keys.
+    WRED_FIELDS = [
+        ("WredGreenDrp", "WRED Green Dropped Packets"),
+        ("WredYellowDrp", "WRED Yellow Dropped Packets"),
+        ("WredRedDrp", "WRED Red Dropped Packets"),
+        ("WredTotalDrp", "WRED Total Dropped Packets"),
+    ]
+
+    # Trim + Timestamp — always output (unconditional in sonic-utilities)
+    TAIL_FIELDS = [
         ("TrimPkts", "Trimmed Packets"),
         ("TrimSent", "Trimmed Sent Packets"),
         ("TrimDrp", "Trimmed Dropped Packets"),
@@ -566,42 +583,75 @@ class InterfaceCountersDetailedFormatter(OutputFormatter):
         for intf, intf_data in data.items():
             if not isinstance(intf_data, dict):
                 continue
-            
-            for field_spec in self.FIELD_ORDER:
-                if field_spec is None:
-                    lines.append("")  # Blank line
-                    continue
-                
-                key, label = field_spec
-                value = intf_data.get(key, "0")
-                
-                # Handle missing values - default to "0" for missing keys
-                # but preserve "N/A" values as-is (indicates hardware doesn't support this counter)
-                if value in (None, ""):
-                    value = "0"
-                
-                # Format numeric values with commas (skip N/A and TimestampClearedCounters)
-                if value != "N/A" and key != "TimestampClearedCounters":
-                    try:
-                        num_val = int(value)
-                        value = f"{num_val:,}"
-                    except (ValueError, TypeError):
-                        pass  # Keep original value if not numeric
-                elif value not in ("None", None, "", "N/A"):
-                    # TimestampClearedCounters - format if numeric
-                    try:
-                        num_val = int(value)
-                        value = f"{num_val:,}"
-                    except (ValueError, TypeError):
-                        pass
-                
-                # Format with dotted alignment - label is 47 chars wide
-                dots = "." * (47 - len(label))
-                lines.append(f"{label}{dots} {value}")
-            
+
+            # --- Main fields (always output) ---
+            self._append_fields(lines, intf_data, self.FIELD_ORDER)
+
+            # --- WRED fields (conditional — only when present in data) ---
+            wred_present = [
+                fs for fs in self.WRED_FIELDS
+                if fs is not None and fs[0] in intf_data
+            ]
+            if wred_present:
+                lines.append("")  # Blank line before WRED group
+                self._append_fields(lines, intf_data, self.WRED_FIELDS,
+                                    skip_missing=True)
+                lines.append("")  # Blank line after WRED group
+
+            # --- Trim + Timestamp (always output) ---
+            self._append_fields(lines, intf_data, self.TAIL_FIELDS)
+
             break  # Only process first interface (detailed is per-interface)
         
         return "\n".join(lines)
+
+    @staticmethod
+    def _append_fields(lines: list, intf_data: Dict,
+                       field_specs: list, skip_missing: bool = False):
+        """Append formatted lines for the given field specifications.
+
+        Args:
+            lines: Accumulator list of output lines.
+            intf_data: Dict of counter values for one interface.
+            field_specs: List of (key, label) tuples or None (blank line).
+            skip_missing: If True, skip fields not present in *intf_data*
+                          instead of defaulting to "0".
+        """
+        for field_spec in field_specs:
+            if field_spec is None:
+                lines.append("")  # Blank line
+                continue
+
+            key, label = field_spec
+
+            if skip_missing and key not in intf_data:
+                continue
+
+            value = intf_data.get(key, "0")
+
+            # Handle missing values - default to "0" for missing keys
+            # but preserve "N/A" values as-is
+            if value in (None, ""):
+                value = "0"
+
+            # Format numeric values with commas
+            # (skip N/A and TimestampClearedCounters)
+            if value != "N/A" and key != "TimestampClearedCounters":
+                try:
+                    num_val = int(value)
+                    value = f"{num_val:,}"
+                except (ValueError, TypeError):
+                    pass
+            elif value not in ("None", None, "", "N/A"):
+                try:
+                    num_val = int(value)
+                    value = f"{num_val:,}"
+                except (ValueError, TypeError):
+                    pass
+
+            # Format with dotted alignment - label is 47 chars wide
+            dots = "." * (47 - len(label))
+            lines.append(f"{label}{dots} {value}")
 
 
 class PortchannelFormatter(OutputFormatter):

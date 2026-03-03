@@ -340,14 +340,14 @@ class TestTransceiverFormattersExtended:
     def test_app_adv_sort_key(self):
         """Test _get_app_adv_sort_key function."""
         
-        # Test various speed patterns
-        assert _get_app_adv_sort_key("800G-ETC-CR8")[0] == 0
-        assert _get_app_adv_sort_key("400GBASE-CR4")[0] == 1
-        assert _get_app_adv_sort_key("400G CR8")[0] == 2
-        assert _get_app_adv_sort_key("200GBASE-CR4")[0] == 3
-        assert _get_app_adv_sort_key("100GBASE-CR4")[0] == 4
-        assert _get_app_adv_sort_key("40GBASE-CR4")[0] == 5
-        assert _get_app_adv_sort_key("Unknown")[0] == 99
+        # Test various speed patterns — sort key uses negative speed for descending
+        assert _get_app_adv_sort_key("800G-ETC-CR8")[0] == -800
+        assert _get_app_adv_sort_key("400GBASE-CR4")[0] == -400
+        assert _get_app_adv_sort_key("400G CR8")[0] == -400
+        assert _get_app_adv_sort_key("200GBASE-CR4")[0] == -200
+        assert _get_app_adv_sort_key("100GBASE-CR4")[0] == -100
+        assert _get_app_adv_sort_key("40GBASE-CR4")[0] == -40
+        assert _get_app_adv_sort_key("Unknown")[0] == 0
 
 
 # =============================================================================
@@ -445,16 +445,16 @@ class TestTransceiverFormattersFinal:
     def test_get_app_adv_sort_key_all_patterns(self):
         """Test _get_app_adv_sort_key with all speed patterns."""
         
-        # Test all defined patterns
+        # Test all defined patterns — negative speed for descending sort
         test_cases = [
-            ("800G-ETC-CR8", 0),
-            ("400GBASE-CR4 (Clause 162)", 1),
-            ("400G CR8", 2),
-            ("200GBASE-CR4 (Clause 136)", 3),
-            ("100GBASE-CR4 (Clause 92)", 4),
-            ("40GBASE-CR4 (Clause 85)", 5),
-            ("10GBASE-KR", 99),  # Unknown
-            ("Custom Speed", 99)  # Unknown
+            ("800G-ETC-CR8", -800),
+            ("400GBASE-CR4 (Clause 162)", -400),
+            ("400G CR8", -400),
+            ("200GBASE-CR4 (Clause 136)", -200),
+            ("100GBASE-CR4 (Clause 92)", -100),
+            ("40GBASE-CR4 (Clause 85)", -40),
+            ("10GBASE-KR", -10),  # Recognized speed
+            ("Custom Speed", 0)  # Unknown
         ]
         
         for speed, expected_order in test_cases:
