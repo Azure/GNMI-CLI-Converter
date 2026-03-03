@@ -8,13 +8,6 @@ constants to make the code more maintainable and easier to update.
 from typing import List, Tuple
 
 # =============================================================================
-# Table Formatting Constants
-# =============================================================================
-
-DEFAULT_TABLE_FORMAT = "simple"
-DEFAULT_ALIGNMENT = "right"
-
-# =============================================================================
 # Column Orderings
 # =============================================================================
 
@@ -175,18 +168,3 @@ DROPCOUNTERS_HEADERS: List[str] = [
 
 DEFAULT_LLDP_CAPABILITY_CODES = "Capability codes: (R) Router, (B) Bridge, (O) Other"
 
-# =============================================================================
-# SAI Stat Fields
-# =============================================================================
-
-SAI_STAT_FIELDS = {
-    "buffer_pool": "SAI_BUFFER_POOL_STAT_WATERMARK_BYTES",
-    "headroom_pool": "SAI_BUFFER_POOL_STAT_XOFF_ROOM_WATERMARK_BYTES",
-}
-
-# =============================================================================
-# Watermark Prefixes
-# =============================================================================
-
-USER_WATERMARKS_PREFIX = "USER_WATERMARKS:"
-PERSISTENT_WATERMARKS_PREFIX = "PERSISTENT_WATERMARKS:"

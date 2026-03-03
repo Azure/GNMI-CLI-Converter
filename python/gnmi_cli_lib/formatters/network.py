@@ -46,9 +46,14 @@ class LldpTableFormatter(OutputFormatter):
         Total entries displayed:  2
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format LLDP table."""
         lines = []
         
@@ -121,9 +126,14 @@ class LldpNeighborsFormatter(OutputFormatter):
     
     SEPARATOR = "-" * 79
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format LLDP neighbors in detailed format."""
         if not data:
             return ""
@@ -320,9 +330,14 @@ class VlanBriefFormatter(OutputFormatter):
         +-----------+--------------+---------+----------------+-------------+-----------------------+
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format VLAN brief as table with grid format, multi-row for readability."""
         headers = ["VLAN ID", "IP Address", "Ports", "Port Tagging",
                   "Proxy ARP", "DHCP Helper Address"]
@@ -422,9 +437,14 @@ class NdpFormatter(OutputFormatter):
         Total number of entries 246
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format NDP as table."""
         # Handle {"entries": [...], "total_entries": N} format
         if isinstance(data, dict):
@@ -502,9 +522,14 @@ class MacFormatter(OutputFormatter):
         Total number of entries 0
     """
     
-    def format(self, data: Union[Dict, List], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[Dict, List],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format MAC table."""
         # Handle {"entries": [...], "total": N} format
         if isinstance(data, dict):
@@ -558,9 +583,14 @@ class Srv6Formatter(OutputFormatter):
         2001:db8:1::/48     12345    67890
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format SRv6 stats as table."""
         table_data = []
         
@@ -591,9 +621,14 @@ class MacAgingTimeFormatter(OutputFormatter):
         Aging time for switch is 600 seconds
     """
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format MAC aging time as human-readable text."""
         if not data:
             return ""

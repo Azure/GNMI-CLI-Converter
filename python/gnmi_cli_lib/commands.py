@@ -114,12 +114,14 @@ def _register_queue_commands(registry: CommandRegistry) -> None:
     # Counter commands
     registry.register_command("queue", "counters", CommandConfig(
         output_type="queue_counters",
-        description="Queue counters"
+        description="Queue counters",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("queue", "wredcounters", CommandConfig(
         output_type="wred_counters",
-        description="Queue WRED counters"
+        description="Queue WRED counters",
+        optional_arg="interface_name"
     ))
 
 
@@ -226,12 +228,14 @@ def _register_lldp_commands(registry: CommandRegistry) -> None:
     """Register LLDP commands."""
     registry.register_command("lldp", "table", CommandConfig(
         output_type="lldp_table",
-        description="LLDP neighbor table"
+        description="LLDP neighbor table",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("lldp", "neighbors", CommandConfig(
         output_type="lldp_neighbors",
-        description="LLDP neighbors detailed view"
+        description="LLDP neighbors detailed view",
+        optional_arg="interface_name"
     ))
 
 
@@ -260,23 +264,27 @@ def _register_interface_commands(registry: CommandRegistry) -> None:
     """Register interface commands."""
     registry.register_command("interfaces", "description", CommandConfig(
         output_type="interface_description",
-        description="Interface descriptions"
+        description="Interface descriptions",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "status", CommandConfig(
         output_type="interface_status",
-        description="Interface status"
+        description="Interface status",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "counters", CommandConfig(
         output_type="interface_counters",
-        description="Interface counters"
+        description="Interface counters",
+        optional_arg="interface_name"
     ))
     
     # Detailed counters - uses specialized per-line formatter
     registry.register_command("interfaces", "counters-detailed", CommandConfig(
         output_type="interface_counters_detailed",
-        description="Interface counters detailed"
+        description="Interface counters detailed",
+        optional_arg="interface_name"
     ))
     
     # Other counter variants - use standard table formatter
@@ -285,23 +293,27 @@ def _register_interface_commands(registry: CommandRegistry) -> None:
                     "counters-trim"]:
         registry.register_command("interfaces", variant, CommandConfig(
             output_type="interface_counters",
-            description=f"Interface {variant.replace('-', ' ')}"
+            description=f"Interface {variant.replace('-', ' ')}",
+            optional_arg="interface_name"
         ))
     
     # FEC histogram uses its own formatter
     registry.register_command("interfaces", "counters-fec-histogram", CommandConfig(
         output_type="fec_histogram",
-        description="FEC histogram"
+        description="FEC histogram",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "errors", CommandConfig(
         output_type="interface_errors",
-        description="Interface errors"
+        description="Interface errors",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "alias", CommandConfig(
         output_type="interface_alias",
-        description="Interface aliases"
+        description="Interface aliases",
+        optional_arg="interface_name"
     ))
     
     # New naming with hyphen (as per README: show interfaces naming-mode)
@@ -312,7 +324,8 @@ def _register_interface_commands(registry: CommandRegistry) -> None:
     
     registry.register_command("interfaces", "flap", CommandConfig(
         output_type="interface_flap",
-        description="Interface flap counts"
+        description="Interface flap counts",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "portchannel", CommandConfig(
@@ -328,53 +341,63 @@ def _register_interface_commands(registry: CommandRegistry) -> None:
     # Transceiver subcommands - use specialized formatters
     registry.register_command("interfaces", "transceiver-eeprom", CommandConfig(
         output_type="transceiver_eeprom",
-        description="Transceiver EEPROM"
+        description="Transceiver EEPROM",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "transceiver-error-status", CommandConfig(
         output_type="transceiver_error_status",
-        description="Transceiver error status"
+        description="Transceiver error status",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "transceiver-info", CommandConfig(
         output_type="transceiver_info",
-        description="Transceiver info"
+        description="Transceiver info",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "transceiver-lpmode", CommandConfig(
         output_type="transceiver_lpmode",
-        description="Transceiver low-power mode"
+        description="Transceiver low-power mode",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "transceiver-pm", CommandConfig(
         output_type="transceiver_pm",
-        description="Transceiver performance monitoring"
+        description="Transceiver performance monitoring",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "transceiver-presence", CommandConfig(
         output_type="transceiver_presence",
-        description="Transceiver presence"
+        description="Transceiver presence",
+        optional_arg="interface_name"
     ))
     
     registry.register_command("interfaces", "transceiver-status", CommandConfig(
         output_type="transceiver_status",
-        description="Transceiver status"
+        description="Transceiver status",
+        optional_arg="interface_name"
     ))
     
     # FEC subcommands - use specialized formatter
     registry.register_command("interfaces", "fec-status", CommandConfig(
         output_type="fec_status",
-        description="FEC status"
+        description="FEC status",
+        optional_arg="interface_name"
     ))
     
     # Switchport subcommands
     registry.register_command("interfaces", "switchport-config", CommandConfig(
         output_type="switchport-config",
-        description="Switchport config"
+        description="Switchport config",
+        optional_arg="interface_name"
     ))
     registry.register_command("interfaces", "switchport-status", CommandConfig(
         output_type="switchport-status",
-        description="Switchport status"
+        description="Switchport status",
+        optional_arg="interface_name"
     ))
 
 
@@ -387,12 +410,14 @@ def _register_network_commands(registry: CommandRegistry) -> None:
     
     registry.register_command("srv6", "stats", CommandConfig(
         output_type="srv6",
-        description="SRv6 statistics"
+        description="SRv6 statistics",
+        optional_arg="sid"
     ))
     
     registry.register_command("mac", "mac", CommandConfig(
         output_type="mac",
-        description="MAC address table"
+        description="MAC address table",
+        optional_arg="address"
     ))
     
     # New naming with hyphen (as per README: show mac aging-time)
@@ -417,15 +442,18 @@ def _register_ipv6_commands(registry: CommandRegistry) -> None:
     }
     
     for subcmd, output_type in ipv6_commands.items():
+        optional_arg = "prefix" if subcmd == "route" else ""
         registry.register_command("ipv6", subcmd, CommandConfig(
             output_type=output_type,
-            description=f"IPv6 {subcmd.replace('-', ' ')}"
+            description=f"IPv6 {subcmd.replace('-', ' ')}",
+            optional_arg=optional_arg
         ))
     
     # New naming with hyphen (as per README: show ipv6 prefix-list)
     registry.register_command("ipv6", "prefix-list", CommandConfig(
         output_type="ipv6_prefix_list",
-        description="IPv6 prefix list"
+        description="IPv6 prefix list",
+        optional_arg="name"
     ))
     
     # New naming with hyphen (as per README: show ipv6 link-local-mode)

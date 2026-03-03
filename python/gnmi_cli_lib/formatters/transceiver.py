@@ -110,9 +110,14 @@ class TransceiverPresenceFormatter(OutputFormatter):
         Ethernet8    Not present
     """
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format transceiver presence as table."""
         if not data:
             return ""
@@ -195,9 +200,14 @@ class TransceiverErrorStatusFormatter(OutputFormatter):
                 return error
             return "Unplugged"
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format transceiver error status as table."""
         if not data:
             return ""
@@ -213,8 +223,8 @@ class TransceiverErrorStatusFormatter(OutputFormatter):
                 if port:
                     table_data.append([port, str(error_status)])
         elif self._is_single_interface_data(data):
-            # Single interface data - get interface name from options argument
-            interface_name = options.get('argument', 'Unknown') if options else 'Unknown'
+            # Single interface data - get interface name from argument
+            interface_name = argument or 'Unknown'
             error_status = self._compute_error_status(data)
             table_data.append([interface_name, error_status])
         else:
@@ -250,9 +260,14 @@ class TransceiverLpmodeFormatter(OutputFormatter):
         Ethernet8    Off
     """
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format transceiver lpmode as table."""
         if not data:
             return ""
@@ -303,9 +318,14 @@ class TransceiverEepromFormatter(OutputFormatter):
                 ...
     """
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format transceiver EEPROM as multi-paragraph output."""
         if not data:
             return ""
@@ -400,9 +420,14 @@ class TransceiverStatusFormatter(OutputFormatter):
         "Vcc low alarm flag",
     ]
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format transceiver status as multi-paragraph output."""
         if not data:
             return ""
@@ -461,9 +486,14 @@ class TransceiverInfoFormatter(OutputFormatter):
     Uses TransceiverEepromFormatter logic.
     """
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format transceiver info using EEPROM format."""
         return TransceiverEepromFormatter().format(data, config, table_format)
 
@@ -479,9 +509,14 @@ class TransceiverPmFormatter(OutputFormatter):
         Ethernet0: Transceiver performance monitoring not applicable
     """
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format transceiver PM as multi-paragraph output."""
         if not data:
             return ""
@@ -543,9 +578,14 @@ class FecStatusFormatter(OutputFormatter):
          Ethernet88         N/A           rs
     """
     
-    def format(self, data: Union[List, Dict], config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Union[List, Dict],
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format FEC status as table with right-aligned interface names."""
         if not data:
             return ""

@@ -64,85 +64,6 @@ class CommandParser:
         >>> output = parser.convert("interfaces", "status", json_data)
     """
     
-    # Valid commands and their subcommands (from README)
-    VALID_COMMANDS = {
-        "buffer_pool": ["watermark", "persistent-watermark"],
-        "headroom-pool": ["watermark", "persistent-watermark"],
-        "clock": ["clock", "date", "timezones"],
-        "dropcounters": ["capabilities", "configuration", "counts"],
-        "interfaces": [
-            "alias", "counters", "counters-detailed", "counters-errors",
-            "counters-fec-histogram", "counters-fec-stats", "counters-rates",
-            "counters-rif", "counters-trim", "description", "errors",
-            "fec-status", "flap", "naming-mode", "neighbor-expected", "portchannel",
-            "status", "switchport-config", "switchport-status",
-            "transceiver-eeprom", "transceiver-error-status", "transceiver-info",
-            "transceiver-lpmode", "transceiver-pm", "transceiver-presence",
-            "transceiver-status"
-        ],
-        "ipv6": [
-            "bgp-neighbors", "bgp-network", "bgp-summary", "fib",
-            "interfaces", "link-local-mode", "prefix-list", "protocol", "route"
-        ],
-        "lldp": ["neighbors", "table"],
-        "mac": ["mac", "aging-time"],
-        "mmu": ["mmu"],
-        "ndp": ["ndp"],
-        "processes": ["cpu", "memory", "summary"],
-        "priority-group": [
-            "persistent-watermark-headroom", "persistent-watermark-shared",
-            "watermark-headroom", "watermark-shared"
-        ],
-        "queue": [
-            "counters", "persistent-watermark", "persistent-watermark-all", "persistent-watermark-multicast",
-            "persistent-watermark-unicast", "watermark", "watermark-all", "watermark-multicast",
-            "watermark-unicast", "wredcounters"
-        ],
-        "reboot-cause": ["current", "history"],
-        "services": ["services"],
-        "srv6": ["stats"],
-        "system-memory": ["system-memory", "memory"],
-        "uptime": ["uptime"],
-        "version": ["version"],
-        "vlan": ["brief"],
-        "watermark": ["telemetry"],
-    }
-    
-    # Commands that accept optional arguments
-    COMMANDS_WITH_OPTIONAL_ARGS = {
-        ("interfaces", "alias"): "interface_name",
-        ("interfaces", "counters"): "interface_name",
-        ("interfaces", "counters-detailed"): "interface_name",
-        ("interfaces", "counters-errors"): "interface_name",
-        ("interfaces", "counters-fec-histogram"): "interface_name",
-        ("interfaces", "counters-fec-stats"): "interface_name",
-        ("interfaces", "counters-rates"): "interface_name",
-        ("interfaces", "counters-rif"): "interface_name",
-        ("interfaces", "counters-trim"): "interface_name",
-        ("interfaces", "description"): "interface_name",
-        ("interfaces", "errors"): "interface_name",
-        ("interfaces", "fec-status"): "interface_name",
-        ("interfaces", "flap"): "interface_name",
-        ("interfaces", "status"): "interface_name",
-        ("interfaces", "switchport-config"): "interface_name",
-        ("interfaces", "switchport-status"): "interface_name",
-        ("interfaces", "transceiver-eeprom"): "interface_name",
-        ("interfaces", "transceiver-error-status"): "interface_name",
-        ("interfaces", "transceiver-info"): "interface_name",
-        ("interfaces", "transceiver-lpmode"): "interface_name",
-        ("interfaces", "transceiver-pm"): "interface_name",
-        ("interfaces", "transceiver-presence"): "interface_name",
-        ("interfaces", "transceiver-status"): "interface_name",
-        ("ipv6", "prefix-list"): "name",
-        ("ipv6", "route"): "prefix",
-        ("lldp", "neighbors"): "interface_name",
-        ("lldp", "table"): "interface_name",
-        ("mac", "mac"): "address",
-        ("queue", "counters"): "interface_name",
-        ("queue", "wredcounters"): "interface_name",
-        ("srv6", "stats"): "sid",
-    }
-    
     def __init__(self, table_format: str = "simple",
                  registry: Optional[CommandRegistry] = None):
         """
@@ -154,7 +75,45 @@ class CommandParser:
         """
         self.table_format = table_format
         self.registry = registry or get_default_registry()
+        self._valid_commands_cache: Optional[Dict[str, List[str]]] = None
+        self._optional_args_cache: Optional[Dict[tuple, str]] = None
+        self._optional_subcommand_cache: Optional[List[str]] = None
+
+    @property
+    def VALID_COMMANDS(self) -> Dict[str, List[str]]:
+        """Valid commands and subcommands, derived from the registry."""
+        if self._valid_commands_cache is None:
+            self._valid_commands_cache = {
+                cmd: list(subcmds.keys())
+                for cmd, subcmds in self.registry.list_commands().items()
+            }
+        return self._valid_commands_cache
+
+    @property
+    def COMMANDS_WITH_OPTIONAL_ARGS(self) -> Dict[tuple, str]:
+        """Commands that accept optional arguments, derived from the registry."""
+        if self._optional_args_cache is None:
+            self._optional_args_cache = {}
+            for cmd, subcmds in self.registry.list_commands().items():
+                for subcmd, config in subcmds.items():
+                    if config.optional_arg:
+                        self._optional_args_cache[(cmd, subcmd)] = config.optional_arg
+        return self._optional_args_cache
     
+    @property
+    def COMMANDS_WITH_OPTIONAL_SUBCOMMAND(self) -> List[str]:
+        """Commands that can work with or without a subcommand, derived from the registry.
+
+        A command has an optional subcommand when the command name itself
+        appears as one of its own subcommands (e.g., 'clock' has subcommand 'clock').
+        """
+        if self._optional_subcommand_cache is None:
+            self._optional_subcommand_cache = [
+                cmd for cmd, subcmds in self.VALID_COMMANDS.items()
+                if cmd in subcmds
+            ]
+        return self._optional_subcommand_cache
+
     def parse(self, cli_command: str) -> ParsedCommand:
         """
         Parse a CLI command string into its components.
@@ -212,11 +171,7 @@ class CommandParser:
         subcommand = ""
         argument = None
         
-        # Commands that can work with or without a subcommand
-        # e.g., "show clock" (command=subcommand) or "show clock timezones" (has real subcommand)
-        COMMANDS_WITH_OPTIONAL_SUBCOMMAND = ["ndp", "uptime", "version", "mmu", "clock", "mac", "services", "system-memory"]
-        
-        if command in COMMANDS_WITH_OPTIONAL_SUBCOMMAND:
+        if command in self.COMMANDS_WITH_OPTIONAL_SUBCOMMAND:
             # First check if there's a valid subcommand in the remaining parts
             if len(parts) >= 2:
                 potential_sub = parts[1]
@@ -394,43 +349,14 @@ class CommandParser:
         data = parse_json_data(json_data)
         
         # Get configuration and formatter
-        # Map to registry's internal naming
-        internal_command, internal_subcommand = self._map_to_internal(command, subcommand)
-        
-        config = self.registry.get_config(internal_command, internal_subcommand)
+        config = self.registry.get_config(command, subcommand)
         formatter = self.registry.get_formatter(config.output_type)
         
-        # Pass argument to formatter via options (for single-interface formatting)
-        format_options = options.copy() if options else {}
-        if argument:
-            format_options['argument'] = argument
-        
-        return formatter.format(data, config, self.table_format, format_options if format_options else None)
-    
-    def _map_to_internal(self, command: str, subcommand: str) -> Tuple[str, str]:
-        """Map public command names to internal registry names."""
-        # Handle specific mappings where registry uses different names
-        # The registry uses hyphen naming consistently, so we map underscore to hyphen
-        mapping = {
-            # (public_command, public_subcommand): (internal_command, internal_subcommand)
-            # headroom-pool uses hyphen in both CLI and registry
-            ("headroom-pool", "watermark"): ("headroom-pool", "watermark"),
-            ("headroom-pool", "persistent-watermark"): ("headroom-pool", "persistent-watermark"),
-            # mac aging-time: CLI uses hyphen, registry uses hyphen
-            ("mac", "aging-time"): ("mac", "aging-time"),
-            # interfaces naming-mode: CLI uses hyphen, registry uses hyphen 
-            ("interfaces", "naming-mode"): ("interfaces", "naming-mode"),
-            # ipv6 prefix-list: CLI uses hyphen, registry uses hyphen
-            ("ipv6", "prefix-list"): ("ipv6", "prefix-list"),
-            # ipv6 link-local-mode: CLI uses hyphen, registry uses hyphen
-            ("ipv6", "link-local-mode"): ("ipv6", "link-local-mode"),
-        }
-        
-        key = (command, subcommand)
-        if key in mapping:
-            return mapping[key]
-        
-        return (command, subcommand)
+        return formatter.format(
+            data, config, self.table_format,
+            argument=argument or "",
+            options=options or {}
+        )
     
     def parse_and_convert(self, cli_command: str,
                           json_data: Union[Dict, List, str]) -> str:

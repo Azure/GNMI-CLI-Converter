@@ -75,9 +75,14 @@ class QueueCountersFormatter(OutputFormatter):
         
         return has_counter, has_trim
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format queue counters as table grouped by interface."""
         if not data:
             return ""
@@ -188,9 +193,14 @@ class WredCountersFormatter(OutputFormatter):
         else:
             return f"MC{q_num}"
     
-    def format(self, data: Dict, config: CommandConfig,
-               table_format: str = "simple",
-               options: Optional[Dict] = None) -> str:
+    def format(
+        self,
+        data: Dict,
+        config: CommandConfig,
+        table_format: str = "simple",
+        argument: str = "",
+        options: Optional[Dict] = None,
+    ) -> str:
         """Format WRED counters as table grouped by interface."""
         headers = ["Port", "TxQ", "WredDrp/pkts", "WredDrp/bytes", "EcnMarked/pkts", "EcnMarked/bytes"]
         

@@ -14,9 +14,7 @@ from gnmi_cli_lib.utils import parsing
 from gnmi_cli_lib.utils.parsing import (
     array_to_dict,
     extract_interface_name,
-    extract_timestamp_from_reboot_key,
     normalize_field_names,
-    normalize_list_data,
     parse_json_data,
     parse_reasons_string,
     transform_interface_data,
@@ -374,32 +372,6 @@ class TestUtilsParsingDeep:
         result = parse_json_data([{"a": 1}])
         assert result == [{"a": 1}]
     
-    def test_extract_timestamp_from_reboot_key(self):
-        """Test extract_timestamp_from_reboot_key function."""
-        
-        # With prefix
-        result = extract_timestamp_from_reboot_key("REBOOT_CAUSE|2025_07_10_20_06_34")
-        assert result == "2025_07_10_20_06_34"
-        
-        # Without prefix
-        result = extract_timestamp_from_reboot_key("2025_07_10_20_06_34")
-        assert result == "2025_07_10_20_06_34"
-    
-    def test_normalize_list_data(self):
-        """Test normalize_list_data function."""
-        
-        # List passthrough
-        result = normalize_list_data([{"a": 1}])
-        assert result == [{"a": 1}]
-        
-        # Dict conversion
-        result = normalize_list_data({"key": {"a": 1}})
-        assert result == [{"a": 1}]
-        
-        # Empty dict
-        result = normalize_list_data({})
-        assert result == []
-    
     def test_array_to_dict(self):
         """Test array_to_dict function."""
         
@@ -592,12 +564,6 @@ class TestUtilsParsingEdgeCases:
         result = parse_reasons_string("")
         assert result == [] or result is not None
     
-    def test_normalize_list_data(self):
-        """Test normalizing list data."""
-        
-        result = normalize_list_data([{"key": "value"}])
-        assert isinstance(result, list)
-    
     def test_array_to_dict(self):
         """Test converting array to dict."""
         
@@ -607,20 +573,6 @@ class TestUtilsParsingEdgeCases:
 
 class TestUtilsParsingMoreCoverage_Original:
     """Test more utils parsing functions."""
-    
-    def test_normalize_list_data_with_dict(self):
-        """Test normalize_list_data with dict."""
-        
-        data = {"key1": {"a": 1}, "key2": {"b": 2}}
-        result = normalize_list_data(data)
-        assert isinstance(result, list)
-        assert len(result) == 2
-    
-    def test_normalize_list_data_with_non_dict_non_list(self):
-        """Test normalize_list_data with non-dict non-list."""
-        
-        result = normalize_list_data("not a list or dict")
-        assert result == []
     
     def test_normalize_field_names(self):
         """Test normalize_field_names."""

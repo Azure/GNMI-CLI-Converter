@@ -29,6 +29,7 @@ class CommandConfig:
         dynamic_columns: If True, columns are determined from data keys
         alignment: Text alignment ("right" or "left")
         description: Human-readable description of the command
+        optional_arg: Name of optional argument (e.g., "interface_name"), empty if none
     
     Example:
         >>> config = CommandConfig(
@@ -45,6 +46,7 @@ class CommandConfig:
     dynamic_columns: bool = False
     alignment: str = "right"
     description: str = ""
+    optional_arg: str = ""
     
     def __post_init__(self):
         """Validate configuration after initialization."""
