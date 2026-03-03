@@ -89,17 +89,28 @@ class DropcountersCapabilitiesFormatter(OutputFormatter):
 
 class DropcountersCountsFormatter(OutputFormatter):
     """
-    Formats dropcounters counts output for port-level drop counters.
-    
+    Formats dropcounters counts output as two separate tables:
+    one for port-level counters (IFACE) and one for switch-level counters (DEVICE).
+
+    This matches the sonic-utilities ``dropstat`` behaviour which calls
+    ``show_port_drop_counts`` and ``show_switch_drop_counts`` separately.
+
     Example input:
-        {"Ethernet0": {"State": "D", "RX_ERR": "10", "RX_DROPS": "100", ...}}
-    
+        {
+            "Ethernet0": {"State": "D", "RX_ERR": "10", "RX_DROPS": "100", ...},
+            "sonic_drops_test": {"SWITCH_DROPS": "1000", "lowercase_counter": "0"}
+        }
+
     Example output:
             IFACE    STATE    RX_ERR    RX_DROPS    TX_ERR    TX_DROPS
         ---------  -------  --------  ----------  --------  ----------
         Ethernet0        D        10         100         0           0
+
+                  DEVICE    SWITCH_DROPS    lowercase_counter
+        ----------------  --------------  -------------------
+        sonic_drops_test            1000                    0
     """
-    
+
     def format(
         self,
         data: Dict,
@@ -108,55 +119,109 @@ class DropcountersCountsFormatter(OutputFormatter):
         argument: str = "",
         options: Optional[Dict] = None,
     ) -> str:
-        """Format port drop counters as table."""
+        """Format drop counters as two tables (port + switch)."""
         if not data:
             return ""
-        
-        # Collect all unique columns across all ports
-        all_columns = set()
-        for port_data in data.values():
-            if isinstance(port_data, dict):
-                all_columns.update(port_data.keys())
-        
-        # Order columns: standard first, then debug counters sorted
-        debug_columns = sorted([c for c in all_columns
-                               if c not in STANDARD_PORT_COLUMNS])
-        ordered_columns = []
-        for col in STANDARD_PORT_COLUMNS:
-            if col in all_columns:
-                ordered_columns.append(col)
+
+        # Separate port-level entries (have "State") from switch-level entries
+        port_entries: Dict[str, Dict] = {}
+        switch_entries: Dict[str, Dict] = {}
+        for key, value in data.items():
+            if isinstance(value, dict):
+                if "State" in value:
+                    port_entries[key] = value
+                else:
+                    switch_entries[key] = value
+
+        sections: List[str] = []
+
+        # ── Port-level table (IFACE) ──
+        if port_entries:
+            port_table = self._build_port_table(port_entries, table_format)
+            if port_table:
+                sections.append(port_table)
+
+        # ── Switch-level table (DEVICE) ──
+        if switch_entries:
+            switch_table = self._build_switch_table(switch_entries, table_format)
+            if switch_table:
+                sections.append(switch_table)
+
+        if not sections:
+            return ""
+
+        # Join with blank line between tables (matches sonic-utilities dropstat)
+        return "\n\n".join(sections) + "\n"
+
+    # ------------------------------------------------------------------ #
+
+    def _build_port_table(self, entries: Dict[str, Dict],
+                          table_format: str) -> str:
+        """Build the IFACE table for port-level drop counters."""
+        # Collect columns present across all port entries
+        all_columns: set = set()
+        for port_data in entries.values():
+            all_columns.update(port_data.keys())
+
+        # Order: standard columns first, then debug counters sorted
+        debug_columns = sorted(c for c in all_columns
+                               if c not in STANDARD_PORT_COLUMNS)
+        ordered_columns: List[str] = [
+            c for c in STANDARD_PORT_COLUMNS if c in all_columns
+        ]
         ordered_columns.extend(debug_columns)
-        
-        # Build header row (uppercase "State" -> "STATE")
-        headers = ["IFACE"] + [col.upper() if col == "State" else col
-                              for col in ordered_columns]
-        
-        # Build data rows
+
+        headers = ["IFACE"] + [
+            col.upper() if col == "State" else col
+            for col in ordered_columns
+        ]
+
         table_data = []
-        for port in sorted(data.keys(), key=natural_sort_key):
-            port_data = data[port]
-            if isinstance(port_data, dict):
-                row = [port]
-                for col in ordered_columns:
-                    value = port_data.get(col, "N/A")
-                    row.append(value)
-                table_data.append(row)
-        
+        for port in sorted(entries.keys(), key=natural_sort_key):
+            row = [port]
+            for col in ordered_columns:
+                row.append(entries[port].get(col, "N/A"))
+            table_data.append(row)
+
         if not table_data:
             return ""
-        
-        # All columns should be right-aligned
-        col_alignments = ["right"] * len(headers)
-        
-        table_str = tabulate(
+
+        return tabulate(
             table_data,
             headers=headers,
             tablefmt=table_format,
             numalign="right",
-            colalign=col_alignments,
+            stralign="right",
         )
-        
-        return table_str + "\n"
+
+    def _build_switch_table(self, entries: Dict[str, Dict],
+                            table_format: str) -> str:
+        """Build the DEVICE table for switch-level drop counters."""
+        # Collect columns across all switch entries, preserve order
+        all_columns: set = set()
+        for sw_data in entries.values():
+            all_columns.update(sw_data.keys())
+
+        ordered_columns = sorted(all_columns)
+        headers = ["DEVICE"] + ordered_columns
+
+        table_data = []
+        for device in sorted(entries.keys(), key=natural_sort_key):
+            row = [device]
+            for col in ordered_columns:
+                row.append(entries[device].get(col, "N/A"))
+            table_data.append(row)
+
+        if not table_data:
+            return ""
+
+        return tabulate(
+            table_data,
+            headers=headers,
+            tablefmt=table_format,
+            numalign="right",
+            stralign="right",
+        )
 
 
 class DropcountersConfigurationFormatter(OutputFormatter):
