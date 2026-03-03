@@ -650,25 +650,31 @@ class MmuFormatter(OutputFormatter):
         argument: str = "",
         options: Optional[Dict] = None,
     ) -> str:
-        """Format MMU config with Pool and Profile sections."""
+        """Format MMU config with Lossless traffic pattern, Pool and Profile sections."""
         if not data:
             return ""
         
         output_blocks = []
         
-        # Process pools
+        # Process lossless traffic pattern (DEFAULT_LOSSLESS_BUFFER_PARAMETER)
+        lossless = data.get("lossless_traffic_pattern", {})
+        if lossless:
+            block = self._format_block("Lossless traffic pattern", None, lossless)
+            output_blocks.append(block)
+        
+        # Process pools (preserve original order)
         pools = data.get("pools", data.get("pool", {}))
         if pools:
-            for pool_name in sorted(pools.keys()):
+            for pool_name in pools:
                 pool_data = pools[pool_name]
                 if isinstance(pool_data, dict):
                     block = self._format_block("Pool", pool_name, pool_data)
                     output_blocks.append(block)
         
-        # Process profiles
+        # Process profiles (preserve original order)
         profiles = data.get("profiles", data.get("profile", {}))
         if profiles:
-            for profile_name in sorted(profiles.keys()):
+            for profile_name in profiles:
                 profile_data = profiles[profile_name]
                 if isinstance(profile_data, dict):
                     block = self._format_block("Profile", profile_name, profile_data)
@@ -676,16 +682,25 @@ class MmuFormatter(OutputFormatter):
         
         return "\n\n".join(output_blocks)
     
-    def _format_block(self, block_type: str, name: str, data: Dict) -> str:
-        """Format a single Pool or Profile block with table-style output."""
+    def _format_block(self, block_type: str, name: Optional[str], data: Dict) -> str:
+        """Format a single block with table-style output.
+        
+        Args:
+            block_type: Section type (e.g., "Pool", "Profile", "Lossless traffic pattern")
+            name: Section name, or None for standalone headers like "Lossless traffic pattern"
+            data: Key-value data dict (preserves insertion order)
+        """
         lines = []
         
         # Header line
-        lines.append(f"{block_type}: {name}")
+        if name is not None:
+            lines.append(f"{block_type}: {name}")
+        else:
+            lines.append(f"{block_type}:")
         
-        # Build table rows (key-value pairs, sorted by key)
+        # Build table rows (key-value pairs, preserve original order)
         rows = []
-        for key in sorted(data.keys()):
+        for key in data:
             value = data[key]
             rows.append([key, str(value)])
         
