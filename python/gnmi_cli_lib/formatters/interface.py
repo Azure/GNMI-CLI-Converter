@@ -93,9 +93,9 @@ class InterfaceStatusFormatter(OutputFormatter):
         
         headers = ["Interface", "Lanes", "Speed", "MTU", "FEC", "Alias", 
                    "Vlan", "Oper", "Admin", "Type", "Asym PFC"]
-        # Right-align Interface and Lanes columns
+        # All columns right-aligned, matching sonic-utilities intfutil stralign='right'
         col_alignments = ["right", "right", "right", "right", "right", "right",
-                         "right", "right", "right", "left", "right"]
+                         "right", "right", "right", "right", "right"]
         return tabulate(table_data, headers=headers, tablefmt=table_format, colalign=col_alignments)
 
 
