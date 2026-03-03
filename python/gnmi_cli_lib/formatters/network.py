@@ -338,86 +338,68 @@ class VlanBriefFormatter(OutputFormatter):
         argument: str = "",
         options: Optional[Dict] = None,
     ) -> str:
-        """Format VLAN brief as table with grid format, multi-row for readability."""
-        headers = ["VLAN ID", "IP Address", "Ports", "Port Tagging",
-                  "Proxy ARP", "DHCP Helper Address"]
-        
-        # Always return table with headers, even if no data
+        """Format VLAN brief as table with grid format.
+
+        Uses newline-separated cell values so that tabulate's grid format
+        naturally produces internal row separators between VLANs, matching
+        the sonic-utilities ``show vlan brief`` output.
+        """
+        # Determine whether any VLAN has DHCP helpers (plugin column)
+        has_dhcp = any(
+            isinstance(v, dict) and v.get("dhcp_helper_addresses")
+            for v in data.values()
+        )
+
+        headers = ["VLAN ID", "IP Address", "Ports", "Port Tagging", "Proxy ARP"]
+        if has_dhcp:
+            headers.append("DHCP Helper Address")
+
         if not data:
-            # Return empty grid table with headers only
             return tabulate([], headers=headers, tablefmt="grid")
-        
-        table_data = []
+
+        body = []
         for vlan_name in sorted(data.keys(), key=natural_sort_key):
             vlan_info = data[vlan_name]
             if not isinstance(vlan_info, dict):
                 continue
-            
+
             vlan_id = vlan_info.get("vlan_id", "")
             ip_addresses = vlan_info.get("ip_address") or []
             ports = vlan_info.get("ports") or []
             proxy_arp = vlan_info.get("proxy_arp", "disabled")
             dhcp_helpers = vlan_info.get("dhcp_helper_addresses") or []
-            
+
             # Sort IP addresses: IPv4 first, then IPv6
             def ip_sort_key(ip):
-                # IPv4 addresses come first (don't contain ':')
                 is_ipv6 = ':' in ip
                 return (is_ipv6, ip)
             ip_addresses = sorted(ip_addresses, key=ip_sort_key)
-            
-            # Extract port names and tagging, then sort by port name
+
+            # Extract port names and tagging, sort naturally
             port_entries = []
             for p in ports:
                 if isinstance(p, dict):
                     port_entries.append((p.get("name", ""), p.get("port_tagging", "")))
                 else:
                     port_entries.append((str(p), ""))
-            # Sort ports naturally (Ethernet0, Ethernet8, Ethernet16, ...)
             port_entries.sort(key=lambda x: natural_sort_key(x[0]))
-            port_list = [p[0] for p in port_entries]
-            tagging_list = [p[1] for p in port_entries]
-            
-            # Sort DHCP helpers (by IP address numerically)
-            def dhcp_sort_key(ip):
-                try:
-                    parts = ip.split('.')
-                    return tuple(int(p) for p in parts)
-                except:
-                    return (999, 999, 999, 999)
-            dhcp_helpers = sorted(dhcp_helpers, key=dhcp_sort_key)
-            
-            # Determine max rows needed (across all multi-value columns)
-            max_rows = max(len(ip_addresses), len(port_list), len(dhcp_helpers), 1)
-            
-            # Generate multiple rows for this VLAN
-            for i in range(max_rows):
-                row = [
-                    vlan_id if i == 0 else "",  # VLAN ID only on first row
-                    ip_addresses[i] if i < len(ip_addresses) else "",
-                    port_list[i] if i < len(port_list) else "",
-                    tagging_list[i] if i < len(tagging_list) else "",
-                    proxy_arp if i == 0 else "",  # Proxy ARP only on first row
-                    dhcp_helpers[i] if i < len(dhcp_helpers) else "",
-                ]
-                table_data.append(row)
-        
-        # Generate grid table and remove internal row separators
-        raw_table = tabulate(table_data, headers=headers, tablefmt="grid")
-        
-        # Post-process to remove internal separator lines (keep first, header, and last)
-        lines = raw_table.split('\n')
-        if len(lines) > 3:
-            # Keep: line 0 (top border), line 1 (header), line 2 (header separator), 
-            # data rows (skip separators), and last line (bottom border)
-            result_lines = []
-            for i, line in enumerate(lines):
-                # Keep if: first 3 lines, last line, or not a separator line
-                if i < 3 or i == len(lines) - 1 or not line.startswith('+-'):
-                    result_lines.append(line)
-            return '\n'.join(result_lines)
-        
-        return raw_table
+
+            # Build newline-separated cell values (matching sonic-utilities approach)
+            row = [
+                vlan_id,
+                "\n".join(ip_addresses),
+                "\n".join(p[0] for p in port_entries),
+                "\n".join(p[1] for p in port_entries),
+                proxy_arp,
+            ]
+            if has_dhcp:
+                dhcp_helpers = sorted(dhcp_helpers, key=lambda ip: tuple(
+                    int(x) for x in ip.split('.')) if '.' in ip else (999,))
+                row.append("\n".join(dhcp_helpers))
+
+            body.append(row)
+
+        return tabulate(body, headers=headers, tablefmt="grid")
 
 
 class NdpFormatter(OutputFormatter):
