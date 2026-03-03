@@ -167,7 +167,8 @@ class QueueWatermarkFormatter(OutputFormatter):
             table_data, 
             headers=headers, 
             tablefmt=table_format,
-            numalign="right"
+            numalign="right",
+            colalign=["right"] * len(headers),
         )
         lines.append(table_str)
         
