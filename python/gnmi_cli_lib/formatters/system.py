@@ -578,42 +578,18 @@ class RebootCauseFormatter(OutputFormatter):
             # Sort by timestamp descending
             history_entries.sort(key=lambda x: x["name"], reverse=True)
             
-            # Calculate column widths (minimum widths based on CLI output)
-            # Name: 19, Cause: 7, Time: 31, User: 6, Comment: 9
-            col_widths = [19, 7, 31, 6, 9]
             headers = ["Name", "Cause", "Time", "User", "Comment"]
-            
-            # Adjust widths based on actual data
+            table = []
             for entry in history_entries:
-                col_widths[0] = max(col_widths[0], len(entry["name"]))
-                col_widths[1] = max(col_widths[1], len(entry["cause"]))
-                col_widths[2] = max(col_widths[2], len(entry["time"]))
-                col_widths[3] = max(col_widths[3], len(entry["user"]))
-                col_widths[4] = max(col_widths[4], len(entry["comment"]))
+                table.append([
+                    entry["name"],
+                    entry["cause"],
+                    entry["time"],
+                    entry["user"],
+                    entry["comment"],
+                ])
             
-            # Build table with proper column widths
-            lines = []
-            
-            # Header line
-            header_parts = [h.ljust(w) for h, w in zip(headers, col_widths)]
-            lines.append("  ".join(header_parts).rstrip())
-            
-            # Separator line
-            sep_parts = ["-" * w for w in col_widths]
-            lines.append("  ".join(sep_parts))
-            
-            # Data rows
-            for entry in history_entries:
-                row = [
-                    entry["name"].ljust(col_widths[0]),
-                    entry["cause"].ljust(col_widths[1]),
-                    entry["time"].ljust(col_widths[2]),
-                    entry["user"].ljust(col_widths[3]),
-                    entry["comment"].ljust(col_widths[4]),
-                ]
-                lines.append("  ".join(row).rstrip())
-            
-            return "\n".join(lines)
+            return tabulate(table, headers, numalign="left")
         
         return ""
 
@@ -650,25 +626,31 @@ class MmuFormatter(OutputFormatter):
         argument: str = "",
         options: Optional[Dict] = None,
     ) -> str:
-        """Format MMU config with Pool and Profile sections."""
+        """Format MMU config with Lossless traffic pattern, Pool and Profile sections."""
         if not data:
             return ""
         
         output_blocks = []
         
-        # Process pools
+        # Process lossless traffic pattern (DEFAULT_LOSSLESS_BUFFER_PARAMETER)
+        lossless = data.get("lossless_traffic_pattern", {})
+        if lossless:
+            block = self._format_block("Lossless traffic pattern", None, lossless)
+            output_blocks.append(block)
+        
+        # Process pools (preserve original order)
         pools = data.get("pools", data.get("pool", {}))
         if pools:
-            for pool_name in sorted(pools.keys()):
+            for pool_name in pools:
                 pool_data = pools[pool_name]
                 if isinstance(pool_data, dict):
                     block = self._format_block("Pool", pool_name, pool_data)
                     output_blocks.append(block)
         
-        # Process profiles
+        # Process profiles (preserve original order)
         profiles = data.get("profiles", data.get("profile", {}))
         if profiles:
-            for profile_name in sorted(profiles.keys()):
+            for profile_name in profiles:
                 profile_data = profiles[profile_name]
                 if isinstance(profile_data, dict):
                     block = self._format_block("Profile", profile_name, profile_data)
@@ -676,16 +658,25 @@ class MmuFormatter(OutputFormatter):
         
         return "\n\n".join(output_blocks)
     
-    def _format_block(self, block_type: str, name: str, data: Dict) -> str:
-        """Format a single Pool or Profile block with table-style output."""
+    def _format_block(self, block_type: str, name: Optional[str], data: Dict) -> str:
+        """Format a single block with table-style output.
+        
+        Args:
+            block_type: Section type (e.g., "Pool", "Profile", "Lossless traffic pattern")
+            name: Section name, or None for standalone headers like "Lossless traffic pattern"
+            data: Key-value data dict (preserves insertion order)
+        """
         lines = []
         
         # Header line
-        lines.append(f"{block_type}: {name}")
+        if name is not None:
+            lines.append(f"{block_type}: {name}")
+        else:
+            lines.append(f"{block_type}:")
         
-        # Build table rows (key-value pairs, sorted by key)
+        # Build table rows (key-value pairs, preserve original order)
         rows = []
-        for key in sorted(data.keys()):
+        for key in data:
             value = data[key]
             rows.append([key, str(value)])
         
