@@ -578,42 +578,18 @@ class RebootCauseFormatter(OutputFormatter):
             # Sort by timestamp descending
             history_entries.sort(key=lambda x: x["name"], reverse=True)
             
-            # Calculate column widths (minimum widths based on CLI output)
-            # Name: 19, Cause: 7, Time: 31, User: 6, Comment: 9
-            col_widths = [19, 7, 31, 6, 9]
             headers = ["Name", "Cause", "Time", "User", "Comment"]
-            
-            # Adjust widths based on actual data
+            table = []
             for entry in history_entries:
-                col_widths[0] = max(col_widths[0], len(entry["name"]))
-                col_widths[1] = max(col_widths[1], len(entry["cause"]))
-                col_widths[2] = max(col_widths[2], len(entry["time"]))
-                col_widths[3] = max(col_widths[3], len(entry["user"]))
-                col_widths[4] = max(col_widths[4], len(entry["comment"]))
+                table.append([
+                    entry["name"],
+                    entry["cause"],
+                    entry["time"],
+                    entry["user"],
+                    entry["comment"],
+                ])
             
-            # Build table with proper column widths
-            lines = []
-            
-            # Header line
-            header_parts = [h.ljust(w) for h, w in zip(headers, col_widths)]
-            lines.append("  ".join(header_parts).rstrip())
-            
-            # Separator line
-            sep_parts = ["-" * w for w in col_widths]
-            lines.append("  ".join(sep_parts))
-            
-            # Data rows
-            for entry in history_entries:
-                row = [
-                    entry["name"].ljust(col_widths[0]),
-                    entry["cause"].ljust(col_widths[1]),
-                    entry["time"].ljust(col_widths[2]),
-                    entry["user"].ljust(col_widths[3]),
-                    entry["comment"].ljust(col_widths[4]),
-                ]
-                lines.append("  ".join(row).rstrip())
-            
-            return "\n".join(lines)
+            return tabulate(table, headers, numalign="left")
         
         return ""
 
