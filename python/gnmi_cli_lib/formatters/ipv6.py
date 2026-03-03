@@ -830,7 +830,6 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
             return ""
         
         # Header section
-        lines.append("")
         lines.append("IPv6 Unicast Summary:")
         
         router_id = unicast_data.get("routerId", "")
@@ -881,6 +880,9 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
                        "InQ", "OutQ", "Up/Down", "State/PfxRcd", "NeighborName"]
             table_output = tabulate(table_data, headers=headers, tablefmt=table_format)
             lines.append(table_output)
+        
+        lines.append("")
+        lines.append(f"Total number of neighbors {peer_count}")
         
         return "\n".join(lines)
 
