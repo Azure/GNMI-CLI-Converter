@@ -164,12 +164,12 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         # Hold time, keepalive
         hold_time = data.get("bgpTimerHoldTimeMsecs", 0) // 1000
         keepalive = data.get("bgpTimerKeepAliveIntervalMsecs", 0) // 1000
-        lines.append(f"  Hold time is {hold_time} seconds, keepalive interval is {keepalive} seconds")
+        lines.append(f"  Hold time is {hold_time}, keepalive interval is {keepalive} seconds")
         
         # Configured hold/keepalive
         cfg_hold = data.get("bgpTimerConfiguredHoldTimeMsecs", 0) // 1000
         cfg_keepalive = data.get("bgpTimerConfiguredKeepAliveIntervalMsecs", 0) // 1000
-        lines.append(f"  Configured hold time is {cfg_hold} seconds, keepalive interval is {cfg_keepalive} seconds")
+        lines.append(f"  Configured hold time is {cfg_hold}, keepalive interval is {cfg_keepalive} seconds")
         
         # TCP MSS
         if "bgpTcpMssConfigured" in data or "bgpTcpMssSynced" in data:
@@ -181,10 +181,8 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         if "bgpTimerConfiguredConditionalAdvertisementsSec" in data:
             cond_adv = data.get("bgpTimerConfiguredConditionalAdvertisementsSec", 60)
             lines.append(f"  Configured conditional advertisements interval is {cond_adv} seconds")
-                # Connect retry timer
-        connect_retry = data.get("connectRetryTimer", 0)
-        if connect_retry:
-            lines.append(f"  Connect retry timer: {connect_retry} seconds")
+        
+        # TCP MSS already handled above
         
         # BGP timer up established epoch (Unix timestamp)
         up_epoch = data.get("bgpTimerUpEstablishedEpoch", 0)
@@ -195,49 +193,11 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         ext_opt_params = data.get("extendedOptionalParametersLength", False)
         if ext_opt_params:
             lines.append("  Extended Optional Parameters Length: Enabled")
-                # External BGP neighbor max hops
+        
+        # External BGP neighbor max hops
         max_hops = data.get("externalBgpNbrMaxHopsAway", 0)
         if max_hops and data.get("nbrExternalLink", False):
             lines.append(f"  External BGP neighbor may be up to {max_hops} hops away.")
-        
-        # Host local/foreign addresses and ports
-        host_local = data.get("hostLocal", "")
-        host_foreign = data.get("hostForeign", "")
-        port_local = data.get("portLocal", 0)
-        port_foreign = data.get("portForeign", 0)
-        if host_local and host_foreign:
-            lines.append(f"  Local host: {host_local}, Local port: {port_local}")
-            lines.append(f"  Foreign host: {host_foreign}, Foreign port: {port_foreign}")
-        
-        # Nexthop information
-        nexthop = data.get("nexthop", "")
-        nexthop_global = data.get("nexthopGlobal", "")
-        nexthop_local = data.get("nexthopLocal", "")
-        if nexthop:
-            lines.append(f"  Nexthop: {nexthop}")
-        if nexthop_global:
-            lines.append(f"  Nexthop global: {nexthop_global}")
-        if nexthop_local:
-            lines.append(f"  Nexthop local: {nexthop_local}")
-        
-        # Read/write thread status
-        read_thread = data.get("readThread", "")
-        write_thread = data.get("writeThread", "")
-        if read_thread or write_thread:
-            lines.append(f"  Read thread: {read_thread}, Write thread: {write_thread}")
-        
-        # Estimated RTT
-        rtt = data.get("estimatedRttInMsecs", 0)
-        if rtt:
-            lines.append(f"  Estimated round trip time: {rtt} ms")
-        
-        # BGP connection type
-        bgp_conn = data.get("bgpConnection", "")
-        if bgp_conn:
-            # Convert camelCase to spaced format (e.g., "sharedNetwork" -> "shared network")
-            import re as _re
-            bgp_conn_formatted = _re.sub(r'([a-z])([A-Z])', r'\1 \2', bgp_conn).lower()
-            lines.append(f"  BGP connection: {bgp_conn_formatted}")
         
         # Neighbor capabilities
         caps = data.get("neighborCapabilities", {})
@@ -274,12 +234,55 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         # Last reset info
         last_reset_msec = data.get("lastResetTimerMsecs", 0)
         last_reset_reason = data.get("lastResetDueTo", "")
-        last_reset_code = data.get("lastResetCode", "n/a")
         if last_reset_msec or last_reset_reason:
             reset_time = self._format_uptime(last_reset_msec)
-            lines.append(f"  Last reset {reset_time},   {last_reset_reason} ({last_reset_code})")
+            lines.append(f"  Last reset {reset_time},  {last_reset_reason}")
         
-        lines.append("")  # Blank line between neighbors
+        # --- Bottom section (no indent, after connections/last reset) ---
+        # Host local/foreign addresses and ports
+        host_local = data.get("hostLocal", "")
+        host_foreign = data.get("hostForeign", "")
+        port_local = data.get("portLocal", 0)
+        port_foreign = data.get("portForeign", 0)
+        if host_local and host_foreign:
+            lines.append(f"Local host: {host_local}, Local port: {port_local}")
+            lines.append(f"Foreign host: {host_foreign}, Foreign port: {port_foreign}")
+        
+        # Nexthop information
+        nexthop = data.get("nexthop", "")
+        nexthop_global = data.get("nexthopGlobal", "")
+        nexthop_local = data.get("nexthopLocal", "")
+        if nexthop:
+            lines.append(f"Nexthop: {nexthop}")
+        if nexthop_global:
+            lines.append(f"Nexthop global: {nexthop_global}")
+        if nexthop_local:
+            lines.append(f"Nexthop local: {nexthop_local}")
+        
+        # BGP connection type
+        bgp_conn = data.get("bgpConnection", "")
+        if bgp_conn:
+            import re as _re
+            bgp_conn_formatted = _re.sub(r'([a-z])([A-Z])', r'\1 \2', bgp_conn).lower()
+            lines.append(f"BGP connection: {bgp_conn_formatted}")
+        
+        # Connect retry timer
+        connect_retry = data.get("connectRetryTimer", 0)
+        if connect_retry:
+            lines.append(f"BGP Connect Retry Timer in Seconds: {connect_retry}")
+        
+        # Estimated RTT
+        rtt = data.get("estimatedRttInMsecs", 0)
+        if rtt:
+            lines.append(f"Estimated round trip time: {rtt} ms")
+        
+        # Read/write thread status + FD
+        read_thread = data.get("readThread", "")
+        write_thread = data.get("writeThread", "")
+        fd_used = data.get("fdUsed", "")
+        if read_thread or write_thread:
+            fd_str = f"  FD used: {fd_used}" if fd_used != "" else ""
+            lines.append(f"Read thread: {read_thread}  Write thread: {write_thread}{fd_str}")
         
         return "\n".join(lines)
     
@@ -325,8 +328,9 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
             lines.append("    AddPath:")
             for af, af_data in add_path.items():
                 if isinstance(af_data, dict):
+                    af_name = self._format_af_name(af)
                     if af_data.get("rxAdvertisedAndReceived"):
-                        lines.append(f"      {self._format_af_name(af)}: RX advertised and received")
+                        lines.append(f"      {af_name}: RX advertised {af_name} and received")
         
         # Long-lived GR
         llgr = caps.get("longLivedGracefulRestart", "")
@@ -400,6 +404,8 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
             return "advertised and received"  # Default for true dict values
         if value == "advertisedAndReceived":
             return "advertised and received"
+        elif value == "advertisedAndReceivedNew":
+            return "advertised and received(new)"
         elif value == "advertised":
             return "advertised"
         elif value == "received":
@@ -432,16 +438,15 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         remote_mode = gr_info.get("remoteGrMode", "")
         if local_mode:
             lines.append(f"    Local GR Mode: {local_mode}")
-        lines.append("")  # Empty line like CLI output
         if remote_mode:
             lines.append(f"    Remote GR Mode: {remote_mode}")
-        lines.append("")
         
         # R bit and N bit
         r_bit = gr_info.get("rBit", False)
-        n_bit = gr_info.get("nBit", False)
         lines.append(f"    R bit: {r_bit}")
-        lines.append(f"    N bit: {n_bit}")
+        if "nBit" in gr_info:
+            n_bit = gr_info.get("nBit", False)
+            lines.append(f"    N bit: {n_bit}")
         
         # Timers
         timers = gr_info.get("timers", {})
@@ -449,10 +454,11 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
             lines.append("    Timers:")
             cfg_restart = timers.get("configuredRestartTimer", 0)
             rcv_restart = timers.get("receivedRestartTimer", 0)
-            cfg_llgr = timers.get("configuredLlgrStaleTime", 0)
             lines.append(f"      Configured Restart Time(sec): {cfg_restart}")
             lines.append(f"      Received Restart Time(sec): {rcv_restart}")
-            lines.append(f"      Configured LLGR Stale Path Time(sec): {cfg_llgr}")
+            if "configuredLlgrStaleTime" in timers:
+                cfg_llgr = timers.get("configuredLlgrStaleTime", 0)
+                lines.append(f"      Configured LLGR Stale Path Time(sec): {cfg_llgr}")
         
         # Per-AFI graceful restart info
         for af_key in ["ipv6Unicast", "ipv4Unicast"]:
@@ -475,9 +481,13 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
                 if af_timers:
                     lines.append("      Timers:")
                     stale_path = af_timers.get("stalePathTimer", 0)
-                    llgr_stale = af_timers.get("llgrStaleTime", 0)
                     lines.append(f"        Configured Stale Path Time(sec): {stale_path}")
-                    lines.append(f"        LLGR Stale Path Time(sec): {llgr_stale}")
+                    if "selectionDeferralTimer" in af_timers:
+                        sel_def = af_timers.get("selectionDeferralTimer", 0)
+                        lines.append(f"        Configured Selection Deferral Time(sec): {sel_def}")
+                    elif "llgrStaleTime" in af_timers:
+                        llgr_stale = af_timers.get("llgrStaleTime", 0)
+                        lines.append(f"        LLGR Stale Path Time(sec): {llgr_stale}")
         
         return lines
     
@@ -508,7 +518,8 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         for label, sent_key, recv_key in msg_types:
             sent = stats.get(sent_key, 0)
             recv = stats.get(recv_key, 0)
-            lines.append(f"    {label}:{sent:>13}{recv:>11}")
+            label_colon = f"{label}:"
+            lines.append(f"    {label_colon:<18}{sent:>7}{recv:>11}")
         
         return lines
     
@@ -563,7 +574,10 @@ class IPv6BgpNeighborsFormatter(OutputFormatter):
         # Accepted/sent prefixes
         accepted = af_data.get("acceptedPrefixCounter", 0)
         sent = af_data.get("sentPrefixCounter", 0)
-        lines.append(f"  {accepted} accepted prefixes, {sent} sent prefixes")
+        if sent:
+            lines.append(f"  {accepted} accepted prefixes, {sent} sent prefixes")
+        else:
+            lines.append(f"  {accepted} accepted prefixes")
         
         # Maximum prefixes
         max_prefix = af_data.get("prefixAllowedMax", 0)
@@ -859,8 +873,11 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
         peers = unicast_data.get("peers", {})
         if peers:
             table_data = []
-            for peer_ip in sorted(peers.keys()):
-                peer = peers[peer_ip]
+            # Preserve JSON insertion order (matches FRR output order)
+            for peer_ip, peer in peers.items():
+                # Filter out non-peer entries (e.g., "Total numbe" artifact)
+                if "::" not in peer_ip:
+                    continue
                 row = [
                     peer_ip,
                     peer.get("version", 4),
