@@ -3,8 +3,14 @@ name: Python CI
 on:
   push:
     branches: [master]
+    paths:
+      - "python/**"
+      - ".github/workflows/ci.yml"
   pull_request:
     branches: [master]
+    paths:
+      - "python/**"
+      - ".github/workflows/ci.yml"
 
 jobs:
   test:
@@ -35,4 +41,4 @@ jobs:
           python -m pytest tests/ -q --tb=short \
             --cov=gnmi_cli_lib \
             --cov-report=term-missing \
-            --cov-fail-under=80
+            --cov-fail-under=90
