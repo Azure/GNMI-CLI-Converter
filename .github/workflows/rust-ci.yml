@@ -3,14 +3,8 @@ name: Rust CI
 on:
   push:
     branches: [master]
-    paths:
-      - "rust/**"
-      - ".github/workflows/rust-ci.yml"
   pull_request:
     branches: [master]
-    paths:
-      - "rust/**"
-      - ".github/workflows/rust-ci.yml"
 
 jobs:
   rust-test:
@@ -23,14 +17,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Detect Rust changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            rust:
+              - 'rust/**'
+              - '.github/workflows/rust-ci.yml'
+
+      - name: Skip when no Rust changes
+        if: steps.changes.outputs.rust != 'true'
+        run: echo "No Rust-related changes detected; skipping Rust tests and coverage."
+
       - name: Set up Rust
+        if: steps.changes.outputs.rust == 'true'
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install cargo-tarpaulin
+        if: steps.changes.outputs.rust == 'true'
         uses: taiki-e/install-action@cargo-tarpaulin
 
       - name: Run rust tests
+        if: steps.changes.outputs.rust == 'true'
         run: cargo test --all-targets --all-features
 
       - name: Enforce coverage >= 90%
+        if: steps.changes.outputs.rust == 'true'
         run: cargo tarpaulin --all-features --out Xml --fail-under 90
