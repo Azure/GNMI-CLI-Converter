@@ -11,6 +11,7 @@ from unittest.mock import patch, MagicMock
 from gnmi_cli_lib import CommandParser, ParsedCommand
 from gnmi_cli_lib.commands import register_all_commands
 from gnmi_cli_lib.parser import CommandParser, ParsedCommand
+import gnmi_cli_lib.parser as parser_module
 from gnmi_cli_lib.registry import CommandRegistry
 
 
@@ -378,6 +379,7 @@ class TestParserComprehensive:
             "show dropcounters capabilities",
             "show lldp table",
             "show vlan brief",
+
             "show version",
             "show clock",
         ]
@@ -696,6 +698,70 @@ class TestParserFinalCoverage_V2:
         parsed = parser.parse("show interfaces status Ethernet0")
         assert parsed is not None
         assert parsed.is_valid
+
+
+class TestParserCoverageBoost:
+    """Target uncovered parser branches."""
+
+    def test_optional_subcommand_argument_branch(self):
+        """Cover optional-subcommand path where valid subcommand has argument."""
+        parser = CommandParser()
+        parsed = parser.parse("show clock date UTC")
+
+        assert parsed.is_valid
+        assert parsed.command == "clock"
+        assert parsed.subcommand == "date"
+        assert parsed.argument == "UTC"
+
+    def test_optional_subcommand_fallback_to_command(self):
+        """Cover optional-subcommand fallback when token is not a valid subcommand."""
+        parser = CommandParser()
+        parsed = parser.parse("show clock nonsense")
+
+        assert parsed.is_valid
+        assert parsed.command == "clock"
+        assert parsed.subcommand == "clock"
+        assert parsed.argument == "nonsense"
+
+    def test_get_gnmi_path_double_lookup_failure_returns_none(self):
+        """Cover inner ValueError branch after normalized fallback lookup."""
+        parser = CommandParser()
+        with patch.object(parser.registry, "get_cli_mapping", side_effect=ValueError("not found")):
+            result = parser.get_gnmi_path("show interfaces status Ethernet0")
+        assert result is None
+
+    def test_get_gnmi_path_fallback_success(self):
+        """Cover normalized fallback success return branch."""
+        parser = CommandParser()
+        mapping = MagicMock()
+        mapping.gnmi_path = "SHOW/interfaces/status"
+
+        with patch.object(parser.registry, "get_cli_mapping", side_effect=[ValueError("x"), mapping]):
+            result = parser.get_gnmi_path("show interfaces status Ethernet0")
+
+        assert result == "SHOW/interfaces/status"
+
+    def test_get_command_help_non_optional_subcommand(self):
+        """Cover standard help path for non-optional-arg subcommand."""
+        parser = CommandParser()
+        help_text = parser.get_command_help("buffer_pool", "watermark")
+        assert help_text == "show buffer_pool watermark"
+
+    def test_convenience_wrappers_and_singleton_init(self):
+        """Cover get_default_parser init and convenience wrapper functions."""
+        parser_module._parser = None
+
+        instance = parser_module.get_default_parser()
+        assert instance is not None
+
+        parsed = parser_module.parse_command("show interfaces status")
+        assert parsed.is_valid
+
+        output = parser_module.parse_and_convert(
+            "show interfaces status",
+            {"Ethernet0": {"admin_status": "up", "oper_status": "up"}},
+        )
+        assert "Ethernet0" in output
     
     def test_parse_invalid_command(self):
         """Test parse with invalid command."""

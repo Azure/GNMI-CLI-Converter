@@ -13,6 +13,7 @@ from gnmi_cli_lib.common.types import CommandConfig
 from gnmi_cli_lib.parser import CommandParser
 from gnmi_cli_lib.formatters import QueueCountersFormatter, WredCountersFormatter
 from gnmi_cli_lib.formatters.queue import QueueCountersFormatter, WredCountersFormatter
+from gnmi_cli_lib.formatters.queue import _detect_queue_boundaries, _queue_num_to_txq
 from gnmi_cli_lib.formatters.watermark import QueueWatermarkFormatter
 
 
@@ -369,4 +370,89 @@ class TestMergedQueueFormatters_335:
         
         result = formatter.format(data, config)
         assert result is not None
+
+
+class TestQueueFormattersCoverageBoost:
+    """Target uncovered branches in queue formatter module."""
+
+    def test_queue_counters_override_and_all_queue_type(self):
+        """Cover explicit _uc_count/_mc_count override and ALL queue label."""
+        formatter = QueueCountersFormatter()
+        config = CommandConfig()
+
+        data = {
+            "_uc_count": 8,
+            "_mc_count": 2,
+            "Ethernet0:11": {"Counter/pkts": "1", "Counter/bytes": "2"},
+        }
+
+        output = formatter.format(data, config)
+        assert "ALL11" in output
+
+    def test_queue_counters_skip_empty_rows_with_nonzero(self):
+        """Cover interface skip when all queue rows are filtered out."""
+        formatter = QueueCountersFormatter()
+        config = CommandConfig()
+
+        data = {
+            "Ethernet0:0": {},
+            "Ethernet0:1": {},
+        }
+
+        output = formatter.format(data, config, options={"nonzero": True})
+        assert output == ""
+
+    def test_wred_with_invalid_queue_number_and_override(self):
+        """Cover invalid queue index parsing + explicit override branch."""
+        formatter = WredCountersFormatter()
+        config = CommandConfig()
+
+        data = {
+            "_uc_count": 4,
+            "_mc_count": 4,
+            "Ethernet0:not-a-number": {"WredDrp/pkts": "7"},
+        }
+
+        output = formatter.format(data, config)
+        assert "Ethernet0" in output
+        assert "UC0" in output
+
+    def test_wred_internal_queue_num_to_txq_mc_branch(self):
+        """Directly cover MC branch in class helper."""
+        formatter = WredCountersFormatter()
+
+        assert formatter._queue_num_to_txq(3) == "UC3"
+        assert formatter._queue_num_to_txq(8) == "MC8"
+
+    def test_module_queue_num_to_txq_branches(self):
+        """Cover module-level UC/MC/ALL conversion branches."""
+        assert _queue_num_to_txq(1, 8, 4) == "UC1"
+        assert _queue_num_to_txq(9, 8, 4) == "MC9"
+        assert _queue_num_to_txq(20, 8, 4) == "ALL20"
+
+    def test_detect_queue_boundaries_default_and_large_layout(self):
+        """Cover default and >12 queue boundary detection branches."""
+        assert _detect_queue_boundaries({}) == (8, 4)
+
+        interfaces = {
+            "Ethernet0": [(i, f"Ethernet0:{i}", {}) for i in range(30)]
+        }
+        assert _detect_queue_boundaries(interfaces) == (10, 10)
+
+    def test_detect_columns_ignores_non_dict_entries(self):
+        """Cover non-dict continue branch inside _detect_columns."""
+        formatter = QueueCountersFormatter()
+        has_counter, has_trim = formatter._detect_columns({
+            "Ethernet0:0": "invalid",
+            "Ethernet0:1": {"Trim/pkts": "1"},
+        })
+        assert has_counter is False
+        assert has_trim is True
+
+    def test_wred_empty_data_returns_header_table(self):
+        """Cover empty-data return path for WRED formatter."""
+        formatter = WredCountersFormatter()
+        config = CommandConfig()
+        output = formatter.format({}, config)
+        assert "WredDrp/pkts" in output
 
