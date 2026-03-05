@@ -859,31 +859,32 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
             table_data = []
             for peer_ip in sorted(peers.keys()):
                 peer = peers[peer_ip]
+                # Columns that contain a mix of integers and "" (from the synthetic
+                # "Total" summary row) must be converted to strings so that tabulate
+                # treats the entire column as strings and left-aligns it consistently
+                # across all tabulate versions.  Columns that are always integers
+                # (version, msgRcvd) are kept as ints so tabulate right-aligns them.
+                def _s(v):
+                    return "" if v == "" else str(v)
+
                 row = [
                     peer_ip,
-                    peer.get("version", 4),
-                    peer.get("remoteAs", ""),
-                    peer.get("msgRcvd", 0),
-                    peer.get("msgSent", 0),
-                    peer.get("tableVersion", 0),
-                    peer.get("inq", 0),
-                    peer.get("outq", 0),
-                    peer.get("peerUptime", ""),
-                    peer.get("pfxRcd", peer.get("state", "")),
-                    peer.get("NeighborName", ""),
+                    peer.get("version", 4),          # pure-int column → right-align
+                    peer.get("remoteAs", ""),          # mixed ("ighbo" + ints) → left
+                    peer.get("msgRcvd", 0),           # pure-int column → right-align
+                    _s(peer.get("msgSent", 0)),        # mixed ("" + ints) → left
+                    _s(peer.get("tableVersion", 0)),   # mixed ("" + ints) → left
+                    _s(peer.get("inq", 0)),            # mixed ("" + ints) → left
+                    _s(peer.get("outq", 0)),           # mixed ("" + ints) → left
+                    peer.get("peerUptime", ""),        # str → left
+                    _s(peer.get("pfxRcd", peer.get("state", ""))),  # mixed → left
+                    peer.get("NeighborName", ""),      # str → left
                 ]
                 table_data.append(row)
             
             headers = ["Neighbhor", "V", "AS", "MsgRcvd", "MsgSent", "TblVer", 
                        "InQ", "OutQ", "Up/Down", "State/PfxRcd", "NeighborName"]
-            table_output = tabulate(
-                table_data,
-                headers=headers,
-                tablefmt=table_format,
-                stralign="left",
-                numalign="right",
-                colalign=None,
-            )
+            table_output = tabulate(table_data, headers=headers, tablefmt=table_format)
             lines.append(table_output)
         
         return "\n".join(lines)
