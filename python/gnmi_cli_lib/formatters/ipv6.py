@@ -876,7 +876,14 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
             
             headers = ["Neighbhor", "V", "AS", "MsgRcvd", "MsgSent", "TblVer", 
                        "InQ", "OutQ", "Up/Down", "State/PfxRcd", "NeighborName"]
-            table_output = tabulate(table_data, headers=headers, tablefmt=table_format)
+            table_output = tabulate(
+                table_data,
+                headers=headers,
+                tablefmt=table_format,
+                stralign="left",
+                numalign="right",
+                colalign=None,
+            )
             lines.append(table_output)
         
         return "\n".join(lines)
