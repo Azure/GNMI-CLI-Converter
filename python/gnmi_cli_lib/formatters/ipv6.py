@@ -856,17 +856,15 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
         # Peers table
         peers = unicast_data.get("peers", {})
         if peers:
+            # Convert "mixed" columns (integers in normal rows, "" in the
+            # synthetic Total row) to strings so that tabulate's column-type
+            # detector sees a pure-string column and does not right-align it.
+            def _s(v):
+                return "" if v == "" else str(v)
+
             table_data = []
             for peer_ip in sorted(peers.keys()):
                 peer = peers[peer_ip]
-                # Columns that contain a mix of integers and "" (from the synthetic
-                # "Total" summary row) must be converted to strings so that tabulate
-                # treats the entire column as strings and left-aligns it consistently
-                # across all tabulate versions.  Columns that are always integers
-                # (version, msgRcvd) are kept as ints so tabulate right-aligns them.
-                def _s(v):
-                    return "" if v == "" else str(v)
-
                 row = [
                     peer_ip,
                     peer.get("version", 4),          # pure-int column → right-align
@@ -884,7 +882,17 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
             
             headers = ["Neighbhor", "V", "AS", "MsgRcvd", "MsgSent", "TblVer", 
                        "InQ", "OutQ", "Up/Down", "State/PfxRcd", "NeighborName"]
-            table_output = tabulate(table_data, headers=headers, tablefmt=table_format)
+            # Use disable_numparse=True so tabulate never re-parses string cells
+            # (e.g. "7915") back to integers.  Column alignment is then driven
+            # entirely by colalign: only V (idx 1) and MsgRcvd (idx 3) are
+            # right-aligned, matching the sonic-utilities baseline output.
+            # This produces identical output regardless of tabulate / Python version.
+            col_align = ("left","right","left","right",
+                         "left","left","left","left","left","left","left")
+            table_output = tabulate(
+                table_data, headers=headers, tablefmt=table_format,
+                disable_numparse=True, colalign=col_align,
+            )
             lines.append(table_output)
         
         return "\n".join(lines)
