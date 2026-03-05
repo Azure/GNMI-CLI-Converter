@@ -856,27 +856,43 @@ class IPv6BgpSummaryFormatter(OutputFormatter):
         # Peers table
         peers = unicast_data.get("peers", {})
         if peers:
+            # Convert "mixed" columns (integers in normal rows, "" in the
+            # synthetic Total row) to strings so that tabulate's column-type
+            # detector sees a pure-string column and does not right-align it.
+            def _s(v):
+                return "" if v == "" else str(v)
+
             table_data = []
             for peer_ip in sorted(peers.keys()):
                 peer = peers[peer_ip]
                 row = [
                     peer_ip,
-                    peer.get("version", 4),
-                    peer.get("remoteAs", ""),
-                    peer.get("msgRcvd", 0),
-                    peer.get("msgSent", 0),
-                    peer.get("tableVersion", 0),
-                    peer.get("inq", 0),
-                    peer.get("outq", 0),
-                    peer.get("peerUptime", ""),
-                    peer.get("pfxRcd", peer.get("state", "")),
-                    peer.get("NeighborName", ""),
+                    peer.get("version", 4),          # pure-int column → right-align
+                    peer.get("remoteAs", ""),          # mixed ("ighbo" + ints) → left
+                    peer.get("msgRcvd", 0),           # pure-int column → right-align
+                    _s(peer.get("msgSent", 0)),        # mixed ("" + ints) → left
+                    _s(peer.get("tableVersion", 0)),   # mixed ("" + ints) → left
+                    _s(peer.get("inq", 0)),            # mixed ("" + ints) → left
+                    _s(peer.get("outq", 0)),           # mixed ("" + ints) → left
+                    peer.get("peerUptime", ""),        # str → left
+                    _s(peer.get("pfxRcd", peer.get("state", ""))),  # mixed → left
+                    peer.get("NeighborName", ""),      # str → left
                 ]
                 table_data.append(row)
             
             headers = ["Neighbhor", "V", "AS", "MsgRcvd", "MsgSent", "TblVer", 
                        "InQ", "OutQ", "Up/Down", "State/PfxRcd", "NeighborName"]
-            table_output = tabulate(table_data, headers=headers, tablefmt=table_format)
+            # Use disable_numparse=True so tabulate never re-parses string cells
+            # (e.g. "7915") back to integers.  Column alignment is then driven
+            # entirely by colalign: only V (idx 1) and MsgRcvd (idx 3) are
+            # right-aligned, matching the sonic-utilities baseline output.
+            # This produces identical output regardless of tabulate / Python version.
+            col_align = ("left","right","left","right",
+                         "left","left","left","left","left","left","left")
+            table_output = tabulate(
+                table_data, headers=headers, tablefmt=table_format,
+                disable_numparse=True, colalign=col_align,
+            )
             lines.append(table_output)
         
         return "\n".join(lines)
