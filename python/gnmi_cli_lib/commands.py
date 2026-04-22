@@ -210,6 +210,12 @@ def _register_system_commands(registry: CommandRegistry) -> None:
         output_type="processes_memory",
         description="Processes sorted by memory (top-like format)"
     ))
+    # Self-referential entry enables bare "show processes" (server path SHOW/processes
+    # returns a subcommand-discovery payload handled by CommandHelpFormatter)
+    registry.register_command("processes", "processes", CommandConfig(
+        output_type="command_help",
+        description="Processes help"
+    ))
     
     # Watermark telemetry
     registry.register_command("watermark", "telemetry", CommandConfig(
@@ -249,11 +255,12 @@ def _register_vlan_commands(registry: CommandRegistry) -> None:
 
 def _register_reboot_cause_commands(registry: CommandRegistry) -> None:
     """Register reboot cause commands."""
-    registry.register_command("reboot-cause", "current", CommandConfig(
+    # Self-referential entry enables bare "show reboot-cause" (server path SHOW/reboot-cause)
+    registry.register_command("reboot-cause", "reboot-cause", CommandConfig(
         output_type="reboot_cause",
-        description="Current reboot cause"
+        description="Reboot cause"
     ))
-    
+
     registry.register_command("reboot-cause", "history", CommandConfig(
         output_type="reboot_cause",
         description="Reboot cause history"
@@ -529,6 +536,8 @@ def _register_cli_mappings(registry: CommandRegistry) -> None:
                    "System memory", "free -m"),
         CliMapping("show services", "SHOW/services", "services", "services",
                    "Docker services", ""),
+        CliMapping("show processes", "SHOW/processes", "processes", "processes",
+                   "Processes help", ""),
         CliMapping("show processes summary", "SHOW/processes/summary",
                    "processes", "summary", "Process summary", ""),
         CliMapping("show processes cpu", "SHOW/processes/cpu",
@@ -550,8 +559,8 @@ def _register_cli_mappings(registry: CommandRegistry) -> None:
                    "VLAN brief", ""),
         
         # Reboot cause
-        CliMapping("show reboot-cause", "SHOW/reboot-cause", "reboot-cause", "current",
-                   "Current reboot cause", ""),
+        CliMapping("show reboot-cause", "SHOW/reboot-cause", "reboot-cause", "reboot-cause",
+                   "Reboot cause", ""),
         CliMapping("show reboot-cause history", "SHOW/reboot-cause/history",
                    "reboot-cause", "history", "Reboot cause history", ""),
         

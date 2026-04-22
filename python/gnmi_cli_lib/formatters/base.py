@@ -307,12 +307,14 @@ class CommandHelpFormatter(OutputFormatter):
     COMMAND_NAME_MAP = {
         "Queue watermark": "queue watermark",
         "Queue persistent watermark": "queue persistent-watermark",
+        "Processes": "processes",
     }
-    
+
     # Mapping from command type to description text
     DESCRIPTION_MAP = {
         "Queue watermark": "user WM for queues",
         "Queue persistent watermark": "persistent WM for queues",
+        "Processes": "processes information",
     }
     
     def format(

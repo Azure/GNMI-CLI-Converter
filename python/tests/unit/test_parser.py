@@ -1057,13 +1057,35 @@ class TestParserAdditionalPaths:
             assert result.command == "dropcounters"
     
     def test_parse_reboot_cause_command(self):
-        """Test parsing reboot-cause command."""
-        
+        """Test parsing reboot-cause bare and history forms."""
+
         parser = CommandParser()
-        
-        result = parser.parse("show reboot-cause")
-        # May parse as reboot-cause command
-        assert result is not None
+
+        bare = parser.parse("show reboot-cause")
+        assert bare.is_valid
+        assert bare.command == "reboot-cause"
+        assert bare.subcommand == "reboot-cause"
+
+        hist = parser.parse("show reboot-cause history")
+        assert hist.is_valid
+        assert hist.command == "reboot-cause"
+        assert hist.subcommand == "history"
+
+    def test_parse_processes_command(self):
+        """Test parsing processes bare and subcommand forms."""
+
+        parser = CommandParser()
+
+        bare = parser.parse("show processes")
+        assert bare.is_valid
+        assert bare.command == "processes"
+        assert bare.subcommand == "processes"
+
+        for sub in ("cpu", "memory", "summary"):
+            r = parser.parse(f"show processes {sub}")
+            assert r.is_valid
+            assert r.command == "processes"
+            assert r.subcommand == sub
     
     def test_normalize_subcommand_compound(self):
         """Test parsing compound subcommands."""
