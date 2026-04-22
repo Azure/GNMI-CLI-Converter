@@ -144,7 +144,7 @@ lazy_static! {
         m.insert("mac", vec!["mac", "aging-time"]);
         m.insert("mmu", vec!["mmu"]);
         m.insert("ndp", vec!["ndp"]);
-        m.insert("processes", vec!["cpu", "memory", "summary"]);
+        m.insert("processes", vec!["cpu", "memory", "summary", "processes"]);
         m.insert("priority-group", vec![
             "persistent-watermark-headroom", "persistent-watermark-shared",
             "watermark-headroom", "watermark-shared"
@@ -155,7 +155,7 @@ lazy_static! {
             "watermark", "watermark-all", "watermark-multicast", "watermark-unicast",
             "wredcounters"
         ]);
-        m.insert("reboot-cause", vec!["current", "history"]);
+        m.insert("reboot-cause", vec!["reboot-cause", "history"]);
         m.insert("services", vec!["services"]);
         m.insert("srv6", vec!["stats"]);
         m.insert("system-memory", vec!["system-memory", "memory"]);
@@ -168,7 +168,8 @@ lazy_static! {
 
     /// Commands with optional subcommands.
     static ref COMMANDS_WITH_OPTIONAL_SUBCOMMAND: Vec<&'static str> = vec![
-        "ndp", "uptime", "version", "mmu", "clock", "mac", "services", "system-memory"
+        "ndp", "uptime", "version", "mmu", "clock", "mac", "services", "system-memory",
+        "reboot-cause", "processes"
     ];
 
     /// Commands that accept optional arguments.
@@ -1315,12 +1316,12 @@ mod tests {
     }
 
     #[test]
-    fn test_parse_reboot_cause_current() {
+    fn test_parse_reboot_cause_bare() {
         let parser = CommandParser::new();
-        let parsed = parser.parse("show reboot-cause current");
+        let parsed = parser.parse("show reboot-cause");
         assert!(parsed.is_valid, "{:?}", parsed.error_message);
         assert_eq!(parsed.command, "reboot-cause");
-        assert_eq!(parsed.subcommand, "current");
+        assert_eq!(parsed.subcommand, "reboot-cause");
     }
 
     #[test]
@@ -1329,6 +1330,15 @@ mod tests {
         let parsed = parser.parse("show reboot-cause history");
         assert!(parsed.is_valid, "{:?}", parsed.error_message);
         assert_eq!(parsed.subcommand, "history");
+    }
+
+    #[test]
+    fn test_parse_processes_bare() {
+        let parser = CommandParser::new();
+        let parsed = parser.parse("show processes");
+        assert!(parsed.is_valid, "{:?}", parsed.error_message);
+        assert_eq!(parsed.command, "processes");
+        assert_eq!(parsed.subcommand, "processes");
     }
 
     #[test]

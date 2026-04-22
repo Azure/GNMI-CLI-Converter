@@ -362,6 +362,19 @@ fn register_system_commands(registry: &mut CommandRegistry) {
             .build(),
     );
 
+    // Self-referential entry for bare "show processes" (server path SHOW/processes
+    // returns a subcommand-discovery payload handled by CommandHelpFormatter).
+    registry.register(
+        "processes_processes".to_string(),
+        CommandConfig::builder()
+            .name("processes_processes")
+            .category("processes")
+            .description("Processes help")
+            .cli_command("show processes")
+            .formatter("command_help")
+            .build(),
+    );
+
     // Watermark telemetry
     registry.register(
         "watermark_telemetry".to_string(),
@@ -1029,6 +1042,13 @@ fn create_cli_mappings() -> Vec<CliMappingDef> {
             "Docker services",
         ),
         CliMappingDef::new(
+            "show processes",
+            "SHOW/processes",
+            "processes",
+            "processes",
+            "Processes help",
+        ),
+        CliMappingDef::new(
             "show processes summary",
             "SHOW/processes/summary",
             "processes",
@@ -1085,8 +1105,8 @@ fn create_cli_mappings() -> Vec<CliMappingDef> {
             "show reboot-cause",
             "SHOW/reboot-cause",
             "reboot-cause",
-            "current",
-            "Current reboot cause",
+            "reboot-cause",
+            "Reboot cause",
         ),
         CliMappingDef::new(
             "show reboot-cause history",
