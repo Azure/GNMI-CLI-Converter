@@ -413,14 +413,14 @@ class TestEnhancedCommands:
     # Reboot Cause Tests
     # -------------------------------------------------------------------------
     
-    def test_reboot_cause_current(self):
-        """Test current reboot cause."""
+    def test_reboot_cause_bare(self):
+        """Test bare reboot-cause (server path SHOW/reboot-cause)."""
         json_data = {
             "cause": "reboot",
             "time": "Thu Jul 10 08:05:33 PM UTC 2025",
             "user": "admin"
         }
-        output = self.converter.convert("reboot-cause", "current", json_data)
+        output = self.converter.convert("reboot-cause", "reboot-cause", json_data)
         assert "Cause: reboot" in output or "reboot" in output
     
     def test_reboot_cause_history(self):
@@ -774,12 +774,12 @@ class TestEveryCommandWithExpectedOutput:
     # Reboot Cause Commands
     # -------------------------------------------------------------------------
     
-    def test_reboot_cause_current_full(self):
-        """Test reboot-cause current with full verification."""
-        
-        input_data = GNMI_JSON_TEST_DATA["reboot-cause"]["current"]
-        output = self.converter.convert("reboot-cause", "current", input_data)
-        
+    def test_reboot_cause_bare_full(self):
+        """Test bare reboot-cause (SHOW/reboot-cause path) with full verification."""
+
+        input_data = GNMI_JSON_TEST_DATA["reboot-cause"]["reboot-cause"]
+        output = self.converter.convert("reboot-cause", "reboot-cause", input_data)
+
         assert "reboot" in output
     
     def test_reboot_cause_history_full(self):

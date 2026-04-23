@@ -144,15 +144,15 @@ class TestFormatterExtended:
         # The output contains table headers
         assert "VLAN ID" in output or "IP Address" in output
     
-    def test_reboot_cause_current(self):
-        """Test reboot cause current via CommandParser."""
-        
+    def test_reboot_cause_bare(self):
+        """Test bare reboot-cause via CommandParser (SHOW/reboot-cause path)."""
+
         data = {
             "Cause": "User requested reboot",
             "Time": "2024-01-01 12:00:00"
         }
-        output = self.parser.convert("reboot-cause", "current", data)
-        
+        output = self.parser.convert("reboot-cause", "reboot-cause", data)
+
         assert output is not None
     
     def test_reboot_cause_history(self):

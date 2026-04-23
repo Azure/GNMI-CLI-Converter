@@ -215,7 +215,7 @@ Total entries displayed: 1
 """,
     },
     "reboot-cause": {
-        "current": """\
+        "reboot-cause": """\
 Cause: reboot
 Time: Thu Jul 10 08:05:33 PM UTC 2025
 User: admin
@@ -420,6 +420,19 @@ PID      User    %CPU    %MEM    Command
 """,
     },
     "processes": {
+        "processes": """\
+Usage: show processes [OPTIONS] COMMAND [ARGS]...
+
+  Show processes information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  cpu      Show processes information cpu
+  memory   Show processes information memory
+  summary  Show processes information summary
+""",
         "summary": """\
 PID    PPID    %CPU    %MEM    CMD
 -----  ------  ------  ------  --------
@@ -707,7 +720,7 @@ GNMI_JSON_TEST_DATA = {
         }
     },
     "reboot-cause": {
-        "current": {
+        "reboot-cause": {
             "cause": "reboot",
             "time": "Thu Jul 10 08:05:33 PM UTC 2025",
             "user": "admin"
@@ -897,6 +910,13 @@ GNMI_JSON_TEST_DATA = {
         ]
     },
     "processes": {
+        "processes": {
+            "subcommands": {
+                "cpu": "show/processes/cpu: Show processes information sorted by cpu usage",
+                "memory": "show/processes/memory: Show processes information sorted by memory usage",
+                "summary": "show/processes/summary: Show processes info"
+            }
+        },
         "summary": [
             {"PID": "1", "PPID": "0", "%CPU": "0.1", "%MEM": "0.2", "CMD": "systemd"},
             {"PID": "123", "PPID": "1", "%CPU": "1.5", "%MEM": "2.3", "CMD": "python"}
