@@ -21,6 +21,7 @@ pub fn register_all_commands(registry: &mut CommandRegistry) {
     register_interface_commands(registry);
     register_network_commands(registry);
     register_ipv6_commands(registry);
+    register_intermediate_commands(registry);
     register_cli_mappings(registry);
 }
 
@@ -140,28 +141,10 @@ fn register_queue_commands(registry: &mut CommandRegistry) {
         registry.register(name, config);
     }
 
-    // Base watermark commands (show help/usage)
-    registry.register(
-        "queue_watermark".to_string(),
-        CommandConfig::builder()
-            .name("queue_watermark")
-            .category("queue")
-            .description("Queue watermark help")
-            .cli_command("show queue watermark")
-            .formatter("command_help")
-            .build(),
-    );
-
-    registry.register(
-        "queue_persistent_watermark".to_string(),
-        CommandConfig::builder()
-            .name("queue_persistent_watermark")
-            .category("queue")
-            .description("Queue persistent watermark help")
-            .cli_command("show queue persistent-watermark")
-            .formatter("command_help")
-            .build(),
-    );
+    // NOTE: Self-referential help entries for ``show queue``,
+    // ``show queue watermark`` and ``show queue persistent-watermark`` are
+    // registered centrally in ``register_intermediate_commands`` so that all
+    // intermediate (non-leaf) commands live in one place.
 
     // Counter commands
     registry.register(
@@ -362,18 +345,9 @@ fn register_system_commands(registry: &mut CommandRegistry) {
             .build(),
     );
 
-    // Self-referential entry for bare "show processes" (server path SHOW/processes
-    // returns a subcommand-discovery payload handled by CommandHelpFormatter).
-    registry.register(
-        "processes_processes".to_string(),
-        CommandConfig::builder()
-            .name("processes_processes")
-            .category("processes")
-            .description("Processes help")
-            .cli_command("show processes")
-            .formatter("command_help")
-            .build(),
-    );
+    // NOTE: Self-referential ``processes_processes`` entry for bare
+    // ``show processes`` is registered centrally in
+    // ``register_intermediate_commands``.
 
     // Watermark telemetry
     registry.register(
@@ -832,6 +806,73 @@ fn register_ipv6_commands(registry: &mut CommandRegistry) {
     );
 }
 
+/// Register intermediate (non-leaf) show commands.
+///
+/// Each intermediate is a path prefix that has children but is itself
+/// queryable via gNMI. The device returns a click-style "usage + subcommands"
+/// payload which is rendered by the `command_help` formatter.
+///
+/// Registry keys use the two-segment naming convention
+/// `"<category>_<subcommand>"` — for single-segment intermediates the
+/// subcommand is the category itself (self-ref).
+///
+/// NOTE: `show watermark telemetry` is intentionally omitted because its
+/// registry key `watermark_telemetry` is already claimed by the leaf
+/// formatter behind `show watermark telemetry interval`.
+fn register_intermediate_commands(registry: &mut CommandRegistry) {
+    // (category, subcommand) — subcommand == category for single-segment.
+    let intermediates: &[(&str, &str)] = &[
+        // Single-segment intermediates:
+        ("processes", "processes"),
+        ("buffer_pool", "buffer_pool"),
+        ("headroom-pool", "headroom-pool"),
+        ("priority-group", "priority-group"),
+        ("queue", "queue"),
+        ("dropcounters", "dropcounters"),
+        ("watermark", "watermark"),
+        ("lldp", "lldp"),
+        ("vlan", "vlan"),
+        ("interfaces", "interfaces"),
+        ("srv6", "srv6"),
+        ("ipv6", "ipv6"),
+        // Multi-segment intermediates:
+        ("queue", "watermark"),
+        ("queue", "persistent-watermark"),
+        ("priority-group", "watermark"),
+        ("priority-group", "persistent-watermark"),
+        ("interfaces", "neighbor"),
+        ("interfaces", "fec"),
+        ("interfaces", "transceiver"),
+        ("interfaces", "switchport"),
+        ("ipv6", "bgp"),
+    ];
+
+    for (category, subcommand) in intermediates {
+        let cli = if category == subcommand {
+            format!("show {}", category)
+        } else {
+            format!("show {} {}", category, subcommand)
+        };
+        let key = format!("{}_{}", category, subcommand.replace('-', "_"));
+        let description = if category == subcommand {
+            format!("{} help", category)
+        } else {
+            format!("{} {} help", category, subcommand)
+        };
+
+        registry.register(
+            key.clone(),
+            CommandConfig::builder()
+                .name(&key)
+                .category(category)
+                .description(&description)
+                .cli_command(&cli)
+                .formatter("command_help")
+                .build(),
+        );
+    }
+}
+
 /// Register all CLI command mappings.
 fn register_cli_mappings(registry: &mut CommandRegistry) {
     let cli_mappings = create_cli_mappings();
@@ -1040,13 +1081,6 @@ fn create_cli_mappings() -> Vec<CliMappingDef> {
             "services",
             "services",
             "Docker services",
-        ),
-        CliMappingDef::new(
-            "show processes",
-            "SHOW/processes",
-            "processes",
-            "processes",
-            "Processes help",
         ),
         CliMappingDef::new(
             "show processes summary",
@@ -1390,6 +1424,95 @@ fn create_cli_mappings() -> Vec<CliMappingDef> {
             "IPv6 link local mode",
         ),
         CliMappingDef::new("show ipv6 fib", "SHOW/ipv6/fib", "ipv6", "fib", "IPv6 FIB"),
+        // ---- Intermediate (non-leaf) commands ----
+        // Single-segment intermediates (returns click-style subcommand
+        // discovery payload; rendered by CommandHelpFormatter).
+        CliMappingDef::new(
+            "show processes", "SHOW/processes",
+            "processes", "processes", "Processes help",
+        ),
+        CliMappingDef::new(
+            "show buffer_pool", "SHOW/buffer_pool",
+            "buffer_pool", "buffer_pool", "Buffer pool help",
+        ),
+        CliMappingDef::new(
+            "show headroom-pool", "SHOW/headroom-pool",
+            "headroom-pool", "headroom-pool", "Headroom pool help",
+        ),
+        CliMappingDef::new(
+            "show priority-group", "SHOW/priority-group",
+            "priority-group", "priority-group", "Priority group help",
+        ),
+        CliMappingDef::new(
+            "show queue", "SHOW/queue", "queue", "queue", "Queue help",
+        ),
+        CliMappingDef::new(
+            "show dropcounters", "SHOW/dropcounters",
+            "dropcounters", "dropcounters", "Dropcounters help",
+        ),
+        CliMappingDef::new(
+            "show watermark", "SHOW/watermark",
+            "watermark", "watermark", "Watermark help",
+        ),
+        CliMappingDef::new(
+            "show lldp", "SHOW/lldp", "lldp", "lldp", "LLDP help",
+        ),
+        CliMappingDef::new(
+            "show vlan", "SHOW/vlan", "vlan", "vlan", "VLAN help",
+        ),
+        CliMappingDef::new(
+            "show interfaces", "SHOW/interfaces",
+            "interfaces", "interfaces", "Interfaces help",
+        ),
+        CliMappingDef::new(
+            "show srv6", "SHOW/srv6", "srv6", "srv6", "SRv6 help",
+        ),
+        CliMappingDef::new(
+            "show ipv6", "SHOW/ipv6", "ipv6", "ipv6", "IPv6 help",
+        ),
+        // Multi-segment intermediates.
+        CliMappingDef::new(
+            "show queue watermark", "SHOW/queue/watermark",
+            "queue", "watermark", "Queue watermark help",
+        ),
+        CliMappingDef::new(
+            "show queue persistent-watermark",
+            "SHOW/queue/persistent-watermark",
+            "queue", "persistent-watermark",
+            "Queue persistent-watermark help",
+        ),
+        CliMappingDef::new(
+            "show priority-group watermark",
+            "SHOW/priority-group/watermark",
+            "priority-group", "watermark",
+            "Priority group watermark help",
+        ),
+        CliMappingDef::new(
+            "show priority-group persistent-watermark",
+            "SHOW/priority-group/persistent-watermark",
+            "priority-group", "persistent-watermark",
+            "Priority group persistent-watermark help",
+        ),
+        CliMappingDef::new(
+            "show interfaces neighbor", "SHOW/interfaces/neighbor",
+            "interfaces", "neighbor", "Interfaces neighbor help",
+        ),
+        CliMappingDef::new(
+            "show interfaces fec", "SHOW/interfaces/fec",
+            "interfaces", "fec", "Interfaces fec help",
+        ),
+        CliMappingDef::new(
+            "show interfaces transceiver", "SHOW/interfaces/transceiver",
+            "interfaces", "transceiver", "Interfaces transceiver help",
+        ),
+        CliMappingDef::new(
+            "show interfaces switchport", "SHOW/interfaces/switchport",
+            "interfaces", "switchport", "Interfaces switchport help",
+        ),
+        CliMappingDef::new(
+            "show ipv6 bgp", "SHOW/ipv6/bgp",
+            "ipv6", "bgp", "IPv6 BGP help",
+        ),
     ]
 }
 
@@ -1615,8 +1738,10 @@ mod tests {
 
     #[test]
     fn test_queue_help_commands() {
+        // Self-referential help entries are now registered centrally in
+        // ``register_intermediate_commands``, not in ``register_queue_commands``.
         let mut registry = CommandRegistry::new();
-        register_queue_commands(&mut registry);
+        register_intermediate_commands(&mut registry);
         let config = registry.get("queue_watermark").unwrap();
         assert_eq!(config.formatter(), Some("command_help"));
         let config2 = registry.get("queue_persistent_watermark").unwrap();

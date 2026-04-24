@@ -420,19 +420,6 @@ PID      User    %CPU    %MEM    Command
 """,
     },
     "processes": {
-        "processes": """\
-Usage: show processes [OPTIONS] COMMAND [ARGS]...
-
-  Show processes information
-
-Options:
-  -?, -h, --help  Show this message and exit.
-
-Commands:
-  cpu      Show processes information cpu
-  memory   Show processes information memory
-  summary  Show processes information summary
-""",
         "summary": """\
 PID    PPID    %CPU    %MEM    CMD
 -----  ------  ------  ------  --------
@@ -910,13 +897,6 @@ GNMI_JSON_TEST_DATA = {
         ]
     },
     "processes": {
-        "processes": {
-            "subcommands": {
-                "cpu": "show/processes/cpu: Show processes information sorted by cpu usage",
-                "memory": "show/processes/memory: Show processes information sorted by memory usage",
-                "summary": "show/processes/summary: Show processes info"
-            }
-        },
         "summary": [
             {"PID": "1", "PPID": "0", "%CPU": "0.1", "%MEM": "0.2", "CMD": "systemd"},
             {"PID": "123", "PPID": "1", "%CPU": "1.5", "%MEM": "2.3", "CMD": "python"}
@@ -959,6 +939,409 @@ GNMI_JSON_TEST_DATA = {
         "fib": {}
     }
 }
+
+
+# -----------------------------------------------------------------------------
+# Intermediate (non-leaf) commands.
+#
+# Each entry corresponds to a `show <parent>` or `show <parent> <child>` whose
+# gNMI path returns a click-style subcommand-discovery payload rendered by
+# CommandHelpFormatter.
+#
+# Expected CLI strings below are the exact output produced by the current
+# CommandHelpFormatter given the registered description text. They match the
+# style of the hand-written ``processes`` entry above.
+# -----------------------------------------------------------------------------
+
+# Single-segment intermediates (bare `show <cmd>`).
+GNMI_JSON_TEST_DATA["processes"]["processes"] = {
+    "subcommands": {
+        "cpu": "show/processes/cpu: Show processes information sorted by cpu usage",
+        "memory": "show/processes/memory: Show processes information sorted by memory usage",
+        "summary": "show/processes/summary: Show processes info",
+    }
+}
+EXPECTED_CLI_OUTPUTS["processes"]["processes"] = """\
+Usage: show processes [OPTIONS] COMMAND [ARGS]...
+
+  Show processes information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  cpu        Show processes information cpu
+  memory     Show processes information memory
+  summary    Show processes information summary
+"""
+
+GNMI_JSON_TEST_DATA["buffer_pool"]["buffer_pool"] = {
+    "subcommands": {"watermark": "", "persistent-watermark": ""}
+}
+EXPECTED_CLI_OUTPUTS["buffer_pool"]["buffer_pool"] = """\
+Usage: show buffer_pool [OPTIONS] COMMAND [ARGS]...
+
+  Show details of the buffer pools
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  persistent-watermark Show details of the buffer pools persistent-watermark
+  watermark  Show details of the buffer pools watermark
+"""
+
+GNMI_JSON_TEST_DATA["headroom-pool"]["headroom-pool"] = {
+    "subcommands": {"watermark": "", "persistent-watermark": ""}
+}
+EXPECTED_CLI_OUTPUTS["headroom-pool"]["headroom-pool"] = """\
+Usage: show headroom-pool [OPTIONS] COMMAND [ARGS]...
+
+  Show details of headroom pool
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  persistent-watermark Show details of headroom pool persistent-watermark
+  watermark  Show details of headroom pool watermark
+"""
+
+GNMI_JSON_TEST_DATA["priority-group"]["priority-group"] = {
+    "subcommands": {"drop": "", "persistent-watermark": "", "watermark": ""}
+}
+EXPECTED_CLI_OUTPUTS["priority-group"]["priority-group"] = """\
+Usage: show priority-group [OPTIONS] COMMAND [ARGS]...
+
+  Show details of the PGs
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  drop       Show details of the PGs drop
+  persistent-watermark Show details of the PGs persistent-watermark
+  watermark  Show details of the PGs watermark
+"""
+
+GNMI_JSON_TEST_DATA["queue"]["queue"] = {
+    "subcommands": {"counters": "", "persistent-watermark": "",
+                    "watermark": "", "wredcounters": ""}
+}
+EXPECTED_CLI_OUTPUTS["queue"]["queue"] = """\
+Usage: show queue [OPTIONS] COMMAND [ARGS]...
+
+  Show details of the queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  counters   Show details of the counters queues
+  persistent-watermark Show details of the persistent-watermark queues
+  watermark  Show details of the watermark queues
+  wredcounters Show details of the wredcounters queues
+"""
+
+GNMI_JSON_TEST_DATA["dropcounters"]["dropcounters"] = {
+    "subcommands": {"capabilities": "", "configuration": "",
+                    "counts": "", "persistent-drops": ""}
+}
+EXPECTED_CLI_OUTPUTS["dropcounters"]["dropcounters"] = """\
+Usage: show dropcounters [OPTIONS] COMMAND [ARGS]...
+
+  Show drop counter related information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  capabilities Show drop counter related information capabilities
+  configuration Show drop counter related information configuration
+  counts     Show drop counter related information counts
+  persistent-drops Show drop counter related information persistent-drops
+"""
+
+GNMI_JSON_TEST_DATA["watermark"]["watermark"] = {
+    "subcommands": {"telemetry": ""}
+}
+EXPECTED_CLI_OUTPUTS["watermark"]["watermark"] = """\
+Usage: show watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show details of watermark
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  telemetry  Show details of watermark telemetry
+"""
+
+GNMI_JSON_TEST_DATA["lldp"]["lldp"] = {
+    "subcommands": {"neighbors": "", "table": ""}
+}
+EXPECTED_CLI_OUTPUTS["lldp"]["lldp"] = """\
+Usage: show lldp [OPTIONS] COMMAND [ARGS]...
+
+  Show LLDP information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  neighbors  Show LLDP information neighbors
+  table      Show LLDP information table
+"""
+
+GNMI_JSON_TEST_DATA["vlan"]["vlan"] = {
+    "subcommands": {"brief": "", "config": ""}
+}
+EXPECTED_CLI_OUTPUTS["vlan"]["vlan"] = """\
+Usage: show vlan [OPTIONS] COMMAND [ARGS]...
+
+  Show VLAN information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  brief      Show VLAN information brief
+  config     Show VLAN information config
+"""
+
+GNMI_JSON_TEST_DATA["interfaces"]["interfaces"] = {
+    "subcommands": {
+        "alias": "", "autoneg": "", "breakout": "", "counters": "",
+        "description": "", "dhcp-mitigation-rate": "", "errors": "",
+        "fec": "", "flap": "", "link-training": "", "mpls": "",
+        "naming_mode": "", "neighbor": "", "phy-serdes": "", "phy-signal": "",
+        "portchannel": "", "status": "", "switchport": "", "tpid": "",
+        "transceiver": ""
+    }
+}
+EXPECTED_CLI_OUTPUTS["interfaces"]["interfaces"] = """\
+Usage: show interfaces [OPTIONS] COMMAND [ARGS]...
+
+  Show details of the network interfaces
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  alias      Show details of the network interfaces alias
+  autoneg    Show details of the network interfaces autoneg
+  breakout   Show details of the network interfaces breakout
+  counters   Show details of the network interfaces counters
+  description Show details of the network interfaces description
+  dhcp-mitigation-rate Show details of the network interfaces dhcp-mitigation-rate
+  errors     Show details of the network interfaces errors
+  fec        Show details of the network interfaces fec
+  flap       Show details of the network interfaces flap
+  link-training Show details of the network interfaces link-training
+  mpls       Show details of the network interfaces mpls
+  naming_mode Show details of the network interfaces naming_mode
+  neighbor   Show details of the network interfaces neighbor
+  phy-serdes Show details of the network interfaces phy-serdes
+  phy-signal Show details of the network interfaces phy-signal
+  portchannel Show details of the network interfaces portchannel
+  status     Show details of the network interfaces status
+  switchport Show details of the network interfaces switchport
+  tpid       Show details of the network interfaces tpid
+  transceiver Show details of the network interfaces transceiver
+"""
+
+GNMI_JSON_TEST_DATA["srv6"]["srv6"] = {
+    "subcommands": {"stats": ""}
+}
+EXPECTED_CLI_OUTPUTS["srv6"]["srv6"] = """\
+Usage: show srv6 [OPTIONS] COMMAND [ARGS]...
+
+  Show SRv6 related information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  stats      Show SRv6 related information stats
+"""
+
+GNMI_JSON_TEST_DATA["ipv6"]["ipv6"] = {
+    "subcommands": {"bgp": "", "fib": "", "interfaces": "",
+                    "link-local-mode": "", "prefix-list": "",
+                    "protocol": "", "route": ""}
+}
+EXPECTED_CLI_OUTPUTS["ipv6"]["ipv6"] = """\
+Usage: show ipv6 [OPTIONS] COMMAND [ARGS]...
+
+  Show IPv6 commands
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  bgp        Show IPv6 commands bgp
+  fib        Show IPv6 commands fib
+  interfaces Show IPv6 commands interfaces
+  link-local-mode Show IPv6 commands link-local-mode
+  prefix-list Show IPv6 commands prefix-list
+  protocol   Show IPv6 commands protocol
+  route      Show IPv6 commands route
+"""
+
+# Multi-segment intermediates (`show <parent> <child>`). The child key here
+# overrides any earlier leaf entry with the same (command, subcommand) —
+# intentional: these paths now return click-help payloads on real devices.
+GNMI_JSON_TEST_DATA["queue"]["watermark"] = {
+    "subcommands": {"all": "", "multicast": "", "unicast": ""}
+}
+EXPECTED_CLI_OUTPUTS["queue"]["watermark"] = """\
+Usage: show queue watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show user WM for queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  all        Show user WM for all queues
+  multicast  Show user WM for multicast queues
+  unicast    Show user WM for unicast queues
+"""
+
+GNMI_JSON_TEST_DATA["queue"]["persistent-watermark"] = {
+    "subcommands": {"all": "", "multicast": "", "unicast": ""}
+}
+EXPECTED_CLI_OUTPUTS["queue"]["persistent-watermark"] = """\
+Usage: show queue persistent-watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show persistent WM for queues
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  all        Show persistent WM for all queues
+  multicast  Show persistent WM for multicast queues
+  unicast    Show persistent WM for unicast queues
+"""
+
+GNMI_JSON_TEST_DATA["priority-group"]["watermark"] = {
+    "subcommands": {"headroom": "", "shared": ""}
+}
+EXPECTED_CLI_OUTPUTS["priority-group"]["watermark"] = """\
+Usage: show priority-group watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show priority-group user WM
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  headroom   Show priority-group user WM headroom
+  shared     Show priority-group user WM shared
+"""
+
+GNMI_JSON_TEST_DATA["priority-group"]["persistent-watermark"] = {
+    "subcommands": {"headroom": "", "shared": ""}
+}
+EXPECTED_CLI_OUTPUTS["priority-group"]["persistent-watermark"] = """\
+Usage: show priority-group persistent-watermark [OPTIONS] COMMAND [ARGS]...
+
+  Show priority-group persistent WM
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  headroom   Show priority-group persistent WM headroom
+  shared     Show priority-group persistent WM shared
+"""
+
+GNMI_JSON_TEST_DATA["interfaces"]["neighbor"] = {
+    "subcommands": {"expected": ""}
+}
+EXPECTED_CLI_OUTPUTS["interfaces"]["neighbor"] = """\
+Usage: show interfaces neighbor [OPTIONS] COMMAND [ARGS]...
+
+  Show neighbor related information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  expected   Show neighbor related information expected
+"""
+
+GNMI_JSON_TEST_DATA["interfaces"]["fec"] = {
+    "subcommands": {"status": ""}
+}
+EXPECTED_CLI_OUTPUTS["interfaces"]["fec"] = """\
+Usage: show interfaces fec [OPTIONS] COMMAND [ARGS]...
+
+  Show interface fec information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  status     Show interface fec information status
+"""
+
+GNMI_JSON_TEST_DATA["interfaces"]["transceiver"] = {
+    "subcommands": {"eeprom": "", "error-status": "", "info": "",
+                    "lpmode": "", "pm": "", "presence": "", "status": ""}
+}
+EXPECTED_CLI_OUTPUTS["interfaces"]["transceiver"] = """\
+Usage: show interfaces transceiver [OPTIONS] COMMAND [ARGS]...
+
+  Show SFP Transceiver information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  eeprom     Show SFP Transceiver information eeprom
+  error-status Show SFP Transceiver information error-status
+  info       Show SFP Transceiver information info
+  lpmode     Show SFP Transceiver information lpmode
+  pm         Show SFP Transceiver information pm
+  presence   Show SFP Transceiver information presence
+  status     Show SFP Transceiver information status
+"""
+
+GNMI_JSON_TEST_DATA["interfaces"]["switchport"] = {
+    "subcommands": {"config": "", "status": ""}
+}
+EXPECTED_CLI_OUTPUTS["interfaces"]["switchport"] = """\
+Usage: show interfaces switchport [OPTIONS] COMMAND [ARGS]...
+
+  Show interface switchport information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  config     Show interface switchport information config
+  status     Show interface switchport information status
+"""
+
+GNMI_JSON_TEST_DATA["ipv6"]["bgp"] = {
+    "subcommands": {"neighbors": "", "network": "", "summary": "", "vrf": ""}
+}
+EXPECTED_CLI_OUTPUTS["ipv6"]["bgp"] = """\
+Usage: show ipv6 bgp [OPTIONS] COMMAND [ARGS]...
+
+  Show IPv6 BGP (Border Gateway Protocol) information
+
+Options:
+  -?, -h, --help  Show this message and exit.
+
+Commands:
+  neighbors  Show IPv6 BGP (Border Gateway Protocol) information neighbors
+  network    Show IPv6 BGP (Border Gateway Protocol) information network
+  summary    Show IPv6 BGP (Border Gateway Protocol) information summary
+  vrf        Show IPv6 BGP (Border Gateway Protocol) information vrf
+"""
 
 
 def get_test_data(command: str, subcommand: str,

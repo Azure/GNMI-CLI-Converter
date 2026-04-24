@@ -174,15 +174,18 @@ class CommandParser:
         if command in self.COMMANDS_WITH_OPTIONAL_SUBCOMMAND:
             # First check if there's a valid subcommand in the remaining parts
             if len(parts) >= 2:
-                potential_sub = parts[1]
-                # Normalize underscore to hyphen for comparison (CLI uses both)
-                potential_sub_normalized = potential_sub.lower().replace('_', '-')
-                # Check if this is a valid subcommand for this command
-                if potential_sub_normalized in self.VALID_COMMANDS.get(command, []):
-                    # Use the normalized subcommand
-                    subcommand = potential_sub_normalized
-                    if len(parts) >= 3:
-                        argument = ' '.join(parts[2:])
+                # Try compound-subcommand matching first (e.g. "watermark shared"
+                # -> "watermark-shared") so that commands which have BOTH a
+                # self-referential intermediate entry AND compound leaf
+                # subcommands (e.g. priority-group, queue, interfaces, ipv6)
+                # route correctly.
+                compound = self._normalize_subcommand(command, parts[1:])
+                valid_subs = self.VALID_COMMANDS.get(command, [])
+                if compound and compound["subcommand"] in valid_subs:
+                    subcommand = compound["subcommand"]
+                    remaining = compound.get("remaining", [])
+                    if remaining:
+                        argument = ' '.join(remaining)
                 else:
                     # Not a valid subcommand, treat command as its own subcommand
                     # and remaining parts as arguments

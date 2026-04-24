@@ -305,16 +305,58 @@ class CommandHelpFormatter(OutputFormatter):
     
     # Mapping from internal command names to CLI-style names
     COMMAND_NAME_MAP = {
-        "Queue watermark": "queue watermark",
-        "Queue persistent watermark": "queue persistent-watermark",
-        "Processes": "processes",
+        # Single-segment intermediates (from device real output)
+        "processes": "processes",
+        "buffer_pool": "buffer_pool",
+        "headroom-pool": "headroom-pool",
+        "priority-group": "priority-group",
+        "queue": "queue",
+        "dropcounters": "dropcounters",
+        "watermark": "watermark",
+        "lldp": "lldp",
+        "vlan": "vlan",
+        "interfaces": "interfaces",
+        "srv6": "srv6",
+        "ipv6": "ipv6",
+        # Multi-segment intermediates
+        "queue watermark": "queue watermark",
+        "queue persistent-watermark": "queue persistent-watermark",
+        "priority-group watermark": "priority-group watermark",
+        "priority-group persistent-watermark":
+            "priority-group persistent-watermark",
+        "interfaces neighbor": "interfaces neighbor",
+        "interfaces fec": "interfaces fec",
+        "interfaces transceiver": "interfaces transceiver",
+        "interfaces switchport": "interfaces switchport",
+        "ipv6 bgp": "ipv6 bgp",
     }
 
     # Mapping from command type to description text
     DESCRIPTION_MAP = {
-        "Queue watermark": "user WM for queues",
-        "Queue persistent watermark": "persistent WM for queues",
-        "Processes": "processes information",
+        # Single-segment intermediates — text matches the device's
+        # "Show <description>" line verbatim.
+        "processes": "processes information",
+        "buffer_pool": "details of the buffer pools",
+        "headroom-pool": "details of headroom pool",
+        "priority-group": "details of the PGs",
+        "queue": "details of the queues",
+        "dropcounters": "drop counter related information",
+        "watermark": "details of watermark",
+        "lldp": "LLDP information",
+        "vlan": "VLAN information",
+        "interfaces": "details of the network interfaces",
+        "srv6": "SRv6 related information",
+        "ipv6": "IPv6 commands",
+        # Multi-segment intermediates
+        "queue watermark": "user WM for queues",
+        "queue persistent-watermark": "persistent WM for queues",
+        "priority-group watermark": "priority-group user WM",
+        "priority-group persistent-watermark": "priority-group persistent WM",
+        "interfaces neighbor": "neighbor related information",
+        "interfaces fec": "interface fec information",
+        "interfaces transceiver": "SFP Transceiver information",
+        "interfaces switchport": "interface switchport information",
+        "ipv6 bgp": "IPv6 BGP (Border Gateway Protocol) information",
     }
     
     def format(

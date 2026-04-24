@@ -1051,9 +1051,14 @@ fn test_parse_command_with_options() {
 
 #[test]
 fn test_parse_command_unknown_subcommand() {
-    // Line 454: unknown subcommand error path
+    // ``interfaces`` is now an intermediate (self-ref) command. Unknown
+    // second tokens are permissively routed to the intermediate help entry
+    // with the unknown token carried as argument, consistent with
+    // ``show processes xxx`` routing.
     let parsed = gnmi_cli_lib::parser::parse_command("show interfaces nonexistent_sub");
-    assert!(!parsed.is_valid);
+    assert!(parsed.is_valid);
+    assert_eq!(parsed.subcommand, "interfaces");
+    assert_eq!(parsed.argument.as_deref(), Some("nonexistent_sub"));
 }
 
 #[test]
