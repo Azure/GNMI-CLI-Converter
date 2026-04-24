@@ -30,6 +30,7 @@ def register_all_commands(registry: CommandRegistry) -> None:
     _register_interface_commands(registry)
     _register_network_commands(registry)
     _register_ipv6_commands(registry)
+    _register_intermediate_commands(registry)
     _register_cli_mappings(registry)
 
 
@@ -100,17 +101,11 @@ def _register_queue_commands(registry: CommandRegistry) -> None:
             description=f"Queue {subcommand.replace('-', ' ')}"
         ))
     
-    # Base watermark commands (show help/usage)
-    registry.register_command("queue", "watermark", CommandConfig(
-        output_type="command_help",
-        description="Queue watermark help"
-    ))
-    
-    registry.register_command("queue", "persistent-watermark", CommandConfig(
-        output_type="command_help",
-        description="Queue persistent watermark help"
-    ))
-    
+    # NOTE: Self-referential help entries for ``show queue``,
+    # ``show queue watermark`` and ``show queue persistent-watermark`` are
+    # registered centrally in ``_register_intermediate_commands`` so that all
+    # intermediate (non-leaf) commands live in one place.
+
     # Counter commands
     registry.register_command("queue", "counters", CommandConfig(
         output_type="queue_counters",
@@ -210,13 +205,10 @@ def _register_system_commands(registry: CommandRegistry) -> None:
         output_type="processes_memory",
         description="Processes sorted by memory (top-like format)"
     ))
-    # Self-referential entry enables bare "show processes" (server path SHOW/processes
-    # returns a subcommand-discovery payload handled by CommandHelpFormatter)
-    registry.register_command("processes", "processes", CommandConfig(
-        output_type="command_help",
-        description="Processes help"
-    ))
-    
+    # NOTE: Self-referential ``(processes, processes)`` entry for bare
+    # ``show processes`` is registered centrally in
+    # ``_register_intermediate_commands``.
+
     # Watermark telemetry
     registry.register_command("watermark", "telemetry", CommandConfig(
         output_type="watermark_telemetry",
@@ -471,6 +463,59 @@ def _register_ipv6_commands(registry: CommandRegistry) -> None:
     ))
 
 
+def _register_intermediate_commands(registry: CommandRegistry) -> None:
+    """Register intermediate (non-leaf) show commands.
+
+    Intermediate commands are path prefixes that have children but are
+    themselves queryable via gNMI. On the real device, requesting the
+    intermediate path returns a click-style "usage + subcommands" help
+    payload. We register each one with the ``command_help`` formatter.
+
+    Two shapes:
+    * Single-segment self-refs (``(X, X)``): enables bare ``show X``.
+    * Multi-segment ``(parent, child)``: enables ``show parent child``
+      where ``child`` is itself an intermediate node.
+    """
+    # Single-segment intermediates: bare ``show <cmd>`` -> (cmd, cmd).
+    single_segment = [
+        "processes",
+        "buffer_pool",
+        "headroom-pool",
+        "priority-group",
+        "queue",
+        "dropcounters",
+        "watermark",
+        "lldp",
+        "vlan",
+        "interfaces",
+        "srv6",
+        "ipv6",
+    ]
+    for command in single_segment:
+        registry.register_command(command, command, CommandConfig(
+            output_type="command_help",
+            description=f"{command} help"
+        ))
+
+    # Multi-segment intermediates: (parent, child).
+    multi_segment = [
+        ("queue", "watermark"),
+        ("queue", "persistent-watermark"),
+        ("priority-group", "watermark"),
+        ("priority-group", "persistent-watermark"),
+        ("interfaces", "neighbor"),
+        ("interfaces", "fec"),
+        ("interfaces", "transceiver"),
+        ("interfaces", "switchport"),
+        ("ipv6", "bgp"),
+    ]
+    for command, subcommand in multi_segment:
+        registry.register_command(command, subcommand, CommandConfig(
+            output_type="command_help",
+            description=f"{command} {subcommand} help"
+        ))
+
+
 def _register_cli_mappings(registry: CommandRegistry) -> None:
     """Register all CLI command mappings."""
     cli_mappings = [
@@ -536,8 +581,6 @@ def _register_cli_mappings(registry: CommandRegistry) -> None:
                    "System memory", "free -m"),
         CliMapping("show services", "SHOW/services", "services", "services",
                    "Docker services", ""),
-        CliMapping("show processes", "SHOW/processes", "processes", "processes",
-                   "Processes help", ""),
         CliMapping("show processes summary", "SHOW/processes/summary",
                    "processes", "summary", "Process summary", ""),
         CliMapping("show processes cpu", "SHOW/processes/cpu",
@@ -661,6 +704,70 @@ def _register_cli_mappings(registry: CommandRegistry) -> None:
                    "ipv6", "link-local-mode", "IPv6 link local mode", ""),
         CliMapping("show ipv6 fib", "SHOW/ipv6/fib", "ipv6", "fib",
                    "IPv6 FIB", ""),
+
+        # ---- Intermediate (non-leaf) commands ----
+        # Each returns a click-style "usage + subcommands" payload.
+        # Single-segment intermediates (self-ref keys):
+        CliMapping("show processes", "SHOW/processes",
+                   "processes", "processes", "Processes help"),
+        CliMapping("show buffer_pool", "SHOW/buffer_pool",
+                   "buffer_pool", "buffer_pool", "Buffer pool help"),
+        CliMapping("show headroom-pool", "SHOW/headroom-pool",
+                   "headroom-pool", "headroom-pool", "Headroom pool help"),
+        CliMapping("show priority-group", "SHOW/priority-group",
+                   "priority-group", "priority-group",
+                   "Priority group help"),
+        CliMapping("show queue", "SHOW/queue", "queue", "queue",
+                   "Queue help"),
+        CliMapping("show dropcounters", "SHOW/dropcounters",
+                   "dropcounters", "dropcounters", "Dropcounters help"),
+        CliMapping("show watermark", "SHOW/watermark",
+                   "watermark", "watermark", "Watermark help"),
+        CliMapping("show lldp", "SHOW/lldp", "lldp", "lldp",
+                   "LLDP help"),
+        CliMapping("show vlan", "SHOW/vlan", "vlan", "vlan",
+                   "VLAN help"),
+        CliMapping("show interfaces", "SHOW/interfaces",
+                   "interfaces", "interfaces", "Interfaces help"),
+        CliMapping("show srv6", "SHOW/srv6", "srv6", "srv6",
+                   "SRv6 help"),
+        CliMapping("show ipv6", "SHOW/ipv6", "ipv6", "ipv6",
+                   "IPv6 help"),
+        # Multi-segment intermediates:
+        CliMapping("show queue watermark",
+                   "SHOW/queue/watermark",
+                   "queue", "watermark",
+                   "Queue watermark help"),
+        CliMapping("show queue persistent-watermark",
+                   "SHOW/queue/persistent-watermark",
+                   "queue", "persistent-watermark",
+                   "Queue persistent-watermark help"),
+        CliMapping("show priority-group watermark",
+                   "SHOW/priority-group/watermark",
+                   "priority-group", "watermark",
+                   "Priority group watermark help"),
+        CliMapping("show priority-group persistent-watermark",
+                   "SHOW/priority-group/persistent-watermark",
+                   "priority-group", "persistent-watermark",
+                   "Priority group persistent-watermark help"),
+        CliMapping("show interfaces neighbor",
+                   "SHOW/interfaces/neighbor",
+                   "interfaces", "neighbor",
+                   "Interfaces neighbor help"),
+        CliMapping("show interfaces fec",
+                   "SHOW/interfaces/fec",
+                   "interfaces", "fec",
+                   "Interfaces fec help"),
+        CliMapping("show interfaces transceiver",
+                   "SHOW/interfaces/transceiver",
+                   "interfaces", "transceiver",
+                   "Interfaces transceiver help"),
+        CliMapping("show interfaces switchport",
+                   "SHOW/interfaces/switchport",
+                   "interfaces", "switchport",
+                   "Interfaces switchport help"),
+        CliMapping("show ipv6 bgp", "SHOW/ipv6/bgp",
+                   "ipv6", "bgp", "IPv6 BGP help"),
     ]
     
     for mapping in cli_mappings:

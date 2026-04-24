@@ -122,54 +122,67 @@ lazy_static! {
     /// Valid commands and their subcommands.
     static ref VALID_COMMANDS: HashMap<&'static str, Vec<&'static str>> = {
         let mut m = HashMap::new();
-        m.insert("buffer_pool", vec!["watermark", "persistent-watermark"]);
-        m.insert("headroom-pool", vec!["watermark", "persistent-watermark"]);
+        m.insert("buffer_pool", vec!["watermark", "persistent-watermark", "buffer_pool"]);
+        m.insert("headroom-pool", vec!["watermark", "persistent-watermark", "headroom-pool"]);
         m.insert("clock", vec!["clock", "date", "timezones"]);
-        m.insert("dropcounters", vec!["capabilities", "configuration", "counts"]);
+        m.insert("dropcounters", vec!["capabilities", "configuration", "counts", "dropcounters"]);
         m.insert("interfaces", vec![
             "alias", "counters", "counters-detailed", "counters-errors",
             "counters-fec-histogram", "counters-fec-stats", "counters-rates",
             "counters-rif", "counters-trim", "description", "errors",
-            "fec-status", "flap", "naming-mode", "neighbor-expected", "portchannel",
-            "status", "switchport-config", "switchport-status",
-            "transceiver-eeprom", "transceiver-error-status", "transceiver-info",
-            "transceiver-lpmode", "transceiver-pm", "transceiver-presence",
-            "transceiver-status"
+            "fec", "fec-status", "flap", "naming-mode", "neighbor",
+            "neighbor-expected", "portchannel", "status", "switchport",
+            "switchport-config", "switchport-status",
+            "transceiver", "transceiver-eeprom", "transceiver-error-status",
+            "transceiver-info", "transceiver-lpmode", "transceiver-pm",
+            "transceiver-presence", "transceiver-status",
+            "interfaces"
         ]);
         m.insert("ipv6", vec![
-            "bgp-neighbors", "bgp-network", "bgp-summary", "fib",
-            "interfaces", "link-local-mode", "prefix-list", "protocol", "route"
+            "bgp", "bgp-neighbors", "bgp-network", "bgp-summary", "fib",
+            "interfaces", "link-local-mode", "prefix-list", "protocol", "route",
+            "ipv6"
         ]);
-        m.insert("lldp", vec!["neighbors", "table"]);
+        m.insert("lldp", vec!["neighbors", "table", "lldp"]);
         m.insert("mac", vec!["mac", "aging-time"]);
         m.insert("mmu", vec!["mmu"]);
         m.insert("ndp", vec!["ndp"]);
         m.insert("processes", vec!["cpu", "memory", "summary", "processes"]);
         m.insert("priority-group", vec![
-            "persistent-watermark-headroom", "persistent-watermark-shared",
-            "watermark-headroom", "watermark-shared"
+            "persistent-watermark", "persistent-watermark-headroom",
+            "persistent-watermark-shared", "watermark", "watermark-headroom",
+            "watermark-shared", "priority-group"
         ]);
         m.insert("queue", vec![
             "counters", "persistent-watermark", "persistent-watermark-all",
             "persistent-watermark-multicast", "persistent-watermark-unicast",
             "watermark", "watermark-all", "watermark-multicast", "watermark-unicast",
-            "wredcounters"
+            "wredcounters", "queue"
         ]);
         m.insert("reboot-cause", vec!["reboot-cause", "history"]);
         m.insert("services", vec!["services"]);
-        m.insert("srv6", vec!["stats"]);
+        m.insert("srv6", vec!["stats", "srv6"]);
         m.insert("system-memory", vec!["system-memory", "memory"]);
         m.insert("uptime", vec!["uptime"]);
         m.insert("version", vec!["version"]);
-        m.insert("vlan", vec!["brief"]);
-        m.insert("watermark", vec!["telemetry"]);
+        m.insert("vlan", vec!["brief", "vlan"]);
+        m.insert("watermark", vec!["telemetry", "watermark"]);
         m
     };
 
     /// Commands with optional subcommands.
+    ///
+    /// These are "intermediate" commands — they have children but are also
+    /// themselves queryable via gNMI (returning a click-style subcommand-
+    /// discovery payload). For each of these, the registry holds a
+    /// self-referential entry (e.g. ``("queue", "queue")``) routed to the
+    /// ``command_help`` formatter.
     static ref COMMANDS_WITH_OPTIONAL_SUBCOMMAND: Vec<&'static str> = vec![
         "ndp", "uptime", "version", "mmu", "clock", "mac", "services", "system-memory",
-        "reboot-cause", "processes"
+        "reboot-cause", "processes",
+        // New intermediates (single-segment parents with self-ref):
+        "buffer_pool", "headroom-pool", "priority-group", "queue", "dropcounters",
+        "watermark", "lldp", "vlan", "interfaces", "srv6", "ipv6"
     ];
 
     /// Commands that accept optional arguments.
@@ -296,19 +309,32 @@ impl CommandParser {
         let (subcommand, argument) =
             if COMMANDS_WITH_OPTIONAL_SUBCOMMAND.contains(&command.as_str()) {
                 if parts.len() >= 2 {
-                    let potential_sub = parts[1].to_lowercase().replace('_', "-");
-                    if let Some(valid_subs) = VALID_COMMANDS.get(command.as_str()) {
-                        if valid_subs.contains(&potential_sub.as_str()) {
-                            let arg = if parts.len() >= 3 {
-                                Some(parts[2..].join(" "))
-                            } else {
-                                None
-                            };
-                            (potential_sub, arg)
+                    // Try compound-subcommand matching first (e.g.
+                    // "watermark shared" -> "watermark-shared") so commands
+                    // with both self-ref intermediate entries and compound
+                    // leaf subcommands (priority-group, queue, interfaces,
+                    // ipv6) route correctly.
+                    let compound = self.normalize_subcommand(&command, &parts[1..]);
+                    let valid_sub = compound.as_ref().and_then(|c| {
+                        VALID_COMMANDS
+                            .get(command.as_str())
+                            .and_then(|subs| {
+                                if subs.contains(&c.subcommand.as_str()) {
+                                    Some(c)
+                                } else {
+                                    None
+                                }
+                            })
+                    });
+                    if let Some(c) = valid_sub {
+                        let arg = if c.remaining.is_empty() {
+                            None
                         } else {
-                            (command.clone(), Some(parts[1..].join(" ")))
-                        }
+                            Some(c.remaining.join(" "))
+                        };
+                        (c.subcommand.clone(), arg)
                     } else {
+                        // Fall back: self-ref with remaining parts as argument.
                         (command.clone(), Some(parts[1..].join(" ")))
                     }
                 } else {
@@ -1002,14 +1028,17 @@ mod tests {
 
     #[test]
     fn test_parse_unknown_subcommand() {
+        // ``interfaces`` is now an intermediate (self-ref) command, so an
+        // unknown second token is permissively treated as the argument for
+        // ``show interfaces`` (the intermediate help), mirroring existing
+        // ``show processes xxx`` behavior. This is the canonical routing for
+        // commands in COMMANDS_WITH_OPTIONAL_SUBCOMMAND.
         let parser = CommandParser::new();
         let parsed = parser.parse("show interfaces unknownsub");
-        assert!(!parsed.is_valid);
-        assert!(parsed
-            .error_message
-            .clone()
-            .unwrap()
-            .contains("Unknown subcommand"));
+        assert!(parsed.is_valid, "{:?}", parsed.error_message);
+        assert_eq!(parsed.command, "interfaces");
+        assert_eq!(parsed.subcommand, "interfaces");
+        assert_eq!(parsed.argument.as_deref(), Some("unknownsub"));
     }
 
     #[test]
@@ -1175,15 +1204,14 @@ mod tests {
 
     #[test]
     fn test_parse_missing_subcommand_for_non_optional() {
+        // ``buffer_pool`` is now an intermediate (self-ref) command. Bare
+        // ``show buffer_pool`` resolves to the intermediate help entry.
         let parser = CommandParser::new();
         let parsed = parser.parse("show buffer_pool");
-        // buffer_pool requires a subcommand
-        assert!(!parsed.is_valid);
-        assert!(parsed
-            .error_message
-            .clone()
-            .unwrap()
-            .contains("Missing subcommand"));
+        assert!(parsed.is_valid, "{:?}", parsed.error_message);
+        assert_eq!(parsed.command, "buffer_pool");
+        assert_eq!(parsed.subcommand, "buffer_pool");
+        assert!(parsed.argument.is_none());
     }
 
     #[test]
@@ -1939,15 +1967,13 @@ mod tests {
 
     #[test]
     fn test_parse_missing_subcommand_non_optional() {
-        // Tests L346-354: command requiring subcommand but none given
+        // ``interfaces`` is now an intermediate (self-ref) command. Bare
+        // ``show interfaces`` resolves to the intermediate help entry.
         let parser = CommandParser::new();
         let parsed = parser.parse("show interfaces");
-        assert!(!parsed.is_valid);
-        assert!(parsed
-            .error_message
-            .as_ref()
-            .unwrap()
-            .contains("Missing subcommand"));
+        assert!(parsed.is_valid, "{:?}", parsed.error_message);
+        assert_eq!(parsed.command, "interfaces");
+        assert_eq!(parsed.subcommand, "interfaces");
     }
 
     #[test]
