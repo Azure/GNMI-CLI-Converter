@@ -6,9 +6,7 @@
 //! "subcommand-discovery" payload which the client renders via the
 //! `command_help` formatter.
 //!
-//! The list below mirrors the real P0 device capture at
-//! `/home/guoyuan/temp/Intermediate-Commands-Results.md`.
-
+//! The list below mirrors the real device capture.
 use gnmi_cli_lib::parser::CommandParser;
 use gnmi_cli_lib::registry::create_default_registry;
 use serde_json::json;

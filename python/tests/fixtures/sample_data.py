@@ -949,8 +949,7 @@ GNMI_JSON_TEST_DATA = {
 # CommandHelpFormatter.
 #
 # Expected CLI strings below are the exact output produced by the current
-# CommandHelpFormatter given the registered description text. They match the
-# style of the hand-written ``processes`` entry above.
+# CommandHelpFormatter given the registered description text.
 # -----------------------------------------------------------------------------
 
 # Single-segment intermediates (bare `show <cmd>`).
